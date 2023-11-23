@@ -18,7 +18,6 @@ export const CreateCodeButton = () => {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    console.log(user);
 
     if (!user?.id) return;
 
@@ -32,7 +31,7 @@ export const CreateCodeButton = () => {
     console.log(data);
 
     if (!!data?.length) {
-      router.push(`/code/${data[0].id}/edit`);
+      router.push(`/code/${data[0].code_id}/edit`);
     }
   };
 
