@@ -7,6 +7,7 @@ import { createClient } from "@/utils/supabase/server";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CreateCodeButton } from "./_components/create-code-button";
+import { CodeCard } from "./_components/code-card";
 
 const DashboardPage = async () => {
   const cookieStore = cookies();
@@ -39,7 +40,7 @@ const DashboardPage = async () => {
         {!!codes?.length ? (
           <div>
             {codes?.map((code) => (
-              <div key={code.code_id}>{code.code_id}</div>
+              <CodeCard code={code} key={code.code_id} />
             ))}
           </div>
         ) : (

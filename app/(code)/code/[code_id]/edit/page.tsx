@@ -3,6 +3,8 @@ import { NextPage } from "next";
 import { cookies } from "next/headers";
 
 import { createClient } from "@/utils/supabase/server";
+import { CodeEditor } from "./_components/code-editor";
+import Header from "@/components/Header";
 
 interface Props {
   params: {
@@ -24,9 +26,12 @@ const CodeEditPage: NextPage<Props> = async ({ params: { code_id } }) => {
     .maybeSingle();
 
   return (
-    <div>
-      <div>{badCode.code_id}</div>
-    </div>
+    <>
+      <Header />
+      <div>
+        <CodeEditor code={badCode} />
+      </div>
+    </>
   );
 };
 
