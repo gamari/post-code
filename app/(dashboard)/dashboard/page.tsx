@@ -1,42 +1,28 @@
-"use client";
-
 import React from "react";
-
-import { Button } from "@/components/ui/button";
-
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 
-const DashboardPage = () => {
-  const router = useRouter();
+import { createClient } from "@/utils/supabase/server";
 
-  const supabase = createClientComponentClient();
+import { Card, CardHeader } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { CreateCodeButton } from "./_components/create-code-button";
 
-  const handleCreateCode = async (e: React.FormEvent) => {
-    e.preventDefault();
+const DashboardPage = async () => {
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    console.log(user);
-
-    if (!user?.id) return;
-
-    const { data, error } = await supabase.from("bad_codes").insert({
-      profile_id: user.id,
-    }).select();
-
-    console.log(data)
-
-    if (!!data?.length) {
-      router.push(`/code/${data[0].id}/edit`)
-    }
-  };
+  const { data: codes } = await supabase
+    .from("bad_codes")
+    .select()
+    .eq("profile_id", user?.id);
 
   return (
-    <div className="flex flex-row">
-      <aside>
+    <>
+      <aside className="w-[200px]">
         <div>Sidebar</div>
         <div>
           <Button asChild>
@@ -45,12 +31,26 @@ const DashboardPage = () => {
         </div>
       </aside>
 
-      <div>
+      <div className="flex-1">
         <div>
-          <Button onClick={handleCreateCode}>コード作成</Button>
+          <CreateCodeButton />
         </div>
+
+        {!!codes?.length ? (
+          <div>
+            {codes?.map((code) => (
+              <div key={code.code_id}>{code.code_id}</div>
+            ))}
+          </div>
+        ) : (
+          <Card>
+            <CardHeader>
+              <p>作成したコードが存在しません</p>
+            </CardHeader>
+          </Card>
+        )}
       </div>
-    </div>
+    </>
   );
 };
 
