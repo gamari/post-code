@@ -6,8 +6,8 @@ import { createServerClient } from "@/libs/supabase/server";
 
 import { Card, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CreateCodeButton } from "./_components/create-code-button";
-import { CodeCard } from "./_components/code-card";
+import { CreateCodeButton } from "../../../components/codes/create-code-button/create-code-button";
+import { CodeCard } from "../../../components/codes/code-card/code-card";
 
 const DashboardPage = async () => {
   const cookieStore = cookies();
