@@ -2,7 +2,7 @@ import React from "react";
 import { NextPage } from "next";
 import { cookies } from "next/headers";
 
-import { createClient } from "@/utils/supabase/server";
+import { createServerClient } from "@/libs/supabase/server";
 import { CodeEditor } from "./_components/code-editor";
 import Header from "@/components/Header";
 
@@ -14,7 +14,7 @@ interface Props {
 
 const CodeEditPage: NextPage<Props> = async ({ params: { code_id } }) => {
   const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = createServerClient(cookieStore);
   const {
     data: { user },
   } = await supabase.auth.getUser();

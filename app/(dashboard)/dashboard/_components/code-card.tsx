@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { BadCode } from "@/lib/types";
+import { BadCode } from "@/libs/types";
 import Link from "next/link";
 import React, { FunctionComponent } from "react";
 

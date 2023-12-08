@@ -2,7 +2,7 @@
 
 import React, { FunctionComponent, useState } from "react";
 
-import { BadCode } from "@/lib/types";
+import { BadCode } from "@/libs/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";

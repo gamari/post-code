@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { cookies } from "next/headers";
 
-import { createClient } from "@/utils/supabase/server";
+import { createServerClient } from "@/libs/supabase/server";
 
 import { Card, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,7 @@ import { CodeCard } from "./_components/code-card";
 
 const DashboardPage = async () => {
   const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = createServerClient(cookieStore);
   const {
     data: { user },
   } = await supabase.auth.getUser();
