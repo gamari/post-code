@@ -22,36 +22,25 @@ const DashboardPage = async () => {
     .eq("profile_id", user?.id);
 
   return (
-    <>
-      <aside className="w-[200px]">
-        <div>Sidebar</div>
-        <div>
-          <Button asChild>
-            <Link href="/">Home</Link>
-          </Button>
-        </div>
-      </aside>
-
-      <div className="flex-1">
-        <div>
-          <CreateCodeButton />
-        </div>
-
-        {!!codes?.length ? (
-          <div>
-            {codes?.map((code) => (
-              <CodeCard code={code} key={code.code_id} />
-            ))}
-          </div>
-        ) : (
-          <Card>
-            <CardHeader>
-              <p>作成したコードが存在しません</p>
-            </CardHeader>
-          </Card>
-        )}
+    <div>
+      <div>
+        <CreateCodeButton />
       </div>
-    </>
+
+      {!!codes?.length ? (
+        <div>
+          {codes?.map((code) => (
+            <CodeCard code={code} key={code.code_id} />
+          ))}
+        </div>
+      ) : (
+        <Card>
+          <CardHeader>
+            <p>作成したコードが存在しません</p>
+          </CardHeader>
+        </Card>
+      )}
+    </div>
   );
 };
 

@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 
 import { createServerClient } from "@/libs/supabase/server";
 import { CodeEditor } from "./_components/code-editor";
-import Header from "@/components/Header";
+import Header from "@/components/landing-page/header/header";
 
 interface Props {
   params: {

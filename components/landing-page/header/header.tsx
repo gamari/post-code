@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
-import DeployButton from "./DeployButton";
 import { createServerClient } from '@/libs/supabase/server'
-import AuthButton from "./AuthButton";
+import AuthButton from "../../auth/auth-button/auth-button";
 import Link from "next/link";
 
 
