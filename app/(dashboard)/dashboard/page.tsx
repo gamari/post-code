@@ -1,25 +1,14 @@
 import React from "react";
-import Link from "next/link";
-import { cookies } from "next/headers";
 
-import { createServerClient } from "@/libs/supabase/server";
-
-import { Card, CardHeader } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { CreateCodeButton } from "../../../components/codes/create-code-button/create-code-button";
-import { CodeCard } from "../../../components/codes/code-card/code-card";
+import { fetchBadCodesBySelf } from "@/libs/supabase/admin-queries";
+import { CodeList } from "@/components/codes/code-list/code-list";
 
 const DashboardPage = async () => {
-  const cookieStore = cookies();
-  const supabase = createServerClient(cookieStore);
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  // TODO Suspense使いたい
+  const codes = await fetchBadCodesBySelf();
 
-  const { data: codes } = await supabase
-    .from("bad_codes")
-    .select()
-    .eq("profile_id", user?.id);
+  console.log(codes);
 
   return (
     <div>
@@ -27,19 +16,7 @@ const DashboardPage = async () => {
         <CreateCodeButton />
       </div>
 
-      {!!codes?.length ? (
-        <div>
-          {codes?.map((code) => (
-            <CodeCard code={code} key={code.code_id} />
-          ))}
-        </div>
-      ) : (
-        <Card>
-          <CardHeader>
-            <p>作成したコードが存在しません</p>
-          </CardHeader>
-        </Card>
-      )}
+      <CodeList codes={codes} />
     </div>
   );
 };

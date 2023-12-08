@@ -26,7 +26,7 @@ export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
     const { error } = await supabase
       .from("bad_codes")
       .update(code)
-      .eq("code_id", code.code_id);
+      .eq("id", code.id);
 
     console.log(error);
   };
@@ -38,11 +38,11 @@ export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
           <Input
             type="text"
             placeholder="タイトル"
-            value={code.title}
+            value={code?.title || ""}
             onChange={(e) => setCode({ ...code, title: e.target.value })}
           />
         </div>
-        <div>{code.code_id}</div>
+        <div>{code.id}</div>
       </div>
 
       <div className="w-[180px] border p-6 rounded-md ">

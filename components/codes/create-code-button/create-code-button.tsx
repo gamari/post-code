@@ -24,14 +24,15 @@ export const CreateCodeButton = () => {
     const { data, error } = await supabase
       .from("bad_codes")
       .insert({
-        profile_id: user.id,
+        title: "bad code",
+        user_id: user.id,
       })
       .select();
 
     console.log(data);
 
     if (!!data?.length) {
-      router.push(`/code/${data[0].code_id}/edit`);
+      router.push(`/code/${data[0].id}/edit`);
     }
   };
 
