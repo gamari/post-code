@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { fetchCreateBadCode } from "@/libs/externals/supabase/queries";
-import { getBrowserClient } from "@/libs/externals/supabase/client";
 import { useSupabase } from "@/components/providers/supabase-provider/supabase-provider";
 
 // TODO SSRで書く
@@ -15,7 +14,7 @@ export const CreateCodeButton = () => {
 
   const handleCreateCode = async (e: any) => {
     if (!client) throw new Error("接続できません。");
-    
+
     // TODO fix type
     const newBadCode: any = {
       title: "bad code",

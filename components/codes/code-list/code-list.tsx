@@ -23,11 +23,7 @@ export const CodeList = async () => {
   return (
     <div className="flex flex-col border-x border-t">
       {codes?.map((code) => (
-        <Link href={`/codes/${code.id}/detail`} key={code.id}>
-          <div className="border-b">
-            <CodeCard code={code} />
-          </div>
-        </Link>
+        <CodeCard code={code} key={code.id} className="border-b" />
       ))}
     </div>
   );

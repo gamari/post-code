@@ -5,17 +5,27 @@ import React, { FunctionComponent } from "react";
 import { Button } from "@/components/ui/button";
 import { BadCode } from "@/libs/types";
 import { useRouter } from "next/navigation";
-import { CODES_EDIT_URL } from "@/libs/constants";
+import { CODES_DETAIL_URL, CODES_EDIT_URL } from "@/libs/constants";
+import { cn } from "@/libs/utils";
 
 interface Props {
   code: BadCode;
+  className?: string;
 }
 
-export const CodeCard: FunctionComponent<Props> = ({ code }) => {
+export const CodeCard: FunctionComponent<Props> = ({ code, className }) => {
   const router = useRouter();
 
   return (
-    <div className="flex flex-row justify-between items-center hover:bg-gray-100 p-6">
+    <div
+      className={cn(
+        "flex flex-row justify-between items-center hover:bg-gray-100 p-6 cursor-pointer",
+        className
+      )}
+      onClick={() => {
+        router.push(CODES_DETAIL_URL(code.id));
+      }}
+    >
       <div>{code.title ? code.title : "(タイトルなし)"}</div>
 
       <div>
