@@ -1,6 +1,16 @@
 import { BadCode } from "@/libs/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 
+export const fetchMyself = async (client: SupabaseClient) => {
+    const { data: { user }, error } = await client.auth.getUser();
+
+    if (error) throw new Error("認証中にエラーが発生しました。");
+
+    console.log(user)
+
+    return user;
+}
+
 export const fetchBadCodesBySelf = async (client: SupabaseClient) => {
     const {
         data: { user },
@@ -20,7 +30,8 @@ export const fetchBadCodesBySelf = async (client: SupabaseClient) => {
 }
 
 
-export const fetchBadCodeById = async (id: string, client: SupabaseClient) => {
+export const fetchBadCodeById = async (id: number, client: SupabaseClient) => {
+    console.log(id)
     const { data: code, error } = await client
         .from("bad_codes")
         .select()

@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { getBrowserClient } from "@/libs/externals/supabase/client";
 import { useRouter } from "next/navigation";
+import { useSupabase } from "@/components/providers/supabase-provider/supabase-provider";
+import { fetchMyself } from "@/libs/externals/supabase/queries";
+import { fetchUpdateBadCode } from "@/libs/externals/supabase/queries/bad-codes";
 
 interface Props {
   code: BadCode;
@@ -15,24 +18,20 @@ interface Props {
 export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
   const router = useRouter();
   const [code, setCode] = useState(initCode);
-  const client = getBrowserClient();
+  const { client } = useSupabase();
 
   const handleSave = async () => {
-    const {
-      data: { user },
-    } = await client.auth.getUser();
+    if (!client) return;
+
+    const user = await fetchMyself(client);
 
     if (!user?.id) return;
 
-    const { error } = await client
-      .from("bad_codes")
-      .update(code)
-      .eq("id", code.id);
-
-    if (error) return;
+    // @ts-ignore
+    await fetchUpdateBadCode({ id: code.id, title: code.title }, client);
 
     router.refresh();
-    router.push(`/dashboard/code/${code.id}`);
+    router.push(`/codes/${code.id}/detail`);
   };
 
   return (

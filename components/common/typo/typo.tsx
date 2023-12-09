@@ -3,7 +3,7 @@ import React, { FunctionComponent } from "react";
 
 interface Props {
   text: string;
-  type: "h1" | "h2" | "h3" | "h4" | "h5" | "p";
+  type?: "h1" | "h2" | "h3" | "h4" | "h5" | "p";
   className?: string;
 }
 

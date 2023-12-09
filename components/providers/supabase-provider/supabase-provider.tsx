@@ -29,7 +29,7 @@ export const SupabaseProvider = ({
   return (
     <SupabaseProviderContext.Provider
       value={{
-        client: null,
+        client: supabase,
       }}
     >
       {children}

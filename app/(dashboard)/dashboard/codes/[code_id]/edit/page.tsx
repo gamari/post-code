@@ -19,7 +19,7 @@ const CodeEditPage: NextPage<Props> = async ({ params }) => {
   if (!badCode) return <div>対象のコードがありません。</div>;
 
   return (
-    <div>
+    <div className="p-10">
       {badCode ? (
         <CodeEditor code={badCode} />
       ) : (
