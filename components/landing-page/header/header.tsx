@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
-import { createServerClient } from '@/libs/supabase/server'
 import AuthButton from "../../auth/auth-button/auth-button";
 import Link from "next/link";
+import { getServerClient } from "@/libs/externals/supabase/client";
 
 
 export default function Header() {
@@ -9,7 +9,7 @@ export default function Header() {
 
   const canInitSupabaseClient = () => {
     try {
-      createServerClient(cookieStore)
+      getServerClient(cookieStore)
       return true
     } catch (e) {
       return false

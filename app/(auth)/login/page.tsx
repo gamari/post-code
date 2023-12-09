@@ -1,16 +1,14 @@
-import Link from 'next/link'
-import { headers, cookies } from 'next/headers'
-import { createServerClient } from '@/libs/supabase/server'
-import { redirect } from 'next/navigation'
-import { actionLogin, actionSignUp } from '@/actions/users'
+import Link from "next/link";
+import { actionLogin, actionSignUp } from "@/actions/users";
+import { Button } from "@/components/ui/button";
 
 export default function Login({
   searchParams,
 }: {
-  searchParams: { message: string }
+  searchParams: { message: string };
 }) {
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
+    <div className="relative flex flex-col w-full h-screen justify-center items-center">
       <Link
         href="/"
         className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
@@ -28,16 +26,16 @@ export default function Login({
           className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1"
         >
           <polyline points="15 18 9 12 15 6" />
-        </svg>{' '}
-        Back
+        </svg>{" "}
+        戻る
       </Link>
 
       <form
-        className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
+        className="max-w-md border px-8 py-12 rounded-md flex flex-col w-full justify-center gap-2 text-foreground"
         action={actionLogin}
       >
         <label className="text-md" htmlFor="email">
-          Email
+          メールアドレス
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
@@ -46,7 +44,7 @@ export default function Login({
           required
         />
         <label className="text-md" htmlFor="password">
-          Password
+          パスワード
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
@@ -55,15 +53,10 @@ export default function Login({
           placeholder="••••••••"
           required
         />
-        <button className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2">
-          Sign In
-        </button>
-        <button
-          formAction={actionSignUp}
-          className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
-        >
-          Sign Up
-        </button>
+
+        <Button type="submit">ログイン</Button>
+        <Button formAction={actionSignUp} variant="outline">ユーザー登録</Button>
+
         {searchParams?.message && (
           <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
             {searchParams.message}
@@ -71,5 +64,5 @@ export default function Login({
         )}
       </form>
     </div>
-  )
+  );
 }

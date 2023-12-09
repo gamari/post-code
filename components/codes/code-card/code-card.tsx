@@ -14,7 +14,7 @@ export const CodeCard: FunctionComponent<Props> = ({ code }) => {
 
       <div>
         <Button asChild>
-          <Link href={`/code/${code.code_id}/edit`}>編集</Link>
+          <Link href={`/code/${code.id}/edit`}>編集</Link>
         </Button>
       </div>
     </div>

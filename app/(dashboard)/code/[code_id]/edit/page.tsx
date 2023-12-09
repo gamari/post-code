@@ -15,9 +15,6 @@ const CodeEditPage: NextPage<Props> = async ({ params }) => {
   const { code_id } = params;
   const badCode = await fetchBadCodeById(code_id);
 
-  console.log(code_id);
-  console.log(badCode);
-
   return (
     <div>
       {badCode ? (

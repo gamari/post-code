@@ -30,6 +30,7 @@ export const CreateCodeButton = () => {
       .select();
 
     console.log(data);
+    router.refresh();
 
     if (!!data?.length) {
       router.push(`/code/${data[0].id}/edit`);
