@@ -3,10 +3,7 @@ import { NextPage } from "next";
 
 import { CodeEditor } from "../../../../../../components/codes/code-editor/code-editor";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
-import {
-  fetchBadCodeById,
-  fetchBadCodeWithFilesById,
-} from "@/libs/externals/supabase/queries";
+import { fetchBadCodeWithFilesById } from "@/libs/externals/supabase/queries";
 
 interface Props {
   params: {

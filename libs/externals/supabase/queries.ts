@@ -1,4 +1,4 @@
-import { BadCode } from "@/libs/types";
+import { BadCode, File } from "@/libs/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 
 export const fetchMyself = async (client: SupabaseClient) => {
@@ -11,6 +11,7 @@ export const fetchMyself = async (client: SupabaseClient) => {
     return user;
 }
 
+// BadCodes
 export const fetchBadCodesBySelf = async (client: SupabaseClient) => {
     const {
         data: { user },
@@ -42,7 +43,6 @@ export const fetchBadCodeWithFilesById = async (id: number, client: SupabaseClie
         .maybeSingle();
 
     if (error) return null;
-    console.log(codeWithFiles)
 
     return codeWithFiles;
 }
@@ -76,6 +76,21 @@ export const fetchCreateBadCode = async (newBadCodes: BadCode, client: SupabaseC
         .maybeSingle();
 
     if (error) throw new Error("BadCodeの作成中にエラーが発生しました。")
+
+    return data;
+}
+
+// File
+export const fetchCreateFile = async (file: File, client: SupabaseClient) => {
+    const { data, error } = await client
+        .from("files")
+        .insert(file)
+        .select("*")
+        .maybeSingle();
+
+    console.log(data, error)
+
+    if (error) throw new Error("Fileの作成中にエラーが発生しました。")
 
     return data;
 }
