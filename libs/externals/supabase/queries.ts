@@ -21,12 +21,30 @@ export const fetchBadCodesBySelf = async (client: SupabaseClient) => {
         .select("*")
         .eq("user_id", user?.id);
 
-    console.log(codes, error)
-
 
     if (error) return [];
 
     return codes;
+}
+
+
+export const fetchBadCodeWithFilesById = async (id: number, client: SupabaseClient) => {
+    const { data: codeWithFiles, error } = await client
+        .from("bad_codes")
+        .select("*")
+        .eq("id", id)
+        .select(
+            `
+            *,
+            files: files(*)
+            `
+        )
+        .maybeSingle();
+
+    if (error) return null;
+    console.log(codeWithFiles)
+
+    return codeWithFiles;
 }
 
 

@@ -3,18 +3,21 @@ import { NextPage } from "next";
 
 import { CodeEditor } from "../../../../../../components/codes/code-editor/code-editor";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
-import { fetchBadCodeById } from "@/libs/externals/supabase/queries";
+import {
+  fetchBadCodeById,
+  fetchBadCodeWithFilesById,
+} from "@/libs/externals/supabase/queries";
 
 interface Props {
   params: {
-    code_id: string;
+    code_id: number;
   };
 }
 
 const CodeEditPage: NextPage<Props> = async ({ params }) => {
   const { code_id } = params;
   const serverClient = await getServerClient();
-  const badCode = await fetchBadCodeById(code_id, serverClient);
+  const badCode = await fetchBadCodeWithFilesById(code_id, serverClient);
 
   if (!badCode) return <div>対象のコードがありません。</div>;
 
