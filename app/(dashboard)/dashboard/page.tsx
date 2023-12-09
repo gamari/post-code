@@ -1,12 +1,13 @@
 import React from "react";
 
 import { CreateCodeButton } from "../../../components/codes/create-code-button/create-code-button";
-import { fetchBadCodesBySelf } from "@/libs/supabase/admin-queries";
 import { CodeList } from "@/components/codes/code-list/code-list";
+import { fetchBadCodesBySelf } from "@/libs/externals/supabase/admin-queries";
+import { getServerClient } from "@/libs/externals/supabase/client";
 
 const DashboardPage = async () => {
-  // TODO Suspense使いたい
-  const codes = await fetchBadCodesBySelf();
+  const serverClient = await getServerClient();
+  const codes = await fetchBadCodesBySelf(serverClient);
 
   console.log(codes);
 

@@ -1,4 +1,5 @@
 import { CookieOptions, createBrowserClient, createServerClient } from '@supabase/ssr'
+import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies'
 import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -12,7 +13,14 @@ export const getBrowserClient = () => {
 
 
 
-export const getServerClient = (cookieStore: ReturnType<typeof cookies>) => {
+export const getServerClient = (cookie?: ReturnType<typeof cookies>) => {
+  let cookieStore: ReadonlyRequestCookies;
+  if (cookie) {
+    cookieStore = cookie
+  } else {
+    cookieStore = cookies()
+  }
+
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,

@@ -2,7 +2,8 @@ import React from "react";
 import { NextPage } from "next";
 
 import { CodeEditor } from "../../../../../components/codes/code-editor/code-editor";
-import { fetchBadCodeById } from "@/libs/supabase/admin-queries";
+import { getServerClient } from "@/libs/externals/supabase/client";
+import { fetchBadCodeById } from "@/libs/externals/supabase/admin-queries";
 
 interface Props {
   params: {
@@ -11,9 +12,9 @@ interface Props {
 }
 
 const CodeEditPage: NextPage<Props> = async ({ params }) => {
-  console.log(params);
   const { code_id } = params;
-  const badCode = await fetchBadCodeById(code_id);
+  const serverClient = await getServerClient();
+  const badCode = await fetchBadCodeById(code_id, serverClient);
 
   return (
     <div>
