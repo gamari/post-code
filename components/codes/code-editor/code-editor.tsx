@@ -7,10 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { useSupabase } from "@/components/providers/supabase-provider/supabase-provider";
-import {
-  fetchCreateFile,
-  fetchMyself,
-} from "@/libs/externals/supabase/queries";
+import { fetchMyself } from "@/libs/externals/supabase/queries/users";
+import { fetchCreateFile } from "@/libs/externals/supabase/queries/files";
 import { fetchUpdateBadCode } from "@/libs/externals/supabase/queries/bad-codes";
 import { Textarea } from "@/components/ui/textarea";
 import { Typo } from "@/components/common/typo/typo";

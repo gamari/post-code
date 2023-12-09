@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 
 import { MockBlock } from "@/components/common/mock-block/mock-block";
 import { Typo } from "@/components/common/typo/typo";
-import { fetchBadCodeById } from "@/libs/externals/supabase/queries";
+import { fetchBadCodeById } from "@/libs/externals/supabase/queries/bad-codes";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
 
 interface Props {

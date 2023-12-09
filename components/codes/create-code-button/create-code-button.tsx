@@ -4,7 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
-import { fetchCreateBadCode } from "@/libs/externals/supabase/queries";
+import { fetchCreateBadCode } from "@/libs/externals/supabase/queries/bad-codes";
 import { useSupabase } from "@/components/providers/supabase-provider/supabase-provider";
 
 // TODO SSRで書く

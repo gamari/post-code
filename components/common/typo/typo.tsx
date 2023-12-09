@@ -13,7 +13,7 @@ export const Typo: FunctionComponent<Props> = ({
   className = "",
 }) => {
   if (type === "h1")
-    return <h1 className={cn("text-5xl font-bold", className)}>{text}</h1>;
+    return <h1 className={cn("text-4xl font-bold", className)}>{text}</h1>;
   if (type === "h2")
     return <h2 className={cn("text-3xl font-bold", className)}>{text}</h2>;
   if (type === "h3")

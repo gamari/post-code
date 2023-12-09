@@ -4,7 +4,7 @@ import Link from "next/link";
 import { CodeCard } from "../code-card/code-card";
 import { Card, CardHeader } from "@/components/ui/card";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
-import { fetchBadCodesBySelf } from "@/libs/externals/supabase/queries";
+import { fetchBadCodesBySelf } from "@/libs/externals/supabase/queries/bad-codes";
 
 export const CodeList = async () => {
   const serverClient = await getServerClient();
