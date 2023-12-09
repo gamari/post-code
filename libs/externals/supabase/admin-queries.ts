@@ -1,5 +1,3 @@
-import { cookies } from "next/headers";
-import { getServerClient } from "./admin-client";
 import { SupabaseClient } from "@supabase/supabase-js";
 
 export const fetchBadCodesBySelf = async (client: SupabaseClient) => {
@@ -7,6 +5,7 @@ export const fetchBadCodesBySelf = async (client: SupabaseClient) => {
         data: { user },
     } = await client.auth.getUser();
 
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const { data: codes, error } = await client
         .from("bad_codes")

@@ -1,14 +1,15 @@
-import { BadCode } from "@/libs/types";
 import React from "react";
+
 import { CodeCard } from "../code-card/code-card";
 import { Card, CardHeader } from "@/components/ui/card";
+import { getServerClient } from "@/libs/externals/supabase/admin-client";
+import { fetchBadCodesBySelf } from "@/libs/externals/supabase/admin-queries";
 
-interface Props {
-  codes: BadCode[];
-}
+export const CodeList = async () => {
+  const serverClient = await getServerClient();
+  const codes = await fetchBadCodesBySelf(serverClient);
 
-export const CodeList = ({ codes }: Props) => {
-  if (!codes?.length)
+  if (!codes?.length) {
     return (
       <Card>
         <CardHeader>
@@ -16,6 +17,7 @@ export const CodeList = ({ codes }: Props) => {
         </CardHeader>
       </Card>
     );
+  }
 
   return (
     <div>

@@ -7,6 +7,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import { Button } from "@/components/ui/button";
 
+// TODO SSRで書く
 export const CreateCodeButton = () => {
   const router = useRouter();
 
