@@ -8,11 +8,10 @@ interface Props {
 
 const DashboardLayout: FunctionComponent<Props> = ({ children }) => {
   return (
-    <div className="flex flex-col">
-      <Header />
-      <div className="w-full flex flex-row">
+    <div className="">
+      <div className=" w-full h-full flex flex-row">
         <Sidebar />
-        <div className="border-l min-h-screen flex-1">{children}</div>
+        <div className="border-l h-full flex-1">{children}</div>
       </div>
     </div>
   );

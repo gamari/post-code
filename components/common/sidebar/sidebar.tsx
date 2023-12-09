@@ -14,7 +14,6 @@ export const Sidebar = () => {
               <Link href="/dashboard">ダッシュボード</Link>
             </Button>
           </li>
-          <li>コード一覧</li>
         </ul>
       </div>
     </aside>

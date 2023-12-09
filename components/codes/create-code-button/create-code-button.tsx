@@ -3,18 +3,19 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-
 import { Button } from "@/components/ui/button";
+import { fetchCreateBadCode } from "@/libs/externals/supabase/queries";
+import { getBrowserClient } from "@/libs/externals/supabase/client";
+import { BadCode } from "@/libs/types";
 
 // TODO SSRで書く
 export const CreateCodeButton = () => {
   const router = useRouter();
 
-  const supabase = createClientComponentClient();
-
   const handleCreateCode = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const supabase = getBrowserClient();
 
     const {
       data: { user },
@@ -22,19 +23,18 @@ export const CreateCodeButton = () => {
 
     if (!user?.id) return;
 
-    const { data, error } = await supabase
-      .from("bad_codes")
-      .insert({
-        title: "bad code",
-        user_id: user.id,
-      })
-      .select();
+    // TODO fix type
+    const newBadCode: any = {
+      title: "bad code",
+      user_id: user.id,
+    };
 
-    console.log(data);
+    const retBadCode = await fetchCreateBadCode(newBadCode, supabase);
+
     router.refresh();
 
-    if (!!data?.length) {
-      router.push(`/code/${data[0].id}/edit`);
+    if (retBadCode) {
+      router.push(`/dashboard/codes/${retBadCode.id}/edit`);
     }
   };
 

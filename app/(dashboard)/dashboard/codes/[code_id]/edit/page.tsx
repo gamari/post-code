@@ -1,9 +1,9 @@
 import React from "react";
 import { NextPage } from "next";
 
-import { CodeEditor } from "../../../../../components/codes/code-editor/code-editor";
+import { CodeEditor } from "../../../../../../components/codes/code-editor/code-editor";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
-import { fetchBadCodeById } from "@/libs/externals/supabase/admin-queries";
+import { fetchBadCodeById } from "@/libs/externals/supabase/queries";
 
 interface Props {
   params: {

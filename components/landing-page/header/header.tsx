@@ -23,7 +23,7 @@ export default function Header() {
       <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
         <div>
           <Link href="/">
-            Logo
+            <span className="text-xl font-bold">BadCodes</span>
           </Link>
         </div>
         {isSupabaseConnected && <AuthButton />}
