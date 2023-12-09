@@ -33,9 +33,16 @@ export const fetchBadCodeById = async (id: string, client: SupabaseClient) => {
 }
 
 export const fetchCreateBadCode = async (newBadCodes: BadCode, client: SupabaseClient) => {
+    const {
+        data: { user },
+    } = await client.auth.getUser();
+
     const { data, error } = await client
         .from("bad_codes")
-        .insert(newBadCodes)
+        .insert({
+            ...newBadCodes,
+            user_id: user?.id,
+        })
         .select()
         .maybeSingle();
 

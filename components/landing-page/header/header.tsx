@@ -1,22 +1,16 @@
-import { cookies } from "next/headers";
-import AuthButton from "../../auth/auth-button/auth-button";
 import Link from "next/link";
+import { cookies } from "next/headers";
+
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
+import { Button } from "@/components/ui/button";
 
+export default async function Header() {
+  const cookieStore = cookies();
+  const supabase = getServerClient(cookieStore);
 
-export default function Header() {
-  const cookieStore = cookies()
-
-  const canInitSupabaseClient = () => {
-    try {
-      getServerClient(cookieStore)
-      return true
-    } catch (e) {
-      return false
-    }
-  }
-  
-  const isSupabaseConnected = canInitSupabaseClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   return (
     <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
@@ -26,7 +20,20 @@ export default function Header() {
             <span className="text-xl font-bold">BadCodes</span>
           </Link>
         </div>
-        {isSupabaseConnected && <AuthButton />}
+        {user ? (
+          <div className="flex items-center gap-4">
+            <Button asChild>
+              <Link href="/dashboard">ダッシュボード</Link>
+            </Button>
+          </div>
+        ) : (
+          <Link
+            href="/login"
+            className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
+          >
+            Login
+          </Link>
+        )}
       </div>
     </nav>
   );

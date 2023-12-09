@@ -1,3 +1,5 @@
+"use server";
+
 import React, { Suspense } from "react";
 
 import { CreateCodeButton } from "../../../components/codes/create-code-button/create-code-button";
