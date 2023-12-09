@@ -2,7 +2,7 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { Button } from "../../ui/button";
-import { getServerClient } from "@/libs/externals/supabase/client";
+import { getServerClient } from "@/libs/externals/supabase/admin-client";
 
 export default async function AuthButton() {
   const cookieStore = cookies();

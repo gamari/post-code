@@ -5,30 +5,34 @@ import React, { FunctionComponent, useState } from "react";
 import { BadCode } from "@/libs/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { getBrowserClient } from "@/libs/externals/supabase/client";
+import { useRouter } from "next/navigation";
 
 interface Props {
   code: BadCode;
 }
 
 export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
-  const supabase = createClientComponentClient();
-
+  const router = useRouter();
   const [code, setCode] = useState(initCode);
+  const client = getBrowserClient();
 
   const handleSave = async () => {
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await client.auth.getUser();
 
     if (!user?.id) return;
 
-    const { error } = await supabase
+    const { error } = await client
       .from("bad_codes")
       .update(code)
       .eq("id", code.id);
 
-    console.log(error);
+    if (error) return;
+
+    router.refresh();
+    router.push(`/dashboard/code/${code.id}`);
   };
 
   return (

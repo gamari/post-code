@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { getServerClient } from "./client";
+import { getServerClient } from "./admin-client";
 import { SupabaseClient } from "@supabase/supabase-js";
 
 export const fetchBadCodesBySelf = async (client: SupabaseClient) => {

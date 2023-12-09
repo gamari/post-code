@@ -1,6 +1,6 @@
 "use server";
 
-import { getServerClient } from "@/libs/externals/supabase/client";
+import { getServerClient } from "@/libs/externals/supabase/admin-client";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 

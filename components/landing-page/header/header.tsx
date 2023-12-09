@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import AuthButton from "../../auth/auth-button/auth-button";
 import Link from "next/link";
-import { getServerClient } from "@/libs/externals/supabase/client";
+import { getServerClient } from "@/libs/externals/supabase/admin-client";
 
 
 export default function Header() {
