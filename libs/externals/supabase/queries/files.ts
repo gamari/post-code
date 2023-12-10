@@ -9,7 +9,6 @@ export const fetchUpsertFiles = async (newFiles: File[], client: SupabaseClient)
 
     if (error) throw new Error("Fileの作成中にエラーが発生しました。");
 };
-// File
 
 export const fetchCreateFile = async (file: File, client: SupabaseClient) => {
     const { data, error } = await client
@@ -24,3 +23,17 @@ export const fetchCreateFile = async (file: File, client: SupabaseClient) => {
 
     return data;
 };
+
+
+export const fetchFilesByCodeId = async (codeId: number, client: SupabaseClient) => {
+    const { data: files, error } = await client
+        .from("files")
+        .select("*")
+        .eq("bad_code_id", codeId);
+
+    if (error) throw new Error("Fileの取得中にエラーが発生しました。");
+
+    console.log(files)
+
+    return files as File[];
+}

@@ -26,6 +26,7 @@ export const fetchLatestBadCodes = async (client: SupabaseClient) => {
 
     return codes as BadCodeWithUser[];
 };
+
 export const fetchCreateBadCode = async (newBadCodes: BadCode, client: SupabaseClient) => {
     const {
         data: { user },
@@ -43,7 +44,9 @@ export const fetchCreateBadCode = async (newBadCodes: BadCode, client: SupabaseC
     if (error) throw new Error("BadCodeの作成中にエラーが発生しました。");
 
     return data;
-}; export const fetchBadCodeById = async (id: number, client: SupabaseClient) => {
+};
+
+export const fetchBadCodeById = async (id: number, client: SupabaseClient) => {
     console.log(id);
     const { data: code, error } = await client
         .from("bad_codes")
@@ -55,7 +58,6 @@ export const fetchCreateBadCode = async (newBadCodes: BadCode, client: SupabaseC
 
     return code;
 };
-// BadCodes
 
 export const fetchBadCodesBySelf = async (client: SupabaseClient) => {
     const {
@@ -72,6 +74,7 @@ export const fetchBadCodesBySelf = async (client: SupabaseClient) => {
 
     return codes;
 };
+
 export const fetchBadCodeWithFilesById = async (id: number, client: SupabaseClient) => {
     const { data: codeWithFiles, error } = await client
         .from("bad_codes")

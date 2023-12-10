@@ -4,27 +4,36 @@ import { MockBlock } from "@/components/common/mock-block/mock-block";
 import { Typo } from "@/components/common/typo/typo";
 import { fetchBadCodeById } from "@/libs/externals/supabase/queries/bad-codes";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
+import { File } from "@/libs/types";
+import { Card, CardHeader } from "@/components/ui/card";
+import { SelectedCodeFileViewer } from "../detail/selected-code-file-viewer/selected-code-file-viewer";
 
 interface Props {
   id: number;
+  selectedFile?: File;
 }
 
-export const CodeDetail: FunctionComponent<Props> = async ({ id }) => {
+export const CodeDetail: FunctionComponent<Props> = async ({
+  id,
+  selectedFile,
+}) => {
   const client = await getServerClient();
   const badCode = await fetchBadCodeById(id, client);
 
   return (
     <div>
-      <Typo text={badCode?.title} type="h1" />
+      <Typo text={badCode?.title} type="h2" className="border-b mb-6" />
 
-      <Typo text="説明" type="h3" className="mb-4" />
-      <div className="mt-6 border-2 border-gray-700 rounded-lgp p-5">
-        <Typo text={badCode?.description} />
-      </div>
+      <Card className="mt-6">
+        <CardHeader>
+          <Typo text={badCode?.description} />
+        </CardHeader>
+      </Card>
 
       <div className="mt-6">
         <Typo text="コード" type="h3" className="text-gray-700" />
-        <MockBlock height={300} />
+
+        <SelectedCodeFileViewer />
       </div>
     </div>
   );
