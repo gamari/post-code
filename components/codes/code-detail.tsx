@@ -1,22 +1,17 @@
 import React, { FunctionComponent } from "react";
 
-import { MockBlock } from "@/components/common/mock-block/mock-block";
 import { Typo } from "@/components/common/typo/typo";
 import { fetchBadCodeById } from "@/libs/externals/supabase/queries/bad-codes";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
 import { File } from "@/libs/types";
 import { Card, CardHeader } from "@/components/ui/card";
-import { SelectedCodeFileViewer } from "../detail/selected-code-file-viewer/selected-code-file-viewer";
+import { SelectedCodeFileViewer } from "./selected-code-file-viewer";
 
 interface Props {
   id: number;
-  selectedFile?: File;
 }
 
-export const CodeDetail: FunctionComponent<Props> = async ({
-  id,
-  selectedFile,
-}) => {
+export const CodeDetail: FunctionComponent<Props> = async ({ id }) => {
   const client = await getServerClient();
   const badCode = await fetchBadCodeById(id, client);
 

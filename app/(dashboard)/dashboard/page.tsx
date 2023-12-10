@@ -2,8 +2,8 @@
 
 import React, { Suspense } from "react";
 
-import { CreateCodeButton } from "../../../components/codes/create-code-button/create-code-button";
-import { CodeList } from "@/components/codes/code-list/code-list";
+import { CreateCodeButton } from "../../../components/codes/client/CreateCodeButton";
+import { CodeList } from "@/components/codes/code-list";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/common/skeleton/skeleton";
 import { Typo } from "@/components/common/typo/typo";

@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
 
-import { CodeSidebar } from "@/components/codes/code-sidebar/code-sidebar";
+import { CodeSidebar } from "@/components/codes/code-sidebar";
 import { MockBlock } from "@/components/common/mock-block/mock-block";
 import { Typo } from "@/components/common/typo/typo";
-import { CodeDetail } from "@/components/codes/code-detail/code-detail";
+import { CodeDetail } from "@/components/codes/code-detail";
 import { NextPage } from "next";
 import { Card, CardHeader } from "@/components/ui/card";
 import { CodeDetailProvider } from "@/components/providers/code-detail-provider/code-detail-provider";

@@ -1,7 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 
-import { CodeEditor } from "../../../../../../components/codes/code-editor/code-editor";
+import { CodeEditor } from "../../../../../../components/codes/client/CodeEditor";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
 import { fetchBadCodeWithFilesById } from "@/libs/externals/supabase/queries/bad-codes";
 

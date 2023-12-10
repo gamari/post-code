@@ -6,7 +6,7 @@ import { Typo } from "@/components/common/typo/typo";
 import { Button } from "@/components/ui/button";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
 import { fetchFilesByCodeId } from "@/libs/externals/supabase/queries/files";
-import { CodeFileList } from "../detail/code-file-list/code-file-list";
+import { CodeFileList } from "./code-file-list";
 
 interface Props {
   codeId: number;

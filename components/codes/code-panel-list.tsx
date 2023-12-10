@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import { BadCodeWithUser } from "@/libs/types";
-import { CodePanel } from "../code-panel/code-panel";
+import { CodePanel } from "./code-panel";
 import { cn } from "@/libs/utils";
 
 interface Props {

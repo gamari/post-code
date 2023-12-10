@@ -1,4 +1,4 @@
-import { CodeLatestList } from "@/components/codes/code-latest-list/code-latest-list";
+import { CodeLatestList } from "@/components/codes/code-latest-list";
 import { Typo } from "@/components/common/typo/typo";
 
 export default async function Index() {
