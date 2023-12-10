@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 
-import { Typo } from "@/components/common/typo/typo";
+import { Typo } from "@/components/common/typo";
 import { fetchBadCodeById } from "@/libs/externals/supabase/queries/bad-codes";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
 import { File } from "@/libs/types";

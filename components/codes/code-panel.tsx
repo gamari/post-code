@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { MockBlock } from "@/components/common/mock-block/mock-block";
+import { MockBlock } from "@/components/common/mock-block";
 import { BadCodeWithUser } from "@/libs/types";
 import { cn } from "@/libs/utils";
 

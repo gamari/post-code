@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 
 import { CodeSidebar } from "@/components/codes/code-sidebar";
-import { MockBlock } from "@/components/common/mock-block/mock-block";
-import { Typo } from "@/components/common/typo/typo";
+import { MockBlock } from "@/components/common/mock-block";
+import { Typo } from "@/components/common/typo";
 import { CodeDetail } from "@/components/codes/code-detail";
 import { NextPage } from "next";
 import { Card, CardHeader } from "@/components/ui/card";

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 
-import { Sidebar } from "@/components/common/sidebar/sidebar";
+import { Sidebar } from "@/components/common/sidebar";
 
 interface Props {
   children: React.ReactNode;

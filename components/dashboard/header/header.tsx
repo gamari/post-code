@@ -1,4 +1,4 @@
-import { Logo } from "@/components/common/logo/Logo";
+import { Logo } from "@/components/common/logo";
 import React from "react";
 
 export const Header = () => {

@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { Typo } from "@/components/common/typo/typo";
+import { Typo } from "@/components/common/typo";
 import { useCodeDetailContext } from "@/components/providers/code-detail-provider/code-detail-provider";
 import { File } from "@/libs/types";
 import { cn } from "@/libs/utils";

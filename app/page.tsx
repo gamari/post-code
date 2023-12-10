@@ -1,5 +1,5 @@
 import { CodeLatestList } from "@/components/codes/code-latest-list";
-import { Typo } from "@/components/common/typo/typo";
+import { Typo } from "@/components/common/typo";
 
 export default async function Index() {
   return (
