@@ -1,12 +1,12 @@
 "use client";
 
 import React, { FunctionComponent } from "react";
-
-import { Button } from "@/components/ui/button";
-import { BadCode } from "@/libs/types";
 import { useRouter } from "next/navigation";
-import { CODES_DETAIL_URL, CODES_EDIT_URL } from "@/libs/constants";
-import { cn } from "@/libs/utils";
+
+import { Button } from "../../../components/ui/button";
+import { BadCode } from "../../../libs/types";
+import { CODES_DETAIL_URL, CODES_EDIT_URL } from "../../../libs/constants";
+import { cn } from "../../../libs/utils";
 
 interface Props {
   code: BadCode;
