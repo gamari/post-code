@@ -20,7 +20,7 @@ export const CodePanel: FunctionComponent<Props> = ({ code, className }) => {
         <div className="text-sm">{code.description}</div>
         <div className="flex flex-row items-center gap-2">
           <PersonIcon className="h-6 w-6" />
-          <div>{code.user.username}</div>
+          <div>{code?.user?.username}</div>
         </div>
       </div>
     </div>
