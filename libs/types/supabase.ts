@@ -1,6 +1,4 @@
-Need to install the following packages:
-supabase@1.123.4
-Ok to proceed? (y) export type Json =
+export type Json =
   | string
   | number
   | boolean
@@ -39,6 +37,48 @@ export interface Database {
         Relationships: [
           {
             foreignKeyName: "bad_codes_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      comments: {
+        Row: {
+          bad_code_id: number
+          comment: string
+          created_at: string | null
+          id: number
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          bad_code_id: number
+          comment: string
+          created_at?: string | null
+          id?: number
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          bad_code_id?: number
+          comment?: string
+          created_at?: string | null
+          id?: number
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "comments_bad_code_id_fkey"
+            columns: ["bad_code_id"]
+            isOneToOne: false
+            referencedRelation: "bad_codes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "comments_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "users"

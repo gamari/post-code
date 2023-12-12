@@ -27,7 +27,7 @@ export const fetchLatestBadCodes = async (client: SupabaseClient) => {
 
     return codes.map((code) => {
         return {
-            ...code, 
+            ...code,
             user: code.users
         }
     });
@@ -56,13 +56,19 @@ export const fetchBadCodeById = async (id: number, client: SupabaseClient) => {
     console.log(id);
     const { data: code, error } = await client
         .from("bad_codes")
-        .select()
+        .select(`
+          *, 
+          users (*)  
+        `)
         .eq("id", id)
         .single();
 
     if (error) return null;
 
-    return code;
+    return {
+        ...code,
+        user: code.users
+    };
 };
 
 export const fetchBadCodesBySelf = async (client: SupabaseClient) => {

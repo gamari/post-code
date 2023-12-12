@@ -5,19 +5,21 @@ import { Button } from "@/components/common/ui/button";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
 import { fetchFilesByCodeId } from "@/libs/externals/supabase/queries/files";
 import { CodeFileList } from "./code-file-list";
+import { actionGetBadCodeById } from "@/actions/bad-codes";
+import { actionGetFiles } from "@/actions/files";
 
 interface Props {
   codeId: number;
 }
 
 export const CodeSidebar = async ({ codeId }: Props) => {
-  const client = await getServerClient();
-  const files = await fetchFilesByCodeId(codeId, client);
+  const badCode = await actionGetBadCodeById(codeId);
+  const files = await actionGetFiles(codeId);
 
   return (
     <div className="h-fit flex flex-col gap-6">
       <div className="border rounded-lg h-[150px] p-5">
-        <div>UserPanel</div>
+        <div>{badCode.user.username}</div>
       </div>
 
       <div className="border rounded-lg w-[240px] p-5">

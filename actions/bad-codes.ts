@@ -14,11 +14,7 @@ export const actionGetLatestBadCodes = async () => {
 }
 
 export const actionGetBadCodeById = async (id: number) => {
-    try {
-        const supabase = getServerClient();
-        const badCodes = await fetchBadCodeById(id, supabase);
-        return badCodes;
-    } catch (error) {
-        return undefined
-    }
+    const supabase = getServerClient();
+    const badCodes = await fetchBadCodeById(id, supabase);
+    return badCodes;
 }

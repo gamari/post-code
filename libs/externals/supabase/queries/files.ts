@@ -1,6 +1,20 @@
 import { File } from "@/libs/types"
 import { SupabaseClient } from "@supabase/supabase-js"
 
+
+export const fetchFilesByCodeId = async (codeId: number, client: SupabaseClient) => {
+    const { data: files, error } = await client
+        .from("files")
+        .select("*")
+        .eq("bad_code_id", codeId);
+
+    if (error) throw new Error("Fileの取得中にエラーが発生しました。");
+
+    console.log(files)
+
+    return files as File[];
+}
+
 export const fetchUpsertFiles = async (newFiles: File[], client: SupabaseClient) => {
     console.log(newFiles)
     const { error } = await client
@@ -24,16 +38,3 @@ export const fetchCreateFile = async (file: File, client: SupabaseClient) => {
     return data;
 };
 
-
-export const fetchFilesByCodeId = async (codeId: number, client: SupabaseClient) => {
-    const { data: files, error } = await client
-        .from("files")
-        .select("*")
-        .eq("bad_code_id", codeId);
-
-    if (error) throw new Error("Fileの取得中にエラーが発生しました。");
-
-    console.log(files)
-
-    return files as File[];
-}

@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 
 import { Typo } from "@/components/common/typo";
 import { SelectedCodeFileViewer } from "../selected-code-file-viewer";
-import { actionGetBadCodeById } from "@/actions/codes";
+import { actionGetBadCodeById } from "@/actions/bad-codes";
 import { actionGetAuthUser } from "@/actions/users";
 import { FavoriteCodeDetailButton } from "./favorite-code-detail-button";
 

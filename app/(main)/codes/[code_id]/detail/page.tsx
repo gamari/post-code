@@ -22,9 +22,8 @@ const CodeDetailPage: NextPage<Props> = ({ params: { code_id } }) => {
           <div className="flex-1 w-[650px]">
             <Suspense fallback={null}>
               <CodeDetail id={code_id} />
+              <CodeDetailComments codeId={code_id} />
             </Suspense>
-
-            <CodeDetailComments />
           </div>
 
           <CodeSidebar codeId={code_id} />
