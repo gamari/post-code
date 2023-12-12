@@ -6,6 +6,7 @@ import { MockBlock } from "@/components/common/mock-block";
 import { Typo } from "@/components/common/typo";
 import { useCodeDetailContext } from "@/components/providers/code-detail-provider/code-detail-provider";
 import { Card, CardHeader } from "@/components/common/ui/card";
+import { CodePreviewer } from "./client/CodePreviewer";
 
 export const SelectedCodeFileViewer = () => {
   const { selectedFile } = useCodeDetailContext();
@@ -21,7 +22,7 @@ export const SelectedCodeFileViewer = () => {
 
   return (
     <div className="h-[300px]">
-      <MockBlock height={300} />
+      <CodePreviewer code={selectedFile?.content || ""} />
     </div>
   );
 };
