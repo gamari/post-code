@@ -1,7 +1,7 @@
 "use server";
 
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
-import { fetchLatestBadCodes } from "@/libs/externals/supabase/queries/bad-codes";
+import { fetchBadCodeById, fetchLatestBadCodes } from "@/libs/externals/supabase/queries/bad-codes";
 
 export const actionGetLatestBadCodes = async () => {
     try {
@@ -10,5 +10,15 @@ export const actionGetLatestBadCodes = async () => {
         return badCodes;
     } catch (error) {
         return [];
+    }
+}
+
+export const actionGetBadCodeById = async (id: number) => {
+    try {
+        const supabase = getServerClient();
+        const badCodes = await fetchBadCodeById(id, supabase);
+        return badCodes;
+    } catch (error) {
+        return undefined
     }
 }
