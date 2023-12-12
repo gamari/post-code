@@ -19,16 +19,15 @@ export const CodeSidebar = async ({ codeId }: Props) => {
 
   return (
     <div className="h-fit flex flex-col gap-6">
-      <div className="border rounded-lg h-[150px] p-5">
-        <div className="flex flex-row gap-2">
-          <MockBlock width={30} height={30} />
+      <div className="border rounded-lg p-5">
+        <div className="flex flex-row gap-2 items-center">
+          <MockBlock width={30} height={30} className="rounded-full" />
           <div>
             <div>{badCode.user.username}</div>
           </div>
         </div>
-        <div>
-          {badCode.user.description}
-        </div>
+
+        <div className="mt-2 border-t py-2">{badCode.user.description}</div>
       </div>
 
       <div className="border rounded-lg w-[240px] p-5">
@@ -36,10 +35,6 @@ export const CodeSidebar = async ({ codeId }: Props) => {
           <Typo text="ファイル一覧" type="h3" className="text-gray-700" />
 
           <CodeFileList files={files} />
-        </div>
-
-        <div className="flex flex-col gap-4 mt-6">
-          <Button>コメントする</Button>
         </div>
       </div>
     </div>

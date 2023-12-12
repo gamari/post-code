@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 
 import { CodeCard } from "./client/CodeCard";
 import { Card, CardHeader } from "@/components/common/ui/card";

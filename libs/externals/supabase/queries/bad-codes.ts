@@ -71,6 +71,17 @@ export const fetchBadCodeById = async (id: number, client: SupabaseClient) => {
     };
 };
 
+export const fetchBadCodesByUserId = async (userId: string, client: SupabaseClient) => {
+    const { data: codes, error } = await client
+        .from("bad_codes")
+        .select("*")
+        .eq("user_id", userId);
+
+    if (error) throw error;
+
+    return codes;
+}
+
 export const fetchBadCodesBySelf = async (client: SupabaseClient) => {
     const {
         data: { user },
@@ -105,3 +116,12 @@ export const fetchBadCodeWithFilesById = async (id: number, client: SupabaseClie
     return codeWithFiles;
 };
 
+
+export const fetchDeleteBadCode = async (id: number, client: SupabaseClient) => {
+    const { error } = await client
+        .from("bad_codes")
+        .delete()
+        .eq("id", id);
+
+    if (error) throw new Error("BadCodeの削除中にエラーが発生しました。");
+}

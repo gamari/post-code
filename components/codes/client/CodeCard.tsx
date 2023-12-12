@@ -16,6 +16,10 @@ interface Props {
 export const CodeCard: FunctionComponent<Props> = ({ code, className }) => {
   const router = useRouter();
 
+  const handleDelete = () => {
+    // TODO
+  }
+
   return (
     <div
       className={cn(
@@ -28,7 +32,7 @@ export const CodeCard: FunctionComponent<Props> = ({ code, className }) => {
     >
       <div>{code.title ? code.title : "(タイトルなし)"}</div>
 
-      <div>
+      <div className=" flex flex-row items-center gap-2">
         <Button
           onClick={(e) => {
             e.stopPropagation();
@@ -36,6 +40,10 @@ export const CodeCard: FunctionComponent<Props> = ({ code, className }) => {
           }}
         >
           編集
+        </Button>
+
+        <Button variant="destructive" onClick={handleDelete}>
+          削除
         </Button>
       </div>
     </div>
