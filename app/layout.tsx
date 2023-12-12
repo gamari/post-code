@@ -1,8 +1,9 @@
-import { GeistSans } from "geist/font/sans";
 import "./globals.css";
+
+import { GeistSans } from "geist/font/sans";
 import Header from "@/components/landing-page/header/header";
-import { SupabaseClient } from "@supabase/supabase-js";
 import { SupabaseProvider } from "@/components/providers/supabase-provider/supabase-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -28,6 +29,7 @@ export default function RootLayout({
             <div className="flex-1 grid">{children}</div>
           </main>
         </SupabaseProvider>
+        <Toaster />
       </body>
     </html>
   );

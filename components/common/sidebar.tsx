@@ -21,11 +21,12 @@ export const Sidebar = () => {
 
         <div>
           <div className="flex flex-col space-y-3 py-3">
-            <div>
-              <Button asChild variant="outline" className="w-full">
-                <Link href="/dashboard">ダッシュボード</Link>
-              </Button>
-            </div>
+            <Button asChild variant="outline" className="w-full">
+              <Link href="/dashboard">ダッシュボード</Link>
+            </Button>
+            <Button asChild variant="outline" className="w-full">
+              <Link href="/dashboard/account">アカウント設定</Link>
+            </Button>
           </div>
         </div>
       </div>

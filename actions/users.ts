@@ -1,7 +1,7 @@
 "use server";
 
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
-import { fetchAuthUser } from "@/libs/externals/supabase/queries/users";
+import { fetchAuthUser, fetchUserById } from "@/libs/externals/supabase/queries/users";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -54,4 +54,15 @@ export const actionGetAuthUser = async () => {
     } catch (error) {
         return null;
     }
+}
+
+export const actionGetMySelf = async () => {
+    const supabase = getServerClient();
+    const authUser = await fetchAuthUser(supabase);
+
+    if (!authUser) throw new Error("User not found");
+
+    const user = await fetchUserById(authUser.id, supabase);
+
+    return user;
 }
