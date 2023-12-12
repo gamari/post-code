@@ -1,4 +1,4 @@
-import { BadCode, BadCodeWithUser } from "@/libs/types";
+import { BadCode, BadCodeDetail } from "@/libs/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 
 export const fetchUpdateBadCode = async (newBadCodes: BadCode, client: SupabaseClient) => {
@@ -13,18 +13,24 @@ export const fetchUpdateBadCode = async (newBadCodes: BadCode, client: SupabaseC
 }
 
 export const fetchLatestBadCodes = async (client: SupabaseClient) => {
+    // TODO usersが気持ち悪いので直したい
     const { data: codes, error } = await client
         .from("bad_codes")
         .select(`
             *,
-            users (*)
+            users: user_id (*)
         `)
         .order("created_at", { ascending: false })
         .limit(10);
 
     if (error) throw new Error("BadCodeの取得中にエラーが発生しました。");
 
-    return codes as BadCodeWithUser[];
+    return codes.map((code) => {
+        return {
+            ...code, 
+            user: code.users
+        }
+    });
 };
 
 export const fetchCreateBadCode = async (newBadCodes: BadCode, client: SupabaseClient) => {
