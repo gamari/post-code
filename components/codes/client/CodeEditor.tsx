@@ -3,14 +3,14 @@
 import React, { FunctionComponent, useState } from "react";
 
 import { BadCodeWithFiles } from "@/libs/types";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/components/common/ui/button";
+import { Input } from "@/components/common/ui/input";
 import { useRouter } from "next/navigation";
 import { useSupabase } from "@/components/providers/supabase-provider/supabase-provider";
 import { fetchMyself } from "@/libs/externals/supabase/queries/users";
 import { fetchCreateFile } from "@/libs/externals/supabase/queries/files";
 import { fetchUpdateBadCode } from "@/libs/externals/supabase/queries/bad-codes";
-import { Textarea } from "@/components/ui/textarea";
+import { Textarea } from "@/components/common/ui/textarea";
 import { Typo } from "@/components/common/typo";
 import { useBadCodeForm } from "@/hooks/bad-codes/use-bad-code-form";
 import { File } from "@/libs/types";

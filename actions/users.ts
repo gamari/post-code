@@ -1,6 +1,7 @@
 "use server";
 
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
+import { fetchAuthUser } from "@/libs/externals/supabase/queries/users";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -42,4 +43,15 @@ export async function actionSignUp(formData: FormData) {
     }
 
     return redirect('/dashboard')
+}
+
+export const actionGetAuthUser = async () => {
+    try {
+        const supabase = getServerClient();
+        const authUser = await fetchAuthUser(supabase);
+
+        return authUser;
+    } catch (error) {
+        return null;
+    }
 }

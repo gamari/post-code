@@ -4,10 +4,10 @@ import React, { Suspense } from "react";
 
 import { CreateCodeButton } from "../../../components/codes/client/CreateCodeButton";
 import { CodeList } from "@/components/codes/code-list";
-import { Card, CardHeader } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/common/ui/card";
 import { Skeleton } from "@/components/common/skeleton";
 import { Typo } from "@/components/common/typo";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/common/ui/tabs";
 
 const DashboardPage = async () => {
   return (

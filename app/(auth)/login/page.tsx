@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { actionLogin, actionSignUp } from "@/actions/users";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/common/ui/button";
 
 export default function Login({
   searchParams,

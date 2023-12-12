@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import { CodeCard } from "./client/CodeCard";
-import { Card, CardHeader } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/common/ui/card";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
 import { fetchBadCodesBySelf } from "@/libs/externals/supabase/queries/bad-codes";
 

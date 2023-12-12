@@ -1,18 +1,23 @@
 import React, { FunctionComponent } from "react";
 import { MockBlock } from "@/components/common/mock-block";
-import { BadCodeWithUser } from "@/libs/types";
+import { BadCodeDetail } from "@/libs/types";
 import { cn } from "@/libs/utils";
 
-import { PersonIcon } from '@radix-ui/react-icons'
+import { PersonIcon } from "@radix-ui/react-icons";
 
 interface Props {
-  code: BadCodeWithUser;
+  code: BadCodeDetail;
   className?: string;
 }
 
 export const CodePanel: FunctionComponent<Props> = ({ code, className }) => {
   return (
-    <div className={cn("p-4 border rounded-lg flex flex-row items-center gap-4", className)}>
+    <div
+      className={cn(
+        "p-4 border rounded-lg flex flex-row items-center gap-4",
+        className
+      )}
+    >
       <MockBlock width={50} height={50} />
 
       <div>

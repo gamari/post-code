@@ -8,6 +8,11 @@ export interface BadCodeWithFiles extends BadCode {
     files: File[];
 }
 
+// deprecated
 export interface BadCodeWithUser extends BadCode {
+    user: User;
+}
+
+export interface BadCodeDetail extends BadCode {
     user: User;
 }

@@ -1,19 +1,11 @@
 import { CodeLatestList } from "@/components/codes/code-latest-list";
 import { Typo } from "@/components/common/typo";
+import { TopHero } from "@/components/top/TopHero";
 
 export default async function Index() {
   return (
     <div className="mx-auto max-w-3xl w-full py-12">
-      <section>
-        <div>
-          <Typo type="h1" text="悪いコードから学ぶ" />
-          <Typo
-            type="p"
-            text="このサイトでは悪いコードを集めて、それを「真似しない」または「議論する」ことを目的に立ち上げました。"
-            className="mt-6"
-          />
-        </div>
-      </section>
+      <TopHero />
 
       <section className="w-full mt-20">
         <Typo type="h1" text="最新" />

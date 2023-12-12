@@ -5,7 +5,7 @@ import { MockBlock } from "@/components/common/mock-block";
 import { Typo } from "@/components/common/typo";
 import { CodeDetail } from "@/components/codes/code-detail";
 import { NextPage } from "next";
-import { Card, CardHeader } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/common/ui/card";
 import { CodeDetailProvider } from "@/components/providers/code-detail-provider/code-detail-provider";
 
 interface Props {

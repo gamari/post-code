@@ -4,7 +4,7 @@ import { Typo } from "@/components/common/typo";
 import { fetchBadCodeById } from "@/libs/externals/supabase/queries/bad-codes";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
 import { File } from "@/libs/types";
-import { Card, CardHeader } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/common/ui/card";
 import { SelectedCodeFileViewer } from "./selected-code-file-viewer";
 
 interface Props {

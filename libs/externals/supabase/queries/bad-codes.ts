@@ -17,7 +17,7 @@ export const fetchLatestBadCodes = async (client: SupabaseClient) => {
         .from("bad_codes")
         .select(`
             *,
-            user: user_id (*)
+            users (*)
         `)
         .order("created_at", { ascending: false })
         .limit(10);

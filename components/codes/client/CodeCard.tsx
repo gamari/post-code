@@ -3,7 +3,7 @@
 import React, { FunctionComponent } from "react";
 import { useRouter } from "next/navigation";
 
-import { Button } from "../../../components/ui/button";
+import { Button } from "../../common/ui/button";
 import { BadCode } from "../../../libs/types";
 import { CODES_DETAIL_URL, CODES_EDIT_URL } from "../../../libs/constants";
 import { cn } from "../../../libs/utils";

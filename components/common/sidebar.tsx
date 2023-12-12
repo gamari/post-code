@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/common/ui/button";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
 import { redirect } from "next/navigation";
 

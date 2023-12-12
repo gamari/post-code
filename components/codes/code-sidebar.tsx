@@ -3,7 +3,7 @@ import React from "react";
 import { FileIcon } from "@radix-ui/react-icons";
 
 import { Typo } from "@/components/common/typo";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/common/ui/button";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
 import { fetchFilesByCodeId } from "@/libs/externals/supabase/queries/files";
 import { CodeFileList } from "./code-file-list";
