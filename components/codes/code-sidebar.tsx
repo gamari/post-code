@@ -7,6 +7,7 @@ import { fetchFilesByCodeId } from "@/libs/externals/supabase/queries/files";
 import { CodeFileList } from "./code-file-list";
 import { actionGetBadCodeById } from "@/actions/bad-codes";
 import { actionGetFiles } from "@/actions/files";
+import { MockBlock } from "../common/mock-block";
 
 interface Props {
   codeId: number;
@@ -19,7 +20,15 @@ export const CodeSidebar = async ({ codeId }: Props) => {
   return (
     <div className="h-fit flex flex-col gap-6">
       <div className="border rounded-lg h-[150px] p-5">
-        <div>{badCode.user.username}</div>
+        <div className="flex flex-row gap-2">
+          <MockBlock width={30} height={30} />
+          <div>
+            <div>{badCode.user.username}</div>
+          </div>
+        </div>
+        <div>
+          {badCode.user.description}
+        </div>
       </div>
 
       <div className="border rounded-lg w-[240px] p-5">

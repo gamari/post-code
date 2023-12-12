@@ -1,10 +1,13 @@
 import React, { FunctionComponent } from "react";
 
+import { BiShare } from "react-icons/bi";
+
 import { Typo } from "@/components/common/typo";
 import { SelectedCodeFileViewer } from "../selected-code-file-viewer";
 import { actionGetBadCodeById } from "@/actions/bad-codes";
 import { actionGetAuthUser } from "@/actions/users";
 import { FavoriteCodeDetailButton } from "./favorite-code-detail-button";
+import { Button } from "@/components/common/ui/button";
 
 interface Props {
   id: number;
@@ -35,6 +38,16 @@ export const CodeDetail: FunctionComponent<Props> = async ({ id }) => {
 
       <div className="mt-6">
         <SelectedCodeFileViewer />
+      </div>
+
+      <div className="my-6 flex flex-row-reverse">
+        <div>
+          <Button className="rounded-full">
+            <BiShare />
+            Share
+          </Button>
+          <div></div>
+        </div>
       </div>
     </div>
   );
