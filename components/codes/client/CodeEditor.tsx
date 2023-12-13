@@ -16,6 +16,7 @@ import { useBadCodeForm } from "@/hooks/bad-codes/use-bad-code-form";
 import { File } from "@/libs/types";
 import { fetchUpsertFiles } from "@/libs/externals/supabase/queries/files";
 import { CodeEditorSidebar } from "../editor/client/CodeEditorSidebar";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Props {
   code: BadCodeWithFiles;
@@ -24,6 +25,7 @@ interface Props {
 export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
   const router = useRouter();
   const { client } = useSupabase();
+  const { toast } = useToast();
   const {
     id,
     title,
@@ -75,6 +77,13 @@ export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
   };
 
   const handleChangeFile = async (file: File) => {
+    if (selectedFile && !selectedFile?.name) {
+      toast({
+        title: "ファイル名を入力してください",
+      });
+      return;
+    }
+
     if (selectedFile?.id === file.id) return;
     if (selectedFile?.id !== file.id && selectedFile?.content) {
       updateFile(selectedFile);
@@ -86,17 +95,15 @@ export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
     <div className="flex flex-row gap-4">
       <div className="w-[500px]">
         <div>
-          <Input
-            type="text"
-            placeholder="タイトル"
-            value={title || ""}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
-
-        <div className="mt-6">
-          <div>
-            {selectedFile ? (
+          {selectedFile ? (
+            <div className="flex flex-col h-[250px] gap-3">
+              <Input
+                value={selectedFile?.name || ""}
+                onChange={(e) => {
+                  if (!selectedFile) return;
+                  setSelectedFile({ ...selectedFile, name: e.target.value });
+                }}
+              />
               <Textarea
                 value={selectedFile?.content || ""}
                 onChange={(e) => {
@@ -104,13 +111,26 @@ export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
                   setSelectedFile({ ...selectedFile, content: e.target.value });
                 }}
                 placeholder="コードを入力"
-                className="h-[250px]"
+                className="flex-1"
               />
-            ) : (
-              <div className="h-[250px] p-6 border rounded-md">
-                <p>編集するファイルを選択してください</p>
-              </div>
-            )}
+            </div>
+          ) : (
+            <div className="h-[250px] p-6 border rounded-md flex items-center justify-center text-gray-600">
+              <p>編集するファイルを選択してください</p>
+            </div>
+          )}
+        </div>
+
+        <div className="border-t pt-4 mt-6">
+          <Typo type="h4" text="詳細情報" />
+
+          <div>
+            <Input
+              type="text"
+              placeholder="タイトル"
+              value={title || ""}
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </div>
 
           <div className="mt-6">
@@ -126,6 +146,7 @@ export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
 
       <CodeEditorSidebar
         files={files}
+        selectedFile={selectedFile}
         onClickFile={handleChangeFile}
         onClickAddFile={handleAddFile}
         onClickSave={handleSave}

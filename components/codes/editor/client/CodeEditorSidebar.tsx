@@ -1,13 +1,16 @@
 "use client";
 
 import React from "react";
+
 import { CiCirclePlus, CiFileOn } from "react-icons/ci";
 
 import { Button } from "@/components/common/ui/button";
 import { File } from "@/libs/types";
+import { cn } from "@/libs/utils";
 
 interface Props {
   files: File[];
+  selectedFile: File | undefined;
   onClickFile: (file: File) => void;
   onClickAddFile: () => void;
   onClickSave: () => void;
@@ -18,6 +21,7 @@ export const CodeEditorSidebar = ({
   onClickFile,
   onClickAddFile,
   onClickSave,
+  selectedFile,
 }: Props) => {
   return (
     <div className="w-[250px] border p-6 rounded-md ">
@@ -30,11 +34,14 @@ export const CodeEditorSidebar = ({
         />
       </div>
 
-      <div className="mt-6">
+      <div className="mt-6 flex flex-col gap-2 max-h-[400px] overflow-auto">
         {files?.map((file) => (
           <div
             key={file.id}
-            className="flex flex-row items-center cursor-pointer hover:bg-gray-100 p-2 rounded-lg gap-2"
+            className={cn(
+              "flex flex-row items-center cursor-pointer hover:bg-gray-100 p-2 rounded-lg gap-2",
+              selectedFile?.id === file.id && "bg-gray-100"
+            )}
             onClick={() => onClickFile(file)}
           >
             <CiFileOn className="h-5 w-5" />
