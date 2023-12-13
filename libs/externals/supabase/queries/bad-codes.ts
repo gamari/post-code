@@ -77,7 +77,7 @@ export const fetchBadCodesByUserId = async (userId: string, client: SupabaseClie
         .from("bad_codes")
         .select("*")
         .eq("user_id", userId)
-        .order("created_at", { ascending: false });
+        .order("updated_at", { ascending: false });
 
     if (error) throw error;
 

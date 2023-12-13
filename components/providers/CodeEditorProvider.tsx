@@ -12,6 +12,7 @@ interface ContextProps {
   setSelectedFile: (file: File) => void;
   files: File[];
   addFile: (file: File) => void;
+  deleteFile: (file: File) => void;
   updateFile: (file: File) => void;
 }
 
@@ -23,6 +24,7 @@ const CodeEditorContext = createContext<ContextProps>({
   selectedFile: undefined,
   setSelectedFile: () => {},
   addFile: () => {},
+  deleteFile: () => {},
   updateFile: () => {},
 });
 
@@ -53,6 +55,11 @@ export const CodeEditorProvider = ({
     setFiles([...files, file]);
   }
 
+  function deleteFile(file: File) {
+    const newFiles = files.filter((f) => f.id !== file.id);
+    setFiles(newFiles);
+  }
+
   function updateFile(file: File) {
     const newFiles = files.map((f) => {
       if (f.id === file.id) {
@@ -73,6 +80,7 @@ export const CodeEditorProvider = ({
         selectedFile,
         setSelectedFile,
         addFile,
+        deleteFile,
         updateFile
       }}
     >

@@ -8,14 +8,14 @@ import { useCodeEditor } from "@/components/providers/CodeEditorProvider";
 import { useToast } from "@/components/ui/use-toast";
 import { CodeEditorFileDialog } from "./CodeEditorFileDialog";
 import { CodeEditorSaveButton } from "./CodeEditorSaveButton";
+import { fetchDeleteFile } from "@/libs/externals/supabase/queries/files";
+import { useSupabase } from "@/components/providers/supabase-provider/supabase-provider";
 
-interface Props {
-  files: File[];
-}
-
-export const CodeEditorSidebar = ({ files }: Props) => {
+export const CodeEditorSidebar = () => {
+  const { client } = useSupabase();
   const { toast } = useToast();
-  const { selectedFile, updateFile, setSelectedFile } = useCodeEditor();
+  const { files, selectedFile, updateFile, setSelectedFile, deleteFile } =
+    useCodeEditor();
 
   const handleClickFile = (file: File) => {
     if (selectedFile && !selectedFile?.name) {
@@ -32,6 +32,14 @@ export const CodeEditorSidebar = ({ files }: Props) => {
     setSelectedFile(file);
   };
 
+  const handleDeleteFile = async (file: File) => {
+    if (!client) return;
+    const isOk = confirm("本当に削除しますか？");
+    if (!isOk) return;
+    await fetchDeleteFile(file?.id, client);
+    deleteFile(file);
+  };
+
   return (
     <div className="w-[250px] h-fit border p-6 rounded-md ">
       <div className="flex flex-row gap-2">
@@ -45,6 +53,7 @@ export const CodeEditorSidebar = ({ files }: Props) => {
           files={files}
           selectedFile={selectedFile}
           onClickFile={handleClickFile}
+          onDeleteFile={handleDeleteFile}
         />
       </div>
 

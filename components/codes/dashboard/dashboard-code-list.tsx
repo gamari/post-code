@@ -17,5 +17,5 @@ export const DashboardCodeList = async () => {
     );
   }
 
-  return <CodeTable codes={codes} />;
+  return <CodeTable codes={codes} className="max-w-5xl" />;
 };

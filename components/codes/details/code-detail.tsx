@@ -20,19 +20,22 @@ export const CodeDetail: FunctionComponent<Props> = async ({ id }) => {
 
   return (
     <div>
-      <div className="mt-6">
-        <SelectedCodeFileViewer />
-      </div>
-
-      <div className="my-6 border p-4 flex flex-col gap-2">
-        <Typo text={badCode?.title} type="h3" />
-        <Typo text={badCode?.description} type="p" />
+      <div className="border p-4 flex flex-col gap-2">
+        <Typo text={badCode?.title} type="h3" className="border-b pb-2" />
+        <Typo text={badCode?.description} type="p" className="m-2" />
 
         <div className="flex items-center flex-row gap-2">
-          <Typo text={dayjs(badCode?.updated_at).format("YYYY/MM/DD mm:hh")} type="p" />
+          <Typo
+            text={dayjs(badCode?.updated_at).format("YYYY/MM/DD mm:hh")}
+            type="p"
+          />
           <Typo text="コメント 12" type="p" />
           {authUser && <FavoriteCodeDetailButton codeId={badCode.id} />}
         </div>
+      </div>
+
+      <div className="mt-6">
+        <SelectedCodeFileViewer />
       </div>
 
       <div className="my-6 flex flex-row-reverse">

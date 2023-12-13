@@ -3,18 +3,22 @@ import React from "react";
 import { File } from "@/libs/types";
 import { cn } from "@/libs/utils";
 import { CiFileOn } from "react-icons/ci";
-
+import { AiOutlineDelete } from "react-icons/ai";
 interface Props {
   files: File[];
   selectedFile: File | undefined;
   onClickFile: (file: File) => void;
+  onDeleteFile?: (file: File) => void;
 }
 
-export const CodeFileList = ({ files, selectedFile, onClickFile }: Props) => {
-
-  if (!files?.length) return (
-    <div className="border p-2 text-gray-600">ファイルがありません</div>
-  )
+export const CodeFileList = ({
+  files,
+  selectedFile,
+  onClickFile,
+  onDeleteFile,
+}: Props) => {
+  if (!files?.length)
+    return <div className="border p-2 text-gray-600">ファイルがありません</div>;
 
   return (
     <div>
@@ -28,7 +32,16 @@ export const CodeFileList = ({ files, selectedFile, onClickFile }: Props) => {
           onClick={() => onClickFile(file)}
         >
           <CiFileOn className="h-5 w-5" />
-          {file.name}
+          <div className="flex-1">{file.name}</div>
+          {onDeleteFile && (
+            <AiOutlineDelete
+              className="h-6 w-6 p-1 cursor-pointer border border-gray-300 hover:bg-gray-500 rounded-lg hover:opacity-50"
+              onClick={(e) => {
+                e.stopPropagation();
+                onDeleteFile(file);
+              }}
+            />
+          )}
         </div>
       ))}
     </div>

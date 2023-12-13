@@ -20,12 +20,14 @@ import { useBadCodeList } from "@/hooks/bad-codes/useBadCodeList";
 import { useSupabase } from "@/components/providers/supabase-provider/supabase-provider";
 import { fetchDeleteBadCode } from "@/libs/externals/supabase/queries/bad-codes";
 import { Typo } from "@/components/common/typo";
+import { cn } from "@/libs/utils";
 
 interface Props {
   codes: BadCode[];
+  className?: string;
 }
 
-export const CodeTable = ({ codes: initCodes }: Props) => {
+export const CodeTable = ({ codes: initCodes, className }: Props) => {
   const { codes, removeBadCode } = useBadCodeList(initCodes);
   const { client } = useSupabase();
 
@@ -39,7 +41,7 @@ export const CodeTable = ({ codes: initCodes }: Props) => {
   };
 
   return (
-    <Table className="border">
+    <Table className={cn("border", className)}>
       <TableHeader>
         <TableRow>
           <TableHead>タイトル</TableHead>
@@ -53,13 +55,13 @@ export const CodeTable = ({ codes: initCodes }: Props) => {
             <TableCell>
               <Link href={`/codes/${code.id}/detail`}>{code.title}</Link>
             </TableCell>
-            <TableCell>
+            <TableCell className="w-[200px]">
               <Typo
-                text={dayjs(code.updated_at).format("YYYY/MM/DD")}
+                text={dayjs(code.updated_at).format("YYYY/MM/DD hh:mm")}
                 type="p"
               />
             </TableCell>
-            <TableCell>
+            <TableCell className="w-[200px]">
               <div className="flex flex-row items-center gap-2">
                 <Button asChild>
                   <Link href={`/dashboard/codes/${code.id}/edit`}>編集</Link>

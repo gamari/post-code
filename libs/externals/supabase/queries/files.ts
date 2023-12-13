@@ -15,6 +15,7 @@ export const fetchFilesByCodeId = async (codeId: number, client: SupabaseClient)
     return files as File[];
 }
 
+// update
 export const fetchUpsertFiles = async (newFiles: File[], client: SupabaseClient) => {
     const { error } = await client
         .from("files")
@@ -37,3 +38,12 @@ export const fetchCreateFile = async (file: File, client: SupabaseClient) => {
     return data;
 };
 
+
+export const fetchDeleteFile = async (fileId: number, client: SupabaseClient) => {
+    const { error } = await client
+        .from("files")
+        .delete()
+        .eq("id", fileId);
+
+    if (error) throw new Error("Fileの削除中にエラーが発生しました。");
+}

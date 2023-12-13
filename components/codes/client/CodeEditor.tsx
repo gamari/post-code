@@ -11,7 +11,7 @@ import { CodeDetailInfoEditor } from "../editor/client/CodeDetailInfoEditor";
 interface Props {}
 
 export const CodeEditor: FunctionComponent<Props> = ({}) => {
-  const { files, selectedFile, setSelectedFile } = useCodeEditor();
+  const { selectedFile, setSelectedFile } = useCodeEditor();
 
   return (
     <div className="flex flex-row gap-4">
@@ -34,7 +34,7 @@ export const CodeEditor: FunctionComponent<Props> = ({}) => {
         <CodeDetailInfoEditor className="border-t-2 mt-10 pt-4" />
       </div>
 
-      <CodeEditorSidebar files={files} />
+      <CodeEditorSidebar />
     </div>
   );
 };
