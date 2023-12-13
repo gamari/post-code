@@ -13,16 +13,12 @@ export const SelectedCodeFileViewer = () => {
 
   if (!selectedFile)
     return (
-      <Card className="h-[300px]">
-        <CardHeader>
-          <Typo type="p" text="ファイルを選択してください" />
-        </CardHeader>
-      </Card>
+      <div className="h-[250px] flex items-center justify-center border">
+        <p className="text-gray-600 font-bold">
+          見たいファイルを選択してください
+        </p>
+      </div>
     );
 
-  return (
-    <div className="h-[300px]">
-      <CodePreviewer code={selectedFile?.content || ""} />
-    </div>
-  );
+  return <CodePreviewer file={selectedFile} className="h-[250px]" />;
 };

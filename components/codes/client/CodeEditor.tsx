@@ -39,6 +39,7 @@ export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
   const [selectedFile, setSelectedFile] = useState<File | undefined>(undefined);
 
   const handleSave = async () => {
+    // TODO selectedFileの変更を反映させる
     if (!client) return;
 
     const user = await fetchMyself(client);
@@ -46,7 +47,21 @@ export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
     if (!user?.id) return;
     if (!id) return;
 
-    await fetchUpsertFiles(files, client);
+    // Fileの反映
+    if (!selectedFile?.name || !selectedFile?.content) {
+      toast({
+        title: "ファイル名とコンテンツを入力してください",
+      });
+      return;
+    }
+    updateFile(selectedFile);
+
+    const newFiles = files.map((file) => {
+      if (file.id === selectedFile.id) return selectedFile;
+      return file;
+    });
+
+    await fetchUpsertFiles(newFiles, client);
 
     await fetchUpdateBadCode(
       // @ts-ignore

@@ -19,25 +19,19 @@ export const CodeDetail: FunctionComponent<Props> = async ({ id }) => {
 
   return (
     <div>
-      <Typo text={badCode?.title} type="h2" className="border-b mb-6" />
-
-      <div className="border-b flex flex-row justify-between gap-4 items-center pb-4">
-        <div>
-          <Typo text="12/11 11:10" type="h4" />
-        </div>
-
-        <div className="flex items-center flex-row gap-2">
-          <Typo text="コメント 12" type="h4" />
-          {authUser && <FavoriteCodeDetailButton codeId={badCode.id} />}
-        </div>
-      </div>
-
-      <div className="my-12">
-        <Typo text={badCode?.description} />
-      </div>
-
       <div className="mt-6">
         <SelectedCodeFileViewer />
+      </div>
+
+      <div className="my-6 border p-4 flex flex-col gap-2">
+        <Typo text={badCode?.title} type="h3" />
+        <Typo text={badCode?.description} type="p" />
+
+        <div className="flex items-center flex-row gap-2">
+          <Typo text="12/11 11:10" type="p" />
+          <Typo text="コメント 12" type="p" />
+          {authUser && <FavoriteCodeDetailButton codeId={badCode.id} />}
+        </div>
       </div>
 
       <div className="my-6 flex flex-row-reverse">

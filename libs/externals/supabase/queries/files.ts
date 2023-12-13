@@ -16,7 +16,6 @@ export const fetchFilesByCodeId = async (codeId: number, client: SupabaseClient)
 }
 
 export const fetchUpsertFiles = async (newFiles: File[], client: SupabaseClient) => {
-    console.log(newFiles)
     const { error } = await client
         .from("files")
         .upsert(newFiles);
