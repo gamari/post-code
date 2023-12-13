@@ -19,14 +19,13 @@ const CodeEditPage: NextPage<Props> = async ({ params }) => {
 
   return (
     <div className="p-10">
-      <CodeEditorProvider badCode={badCode}>
-        {/* <CodeEditro */}
-        {badCode ? (
+      {badCode ? (
+        <CodeEditorProvider badCode={badCode}>
           <CodeEditor />
-        ) : (
-          <div>コードが見つかりませんでした</div>
-        )}
-      </CodeEditorProvider>
+        </CodeEditorProvider>
+      ) : (
+        <div>コードが見つかりませんでした</div>
+      )}
     </div>
   );
 };
