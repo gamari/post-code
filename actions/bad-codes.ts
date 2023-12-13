@@ -6,8 +6,8 @@ import { fetchAuthUser } from "@/libs/externals/supabase/queries/users";
 
 // One
 export const actionGetBadCodeById = async (id: number) => {
-    const supabase = getServerClient();
-    const badCodes = await fetchBadCodeById(id, supabase);
+    const client = getServerClient();
+    const badCodes = await fetchBadCodeById(id, client);
     return badCodes;
 }
 
@@ -15,20 +15,12 @@ export const actionGetBadCodeById = async (id: number) => {
 export const actionGetMySelfBadCodeList = async () => {
     const client = getServerClient();
     const authUser = await fetchAuthUser(client);
-
-    if (!authUser?.id) throw new Error("認証ユーザーが見つかりませんでした。");
-
-    const badCodes = await fetchBadCodesByUserId(authUser.id, client);
-
+    const badCodes = await fetchBadCodesByUserId(authUser?.id || "", client);
     return badCodes;
 }
 
 export const actionGetLatestBadCodeList = async () => {
-    try {
-        const supabase = getServerClient();
-        const badCodes = await fetchLatestBadCodes(supabase);
-        return badCodes;
-    } catch (error) {
-        return [];
-    }
+    const client = getServerClient();
+    const badCodes = await fetchLatestBadCodes(client);
+    return badCodes;
 }

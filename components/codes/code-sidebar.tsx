@@ -1,9 +1,6 @@
 import React from "react";
 
 import { Typo } from "@/components/common/typo";
-import { Button } from "@/components/common/ui/button";
-import { getServerClient } from "@/libs/externals/supabase/admin-client";
-import { fetchFilesByCodeId } from "@/libs/externals/supabase/queries/files";
 import { CodeFileList } from "./code-file-list";
 import { actionGetBadCodeById } from "@/actions/bad-codes";
 import { actionGetFiles } from "@/actions/files";

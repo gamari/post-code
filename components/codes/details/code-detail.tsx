@@ -8,6 +8,7 @@ import { actionGetBadCodeById } from "@/actions/bad-codes";
 import { actionGetAuthUser } from "@/actions/users";
 import { FavoriteCodeDetailButton } from "./favorite-code-detail-button";
 import { Button } from "@/components/common/ui/button";
+import dayjs from "dayjs";
 
 interface Props {
   id: number;
@@ -28,7 +29,7 @@ export const CodeDetail: FunctionComponent<Props> = async ({ id }) => {
         <Typo text={badCode?.description} type="p" />
 
         <div className="flex items-center flex-row gap-2">
-          <Typo text="12/11 11:10" type="p" />
+          <Typo text={dayjs(badCode?.updated_at).format("YYYY/MM/DD mm:hh")} type="p" />
           <Typo text="コメント 12" type="p" />
           {authUser && <FavoriteCodeDetailButton codeId={badCode.id} />}
         </div>

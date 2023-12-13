@@ -2,6 +2,18 @@
 
 必要なSQLに関して
 
+## updated_atの設定
+
+```sql
+-- Enable MODDATETIME extension
+create extension if not exists moddatetime schema extensions;
+
+-- This will set the `updated_at` column on every update
+create trigger handle_updated_at before update on bad_codes
+  for each row execute procedure moddatetime (updated_at);
+```
+
+
 ## bad_codesのSQL作成
 
 ```sql

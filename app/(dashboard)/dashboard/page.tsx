@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import { unstable_noStore as noStore } from "next/cache";
 
 import { CreateCodeButton } from "../../../components/codes/client/CreateCodeButton";
-import { Card, CardHeader } from "@/components/common/ui/card";
 import { Skeleton } from "@/components/common/skeleton";
 import { Typo } from "@/components/common/typo";
 import {

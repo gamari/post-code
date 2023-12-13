@@ -1,6 +1,10 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
+
+import dayjs from "dayjs";
+
 import {
   Table,
   TableBody,
@@ -12,10 +16,10 @@ import {
 
 import { BadCode } from "@/libs/types";
 import { Button } from "@/components/common/ui/button";
-import Link from "next/link";
 import { useBadCodeList } from "@/hooks/bad-codes/useBadCodeList";
 import { useSupabase } from "@/components/providers/supabase-provider/supabase-provider";
 import { fetchDeleteBadCode } from "@/libs/externals/supabase/queries/bad-codes";
+import { Typo } from "@/components/common/typo";
 
 interface Props {
   codes: BadCode[];
@@ -39,6 +43,7 @@ export const CodeTable = ({ codes: initCodes }: Props) => {
       <TableHeader>
         <TableRow>
           <TableHead>タイトル</TableHead>
+          <TableHead>更新日</TableHead>
           <TableHead>操作</TableHead>
         </TableRow>
       </TableHeader>
@@ -46,7 +51,13 @@ export const CodeTable = ({ codes: initCodes }: Props) => {
         {codes?.map((code) => (
           <TableRow key={code.id}>
             <TableCell>
-              <Link href={`/codes/${code.id}`}>{code.title}</Link>
+              <Link href={`/codes/${code.id}/detail`}>{code.title}</Link>
+            </TableCell>
+            <TableCell>
+              <Typo
+                text={dayjs(code.updated_at).format("YYYY/MM/DD")}
+                type="p"
+              />
             </TableCell>
             <TableCell>
               <div className="flex flex-row items-center gap-2">

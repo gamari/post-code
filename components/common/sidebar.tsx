@@ -1,5 +1,6 @@
 import React from "react";
-import Link from "next/link";
+
+import { FaDoorOpen } from "react-icons/fa6";
 
 import { Button } from "@/components/common/ui/button";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
@@ -16,8 +17,8 @@ export const Sidebar = () => {
   };
 
   return (
-    <aside className="w-[300px] p-5 flex flex-col justify-between">
-      <div>
+    <aside className="w-[300px] flex flex-col justify-between">
+      <div className="p-5">
         <h3 className="text-xl font-bold text-gray-700">メニュー</h3>
 
         <div>
@@ -28,9 +29,10 @@ export const Sidebar = () => {
         </div>
       </div>
 
-      <div>
-        <form action={signOut}>
-          <Button type="submit" variant="outline" className="w-full">
+      <div className="border-t">
+        <form action={signOut} className="p-5">
+          <Button type="submit" variant="outline" className="w-full flex flex-row items-center gap-1">
+            <FaDoorOpen className="h-5 w-5" />
             ログアウト
           </Button>
         </form>

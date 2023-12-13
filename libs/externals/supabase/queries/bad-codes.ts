@@ -76,7 +76,8 @@ export const fetchBadCodesByUserId = async (userId: string, client: SupabaseClie
     const { data: codes, error } = await client
         .from("bad_codes")
         .select("*")
-        .eq("user_id", userId);
+        .eq("user_id", userId)
+        .order("created_at", { ascending: false });
 
     if (error) throw error;
 
