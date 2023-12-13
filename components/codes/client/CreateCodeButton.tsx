@@ -1,24 +1,46 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/common/ui/button";
 import { fetchCreateBadCode } from "@/libs/externals/supabase/queries/bad-codes";
 import { useSupabase } from "@/components/providers/supabase-provider/supabase-provider";
 import { CiCirclePlus } from "react-icons/ci";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/common/ui/input";
+import { useToast } from "@/components/ui/use-toast";
 
 // TODO SSRで書く
 export const CreateCodeButton = () => {
   const router = useRouter();
   const { client } = useSupabase();
+  const { toast } = useToast();
+
+  const [name, setName] = useState("");
 
   const handleCreateCode = async (e: any) => {
     if (!client) throw new Error("接続できません。");
 
+    if (!name) {
+      toast({
+        title: "タイトルを入力してください",
+      });
+      return;
+    }
+
     // TODO fix type
     const newBadCode: any = {
-      title: "bad code",
+      title: name,
     };
 
     const retBadCode = await fetchCreateBadCode(newBadCode, client);
@@ -30,6 +52,37 @@ export const CreateCodeButton = () => {
     }
   };
 
-  // return <Button onClick={handleCreateCode}>コード作成</Button>;
-  return <CiCirclePlus onClick={handleCreateCode} className="h-6 w-6" />
+  return (
+    <>
+      <Dialog>
+        <DialogTrigger>
+          <CiCirclePlus className="h-6 w-6 cursor-pointer hover:opacity-80" />
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>タイトル</DialogTitle>
+            <DialogDescription>
+              <div>
+                <Input
+                  type="text"
+                  placeholder="タイトルを入力してください"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+            </DialogDescription>
+          </DialogHeader>
+
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button onClick={handleCreateCode}>作成</Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button variant="outline">閉じる</Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
 };

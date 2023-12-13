@@ -22,8 +22,7 @@ import { fetchCreateFile } from "@/libs/externals/supabase/queries/files";
 
 export const CodeEditorFileDialog = () => {
   const { client } = useSupabase();
-  const { badCode, addFile, selectedFile, updateFile, setSelectedFile } =
-    useCodeEditor();
+  const { badCode, addFile,  setSelectedFile } = useCodeEditor();
 
   const [name, setName] = React.useState("");
 

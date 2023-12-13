@@ -22,7 +22,11 @@ export const CodeDetail: FunctionComponent<Props> = async ({ id }) => {
     <div>
       <div className="border p-4 flex flex-col gap-2">
         <Typo text={badCode?.title} type="h3" className="border-b pb-2" />
-        <Typo text={badCode?.description} type="p" className="m-2" />
+        {badCode?.description ? (
+          <Typo text={badCode?.description} type="p" className="m-2" />
+        ) : (
+          <Typo text="(説明がありません)" type="p" className="m-2" />
+        )}
 
         <div className="flex items-center flex-row gap-2">
           <Typo
