@@ -17,6 +17,8 @@ import { File } from "@/libs/types";
 import { fetchUpsertFiles } from "@/libs/externals/supabase/queries/files";
 import { CodeEditorSidebar } from "../editor/client/CodeEditorSidebar";
 import { useToast } from "@/components/ui/use-toast";
+import { CodeFileEditor } from "../editor/client/CodeFileEditor";
+import { NoContent } from "@/components/common/no-content";
 
 interface Props {
   code: BadCodeWithFiles;
@@ -69,7 +71,6 @@ export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
       client
     );
 
-    router.refresh();
     router.push(`/codes/${id}/detail`);
   };
 
@@ -108,31 +109,19 @@ export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
 
   return (
     <div className="flex flex-row gap-4">
-      <div className="w-[500px]">
+      <div className="w-[600px]">
         <div>
           {selectedFile ? (
-            <div className="flex flex-col h-[250px] gap-3">
-              <Input
-                value={selectedFile?.name || ""}
-                onChange={(e) => {
-                  if (!selectedFile) return;
-                  setSelectedFile({ ...selectedFile, name: e.target.value });
-                }}
-              />
-              <Textarea
-                value={selectedFile?.content || ""}
-                onChange={(e) => {
-                  if (!selectedFile) return;
-                  setSelectedFile({ ...selectedFile, content: e.target.value });
-                }}
-                placeholder="コードを入力"
-                className="flex-1"
-              />
-            </div>
+            <CodeFileEditor
+              file={selectedFile}
+              setFile={setSelectedFile}
+              className="h-[400px]"
+            />
           ) : (
-            <div className="h-[250px] p-6 border rounded-md flex items-center justify-center text-gray-600">
-              <p>編集するファイルを選択してください</p>
-            </div>
+            <NoContent
+              text="ファイルを選択してください"
+              className="h-[400px]"
+            />
           )}
         </div>
 

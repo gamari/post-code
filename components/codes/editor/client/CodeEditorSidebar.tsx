@@ -2,11 +2,23 @@
 
 import React from "react";
 
-import { CiCirclePlus, CiFileOn } from "react-icons/ci";
+import { CiCirclePlus } from "react-icons/ci";
 
 import { Button } from "@/components/common/ui/button";
 import { File } from "@/libs/types";
-import { cn } from "@/libs/utils";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/common/ui/input";
+import { CodeFileList } from "../../client/CodeFileList";
+import { MdSave } from "react-icons/md";
 
 interface Props {
   files: File[];
@@ -23,35 +35,62 @@ export const CodeEditorSidebar = ({
   onClickSave,
   selectedFile,
 }: Props) => {
+  const [name, setName] = React.useState("");
+  const handleAddFile = () => {
+    // TODO ファイル作成失敗のToastを出す
+    onClickAddFile();
+    setName("");
+  };
+
   return (
-    <div className="w-[250px] border p-6 rounded-md ">
+    <div className="w-[250px] h-fit border p-6 rounded-md ">
       <div className="flex flex-row gap-2">
         <span>ファイル一覧</span>
-        <CiCirclePlus
-          className="h-6 w-6 cursor-pointer hover:opacity-70"
-          // TODO ファイル作成モーダルにしたい
-          onClick={onClickAddFile}
-        />
+
+        <Dialog>
+          <DialogTrigger>
+            <CiCirclePlus className="h-6 w-6 cursor-pointer hover:opacity-70" />
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>ファイル作成</DialogTitle>
+              <DialogDescription>
+                <div>
+                  <Input
+                    type="text"
+                    placeholder="ファイル名を入力してください"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+              </DialogDescription>
+            </DialogHeader>
+
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button onClick={handleAddFile}>作成</Button>
+              </DialogClose>
+              <DialogClose asChild>
+                <Button variant="outline">閉じる</Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
 
       <div className="mt-6 flex flex-col gap-2 max-h-[400px] overflow-auto">
-        {files?.map((file) => (
-          <div
-            key={file.id}
-            className={cn(
-              "flex flex-row items-center cursor-pointer hover:bg-gray-100 p-2 rounded-lg gap-2",
-              selectedFile?.id === file.id && "bg-gray-100"
-            )}
-            onClick={() => onClickFile(file)}
-          >
-            <CiFileOn className="h-5 w-5" />
-            {file.name}
-          </div>
-        ))}
+        <CodeFileList
+          files={files}
+          selectedFile={selectedFile}
+          onClickFile={onClickFile}
+        />
       </div>
 
-      <div className="mt-10">
-        <Button onClick={onClickSave}>保存</Button>
+      <div className="mt-6">
+        <Button onClick={onClickSave} className="w-full">
+          <MdSave className="h-4 w-4 mr-2" />
+          保存
+        </Button>
       </div>
     </div>
   );
