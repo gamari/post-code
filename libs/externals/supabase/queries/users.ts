@@ -10,15 +10,6 @@ export const fetchAuthUser = async (client: SupabaseClient) => {
 }
 
 
-export const fetchMyself = async (client: SupabaseClient) => {
-    const { data: { user }, error } = await client.auth.getUser();
-
-    if (error) throw new Error("認証中にエラーが発生しました。");
-
-    console.log(user);
-
-    return user;
-};
 
 export const fetchUserById = async (id: string, client: SupabaseClient) => {
     const { data: user, error } = await client

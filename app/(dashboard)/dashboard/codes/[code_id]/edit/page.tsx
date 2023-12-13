@@ -2,8 +2,8 @@ import React from "react";
 import { NextPage } from "next";
 
 import { CodeEditor } from "../../../../../../components/codes/client/CodeEditor";
-import { getServerClient } from "@/libs/externals/supabase/admin-client";
-import { fetchBadCodeWithFilesById } from "@/libs/externals/supabase/queries/bad-codes";
+import { actionGetBadCodeById } from "@/actions/bad-codes";
+import { CodeEditorProvider } from "@/components/providers/CodeEditorProvider";
 
 interface Props {
   params: {
@@ -13,18 +13,20 @@ interface Props {
 
 const CodeEditPage: NextPage<Props> = async ({ params }) => {
   const { code_id } = params;
-  const serverClient = await getServerClient();
-  const badCode = await fetchBadCodeWithFilesById(code_id, serverClient);
+  const badCode = await actionGetBadCodeById(code_id);
 
   if (!badCode) return <div>対象のコードがありません。</div>;
 
   return (
     <div className="p-10">
-      {badCode ? (
-        <CodeEditor code={badCode} />
-      ) : (
-        <div>コードが見つかりませんでした</div>
-      )}
+      <CodeEditorProvider badCode={badCode}>
+        {/* <CodeEditro */}
+        {badCode ? (
+          <CodeEditor />
+        ) : (
+          <div>コードが見つかりませんでした</div>
+        )}
+      </CodeEditorProvider>
     </div>
   );
 };

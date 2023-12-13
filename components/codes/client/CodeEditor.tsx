@@ -1,53 +1,49 @@
 "use client";
 
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent } from "react";
 
-import { BadCodeWithFiles } from "@/libs/types";
-import { Button } from "@/components/common/ui/button";
+import { BadCode, BadCodeWithFiles } from "@/libs/types";
 import { Input } from "@/components/common/ui/input";
 import { useRouter } from "next/navigation";
 import { useSupabase } from "@/components/providers/supabase-provider/supabase-provider";
-import { fetchMyself } from "@/libs/externals/supabase/queries/users";
+import { fetchAuthUser } from "@/libs/externals/supabase/queries/users";
 import { fetchCreateFile } from "@/libs/externals/supabase/queries/files";
 import { fetchUpdateBadCode } from "@/libs/externals/supabase/queries/bad-codes";
 import { Textarea } from "@/components/common/ui/textarea";
 import { Typo } from "@/components/common/typo";
-import { useBadCodeForm } from "@/hooks/bad-codes/use-bad-code-form";
 import { File } from "@/libs/types";
 import { fetchUpsertFiles } from "@/libs/externals/supabase/queries/files";
 import { CodeEditorSidebar } from "../editor/client/CodeEditorSidebar";
 import { useToast } from "@/components/ui/use-toast";
 import { CodeFileEditor } from "../editor/client/CodeFileEditor";
 import { NoContent } from "@/components/common/no-content";
+import { useCodeEditor } from "@/components/providers/CodeEditorProvider";
 
-interface Props {
-  code: BadCodeWithFiles;
-}
+interface Props {}
 
-export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
+export const CodeEditor: FunctionComponent<Props> = ({}) => {
   const router = useRouter();
   const { client } = useSupabase();
   const { toast } = useToast();
   const {
-    id,
-    title,
+    badCode,
     setTitle,
-    description,
     setDescription,
     files,
+    selectedFile,
+    setSelectedFile,
     addFile,
     updateFile,
-  } = useBadCodeForm(initCode);
-  const [selectedFile, setSelectedFile] = useState<File | undefined>(undefined);
+  } = useCodeEditor();
 
   const handleSave = async () => {
     // TODO selectedFileの変更を反映させる
     if (!client) return;
 
-    const user = await fetchMyself(client);
+    const user = await fetchAuthUser(client);
 
     if (!user?.id) return;
-    if (!id) return;
+    if (!badCode?.id) return;
 
     // Fileの反映
     if (!selectedFile?.name || !selectedFile?.content) {
@@ -65,46 +61,36 @@ export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
 
     await fetchUpsertFiles(newFiles, client);
 
-    await fetchUpdateBadCode(
-      // @ts-ignore
-      { id, title, description, user_id: user.id },
-      client
-    );
+    const newBadCode: BadCode = {
+      id: badCode.id,
+      title: badCode.title,
+      description: badCode.description,
+      created_at: badCode.created_at,
+      updated_at: badCode.updated_at,
+      user_id: user.id,
+    };
 
-    router.push(`/codes/${id}/detail`);
+    await fetchUpdateBadCode(newBadCode, client);
+
+    router.push(`/codes/${badCode?.id}/detail`);
   };
 
   const handleAddFile = async () => {
     if (!client) return;
 
-    const user = await fetchMyself(client);
+    const user = await fetchAuthUser(client);
 
     if (!user?.id) return;
 
     const newFile: any = {
       name: "新しいファイル",
       user_id: user.id,
-      bad_code_id: id,
+      bad_code_id: badCode?.id,
     };
 
     const retFile = await fetchCreateFile(newFile, client);
 
     addFile(retFile);
-  };
-
-  const handleChangeFile = async (file: File) => {
-    if (selectedFile && !selectedFile?.name) {
-      toast({
-        title: "ファイル名を入力してください",
-      });
-      return;
-    }
-
-    if (selectedFile?.id === file.id) return;
-    if (selectedFile?.id !== file.id && selectedFile?.content) {
-      updateFile(selectedFile);
-    }
-    setSelectedFile(file);
   };
 
   return (
@@ -132,14 +118,14 @@ export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
             <Input
               type="text"
               placeholder="タイトル"
-              value={title || ""}
+              value={badCode?.title || ""}
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
 
           <div className="mt-6">
             <Textarea
-              value={description || ""}
+              value={badCode?.description || ""}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="コードの悪い部分を説明してください……"
               rows={8}
@@ -150,8 +136,6 @@ export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
 
       <CodeEditorSidebar
         files={files}
-        selectedFile={selectedFile}
-        onClickFile={handleChangeFile}
         onClickAddFile={handleAddFile}
         onClickSave={handleSave}
       />

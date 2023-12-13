@@ -1,11 +1,11 @@
 import React from "react";
 
 import { Card, CardHeader } from "@/components/common/ui/card";
-import { actionGetMySelfBadCodes } from "@/actions/bad-codes";
+import { actionGetMySelfBadCodeList } from "@/actions/bad-codes";
 import { CodeTable } from "../client/CodeTable";
 
 export const DashboardCodeList = async () => {
-  const codes = await actionGetMySelfBadCodes();
+  const codes = await actionGetMySelfBadCodeList();
 
   if (!codes?.length) {
     return (

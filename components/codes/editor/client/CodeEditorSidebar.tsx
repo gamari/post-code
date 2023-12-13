@@ -19,27 +19,43 @@ import {
 import { Input } from "@/components/common/ui/input";
 import { CodeFileList } from "../../client/CodeFileList";
 import { MdSave } from "react-icons/md";
+import { useCodeEditor } from "@/components/providers/CodeEditorProvider";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Props {
   files: File[];
-  selectedFile: File | undefined;
-  onClickFile: (file: File) => void;
   onClickAddFile: () => void;
   onClickSave: () => void;
 }
 
 export const CodeEditorSidebar = ({
   files,
-  onClickFile,
   onClickAddFile,
   onClickSave,
-  selectedFile,
 }: Props) => {
+  const { toast } = useToast();
+  const { selectedFile, updateFile, setSelectedFile } = useCodeEditor();
+
   const [name, setName] = React.useState("");
   const handleAddFile = () => {
     // TODO ファイル作成失敗のToastを出す
     onClickAddFile();
     setName("");
+  };
+
+  const handleClickFile = (file: File) => {
+    if (selectedFile && !selectedFile?.name) {
+      toast({
+        title: "ファイル名を入力してください",
+      });
+      return;
+    }
+
+    if (selectedFile?.id === file.id) return;
+    if (selectedFile?.id !== file.id && selectedFile?.content) {
+      updateFile(selectedFile);
+    }
+    setSelectedFile(file);
   };
 
   return (
@@ -82,7 +98,7 @@ export const CodeEditorSidebar = ({
         <CodeFileList
           files={files}
           selectedFile={selectedFile}
-          onClickFile={onClickFile}
+          onClickFile={handleClickFile}
         />
       </div>
 

@@ -1,4 +1,4 @@
-import { BadCode, BadCodeDetail } from "@/libs/types";
+import { BadCode } from "@/libs/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 
 export const fetchUpdateBadCode = async (newBadCodes: BadCode, client: SupabaseClient) => {
@@ -58,7 +58,8 @@ export const fetchBadCodeById = async (id: number, client: SupabaseClient) => {
         .from("bad_codes")
         .select(`
           *, 
-          users (*)  
+          users (*),
+          files: files(*)
         `)
         .eq("id", id)
         .single();

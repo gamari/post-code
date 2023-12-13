@@ -20,4 +20,5 @@ export interface BadCodeWithUser extends BadCode {
 
 export interface BadCodeDetail extends BadCode {
     user: User;
+    files: File[];
 }
