@@ -18,7 +18,7 @@ export default async function Index() {
         </section>
 
         <section className="mt-20">
-          <Typo type="h1" text="人気" />
+          <Typo type="h1" text="言語別" />
         </section>
       </div>
 

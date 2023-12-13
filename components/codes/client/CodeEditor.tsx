@@ -15,6 +15,7 @@ import { Typo } from "@/components/common/typo";
 import { useBadCodeForm } from "@/hooks/bad-codes/use-bad-code-form";
 import { File } from "@/libs/types";
 import { fetchUpsertFiles } from "@/libs/externals/supabase/queries/files";
+import { CodeEditorSidebar } from "../editor/client/CodeEditorSidebar";
 
 interface Props {
   code: BadCodeWithFiles;
@@ -83,7 +84,7 @@ export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
 
   return (
     <div className="flex flex-row gap-4">
-      <div className="w-[400px]">
+      <div className="w-[500px]">
         <div>
           <Input
             type="text"
@@ -94,19 +95,8 @@ export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
         </div>
 
         <div className="mt-6">
-          <Textarea
-            value={description || ""}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="説明"
-            rows={8}
-          />
-        </div>
-
-        <div className="mt-6">
-          <Typo text="コード" type="h3" className="text-gray-700" />
-
           <div>
-            {selectedFile && (
+            {selectedFile ? (
               <Textarea
                 value={selectedFile?.content || ""}
                 onChange={(e) => {
@@ -114,46 +104,32 @@ export const CodeEditor: FunctionComponent<Props> = ({ code: initCode }) => {
                   setSelectedFile({ ...selectedFile, content: e.target.value });
                 }}
                 placeholder="コードを入力"
-                rows={8}
+                className="h-[250px]"
               />
+            ) : (
+              <div className="h-[250px] p-6 border rounded-md">
+                <p>編集するファイルを選択してください</p>
+              </div>
             )}
           </div>
-          {/* TODO fileをサイドバーから選択して、 */}
+
+          <div className="mt-6">
+            <Textarea
+              value={description || ""}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="コードの悪い部分を説明してください……"
+              rows={8}
+            />
+          </div>
         </div>
       </div>
 
-      <div className="w-[180px] border p-6 rounded-md ">
-        <div>ファイル一覧</div>
-
-        <div className="mt-6">
-          {files?.map((file) => (
-            <div
-              key={file.id}
-              className="flex flex-row items-center"
-              onClick={() => handleChangeFile(file)}
-            >
-              <div className="flex-1">{file.name}</div>
-              <div>
-                <Button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                  }}
-                >
-                  編集
-                </Button>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div>
-          <Button onClick={handleAddFile}>ファイル追加</Button>
-        </div>
-
-        <div className="mt-10">
-          <Button onClick={handleSave}>保存</Button>
-        </div>
-      </div>
+      <CodeEditorSidebar
+        files={files}
+        onClickFile={handleChangeFile}
+        onClickAddFile={handleAddFile}
+        onClickSave={handleSave}
+      />
     </div>
   );
 };
