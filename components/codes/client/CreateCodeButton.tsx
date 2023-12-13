@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/common/ui/button";
 import { fetchCreateBadCode } from "@/libs/externals/supabase/queries/bad-codes";
 import { useSupabase } from "@/components/providers/supabase-provider/supabase-provider";
+import { CiCirclePlus } from "react-icons/ci";
 
 // TODO SSRで書く
 export const CreateCodeButton = () => {
@@ -29,5 +30,6 @@ export const CreateCodeButton = () => {
     }
   };
 
-  return <Button onClick={handleCreateCode}>コード作成</Button>;
+  // return <Button onClick={handleCreateCode}>コード作成</Button>;
+  return <CiCirclePlus onClick={handleCreateCode} className="h-6 w-6" />
 };

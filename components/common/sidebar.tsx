@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/common/ui/button";
 import { getServerClient } from "@/libs/externals/supabase/admin-client";
 import { redirect } from "next/navigation";
+import { SideLink } from "./client/SideLink";
 
 export const Sidebar = () => {
   const signOut = async () => {
@@ -21,12 +22,8 @@ export const Sidebar = () => {
 
         <div>
           <div className="flex flex-col space-y-3 py-3">
-            <Button asChild variant="outline" className="w-full">
-              <Link href="/dashboard">ダッシュボード</Link>
-            </Button>
-            <Button asChild variant="outline" className="w-full">
-              <Link href="/dashboard/account">アカウント設定</Link>
-            </Button>
+            <SideLink url="/dashboard" label="ダッシュボード" />
+            <SideLink url="/dashboard/account" label="アカウント設定" />
           </div>
         </div>
       </div>

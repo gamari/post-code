@@ -18,25 +18,24 @@ const DashboardPage = async () => {
 
   return (
     <div className="p-10">
-      <Card>
-        <CardHeader className="flex flex-row items-center">
-          <CreateCodeButton />
-        </CardHeader>
-      </Card>
-
       <Tabs defaultValue="codes" className="mt-10">
-        <TabsList>
+        <TabsList className="mb-6">
           <TabsTrigger value="codes">コード</TabsTrigger>
           <TabsTrigger value="favorites">お気に入り</TabsTrigger>
         </TabsList>
         <TabsContent value="codes">
-          <Typo text="作成したコード" type="h2" className="mt-8 mb-6" />
+          <div className="flex flex-row items-center gap-2 mb-6">
+            <Typo text="作成したコード" type="h2" />
+            <CreateCodeButton />
+          </div>
 
           <Suspense fallback={<Skeleton />}>
             <DashboardCodeList />
           </Suspense>
         </TabsContent>
-        <TabsContent value="favorites">お気に入りページ</TabsContent>
+        <TabsContent value="favorites">
+          <Typo text="お気に入り一覧" type="h2" />
+        </TabsContent>
       </Tabs>
     </div>
   );

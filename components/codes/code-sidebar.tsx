@@ -32,7 +32,7 @@ export const CodeSidebar = async ({ codeId }: Props) => {
 
       <div className="border rounded-lg w-[240px] p-5">
         <div>
-          <Typo text="ファイル一覧" type="h3" className="text-gray-700" />
+          <Typo text="ファイル一覧" type="h3" className="text-gray-700 border-b pb-1" />
 
           <CodeFileList files={files} />
         </div>
