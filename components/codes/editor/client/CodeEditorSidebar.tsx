@@ -2,20 +2,18 @@
 
 import React from "react";
 
-import { Button } from "@/components/common/ui/button";
 import { File } from "@/libs/types";
 import { CodeFileList } from "../../client/CodeFileList";
-import { MdSave } from "react-icons/md";
 import { useCodeEditor } from "@/components/providers/CodeEditorProvider";
 import { useToast } from "@/components/ui/use-toast";
 import { CodeEditorFileDialog } from "./CodeEditorFileDialog";
+import { CodeEditorSaveButton } from "./CodeEditorSaveButton";
 
 interface Props {
   files: File[];
-  onClickSave: () => void;
 }
 
-export const CodeEditorSidebar = ({ files, onClickSave }: Props) => {
+export const CodeEditorSidebar = ({ files }: Props) => {
   const { toast } = useToast();
   const { selectedFile, updateFile, setSelectedFile } = useCodeEditor();
 
@@ -51,10 +49,7 @@ export const CodeEditorSidebar = ({ files, onClickSave }: Props) => {
       </div>
 
       <div className="mt-6">
-        <Button onClick={onClickSave} className="w-full">
-          <MdSave className="h-4 w-4 mr-2" />
-          保存
-        </Button>
+        <CodeEditorSaveButton />
       </div>
     </div>
   );
