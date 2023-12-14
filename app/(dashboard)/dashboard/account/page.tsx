@@ -1,7 +1,7 @@
 import React from "react";
 
-import { actionGetMySelf } from "@/actions/users";
-import { AccountForm } from "@/components/auth/client/AccountForm";
+import { actionGetMySelf } from "@/src/actions/users";
+import { AccountForm } from "@/src/components/auth/client/AccountForm";
 
 const AccountPage = async () => {
   const user = await actionGetMySelf();

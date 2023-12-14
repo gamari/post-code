@@ -1,9 +1,9 @@
 import "./globals.css";
 
 import { GeistSans } from "geist/font/sans";
-import Header from "@/components/landing-page/header/header";
-import { SupabaseProvider } from "@/components/providers/supabase-provider/supabase-provider";
-import { Toaster } from "@/components/ui/toaster";
+import Header from "@/src/components/top/header";
+import { SupabaseProvider } from "@/src/components/providers/supabase-provider/supabase-provider";
+import { Toaster } from "@/src/components/ui/toaster";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`

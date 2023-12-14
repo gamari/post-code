@@ -1,16 +1,16 @@
 import React, { Suspense } from "react";
 import { unstable_noStore as noStore } from "next/cache";
 
-import { CreateCodeButton } from "../../../components/codes/client/CreateCodeButton";
-import { Skeleton } from "@/components/common/skeleton";
-import { Typo } from "@/components/common/typo";
+import { CreateCodeButton } from "../../../src/components/codes/client/CreateCodeButton";
+import { Skeleton } from "@/src/components/base/skeleton";
+import { Typo } from "@/src/components/base/typo";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/components/common/ui/tabs";
-import { DashboardCodeList } from "@/components/codes/dashboard/dashboard-code-list";
+} from "@/src/components/ui/tabs";
+import { DashboardCodeList } from "@/src/components/codes/dashboard/dashboard-code-list";
 
 const DashboardPage = async () => {
   noStore();

@@ -1,9 +1,9 @@
 import React from "react";
 import { NextPage } from "next";
 
-import { CodeEditor } from "../../../../../../components/codes/client/CodeEditor";
-import { actionGetBadCodeById } from "@/actions/bad-codes";
-import { CodeEditorProvider } from "@/components/providers/CodeEditorProvider";
+import { CodeEditor } from "../../../../../../src/components/codes/client/CodeEditor";
+import { actionGetBadCodeById } from "@/src/actions/bad-codes";
+import { CodeEditorProvider } from "@/src/components/providers/CodeEditorProvider";
 
 interface Props {
   params: {

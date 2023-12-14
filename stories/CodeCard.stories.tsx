@@ -1,6 +1,6 @@
 import React from "react";
-import { BadCode } from "../libs/types";
-import { CodeCard } from "../components/codes/client/CodeCard";
+import { BadCode } from "../src/types";
+import { CodeCard } from "../src/components/codes/client/CodeCard";
 
 export default {
   title: "Components/CodeCard",

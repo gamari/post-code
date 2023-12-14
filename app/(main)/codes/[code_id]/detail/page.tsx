@@ -1,11 +1,11 @@
 import React, { Suspense } from "react";
 import { unstable_noStore as noStore } from "next/cache";
 
-import { CodeSidebar } from "@/components/codes/code-sidebar";
-import { CodeDetail } from "@/components/codes/details/code-detail";
+import { CodeSidebar } from "@/src/components/codes/code-sidebar";
+import { CodeDetail } from "@/src/components/codes/details/code-detail";
 import { NextPage } from "next";
-import { CodeDetailProvider } from "@/components/providers/code-detail-provider/code-detail-provider";
-import { CodeDetailComments } from "@/components/codes/details/code-detail-comments";
+import { CodeDetailProvider } from "@/src/components/providers/code-detail-provider/code-detail-provider";
+import { CodeDetailComments } from "@/src/components/codes/details/code-detail-comments";
 
 interface Props {
   params: {

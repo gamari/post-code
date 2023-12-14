@@ -1,6 +1,6 @@
-import { CodeLatestList } from "@/components/codes/code-latest-list";
-import { Typo } from "@/components/common/typo";
-import { TopHero } from "@/components/top/TopHero";
+import { CodeLatestList } from "@/src/components/codes/code-latest-list";
+import { Typo } from "@/src/components/base/typo";
+import { TopHero } from "@/src/components/top/TopHero";
 
 export default async function Index() {
   return (
