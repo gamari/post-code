@@ -1,7 +1,7 @@
 import "./globals.css";
 
-import { GeistSans } from "geist/font/sans";
 import Header from "@/src/components/top/header";
+import { GeistSans } from "geist/font/sans";
 import { SupabaseProvider } from "@/src/components/providers/supabase-provider/supabase-provider";
 import { Toaster } from "@/src/components/ui/toaster";
 

@@ -69,7 +69,11 @@ export const CodeDetailShareButton = ({ code }: Props) => {
 
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="outline">閉じる</Button>
+            <Button
+              variant="outline"
+            >
+              閉じる
+            </Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

@@ -2,14 +2,12 @@
 
 import React from "react";
 import { Comment } from "@/src/types/index";
-import { useCommentList } from "@/src/hooks/comments/useCommentList";
+import { useCodeCommentList } from "../../providers/CodeCommentListProvider";
 
-interface Props {
-  comments: Comment[];
-}
+interface Props {}
 
-export const CodeCommentList = ({ comments: initComments }: Props) => {
-  const { comments } = useCommentList(initComments);
+export const CodeCommentList = ({}: Props) => {
+  const { comments } = useCodeCommentList();
 
   if (!comments?.length) return <div>まだコメントはありません</div>;
 

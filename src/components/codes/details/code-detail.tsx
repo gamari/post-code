@@ -1,11 +1,8 @@
 import React, { FunctionComponent } from "react";
 
-import { BiShare } from "react-icons/bi";
-
 import { Typo } from "@/src/components/base/typo";
 import { CodeDetailFileViewer } from "./client/CodeDetailFileViewer";
 import { actionGetBadCodeById } from "@/src/actions/bad-codes";
-import { Button } from "@/src/components/ui/button";
 
 interface Props {
   id: number;

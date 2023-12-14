@@ -25,7 +25,9 @@ export const fetchCreateComment = async (badCodeId: number, comment: string, cli
             bad_code_id: badCodeId,
             comment,
             user_id: user.id,
-        });
+        })
+        .select("*")
+        .maybeSingle();
 
     if (error) throw error;
 

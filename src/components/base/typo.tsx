@@ -21,7 +21,7 @@ export const Typo: FunctionComponent<Props> = ({
   if (type === "h4") return <h4 className={cn("text-base font-semibold text-gray-700", className)}>{text}</h4>;
   if (type === "h5")
     return <h5 className={cn("text-sm", className)}>{text}</h5>;
-  if (type === "p") return <p className={cn("text-gray-700 text-sm", className)}>{text}</p>;
+  if (type === "p") return <p className={cn("text-gray-700", className)}>{text}</p>;
 
   return <p>{text}</p>;
 };

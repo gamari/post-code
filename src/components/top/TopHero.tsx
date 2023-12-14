@@ -5,15 +5,15 @@ export const TopHero = () => {
   return (
     <section>
       <div className="border rounded-md bg-white p-6">
-        <Typo type="h1" text="コードを良くする" />
+        <Typo type="h2" text="コードを良くするために" />
         <Typo
           type="p"
-          text="このサイトは、コーディングのバッドプラクティスを集めるためのサイトです。"
+          text="このサイトは、コーディングのアンチパターンなどを集めて、「何が悪いのか」や「どうやったら良くなるのか」を議論するサイトです。"
           className="mt-6"
         />
         <Typo
           type="p"
-          text="どうすればよくなるか、を議論することができます。"
+          text="悪いコードから良いコードを書くためのヒントを見つけましょう。"
           className="mt-6"
         />
       </div>

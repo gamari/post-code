@@ -5,6 +5,8 @@ import { Textarea } from "@/src/components/ui/textarea";
 import { useSupabase } from "@/src/components/providers/supabase-provider/supabase-provider";
 import { fetchCreateComment } from "@/src/libs/externals/supabase/queries/comments";
 import React from "react";
+import { useToast } from "../../ui/use-toast";
+import { useCodeCommentList } from "../../providers/CodeCommentListProvider";
 
 interface Props {
   codeId: number;
@@ -12,16 +14,21 @@ interface Props {
 
 export const CodeCommentForm = ({ codeId }: Props) => {
   const { client } = useSupabase();
+  const { toast } = useToast();
+  const { addComments } = useCodeCommentList();
 
   const [comment, setComment] = React.useState("");
 
   const handleCreateComment = async () => {
     if (!client) return;
 
-    await fetchCreateComment(codeId, comment, client);
+    const retComment = await fetchCreateComment(codeId, comment, client);
 
-    // TODO commentsを更新する
+    addComments([retComment]);
     setComment("");
+    toast({
+      title: "コメントを投稿しました",
+    });
   };
 
   return (
