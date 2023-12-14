@@ -1,13 +1,10 @@
 import React, { FunctionComponent } from "react";
 
 import { BiShare } from "react-icons/bi";
-import dayjs from "dayjs";
 
 import { Typo } from "@/src/components/base/typo";
 import { CodeDetailFileViewer } from "./client/CodeDetailFileViewer";
 import { actionGetBadCodeById } from "@/src/actions/bad-codes";
-import { actionGetAuthUser } from "@/src/actions/users";
-import { FavoriteCodeDetailButton } from "./favorite-code-detail-button";
 import { Button } from "@/src/components/ui/button";
 
 interface Props {
@@ -26,14 +23,7 @@ export const CodeDetail: FunctionComponent<Props> = async ({ id }) => {
         ) : (
           <Typo text="(説明がありません)" type="p" className="m-2" />
         )}
-
-        <div className="flex items-center flex-row gap-2">
-          <Typo
-            text={dayjs(badCode?.updated_at).format("YYYY/MM/DD mm:hh")}
-            type="p"
-          />
-          <Typo text="コメント 12" type="p" />
-        </div>
+        
       </div>
 
       <div className="mt-6">

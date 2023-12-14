@@ -52,7 +52,7 @@ export const CodeEditorSidebar = () => {
   };
 
   return (
-    <div className="w-[250px] h-fit border p-5 rounded-md ">
+    <div className="w-[250px] h-fit border p-5 rounded-md bg-white">
       <div className="flex flex-row gap-2">
         <span>ファイル一覧</span>
 

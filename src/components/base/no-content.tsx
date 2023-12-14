@@ -1,5 +1,5 @@
 import { cn } from '@/src/libs/utils';
-import React from 'react'
+import React, { useEffect } from 'react'
 
 interface Props {
     text: string;
@@ -11,7 +11,7 @@ export const NoContent = ({
     className
 }: Props) => {
   return (
-    <div className={cn("p-6 border rounded-md flex items-center justify-center text-gray-600", className)}>
+    <div className={cn("p-6 bg-white border rounded-md flex items-center justify-center text-gray-600", className)}>
         {text}
     </div>
   )

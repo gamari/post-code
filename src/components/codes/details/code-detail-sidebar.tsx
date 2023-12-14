@@ -9,6 +9,7 @@ import { Button } from "../../ui/button";
 import { FavoriteCodeDetailButton } from "./favorite-code-detail-button";
 import { actionGetAuthUser } from "@/src/actions/users";
 import { UserIcon } from "../../auth/user-icon";
+import dayjs from "dayjs";
 
 interface Props {
   codeId: number;
@@ -20,7 +21,7 @@ export const CodeDetailSidebar = async ({ codeId }: Props) => {
   const files = await actionGetFiles(codeId);
 
   return (
-    <div className="h-fit flex flex-col gap-6">
+    <div className="sticky top-10 h-fit flex flex-col gap-6">
       <div className="border rounded-md bg-white p-5">
         <div className="flex flex-row gap-2 items-center">
           <UserIcon />
@@ -48,6 +49,14 @@ export const CodeDetailSidebar = async ({ codeId }: Props) => {
         <div className="flex items-center gap-2">
           <Button>コメントする</Button>
           {authUser && <FavoriteCodeDetailButton codeId={badCode.id} />}
+        </div>
+
+        <div className="mt-4">
+          <Typo
+            text={dayjs(badCode?.updated_at).format("YYYY/MM/DD mm:hh")}
+            type="p"
+          />
+          {/* <Typo text="コメント 12" type="p" /> */}
         </div>
       </div>
     </div>

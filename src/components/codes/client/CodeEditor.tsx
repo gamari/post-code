@@ -14,7 +14,7 @@ export const CodeEditor: FunctionComponent<Props> = ({}) => {
   const { selectedFile, setSelectedFile } = useCodeEditor();
 
   return (
-    <div className="flex flex-row gap-4">
+    <div className="sticky top-10 flex flex-row gap-4">
       <div className="w-[600px]">
         <div>
           {selectedFile ? (

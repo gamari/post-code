@@ -15,7 +15,7 @@ export const CodeDetailComments = async ({ codeId }: Props) => {
   const comments = await actionGetCommentsByCodeId(codeId);
 
   return (
-    <Card className="mb-6 mt-6">
+    <Card className="mb-6 mt-6 h-[600px]">
       <CardHeader>
         <Typo text="議論" type="h3" className="text-gray-700" />
         <CodeCommentForm codeId={codeId} />
