@@ -29,7 +29,7 @@ export const CodePreviewer = ({ file, className }: Props) => {
         className
       )}
     >
-      <div className=" absolute -top-3 border border-gray-200 rounded-lg z-20 text-sm right-0 p-1 px-2 bg-gray-100 border-b flex flex-row items-center">
+      <div className=" absolute -top-3 left-1 border border-gray-200 shadow-md rounded-lg z-20 text-sm p-1 px-2 bg-gray-100 border-b flex flex-row items-center">
         <CiFileOn className="cursor-pointer hover:opacity-70" />
         <span>{file?.name}</span>
       </div>

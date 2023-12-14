@@ -1,3 +1,9 @@
+"use client";
+
+import React from "react";
+
+import Link from "next/link";
+
 import { Button } from "@/src/components/ui/button";
 import {
   Dialog,
@@ -10,14 +16,30 @@ import {
   DialogTrigger,
 } from "@/src/components/ui/dialog";
 import { BadCode } from "@/src/types";
-import React from "react";
-import { FaRegShareFromSquare } from "react-icons/fa6";
+import { FaRegShareFromSquare, FaXTwitter } from "react-icons/fa6";
+import { usePathname } from "next/navigation";
 
 interface Props {
   code: BadCode;
 }
 
 export const CodeDetailShareButton = ({ code }: Props) => {
+  const pathname = usePathname();
+
+  const createShareUrl = () => {
+    // TODO 文言を修正
+    const text = code.title + " | " + code.description;
+    // TODO リンクを環境変数にする
+    const url = "http://localhost:8000" + pathname;
+    const xUrl =
+      "https://twitter.com/intent/tweet?text=" +
+      encodeURIComponent(text) +
+      "&url=" +
+      encodeURIComponent(url);
+
+    return xUrl;
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -28,9 +50,20 @@ export const CodeDetailShareButton = ({ code }: Props) => {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>シャアする</DialogTitle>
+          <DialogTitle>シェアする</DialogTitle>
           <DialogDescription>
-            <div>X</div>
+            <div className="w-[200px] mx-auto flex flex-col gap-2">
+              <Button variant="outline" asChild>
+                <Link
+                  href={createShareUrl()}
+                  target="_blank"
+                  className="flex flex-row gap-2 items-center"
+                >
+                  <FaXTwitter />
+                  Xにシェア
+                </Link>
+              </Button>
+            </div>
           </DialogDescription>
         </DialogHeader>
 
