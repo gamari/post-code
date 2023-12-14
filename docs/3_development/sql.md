@@ -2,6 +2,18 @@
 
 必要なSQLに関して
 
+## languagesテーブルの作成
+
+```sql
+create table public.languages (
+    id serial primary key,
+    name character varying(255) not null unique,
+    display character varying(255) not null,
+);
+
+```
+
+
 ## updated_atの設定
 
 ```sql

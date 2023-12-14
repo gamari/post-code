@@ -15,6 +15,7 @@ export interface Database {
           description: string | null
           id: number
           is_public: boolean | null
+          language: number | null
           title: string
           updated_at: string | null
           user_id: string
@@ -24,6 +25,7 @@ export interface Database {
           description?: string | null
           id?: number
           is_public?: boolean | null
+          language?: number | null
           title: string
           updated_at?: string | null
           user_id: string
@@ -33,11 +35,19 @@ export interface Database {
           description?: string | null
           id?: number
           is_public?: boolean | null
+          language?: number | null
           title?: string
           updated_at?: string | null
           user_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "bad_codes_language_fkey"
+            columns: ["language"]
+            isOneToOne: false
+            referencedRelation: "languages"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "bad_codes_user_id_fkey"
             columns: ["user_id"]
@@ -169,6 +179,24 @@ export interface Database {
             referencedColumns: ["id"]
           }
         ]
+      }
+      languages: {
+        Row: {
+          display: string
+          id: number
+          name: string
+        }
+        Insert: {
+          display: string
+          id?: number
+          name: string
+        }
+        Update: {
+          display?: string
+          id?: number
+          name?: string
+        }
+        Relationships: []
       }
       users: {
         Row: {

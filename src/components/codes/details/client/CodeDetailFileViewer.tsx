@@ -17,5 +17,5 @@ export const CodeDetailFileViewer = () => {
       </div>
     );
 
-  return <CodePreviewer file={selectedFile} className="h-[400px] bg-white rounded-md" />;
+  return <CodePreviewer file={selectedFile} className="h-[400px]" />;
 };

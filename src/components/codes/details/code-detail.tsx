@@ -23,20 +23,10 @@ export const CodeDetail: FunctionComponent<Props> = async ({ id }) => {
         ) : (
           <Typo text="(説明がありません)" type="p" className="m-2" />
         )}
-        
       </div>
 
       <div className="mt-6">
         <CodeDetailFileViewer />
-      </div>
-
-      <div className="my-6 flex flex-row-reverse">
-        <div>
-          <Button className="rounded-full">
-            <BiShare />
-            Share
-          </Button>
-        </div>
       </div>
     </div>
   );

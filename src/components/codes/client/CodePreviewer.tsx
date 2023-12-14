@@ -4,9 +4,9 @@ import React, { useEffect } from "react";
 
 import Prism from "prismjs";
 
+import "prismjs/themes/prism-tomorrow.css";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 import "prismjs/plugins/line-numbers/prism-line-numbers.js";
-import "prismjs/themes/prism-tomorrow.css";
 
 import { File } from "@/src/types";
 import { cn } from "@/src/libs/utils";
@@ -25,16 +25,15 @@ export const CodePreviewer = ({ file, className }: Props) => {
   return (
     <div
       className={cn(
-        "border h-full w-full rounded-lg overflow-hidden",
+        "h-full w-full rounded-lg flex flex-col relative",
         className
       )}
     >
-      <div className="p-2 px-5 bg-gray-100 border-b flex flex-row items-center gap-1">
-        <CiFileOn className="h-5 w-5 cursor-pointer hover:opacity-70" />
-        {file?.name}
+      <div className=" absolute -top-3 border border-gray-200 rounded-lg z-20 text-sm right-0 p-1 px-2 bg-gray-100 border-b flex flex-row items-center">
+        <CiFileOn className="cursor-pointer hover:opacity-70" />
+        <span>{file?.name}</span>
       </div>
-
-      <pre className="line-numbers p-4 bg-gray-800 text-white overflow-x-auto h-full">
+      <pre className="line-numbers p-4 bg-gray-800 text-white overflow-x-auto flex-1">
         {/* TODO languageを入れる */}
         <code className={`language-js`}>{file.content}</code>
       </pre>

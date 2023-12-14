@@ -7,6 +7,7 @@ import {
 } from "@/src/libs/externals/supabase/queries/favorites";
 import React, { useState } from "react";
 import { MdOutlineStar, MdOutlineStarBorder } from "react-icons/md";
+import { Button } from "../../ui/button";
 
 interface Props {
   codeId: number;
@@ -36,15 +37,15 @@ export const FavoriteButton = ({
 
   if (isFavorite)
     return (
-      <MdOutlineStar
-        className="h-6 w-6 text-yellow-500 cursor-pointer"
-        onClick={handleClick}
-      />
+      <Button variant="secondary" onClick={handleClick}>
+        <MdOutlineStar className="h-6 w-6 text-yellow-500 cursor-pointer" />
+        お気に入り
+      </Button>
     );
   return (
-    <MdOutlineStarBorder
-      className="h-6 w-6 cursor-pointer"
-      onClick={handleClick}
-    />
+    <Button variant="outline" onClick={handleClick}>
+      <MdOutlineStarBorder className="h-6 w-6 cursor-pointer" />
+      お気に入り
+    </Button>
   );
 };

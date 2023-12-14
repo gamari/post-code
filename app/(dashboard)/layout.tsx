@@ -8,7 +8,7 @@ interface Props {
 
 const DashboardLayout: FunctionComponent<Props> = ({ children }) => {
   return (
-    <div className=" w-full h-full flex flex-row bg-white">
+    <div className=" w-full min-h-screen flex flex-row bg-white">
       <DashboardSidebar />
       <div className="border-l h-full flex-1 bg-sky-50">{children}</div>
     </div>

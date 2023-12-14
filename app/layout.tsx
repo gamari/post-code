@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja" className={GeistSans.className}>
-      <body className="bg-background text-foreground">
+      <body className="bg-background text-foreground w-screen overflow-x-hidden">
         <SupabaseProvider>
           <main className="flex flex-col min-h-screen">
             <Header />

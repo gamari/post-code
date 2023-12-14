@@ -10,6 +10,8 @@ import { FavoriteCodeDetailButton } from "./favorite-code-detail-button";
 import { actionGetAuthUser } from "@/src/actions/users";
 import { UserIcon } from "../../auth/user-icon";
 import dayjs from "dayjs";
+import { FaRegComment, FaRegShareFromSquare } from "react-icons/fa6";
+import { CodeDetailShareButton } from "./client/CodeDetailShareButton";
 
 interface Props {
   codeId: number;
@@ -46,17 +48,20 @@ export const CodeDetailSidebar = async ({ codeId }: Props) => {
       </div>
 
       <div className="border rounded-md bg-white w-[240px] p-5">
-        <div className="flex items-center gap-2">
-          <Button>コメントする</Button>
+        <div className="flex flex-col gap-2">
           {authUser && <FavoriteCodeDetailButton codeId={badCode.id} />}
+          <Button variant="secondary">
+            <FaRegComment className="h-4 w-4 mr-2" />
+            コメントする
+          </Button>
+          <CodeDetailShareButton code={badCode} />
         </div>
 
         <div className="mt-4">
           <Typo
-            text={dayjs(badCode?.updated_at).format("YYYY/MM/DD mm:hh")}
+            text={dayjs(badCode?.updated_at).format("更新日: YYYY/MM/DD")}
             type="p"
           />
-          {/* <Typo text="コメント 12" type="p" /> */}
         </div>
       </div>
     </div>
