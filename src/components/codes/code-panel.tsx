@@ -14,15 +14,15 @@ export const CodePanel: FunctionComponent<Props> = ({ code, className }) => {
   return (
     <div
       className={cn(
-        "p-4 border rounded-lg flex flex-row items-center gap-4",
+        "p-4 border rounded-lg flex flex-row items-center gap-4 bg-white h-[100px]",
         className
       )}
     >
       <MockBlock width={50} height={50} />
 
-      <div>
+      <div className="flex flex-col justify-between h-full">
         <div className="text-lg font-bold">{code.title}</div>
-        <div className="text-sm">{code.description}</div>
+        {/* <div className="text-sm">{code.description}</div> */}
         <div className="flex flex-row items-center gap-2">
           <PersonIcon className="h-6 w-6" />
           <div>{code?.user?.username}</div>

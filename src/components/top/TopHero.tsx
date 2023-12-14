@@ -4,11 +4,16 @@ import { Typo } from "../base/typo";
 export const TopHero = () => {
   return (
     <section>
-      <div>
-        <Typo type="h1" text="悪いコードから学ぶ" />
+      <div className="border rounded-md bg-white p-6">
+        <Typo type="h1" text="コードを良くする" />
         <Typo
           type="p"
-          text="このサイトでは悪いコードを集めて、それを「真似しない」または「議論する」ことを目的に立ち上げました。"
+          text="このサイトは、コーディングのバッドプラクティスを集めるためのサイトです。"
+          className="mt-6"
+        />
+        <Typo
+          type="p"
+          text="どうすればよくなるか、を議論することができます。"
           className="mt-6"
         />
       </div>

@@ -5,7 +5,7 @@ import { TopHero } from "@/src/components/top/TopHero";
 export default async function Index() {
   return (
     <>
-      <div className="mx-auto max-w-3xl w-full py-12">
+      <div className="mx-auto max-w-6xl w-full py-12">
         <TopHero />
 
         <section className="w-full mt-20">

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 
-import { Sidebar } from "@/src/components/base/sidebar";
+import { DashboardSidebar } from "@/src/components/dashboard/dashboard-sidebar";
 
 interface Props {
   children: React.ReactNode;
@@ -8,8 +8,8 @@ interface Props {
 
 const DashboardLayout: FunctionComponent<Props> = ({ children }) => {
   return (
-    <div className=" w-full h-full flex flex-row ">
-      <Sidebar />
+    <div className=" w-full h-full flex flex-row bg-white">
+      <DashboardSidebar />
       <div className="border-l h-full flex-1 bg-sky-50">{children}</div>
     </div>
   );

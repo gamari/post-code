@@ -43,7 +43,7 @@ export const CodeTable = ({ codes: initCodes, className }: Props) => {
 
   return (
     <Table className={cn("border", className)}>
-      <TableHeader>
+      <TableHeader className="bg-gray-100">
         <TableRow>
           <TableHead></TableHead>
           <TableHead>タイトル</TableHead>
@@ -51,7 +51,7 @@ export const CodeTable = ({ codes: initCodes, className }: Props) => {
           <TableHead>操作</TableHead>
         </TableRow>
       </TableHeader>
-      <TableBody>
+      <TableBody className="bg-white">
         {codes?.map((code) => (
           <TableRow key={code.id}>
             <TableCell className="w-[100px]">

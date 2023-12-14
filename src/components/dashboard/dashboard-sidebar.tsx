@@ -5,9 +5,9 @@ import { FaDoorOpen } from "react-icons/fa6";
 import { Button } from "@/src/components/ui/button";
 import { getServerClient } from "@/src/libs/externals/supabase/admin-client";
 import { redirect } from "next/navigation";
-import { SideLink } from "./client/SideLink";
+import { SideLink } from "../base/client/SideLink";
 
-export const Sidebar = () => {
+export const DashboardSidebar = () => {
   const signOut = async () => {
     "use server";
     const supabase = getServerClient();

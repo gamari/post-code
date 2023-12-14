@@ -15,12 +15,11 @@ interface Props {
 }
 
 export const CodeDetail: FunctionComponent<Props> = async ({ id }) => {
-  const authUser = await actionGetAuthUser();
   const badCode = await actionGetBadCodeById(id);
 
   return (
     <div>
-      <div className="border p-4 flex flex-col gap-2">
+      <div className="border p-4 flex flex-col gap-2 bg-white rounded-md">
         <Typo text={badCode?.title} type="h3" className="border-b pb-2" />
         {badCode?.description ? (
           <Typo text={badCode?.description} type="p" className="m-2" />
@@ -34,7 +33,6 @@ export const CodeDetail: FunctionComponent<Props> = async ({ id }) => {
             type="p"
           />
           <Typo text="コメント 12" type="p" />
-          {authUser && <FavoriteCodeDetailButton codeId={badCode.id} />}
         </div>
       </div>
 
@@ -48,7 +46,6 @@ export const CodeDetail: FunctionComponent<Props> = async ({ id }) => {
             <BiShare />
             Share
           </Button>
-          <div></div>
         </div>
       </div>
     </div>
