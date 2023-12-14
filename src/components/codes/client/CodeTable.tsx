@@ -21,6 +21,7 @@ import { useSupabase } from "@/src/components/providers/supabase-provider/supaba
 import { fetchDeleteBadCode } from "@/src/libs/externals/supabase/queries/bad-codes";
 import { Typo } from "@/src/components/base/typo";
 import { cn } from "@/src/libs/utils";
+import { Badge } from "../../ui/badge";
 
 interface Props {
   codes: BadCode[];
@@ -44,6 +45,7 @@ export const CodeTable = ({ codes: initCodes, className }: Props) => {
     <Table className={cn("border", className)}>
       <TableHeader>
         <TableRow>
+          <TableHead></TableHead>
           <TableHead>タイトル</TableHead>
           <TableHead>更新日</TableHead>
           <TableHead>操作</TableHead>
@@ -52,8 +54,20 @@ export const CodeTable = ({ codes: initCodes, className }: Props) => {
       <TableBody>
         {codes?.map((code) => (
           <TableRow key={code.id}>
+            <TableCell className="w-[100px]">
+              {code.is_public ? (
+                <Badge variant="default">公開</Badge>
+              ) : (
+                <Badge variant="outline">非公開</Badge>
+              )}
+            </TableCell>
             <TableCell>
-              <Link href={`/codes/${code.id}/detail`}>{code.title}</Link>
+              <Link
+                href={`/codes/${code.id}/detail`}
+                className="w-full h-full "
+              >
+                <div className="h-full w-full p-6">{code.title}</div>
+              </Link>
             </TableCell>
             <TableCell className="w-[200px]">
               <Typo
