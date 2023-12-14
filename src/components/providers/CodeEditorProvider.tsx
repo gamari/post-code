@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import { File, BadCodeDetail, BadCode } from "@/src/types";
 
@@ -42,6 +42,16 @@ export const CodeEditorProvider = ({
   const [badCode, setBadCode] = useState<BadCode | undefined>(initBadCode);
   const [files, setFiles] = useState<File[]>(initBadCode?.files || []);
   const [selectedFile, setSelectedFile] = useState<File | undefined>(undefined);
+
+  useEffect(() => {
+    function init() {
+      if (files.length) {
+        setSelectedFile(files[0]);
+      }
+    }
+
+    init();
+  }, [])
 
   function setTitle(title: string) {
     if (!badCode) return;

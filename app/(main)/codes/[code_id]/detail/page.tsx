@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { unstable_noStore as noStore } from "next/cache";
 
-import { CodeSidebar } from "@/src/components/codes/code-sidebar";
+import { CodeDetailSidebar } from "@/src/components/codes/details/code-detail-sidebar";
 import { CodeDetail } from "@/src/components/codes/details/code-detail";
 import { NextPage } from "next";
 import { CodeDetailProvider } from "@/src/components/providers/code-detail-provider/code-detail-provider";
@@ -26,7 +26,7 @@ const CodeDetailPage: NextPage<Props> = ({ params: { code_id } }) => {
             </Suspense>
           </div>
 
-          <CodeSidebar codeId={code_id} />
+          <CodeDetailSidebar codeId={code_id} />
         </div>
       </div>
     </CodeDetailProvider>

@@ -3,9 +3,9 @@
 import React from "react";
 
 import { useCodeDetailContext } from "@/src/components/providers/code-detail-provider/code-detail-provider";
-import { CodePreviewer } from "./client/CodePreviewer";
+import { CodePreviewer } from "../../client/CodePreviewer";
 
-export const SelectedCodeFileViewer = () => {
+export const CodeDetailFileViewer = () => {
   const { selectedFile } = useCodeDetailContext();
 
   if (!selectedFile)

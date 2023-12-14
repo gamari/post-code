@@ -1,16 +1,16 @@
 import React from "react";
 
 import { Typo } from "@/src/components/base/typo";
-import { CodeFileList } from "./code-file-list";
+import { CodeDetailFileList } from "./code-detail-file-list";
 import { actionGetBadCodeById } from "@/src/actions/bad-codes";
 import { actionGetFiles } from "@/src/actions/files";
-import { MockBlock } from "../base/mock-block";
+import { MockBlock } from "../../base/mock-block";
 
 interface Props {
   codeId: number;
 }
 
-export const CodeSidebar = async ({ codeId }: Props) => {
+export const CodeDetailSidebar = async ({ codeId }: Props) => {
   const badCode = await actionGetBadCodeById(codeId);
   const files = await actionGetFiles(codeId);
 
@@ -31,7 +31,7 @@ export const CodeSidebar = async ({ codeId }: Props) => {
         <div>
           <Typo text="ファイル一覧" type="h3" className="text-gray-700 border-b pb-1" />
 
-          <CodeFileList files={files} />
+          <CodeDetailFileList files={files} />
         </div>
       </div>
     </div>

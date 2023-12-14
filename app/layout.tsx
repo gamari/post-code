@@ -26,7 +26,7 @@ export default function RootLayout({
         <SupabaseProvider>
           <main className="flex flex-col min-h-screen">
             <Header />
-            <div className="flex-1 grid">{children}</div>
+            <div className="flex-1 grid bg-sky-50">{children}</div>
           </main>
         </SupabaseProvider>
         <Toaster />

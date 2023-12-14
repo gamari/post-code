@@ -5,14 +5,14 @@ import React from "react";
 import { Typo } from "@/src/components/base/typo";
 import { useCodeDetailContext } from "@/src/components/providers/code-detail-provider/code-detail-provider";
 import { File } from "@/src/types";
-import { CodeDetailFile } from "./details/client/CodeDetailFile";
+import { CodeDetailFile } from "./client/CodeDetailFile";
 import { MdOutlineInsertDriveFile } from "react-icons/md";
 
 interface Props {
   files: File[];
 }
 
-export const CodeFileList = ({ files }: Props) => {
+export const CodeDetailFileList = ({ files }: Props) => {
   const { selectedFile, setSelectedFile } = useCodeDetailContext();
 
   const onSelectFile = (file: File) => {
@@ -34,7 +34,7 @@ export const CodeFileList = ({ files }: Props) => {
       {files.map((file) => (
         <CodeDetailFile
           key={file.id}
-          className={selectedFile?.id === file.id ? "bg-gray-100" : ""}
+          className={selectedFile?.id === file.id ? "bg-slate-200" : ""}
           file={file}
           onClick={(file) => onSelectFile(file)}
         />

@@ -5,7 +5,7 @@ interface Props {
 }
 
 const MainLayout = ({ children }: Props) => {
-  return <div>{children}</div>;
+  return <div className="bg-sky-50">{children}</div>;
 };
 
 export default MainLayout;

@@ -3,7 +3,7 @@
 import React from "react";
 
 import { File } from "@/src/types";
-import { CodeFileList } from "../../client/CodeFileList";
+import { CodeFileList } from "./CodeEditorFileList";
 import { useCodeEditor } from "@/src/components/providers/CodeEditorProvider";
 import { useToast } from "@/src/components/ui/use-toast";
 import { CodeEditorFileDialog } from "./CodeEditorFileDialog";
@@ -12,6 +12,8 @@ import { fetchDeleteFile } from "@/src/libs/externals/supabase/queries/files";
 import { useSupabase } from "@/src/components/providers/supabase-provider/supabase-provider";
 import { RadioGroup, RadioGroupItem } from "@/src/components/ui/radio-group";
 import { Label } from "@/src/components/ui/label";
+import { Button } from "@/src/components/ui/button";
+import Link from "next/link";
 
 export const CodeEditorSidebar = () => {
   const { client } = useSupabase();
@@ -50,7 +52,7 @@ export const CodeEditorSidebar = () => {
   };
 
   return (
-    <div className="w-[250px] h-fit border p-6 rounded-md ">
+    <div className="w-[250px] h-fit border p-5 rounded-md ">
       <div className="flex flex-row gap-2">
         <span>ファイル一覧</span>
 
@@ -98,8 +100,12 @@ export const CodeEditorSidebar = () => {
         </RadioGroup>
       </div>
 
-      <div className="mt-6">
+      <div className="mt-6 flex flex-col gap-2">
         <CodeEditorSaveButton />
+
+        <Button variant="outline">
+          <Link href={`/codes/${badCode?.id}/detail`}>詳細画面へ</Link>
+        </Button>
       </div>
     </div>
   );

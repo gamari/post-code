@@ -1,14 +1,14 @@
 import React, { FunctionComponent } from "react";
 
 import { BiShare } from "react-icons/bi";
+import dayjs from "dayjs";
 
 import { Typo } from "@/src/components/base/typo";
-import { SelectedCodeFileViewer } from "../selected-code-file-viewer";
+import { CodeDetailFileViewer } from "./client/CodeDetailFileViewer";
 import { actionGetBadCodeById } from "@/src/actions/bad-codes";
 import { actionGetAuthUser } from "@/src/actions/users";
 import { FavoriteCodeDetailButton } from "./favorite-code-detail-button";
 import { Button } from "@/src/components/ui/button";
-import dayjs from "dayjs";
 
 interface Props {
   id: number;
@@ -39,7 +39,7 @@ export const CodeDetail: FunctionComponent<Props> = async ({ id }) => {
       </div>
 
       <div className="mt-6">
-        <SelectedCodeFileViewer />
+        <CodeDetailFileViewer />
       </div>
 
       <div className="my-6 flex flex-row-reverse">
