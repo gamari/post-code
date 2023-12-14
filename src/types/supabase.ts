@@ -14,6 +14,7 @@ export interface Database {
           created_at: string | null
           description: string | null
           id: number
+          is_public: boolean | null
           title: string
           updated_at: string | null
           user_id: string
@@ -22,6 +23,7 @@ export interface Database {
           created_at?: string | null
           description?: string | null
           id?: number
+          is_public?: boolean | null
           title: string
           updated_at?: string | null
           user_id: string
@@ -30,6 +32,7 @@ export interface Database {
           created_at?: string | null
           description?: string | null
           id?: number
+          is_public?: boolean | null
           title?: string
           updated_at?: string | null
           user_id?: string

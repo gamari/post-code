@@ -55,6 +55,7 @@ export const CodeEditorSaveButton = () => {
       created_at: badCode.created_at,
       updated_at: badCode.updated_at,
       user_id: user.id,
+      is_public: badCode.is_public,
     };
 
     await fetchUpdateBadCode(newBadCode, client);

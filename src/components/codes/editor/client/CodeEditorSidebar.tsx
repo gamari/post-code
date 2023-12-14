@@ -10,12 +10,21 @@ import { CodeEditorFileDialog } from "./CodeEditorFileDialog";
 import { CodeEditorSaveButton } from "./CodeEditorSaveButton";
 import { fetchDeleteFile } from "@/src/libs/externals/supabase/queries/files";
 import { useSupabase } from "@/src/components/providers/supabase-provider/supabase-provider";
+import { RadioGroup, RadioGroupItem } from "@/src/components/ui/radio-group";
+import { Label } from "@/src/components/ui/label";
 
 export const CodeEditorSidebar = () => {
   const { client } = useSupabase();
   const { toast } = useToast();
-  const { files, selectedFile, updateFile, setSelectedFile, deleteFile } =
-    useCodeEditor();
+  const {
+    badCode,
+    files,
+    selectedFile,
+    updateFile,
+    setSelectedFile,
+    deleteFile,
+    setIsPublic,
+  } = useCodeEditor();
 
   const handleClickFile = (file: File) => {
     if (selectedFile && !selectedFile?.name) {
@@ -55,6 +64,38 @@ export const CodeEditorSidebar = () => {
           onClickFile={handleClickFile}
           onDeleteFile={handleDeleteFile}
         />
+      </div>
+
+      <div className="my-6">
+        <RadioGroup
+          defaultValue={badCode?.is_public ? "public" : "private"}
+          className="flex flex-row"
+        >
+          <div className="flex items-center space-x-2">
+            <Label htmlFor="private" className="cursor-pointer">
+              <RadioGroupItem
+                value="private"
+                id="private"
+                onClick={() => {
+                  setIsPublic(false);
+                }}
+              />
+              非公開
+            </Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Label htmlFor="public" className="cursor-pointer">
+              <RadioGroupItem
+                value="public"
+                id="public"
+                onClick={() => {
+                  setIsPublic(true);
+                }}
+              />
+              公開
+            </Label>
+          </div>
+        </RadioGroup>
       </div>
 
       <div className="mt-6">

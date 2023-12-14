@@ -14,6 +14,7 @@ interface ContextProps {
   addFile: (file: File) => void;
   deleteFile: (file: File) => void;
   updateFile: (file: File) => void;
+  setIsPublic: (isPublic: boolean) => void;
 }
 
 const CodeEditorContext = createContext<ContextProps>({
@@ -26,6 +27,7 @@ const CodeEditorContext = createContext<ContextProps>({
   addFile: () => {},
   deleteFile: () => {},
   updateFile: () => {},
+  setIsPublic: () => {},
 });
 
 interface ProviderProps {
@@ -44,6 +46,11 @@ export const CodeEditorProvider = ({
   function setTitle(title: string) {
     if (!badCode) return;
     setBadCode({ ...badCode, title });
+  }
+
+  function setIsPublic(isPublic: boolean) {
+    if (!badCode) return;
+    setBadCode({ ...badCode, is_public: isPublic });
   }
 
   function setDescription(description: string) {
@@ -76,12 +83,13 @@ export const CodeEditorProvider = ({
         badCode,
         setTitle,
         setDescription,
+        setIsPublic,
         files,
         selectedFile,
         setSelectedFile,
         addFile,
         deleteFile,
-        updateFile
+        updateFile,
       }}
     >
       {children}

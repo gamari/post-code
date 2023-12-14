@@ -20,6 +20,7 @@ export const fetchLatestBadCodes = async (client: SupabaseClient) => {
             *,
             users: user_id (*)
         `)
+        .eq("is_public", true)
         .order("created_at", { ascending: false })
         .limit(10);
 
