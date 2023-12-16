@@ -1,33 +1,28 @@
-import { CodeLatestList } from "@/src/components/codes/code-latest-list";
 import { Typo } from "@/src/components/base/typo";
-import { TopHero } from "@/src/components/top/TopHero";
+import { Container } from "@/src/components/base/container";
+import { AboutSection } from "@/src/components/top/about-section";
+import { LatestCodesSection } from "@/src/components/top/latest-codes-section";
 
 export default async function Index() {
   return (
-    <>
-      <div className="mx-auto max-w-6xl w-full py-12">
-        <TopHero />
+    <div>
+      <LatestCodesSection />
+      <AboutSection />
 
-        <section className="w-full mt-20">
-          <Typo type="h1" text="最新" />
+      <section>
+        <Container>
+          <Typo type="h1" text="人気" />
+        </Container>
+      </section>
 
-          <CodeLatestList className="mt-6" />
-          <div>
-            <Typo type="h4" text="もっと見る" className="text-center mt-6" />
+      <footer className="border-t py-12">
+        <Container>
+          <div className="flex flex-row items-center justify-between">
+            <div>left</div>
+            <div>right</div>
           </div>
-        </section>
-
-        <section className="mt-20">
-          <Typo type="h1" text="言語別" />
-        </section>
-      </div>
-
-      <footer className="border-t">
-        <div className="max-w-7xl mx-auto flex flex-row">
-          <div>left</div>
-          <div>right</div>
-        </div>
+        </Container>
       </footer>
-    </>
+    </div>
   );
 }

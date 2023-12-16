@@ -31,14 +31,20 @@ export const CodeDetailFileList = ({ files }: Props) => {
 
   return (
     <div className="mt-2 flex flex-col gap-2">
-      {files.map((file) => (
-        <CodeDetailFile
-          key={file.id}
-          className={selectedFile?.id === file.id ? "bg-slate-200" : ""}
-          file={file}
-          onClick={(file) => onSelectFile(file)}
-        />
-      ))}
+      {files
+        .sort((a, b) => {
+          if (a.name < b.name) return -1;
+          if (a.name > b.name) return 1;
+          return 0;
+        })
+        .map((file) => (
+          <CodeDetailFile
+            key={file.id}
+            className={selectedFile?.id === file.id ? "bg-slate-200" : ""}
+            file={file}
+            onClick={(file) => onSelectFile(file)}
+          />
+        ))}
     </div>
   );
 };
