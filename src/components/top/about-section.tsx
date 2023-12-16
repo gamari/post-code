@@ -14,7 +14,8 @@ export const AboutSection = () => {
 
           <div className="flex-1 flex flex-col items-center justify-center px-6 gap-6">
             <Typo type="h2" text="About" />
-            <p>BadCodesとは、悪いコードを収集し、どうすればよくなるかを議論するサイトです。</p>
+            <p>BadCodesとは、悪いコードを収集し、</p>
+            <p>どうすれば良いコードにできるかを議論するためのサイトです。</p>
           </div>
         </div>
       </Container>

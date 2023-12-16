@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
 import { actionGetAuthUser } from "@/src/actions/users";
 import { Logo } from "../base/logo";
+import { SearchBox } from "../search/client/SearchBox";
 
 export default async function Header() {
   const authUser = await actionGetAuthUser();
@@ -13,22 +14,27 @@ export default async function Header() {
         <div>
           <Logo />
         </div>
-        {authUser ? (
-          <div className="flex items-center gap-4">
-            <Button asChild>
-              <Link href="/dashboard">ダッシュボード</Link>
+
+        <div className="flex items-center gap-4">
+          <SearchBox />
+
+          {authUser ? (
+            <div className="flex items-center gap-4">
+              <Button asChild>
+                <Link href="/dashboard">ダッシュボード</Link>
+              </Button>
+            </div>
+          ) : (
+            <Button asChild variant="outline">
+              <Link
+                href="/login"
+                className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
+              >
+                ログイン
+              </Link>
             </Button>
-          </div>
-        ) : (
-          <Button asChild variant="outline">
-            <Link
-              href="/login"
-              className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
-            >
-              ログイン
-            </Link>
-          </Button>
-        )}
+          )}
+        </div>
       </div>
     </nav>
   );
