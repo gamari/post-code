@@ -11,12 +11,14 @@ import { Button } from "@/src/components/ui/button";
 import { useToast } from "@/src/components/ui/use-toast";
 import { Textarea } from "@/src/components/ui/textarea";
 import { fetchUpdateUser } from "@/src/libs/externals/supabase/queries/users";
+import { cn } from "@/src/libs/utils";
 
 interface Props {
   user: User;
+  className?: string;
 }
 
-export const AccountForm = ({ user }: Props) => {
+export const AccountForm = ({ user, className = "" }: Props) => {
   const { client } = useSupabase();
   const { toast } = useToast();
 
@@ -47,29 +49,32 @@ export const AccountForm = ({ user }: Props) => {
   };
 
   return (
-    <Card>
+    <Card className={cn("px-2 py-6", className)}>
       <CardHeader>
         <Typo text="アカウント情報" type="h3" />
       </CardHeader>
 
-      <CardContent>
-        <div>
-          <div>ユーザー名</div>
-          <Input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+      <CardContent className="">
+        <div className="flex flex-col gap-10">
+          <div>
+            <div>ユーザー名</div>
+            <Input
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <div>自己紹介</div>
+            <Textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows={6}
+            />
+          </div>
         </div>
 
-        <div>
-          <div>自己紹介</div>
-          <Textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
-
-        <div>
+        <div className="mt-3">
           <Button onClick={handleUpdate}>更新する</Button>
         </div>
       </CardContent>

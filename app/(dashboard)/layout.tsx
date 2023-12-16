@@ -1,16 +1,23 @@
 import React, { FunctionComponent } from "react";
 
 import { DashboardSidebar } from "@/src/components/dashboard/dashboard-sidebar";
+import { actionGetMySelf } from "@/src/actions/users";
 
 interface Props {
   children: React.ReactNode;
 }
 
-const DashboardLayout: FunctionComponent<Props> = ({ children }) => {
+const DashboardLayout: FunctionComponent<Props> = async ({ children }) => {
+  const user = await actionGetMySelf();
+
+  if (!user) {
+    return <div>ログインしてください</div>;
+  }
+
   return (
-    <div className=" w-full min-h-screen flex flex-row bg-white">
+    <div className=" w-full flex flex-row bg-white">
       <DashboardSidebar />
-      <div className="border-l h-full flex-1 bg-sky-50">{children}</div>
+      <div className="border-l flex-1">{children}</div>
     </div>
   );
 };
