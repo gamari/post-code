@@ -4,9 +4,9 @@ import { unstable_noStore as noStore } from "next/cache";
 import { CodeDetailSidebar } from "@/src/components/codes/details/code-detail-sidebar";
 import { CodeDetail } from "@/src/components/codes/details/code-detail";
 import { NextPage } from "next";
-import { CodeDetailProvider } from "@/src/components/providers/code-detail-provider/code-detail-provider";
+import { CodeDetailProvider } from "@/src/contexts/CodeDetailProvider";
 import { CodeDetailComments } from "@/src/components/codes/details/code-detail-comments";
-import { CodeCommentListProvider } from "@/src/components/providers/CodeCommentListProvider";
+import { CodeCommentListProvider } from "@/src/contexts/CodeCommentListProvider";
 import { actionGetCommentsByCodeId } from "@/src/actions/comments";
 
 interface Props {

@@ -3,7 +3,7 @@
 import React from "react";
 
 import { Typo } from "@/src/components/base/typo";
-import { useCodeDetailContext } from "@/src/components/providers/code-detail-provider/code-detail-provider";
+import { useCodeDetailContext } from "@/src/contexts/CodeDetailProvider";
 import { File } from "@/src/types";
 import { CodeDetailFile } from "./client/CodeDetailFile";
 import { MdOutlineInsertDriveFile } from "react-icons/md";

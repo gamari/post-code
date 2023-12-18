@@ -5,7 +5,7 @@ import React, { FunctionComponent } from "react";
 import { CodeEditorSidebar } from "../editor/client/CodeEditorSidebar";
 import { CodeFileEditor } from "../editor/client/CodeFileEditor";
 import { NoContent } from "@/src/components/base/no-content";
-import { useCodeEditor } from "@/src/components/providers/CodeEditorProvider";
+import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { CodeDetailInfoEditor } from "../editor/client/CodeDetailInfoEditor";
 
 interface Props {}

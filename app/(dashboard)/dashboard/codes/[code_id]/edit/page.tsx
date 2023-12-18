@@ -3,7 +3,7 @@ import { NextPage } from "next";
 
 import { CodeEditor } from "../../../../../../src/components/codes/client/CodeEditor";
 import { actionGetBadCodeById } from "@/src/actions/bad-codes";
-import { CodeEditorProvider } from "@/src/components/providers/CodeEditorProvider";
+import { CodeEditorProvider } from "@/src/contexts/CodeEditorProvider";
 
 interface Props {
   params: {

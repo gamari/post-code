@@ -2,11 +2,11 @@
 
 import { Button } from "@/src/components/ui/button";
 import { Textarea } from "@/src/components/ui/textarea";
-import { useSupabase } from "@/src/components/providers/supabase-provider/SupabaseProvider";
+import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchCreateComment } from "@/src/libs/externals/supabase/queries/comments";
 import React from "react";
 import { useToast } from "../../ui/use-toast";
-import { useCodeCommentList } from "../../providers/CodeCommentListProvider";
+import { useCodeCommentList } from "../../../contexts/CodeCommentListProvider";
 
 interface Props {
   codeId: number;

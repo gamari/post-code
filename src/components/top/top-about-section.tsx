@@ -3,7 +3,7 @@ import { Container } from "../base/container";
 import { Typo } from "../base/typo";
 import { MockBlock } from "../base/mock-block";
 
-export const AboutSection = () => {
+export const TopAboutSection = () => {
   return (
     <section className="py-12">
       <Container>

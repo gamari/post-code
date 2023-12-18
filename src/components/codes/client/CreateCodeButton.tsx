@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import { Button } from "@/src/components/ui/button";
 import { fetchCreateBadCode } from "@/src/libs/externals/supabase/queries/bad-codes";
-import { useSupabase } from "@/src/components/providers/supabase-provider/SupabaseProvider";
+import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { CiCirclePlus } from "react-icons/ci";
 import {
   Dialog,

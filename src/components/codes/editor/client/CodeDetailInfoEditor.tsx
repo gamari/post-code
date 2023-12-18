@@ -5,7 +5,7 @@ import React from "react";
 import { Typo } from "@/src/components/base/typo";
 import { Input } from "@/src/components/ui/input";
 import { Textarea } from "@/src/components/ui/textarea";
-import { useCodeEditor } from "@/src/components/providers/CodeEditorProvider";
+import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { cn } from "@/src/libs/utils";
 
 interface Props {

@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { useCodeDetailContext } from "@/src/components/providers/code-detail-provider/code-detail-provider";
+import { useCodeDetailContext } from "@/src/contexts/CodeDetailProvider";
 import { CodePreviewer } from "../../client/CodePreviewer";
 
 export const CodeDetailFileViewer = () => {

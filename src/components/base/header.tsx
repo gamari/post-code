@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { Button } from "@/src/components/ui/button";
 import { actionGetAuthUser } from "@/src/actions/users";
-import { Logo } from "../base/logo";
+import { Logo } from "./logo";
 import { SearchBox } from "../search/client/SearchBox";
 
 export default async function Header() {

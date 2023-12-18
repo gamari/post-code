@@ -4,12 +4,12 @@ import React from "react";
 
 import { File } from "@/src/types";
 import { CodeFileList } from "./CodeEditorFileList";
-import { useCodeEditor } from "@/src/components/providers/CodeEditorProvider";
+import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { useToast } from "@/src/components/ui/use-toast";
 import { CodeEditorFileDialog } from "./CodeEditorFileDialog";
 import { CodeEditorSaveButton } from "./CodeEditorSaveButton";
 import { fetchDeleteFile } from "@/src/libs/externals/supabase/queries/files";
-import { useSupabase } from "@/src/components/providers/supabase-provider/SupabaseProvider";
+import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { RadioGroup, RadioGroupItem } from "@/src/components/ui/radio-group";
 import { Label } from "@/src/components/ui/label";
 import { Button } from "@/src/components/ui/button";
