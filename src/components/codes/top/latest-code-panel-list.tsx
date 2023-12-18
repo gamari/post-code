@@ -1,7 +1,7 @@
 import React from "react";
 
 import { cn } from "@/src/libs/utils";
-import { CodePanelList } from "../shared/code-panel-list";
+import { CodePanelList } from "../shared/client/CodePanelList";
 import { actionGetLatestBadCodeList } from "@/src/actions/bad-codes";
 
 interface Props {
