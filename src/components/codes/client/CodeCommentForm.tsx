@@ -2,7 +2,7 @@
 
 import { Button } from "@/src/components/ui/button";
 import { Textarea } from "@/src/components/ui/textarea";
-import { useSupabase } from "@/src/components/providers/supabase-provider/supabase-provider";
+import { useSupabase } from "@/src/components/providers/supabase-provider/SupabaseProvider";
 import { fetchCreateComment } from "@/src/libs/externals/supabase/queries/comments";
 import React from "react";
 import { useToast } from "../../ui/use-toast";

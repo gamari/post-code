@@ -19,7 +19,7 @@ import { CodeCommentForm } from "../../client/CodeCommentForm";
 import { BadCode, Comment } from "@/src/types";
 import { useCodeCommentList } from "@/src/components/providers/CodeCommentListProvider";
 import { fetchCreateComment } from "@/src/libs/externals/supabase/queries/comments";
-import { useSupabase } from "@/src/components/providers/supabase-provider/supabase-provider";
+import { useSupabase } from "@/src/components/providers/supabase-provider/SupabaseProvider";
 
 interface Props {
   code: BadCode;

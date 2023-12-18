@@ -1,6 +1,6 @@
 "use client";
 
-import { useSupabase } from "@/src/components/providers/supabase-provider/supabase-provider";
+import { useSupabase } from "@/src/components/providers/supabase-provider/SupabaseProvider";
 import {
   fetchCreateFavoriteCode,
   fetchDeleteFavoriteCode,

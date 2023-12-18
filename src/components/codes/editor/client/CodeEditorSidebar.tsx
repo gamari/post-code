@@ -9,7 +9,7 @@ import { useToast } from "@/src/components/ui/use-toast";
 import { CodeEditorFileDialog } from "./CodeEditorFileDialog";
 import { CodeEditorSaveButton } from "./CodeEditorSaveButton";
 import { fetchDeleteFile } from "@/src/libs/externals/supabase/queries/files";
-import { useSupabase } from "@/src/components/providers/supabase-provider/supabase-provider";
+import { useSupabase } from "@/src/components/providers/supabase-provider/SupabaseProvider";
 import { RadioGroup, RadioGroupItem } from "@/src/components/ui/radio-group";
 import { Label } from "@/src/components/ui/label";
 import { Button } from "@/src/components/ui/button";

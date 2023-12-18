@@ -7,7 +7,7 @@ import { MdSave } from "react-icons/md";
 
 import { Button } from "@/src/components/ui/button";
 import { useCodeEditor } from "@/src/components/providers/CodeEditorProvider";
-import { useSupabase } from "@/src/components/providers/supabase-provider/supabase-provider";
+import { useSupabase } from "@/src/components/providers/supabase-provider/SupabaseProvider";
 import { useToast } from "@/src/components/ui/use-toast";
 import { fetchUpdateBadCode } from "@/src/libs/externals/supabase/queries/bad-codes";
 import { fetchUpsertFiles } from "@/src/libs/externals/supabase/queries/files";

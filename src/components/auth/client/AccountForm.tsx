@@ -3,7 +3,7 @@
 import React from "react";
 
 import { Card, CardContent, CardHeader } from "@/src/components/ui/card";
-import { useSupabase } from "@/src/components/providers/supabase-provider/supabase-provider";
+import { useSupabase } from "@/src/components/providers/supabase-provider/SupabaseProvider";
 import { Typo } from "@/src/components/base/typo";
 import { Input } from "@/src/components/ui/input";
 import { AuthUser, User } from "@/src/types";

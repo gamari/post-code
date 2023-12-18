@@ -16,7 +16,7 @@ import {
 import { Input } from "@/src/components/ui/input";
 import { Button } from "@/src/components/ui/button";
 import { fetchAuthUser } from "@/src/libs/externals/supabase/queries/users";
-import { useSupabase } from "@/src/components/providers/supabase-provider/supabase-provider";
+import { useSupabase } from "@/src/components/providers/supabase-provider/SupabaseProvider";
 import { useCodeEditor } from "@/src/components/providers/CodeEditorProvider";
 import { fetchCreateFile } from "@/src/libs/externals/supabase/queries/files";
 

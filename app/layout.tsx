@@ -2,7 +2,7 @@ import "./globals.css";
 
 import Header from "@/src/components/top/header";
 import { GeistSans } from "geist/font/sans";
-import { SupabaseProvider } from "@/src/components/providers/supabase-provider/supabase-provider";
+import { SupabaseProvider } from "@/src/components/providers/supabase-provider/SupabaseProvider";
 import { Toaster } from "@/src/components/ui/toaster";
 
 const defaultUrl = process.env.VERCEL_URL
