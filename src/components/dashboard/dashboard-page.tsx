@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 
-import { CreateCodeButton } from "../../../src/components/codes/client/CreateCodeButton";
+import { CreateCodeButton } from "../codes/dashboard/client/CreateCodeButton";
 import { Skeleton } from "@/src/components/base/skeleton";
 import { Typo } from "@/src/components/base/typo";
 import {

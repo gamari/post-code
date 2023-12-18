@@ -1,8 +1,9 @@
 import React from "react";
 
 import { File } from "@/src/types";
-import { FileItem } from "./client/FileItem";
+import { FileItem } from "./shared/client/FileItem";
 import { cn } from "@/src/libs/utils";
+import { SlideIn } from "../base/client/animations/SlideIn";
 
 interface Props {
   files: File[];
@@ -18,24 +19,26 @@ export const FileItemList = ({
   selectedFile,
 }: Props) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-1">
       {files
         .sort((a, b) => {
           if (a.name < b.name) return -1;
           if (a.name > b.name) return 1;
           return 0;
         })
-        .map((file) => (
-          <FileItem
-            key={file.id}
-            className={cn(
-              "",
-              selectedFile?.id === file.id ? "bg-slate-200" : "",
-              className
-            )}
-            file={file}
-            onClick={onClick}
-          />
+        .map((file, index) => (
+          <SlideIn delay={index * 0.1} from="right">
+            <FileItem
+              key={file.id}
+              className={cn(
+                "",
+                selectedFile?.id === file.id ? "bg-slate-200" : "",
+                className
+              )}
+              file={file}
+              onClick={onClick}
+            />
+          </SlideIn>
         ))}
     </div>
   );

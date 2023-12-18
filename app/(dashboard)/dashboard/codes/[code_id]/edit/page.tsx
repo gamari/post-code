@@ -1,7 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 
-import { CodeEditor } from "../../../../../../src/components/codes/client/CodeEditor";
+import { CodeEditor } from "../../../../../../src/components/codes/editor/client/CodeEditor";
 import { actionGetBadCodeById } from "@/src/actions/bad-codes";
 import { CodeEditorProvider } from "@/src/contexts/CodeEditorProvider";
 

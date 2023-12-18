@@ -3,8 +3,8 @@
 import React from "react";
 
 import { useCodeDetailContext } from "@/src/contexts/CodeDetailProvider";
-import { CodePreviewer } from "../../client/CodePreviewer";
 import { cn } from "@/src/libs/utils";
+import { FileViewer } from "@/src/components/files/shared/client/FileViewer";
 
 interface Props {
   className?: string;
@@ -28,6 +28,6 @@ export const CodeDetailFileViewer = ({ className }: Props) => {
     );
 
   return (
-    <CodePreviewer file={selectedFile} className={cn("h-[400px]", className)} />
+    <FileViewer file={selectedFile} className={cn("h-[400px]", className)} />
   );
 };

@@ -15,7 +15,7 @@ import {
 } from "@/src/components/ui/dialog";
 import { FaRegComment } from "react-icons/fa6";
 import { Textarea } from "@/src/components/ui/textarea";
-import { CodeCommentForm } from "../../client/CodeCommentForm";
+import { CodeCommentForm } from "./CodeCommentForm";
 import { BadCode, Comment } from "@/src/types";
 import { useCodeCommentList } from "@/src/contexts/CodeCommentListProvider";
 import { fetchCreateComment } from "@/src/libs/externals/supabase/queries/comments";

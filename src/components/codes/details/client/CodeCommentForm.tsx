@@ -5,8 +5,8 @@ import { Textarea } from "@/src/components/ui/textarea";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchCreateComment } from "@/src/libs/externals/supabase/queries/comments";
 import React from "react";
-import { useToast } from "../../ui/use-toast";
-import { useCodeCommentList } from "../../../contexts/CodeCommentListProvider";
+import { useToast } from "../../../ui/use-toast";
+import { useCodeCommentList } from "../../../../contexts/CodeCommentListProvider";
 
 interface Props {
   codeId: number;

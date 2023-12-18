@@ -1,23 +1,16 @@
-"use client";
-
 import React, { useEffect } from "react";
 
 import Prism from "prismjs";
-
-import "prismjs/themes/prism-tomorrow.css";
-import "prismjs/plugins/line-numbers/prism-line-numbers.css";
-import "prismjs/plugins/line-numbers/prism-line-numbers.js";
+import { CiFileOn } from "react-icons/ci";
 
 import { File } from "@/src/types";
 import { cn } from "@/src/libs/utils";
-import { CiFileOn } from "react-icons/ci";
 
 interface Props {
   file: File;
   className?: string;
 }
-
-export const CodePreviewer = ({ file, className }: Props) => {
+export const FileViewer = ({ file, className }: Props) => {
   useEffect(() => {
     Prism.highlightAll();
   }, [file]);
@@ -33,7 +26,7 @@ export const CodePreviewer = ({ file, className }: Props) => {
         <CiFileOn className="cursor-pointer hover:opacity-70" />
         <span>{file?.name}</span>
       </div>
-      <pre className="line-numbers p-4 bg-gray-800 text-white overflow-x-auto flex-1">
+      <pre className="line-numbers p-4 bg-gray-800 text-white overflow-x-auto  flex-1">
         {/* TODO languageを入れる */}
         <code className={`language-js`}>{file.content}</code>
       </pre>

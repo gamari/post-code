@@ -8,7 +8,7 @@ import { CodeDetailProvider } from "@/src/contexts/CodeDetailProvider";
 import { CodeDetailComments } from "@/src/components/comments/code-detail-comments";
 import { CodeCommentListProvider } from "@/src/contexts/CodeCommentListProvider";
 import { actionGetCommentsByCodeId } from "@/src/actions/comments";
-import { CodeDetailFileViewer } from "@/src/components/codes/details/client/CodeDetailFileViewer";
+import { CodeDetailFileViewer } from "@/src/components/files/details/client/CodeDetailFileViewer";
 
 interface Props {
   params: {

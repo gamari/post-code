@@ -1,7 +1,7 @@
 import { cn } from "@/src/libs/utils";
 import React from "react";
 import { MdOutlineInsertDriveFile } from "react-icons/md";
-import { Typo } from "../../base/typo";
+import { Typo } from "../../../base/typo";
 import { File } from "@/src/types";
 
 interface Props {
@@ -14,7 +14,7 @@ export const FileItem = ({ file, className, onClick }: Props) => {
   return (
     <div
       className={cn(
-        "flex flex-row items-center gap-2 rounded-md hover:bg-gray-100 p-2 cursor-pointer select-none text-sm",
+        "flex flex-row items-center gap-2 rounded-md hover:bg-gray-100 px-2 py-1 cursor-pointer select-none text-sm",
         className
       )}
       onClick={() => onClick && onClick(file)}
