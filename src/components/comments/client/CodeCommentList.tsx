@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Comment } from "@/src/types/index";
+
 import { useCodeCommentList } from "../../../contexts/CodeCommentListProvider";
 
 interface Props {}

@@ -1,8 +1,7 @@
 import React from "react";
 
 import { Typo } from "@/src/components/base/typo";
-import { Card, CardContent, CardHeader } from "@/src/components/ui/card";
-import { CodeCommentList } from "../client/CodeCommentList";
+import { CodeCommentList } from "./client/CodeCommentList";
 import { cn } from "@/src/libs/utils";
 
 interface Props {

@@ -1,14 +1,13 @@
 import React, { FunctionComponent } from "react";
 
 import { Typo } from "@/src/components/base/typo";
-import { CodeDetailFileViewer } from "./client/CodeDetailFileViewer";
 import { actionGetBadCodeById } from "@/src/actions/bad-codes";
 
 interface Props {
   id: number;
 }
 
-export const CodeDetail: FunctionComponent<Props> = async ({ id }) => {
+export const CodeDetailInfo: FunctionComponent<Props> = async ({ id }) => {
   const badCode = await actionGetBadCodeById(id);
 
   return (
@@ -20,10 +19,6 @@ export const CodeDetail: FunctionComponent<Props> = async ({ id }) => {
           type="p"
           className="m-2"
         />
-      </div>
-
-      <div className="mt-6">
-        <CodeDetailFileViewer />
       </div>
     </div>
   );

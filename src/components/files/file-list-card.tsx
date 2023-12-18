@@ -1,13 +1,13 @@
 import React from "react";
 import { Typo } from "../base/typo";
-import { CodeDetailFileList } from "./details/code-detail-file-list";
+import { CodeDetailFileList } from "./code-detail-file-list";
 import { actionGetFiles } from "@/src/actions/files";
 
 interface Props {
   codeId: number;
 }
 
-export const CodeFileListCard = async ({ codeId }: Props) => {
+export const FileListCard = async ({ codeId }: Props) => {
   const files = await actionGetFiles(codeId);
 
   return (
