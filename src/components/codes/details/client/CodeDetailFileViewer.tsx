@@ -10,7 +10,7 @@ export const CodeDetailFileViewer = () => {
 
   if (!selectedFile)
     return (
-      <div className="h-[400px] flex items-center justify-center border bg-white rounded-md">
+      <div className="h-[400px] flex items-center justify-center bg-white rounded-md">
         <p className="text-gray-600 font-bold">
           見たいファイルを選択してください
         </p>

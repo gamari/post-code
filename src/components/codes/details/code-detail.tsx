@@ -13,13 +13,13 @@ export const CodeDetail: FunctionComponent<Props> = async ({ id }) => {
 
   return (
     <div>
-      <div className="border p-4 flex flex-col gap-2 bg-white rounded-md">
+      <div className="p-4 flex flex-col gap-2 bg-white rounded-md">
         <Typo text={badCode?.title} type="h3" className="border-b pb-2" />
-        {badCode?.description ? (
-          <Typo text={badCode?.description} type="p" className="m-2" />
-        ) : (
-          <Typo text="(説明がありません)" type="p" className="m-2" />
-        )}
+        <Typo
+          text={badCode?.description || "(説明がありません)"}
+          type="p"
+          className="m-2"
+        />
       </div>
 
       <div className="mt-6">

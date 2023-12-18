@@ -29,7 +29,7 @@ const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
             <div className="flex-1 w-[650px]">
               <Suspense fallback={null}>
                 <CodeDetail id={code_id} />
-                <CodeDetailComments />
+                <CodeDetailComments className="mt-6" />
               </Suspense>
             </div>
 

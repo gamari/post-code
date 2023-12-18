@@ -3,19 +3,17 @@ import React from "react";
 import { Typo } from "@/src/components/base/typo";
 import { Card, CardContent, CardHeader } from "@/src/components/ui/card";
 import { CodeCommentList } from "../client/CodeCommentList";
+import { cn } from "@/src/libs/utils";
 
-interface Props {}
+interface Props {
+  className?: string;
+}
 
-export const CodeDetailComments = async ({}: Props) => {
+export const CodeDetailComments = async ({ className }: Props) => {
   return (
-    <Card className="mb-6 mt-6 h-[600px]">
-      <CardHeader>
-        <Typo text="議論" type="h3" className="text-gray-700" />
-      </CardHeader>
-
-      <CardContent>
-        <CodeCommentList />
-      </CardContent>
-    </Card>
+    <div className={cn("rounded-md p-6 bg-white", className)}>
+      <Typo text="議論" type="h3" className="text-gray-700" />
+      <CodeCommentList />
+    </div>
   );
 };

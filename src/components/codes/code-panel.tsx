@@ -14,7 +14,7 @@ export const CodePanel: FunctionComponent<Props> = ({ code, className }) => {
   return (
     <div
       className={cn(
-        "p-4 border rounded-lg flex flex-row items-center gap-4 bg-white h-[100px]",
+        "p-4 rounded-lg flex flex-row items-center gap-4 bg-white h-[100px]",
         className
       )}
     >

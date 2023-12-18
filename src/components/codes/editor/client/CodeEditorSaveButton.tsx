@@ -12,7 +12,7 @@ import { useToast } from "@/src/components/ui/use-toast";
 import { fetchUpdateBadCode } from "@/src/libs/externals/supabase/queries/bad-codes";
 import { fetchUpsertFiles } from "@/src/libs/externals/supabase/queries/files";
 import { BadCode } from "@/src/types";
-import { Loader } from "@/src/components/base/loader";
+import { Loader } from "@/src/components/base/client/Loader";
 
 export const CodeEditorSaveButton = () => {
   const router = useRouter();
