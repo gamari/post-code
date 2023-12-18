@@ -1,13 +1,13 @@
 import React from "react";
-import { Typo } from "../base/typo";
-import { CodeDetailFileList } from "./code-detail-file-list";
+import { Typo } from "../../../base/typo";
+import { DetailFileItemList } from "../detail-file-item-list";
 import { actionGetFiles } from "@/src/actions/files";
 
 interface Props {
   codeId: number;
 }
 
-export const FileListCard = async ({ codeId }: Props) => {
+export const CodeDetailSidebarFileItemListCard = async ({ codeId }: Props) => {
   const files = await actionGetFiles(codeId);
 
   return (
@@ -19,7 +19,7 @@ export const FileListCard = async ({ codeId }: Props) => {
           className="text-gray-700 border-b pb-1"
         />
 
-        <CodeDetailFileList files={files} />
+        <DetailFileItemList files={files} />
       </div>
     </div>
   );

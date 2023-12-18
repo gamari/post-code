@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { unstable_noStore as noStore } from "next/cache";
 
-import { CodeDetailSidebar } from "@/src/components/codes/details/code-detail-sidebar";
+import { CodeDetailSidebar } from "@/src/components/codes/details/sidebar/code-detail-sidebar";
 import { CodeDetailInfo } from "@/src/components/codes/details/code-detail-info";
 import { NextPage } from "next";
 import { CodeDetailProvider } from "@/src/contexts/CodeDetailProvider";

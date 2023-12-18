@@ -1,17 +1,19 @@
 import React from "react";
-import { CodeDetailCommentDialogButton } from "./client/CodeDetailCommentDialogButton";
-import { FavoriteCodeDetailButton } from "./favorite-code-detail-button";
+
+import dayjs from "dayjs";
+
+import { CodeDetailCommentDialogButton } from "../client/CodeDetailCommentDialogButton";
+import { FavoriteCodeDetailButton } from "../favorite-code-detail-button";
 import { actionGetAuthUser } from "@/src/actions/users";
 import { BadCode } from "@/src/types";
-import { CodeDetailShareButton } from "./client/CodeDetailShareButton";
-import { Typo } from "../../base/typo";
-import dayjs from "dayjs";
+import { CodeDetailShareButton } from "../client/CodeDetailShareButton";
+import { Typo } from "../../../base/typo";
 
 interface Props {
   badCode: BadCode;
 }
 
-export const CodeDetailToolCard = async ({ badCode }: Props) => {
+export const CodeDetailSidebarToolsCard = async ({ badCode }: Props) => {
   const authUser = await actionGetAuthUser();
 
   return (
@@ -30,6 +32,7 @@ export const CodeDetailToolCard = async ({ badCode }: Props) => {
         <Typo
           text={dayjs(badCode?.updated_at).format("更新日: YYYY/MM/DD")}
           type="p"
+          className="text-sm"
         />
       </div>
     </div>

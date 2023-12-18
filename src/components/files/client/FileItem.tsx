@@ -1,19 +1,16 @@
-"use client";
-
+import { cn } from "@/src/libs/utils";
 import React from "react";
 import { MdOutlineInsertDriveFile } from "react-icons/md";
-
+import { Typo } from "../../base/typo";
 import { File } from "@/src/types";
-import { cn } from "@/src/libs/utils";
-import { Typo } from "@/src/components/base/typo";
 
 interface Props {
-  file: File;
   className?: string;
   onClick?: (file: File) => void;
+  file: File;
 }
 
-export const CodeDetailFile = ({ file, className, onClick }: Props) => {
+export const FileItem = ({ file, className, onClick }: Props) => {
   return (
     <div
       className={cn(

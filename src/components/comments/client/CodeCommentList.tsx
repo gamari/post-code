@@ -3,6 +3,7 @@
 import React from "react";
 
 import { useCodeCommentList } from "../../../contexts/CodeCommentListProvider";
+import { CodeCommentPanel } from "./CodeCommentPanel";
 
 interface Props {}
 
@@ -14,9 +15,7 @@ export const CodeCommentList = ({}: Props) => {
   return (
     <div>
       {comments.map((comment) => (
-        <div key={`comment-${comment.id}`}>
-          <div>{comment.comment}</div>
-        </div>
+        <CodeCommentPanel comment={comment} key={`comment-${comment.id}`} />
       ))}
     </div>
   );
