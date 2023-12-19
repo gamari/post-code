@@ -2,7 +2,7 @@ import React from "react";
 
 import { CreateCodeButton } from "../shared/bad-codes/CreateCodeButton";
 import { Title } from "../../atoms/texts/title";
-import { CodeTable } from "./CodeTable";
+import { CodeTable } from "./code-table/CodeTable";
 import { actionGetMySelfBadCodeList } from "@/src/actions/bad-codes";
 import { NoContent } from "../../molecules/displays/no-content";
 

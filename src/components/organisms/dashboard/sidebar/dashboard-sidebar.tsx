@@ -4,7 +4,7 @@ import { SideLink } from "./SideLink";
 
 export const DashboardSidebar = () => {
   return (
-    <div className="w-[300px]">
+    <div className="w-[240px]">
       <aside className="sticky top-[100px] h-screen/50 flex flex-col justify-between">
         <div className="p-5">
           <h3 className="text-xl font-bold text-gray-700">メニュー</h3>
