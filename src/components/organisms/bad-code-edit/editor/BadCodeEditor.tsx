@@ -2,8 +2,8 @@
 
 import React, { FunctionComponent } from "react";
 
-import { CodeEditorSidebar } from "./CodeEditorSidebar";
-import { CodeFileEditor } from "./CodeFileEditor";
+import { CodeEditorSidebar } from "./BadCodeEditorSidebar";
+import { CodeFileEditor } from "./BadCodeFileEditor";
 import { CodeEditorProvider } from "@/src/contexts/CodeEditorProvider";
 import { CodeDetailInfoEditor } from "../../bad-code-detail/CodeDetailInfoEditor";
 import { BadCodeDetail } from "@/src/types";

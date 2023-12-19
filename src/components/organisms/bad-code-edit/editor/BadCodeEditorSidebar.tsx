@@ -3,16 +3,16 @@
 import React from "react";
 
 import { File } from "@/src/types";
-import { CodeFileList } from "../CodeEditorFileList";
+import { CodeFileList } from "../BadCodeEditorFileList";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
-import { CodeEditorSaveButton } from "../CodeEditorSaveButton";
+import { CodeEditorSaveButton } from "../BadCodeEditorSaveButton";
 import { fetchDeleteFile } from "@/src/libs/externals/supabase/queries/files";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { useAlert } from "@/src/hooks/useAlert";
 import { LinkButton } from "@/src/components/molecules/buttons/link-button";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { SelectRadioButtonList } from "@/src/components/molecules/forms/select-radio-button-list";
-import { CodeEditorNewFileModalButton } from "../CodeEditorNewFileModalButton";
+import { CodeEditorNewFileModalButton } from "../BadCodeEditorNewFileModalButton";
 
 export const CodeEditorSidebar = () => {
   const { client } = useSupabase();
