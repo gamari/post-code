@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { SlideIn } from "../molecules/animation/SlideIn";
+import { SlideIn } from "../../../molecules/animation/SlideIn";
 import { Comment } from "@/src/types";
 
 interface Props {

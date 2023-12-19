@@ -2,12 +2,12 @@ import React from "react";
 
 import dayjs from "dayjs";
 
-import { CodeDetailCommentDialogButton } from "./CodeDetailCommentDialogButton";
+import { CodeDetailCommentDialogButton } from "../shared/comments/CodeDetailCommentDialogButton";
 import { FavoriteCodeDetailButton } from "./favorite-code-detail-button";
 import { actionGetAuthUser } from "@/src/actions/users";
 import { BadCode } from "@/src/types";
-import { CodeDetailShareButton } from "./CodeDetailShareButton";
-import { Typo } from "../atoms/typo";
+import { CodeDetailShareButton } from "../shared/bad-codes/CodeDetailShareButton";
+import { Typo } from "../../atoms/typo";
 
 interface Props {
   badCode: BadCode;

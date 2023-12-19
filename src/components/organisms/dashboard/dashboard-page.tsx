@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 
-import { CreateCodeButton } from "./CreateCodeButton";
+import { CreateCodeButton } from "../shared/bad-codes/CreateCodeButton";
 import { Skeleton } from "@/src/components/molecules/displays/skeleton";
 import { Typo } from "@/src/components/atoms/typo";
 import {

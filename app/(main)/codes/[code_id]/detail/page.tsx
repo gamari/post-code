@@ -1,14 +1,14 @@
 import React, { Suspense } from "react";
 import { unstable_noStore as noStore } from "next/cache";
 
-import { CodeDetailSidebar } from "@/src/components/organisms/code-detail-sidebar";
-import { CodeDetailInfo } from "@/src/components/organisms/code-detail-info";
+import { CodeDetailSidebar } from "@/src/components/organisms/bad-code-detail/code-detail-sidebar";
+import { CodeDetailInfo } from "@/src/components/organisms/bad-code-detail/code-detail-info";
 import { NextPage } from "next";
 import { CodeDetailProvider } from "@/src/contexts/CodeDetailProvider";
-import { CodeDetailComments } from "@/src/components/organisms/code-detail-comments";
+import { CodeDetailCommentList } from "@/src/components/organisms/bad-code-detail/code-detail-comment-list";
 import { CodeCommentListProvider } from "@/src/contexts/CodeCommentListProvider";
 import { actionGetCommentsByCodeId } from "@/src/actions/comments";
-import { CodeDetailFileViewer } from "@/src/components/organisms/CodeDetailFileViewer";
+import { CodeDetailFileViewer } from "@/src/components/organisms/shared/bad-codes/CodeDetailFileViewer";
 
 interface Props {
   params: {
@@ -31,7 +31,7 @@ const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
               <div className="flex-1 flex flex-col gap-6 w-[650px]">
                 <CodeDetailInfo id={code_id} />
                 <CodeDetailFileViewer />
-                <CodeDetailComments />
+                <CodeDetailCommentList />
               </div>
 
               <CodeDetailSidebar codeId={code_id} />

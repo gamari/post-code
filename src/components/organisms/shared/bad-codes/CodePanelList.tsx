@@ -6,7 +6,7 @@ import Link from "next/link";
 import { BadCodeDetail } from "@/src/types";
 import { CodePanel } from "./code-panel";
 import { cn } from "@/src/libs/utils";
-import { SlideIn } from "../molecules/animation/SlideIn";
+import { SlideIn } from "../../../molecules/animation/SlideIn";
 
 interface Props {
   codes?: BadCodeDetail[];

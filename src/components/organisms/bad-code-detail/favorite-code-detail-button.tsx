@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FavoriteButton } from "@/src/components/organisms/FavoriteButton";
+import { FavoriteBadCodeButton } from "@/src/components/organisms/shared/FavoriteBadCodeButton";
 import { actionCheckFavoriteCode } from "@/src/actions/favorites";
 
 interface Props {
@@ -9,5 +9,5 @@ interface Props {
 
 export const FavoriteCodeDetailButton = async ({ codeId }: Props) => {
   const isFavorite = await actionCheckFavoriteCode(codeId);
-  return <FavoriteButton codeId={codeId} isFavorite={isFavorite} />;
+  return <FavoriteBadCodeButton codeId={codeId} isFavorite={isFavorite} />;
 };

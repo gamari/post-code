@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { useCodeCommentList } from "../../contexts/CodeCommentListProvider";
+import { useCodeCommentList } from "../../../../contexts/CodeCommentListProvider";
 import { CodeCommentPanel } from "./CodeCommentPanel";
 
 interface Props {}

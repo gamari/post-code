@@ -2,7 +2,7 @@ import React from "react";
 
 import { actionGetBadCodeById } from "@/src/actions/bad-codes";
 import { CodeDetailSidebarFileItemListCard } from "./code-detail-sidebar-file-item-list-card";
-import { UserDetailCard } from "./accounts/user-detail-card";
+import { UserDetailCard } from "../accounts/user-detail-card";
 import { CodeDetailSidebarToolsCard } from "./code-detail-sidebar-tools-card";
 
 interface Props {

@@ -6,7 +6,7 @@ import { Typo } from "@/src/components/atoms/typo";
 import { useCodeDetailContext } from "@/src/contexts/CodeDetailProvider";
 import { File } from "@/src/types";
 import { MdOutlineInsertDriveFile } from "react-icons/md";
-import { FileItemList } from "./file-item-list";
+import { FileItemList } from "../shared/file-item-list";
 
 interface Props {
   files: File[];

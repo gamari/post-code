@@ -7,7 +7,7 @@ import {
 } from "@/src/libs/externals/supabase/queries/favorites";
 import React, { useState } from "react";
 import { MdOutlineStar, MdOutlineStarBorder } from "react-icons/md";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 interface Props {
   codeId: number;
@@ -15,7 +15,7 @@ interface Props {
   onClick?: () => void;
 }
 
-export const FavoriteButton = ({
+export const FavoriteBadCodeButton = ({
   isFavorite: initIsFavorite,
   onClick,
   codeId,

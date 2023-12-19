@@ -6,7 +6,7 @@ import { CodeEditorSidebar } from "./CodeEditorSidebar";
 import { CodeFileEditor } from "./CodeFileEditor";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
-import { CodeDetailInfoEditor } from "./CodeDetailInfoEditor";
+import { CodeDetailInfoEditor } from "../bad-code-detail/CodeDetailInfoEditor";
 
 interface Props {}
 

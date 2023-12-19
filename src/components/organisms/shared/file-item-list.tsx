@@ -3,7 +3,7 @@ import React from "react";
 import { File } from "@/src/types";
 import { FileItem } from "./FileItem";
 import { cn } from "@/src/libs/utils";
-import { SlideIn } from "../molecules/animation/SlideIn";
+import { SlideIn } from "../../molecules/animation/SlideIn";
 
 interface Props {
   files: File[];

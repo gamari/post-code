@@ -2,7 +2,7 @@ import React from "react";
 
 import { Card, CardHeader } from "@/src/components/ui/card";
 import { actionGetMySelfBadCodeList } from "@/src/actions/bad-codes";
-import { CodeTable } from "../CodeTable";
+import { CodeTable } from "./CodeTable";
 import { unstable_noStore as noStore } from "next/cache";
 
 export const DashboardCodeList = async () => {
