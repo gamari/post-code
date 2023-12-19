@@ -9,7 +9,7 @@ interface ContextProps {
   setTitle: (title: string) => void;
   setDescription: (description: string) => void;
   selectedFile: File | undefined;
-  setSelectedFile: (file: File) => void;
+  setSelectedFile: (file: File | undefined) => void;
   files: File[];
   addFile: (file: File) => void;
   deleteFile: (file: File) => void;

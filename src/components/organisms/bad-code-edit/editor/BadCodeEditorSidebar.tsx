@@ -6,46 +6,30 @@ import { File } from "@/src/types";
 import { CodeFileList } from "../BadCodeEditorFileList";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { CodeEditorSaveButton } from "../BadCodeEditorSaveButton";
-import { fetchDeleteFile } from "@/src/libs/externals/supabase/queries/files";
-import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { useAlert } from "@/src/hooks/useAlert";
 import { LinkButton } from "@/src/components/molecules/buttons/link-button";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { SelectRadioButtonList } from "@/src/components/molecules/forms/select-radio-button-list";
 import { CodeEditorNewFileModalButton } from "../BadCodeEditorNewFileModalButton";
+import { useDeleteCodeFile } from "@/src/hooks/bad-codes-edit/useDeleteCodeFile";
+import { useSelectCodeFile } from "@/src/hooks/bad-codes-edit/useSelectCodeFile";
 
 export const CodeEditorSidebar = () => {
-  const { client } = useSupabase();
-  const { infoAlert } = useAlert();
-
-  const {
-    badCode,
-    files,
-    selectedFile,
-    updateFile,
-    setSelectedFile,
-    deleteFile,
-    setIsPublic,
-  } = useCodeEditor();
+  const { errorAlert } = useAlert();
+  const { badCode, files, selectedFile, setIsPublic } = useCodeEditor();
+  const { deleteFile } = useDeleteCodeFile();
+  const { selectFile } = useSelectCodeFile();
 
   const handleClickFile = (file: File) => {
-    if (selectedFile && !selectedFile?.name) {
-      infoAlert("ファイル名を入力してください");
-      return;
+    try {
+      selectFile(file);
+    } catch (e) {
+      errorAlert("ファイル選択できませんでした。", e);
     }
-
-    if (selectedFile?.id === file.id) return;
-    if (selectedFile?.id !== file.id && selectedFile?.content) {
-      updateFile(selectedFile);
-    }
-    setSelectedFile(file);
   };
 
   const handleDeleteFile = async (file: File) => {
-    if (!client) return;
-    const isOk = confirm("本当に削除しますか？");
-    if (!isOk) return;
-    await fetchDeleteFile(file?.id, client);
+    if (!confirm("本当に削除しますか？")) return;
     deleteFile(file);
   };
 
