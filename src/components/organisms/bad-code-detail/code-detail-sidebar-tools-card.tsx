@@ -1,13 +1,14 @@
 import React from "react";
 
-import dayjs from "dayjs";
-
 import { CodeDetailCommentDialogButton } from "../shared/comments/CodeDetailCommentDialogButton";
 import { FavoriteCodeDetailButton } from "./favorite-code-detail-button";
 import { actionGetAuthUser } from "@/src/actions/users";
 import { BadCode } from "@/src/types";
 import { CodeDetailShareButton } from "../shared/bad-codes/CodeDetailShareButton";
-import { Typo } from "../../atoms/texts/typo";
+import { LinkButton } from "../../molecules/buttons/link-button";
+import { CODES_EDIT_URL } from "@/src/libs/constants";
+import { DateString } from "../../atoms/texts/date-string";
+import { EditIcon } from "lucide-react";
 
 interface Props {
   badCode: BadCode;
@@ -25,15 +26,22 @@ export const CodeDetailSidebarToolsCard = async ({ badCode }: Props) => {
             <CodeDetailCommentDialogButton code={badCode} />
           </>
         )}
+        {badCode?.user_id === authUser?.id && (
+          <>
+            <LinkButton
+              url={CODES_EDIT_URL(badCode.id)}
+              label="編集"
+              Icon={<EditIcon className="h-4 w-4 mr-2 " />}
+              className="bg-gray-100 border-none"
+            />
+          </>
+        )}
         <CodeDetailShareButton code={badCode} />
       </div>
 
-      <div className="mt-4">
-        <Typo
-          text={dayjs(badCode?.updated_at).format("更新日: YYYY/MM/DD")}
-          type="p"
-          className="text-sm"
-        />
+      <div className="mt-4 text-gray-600 text-sm">
+        <span>更新日:</span>
+        <DateString value={badCode?.created_at} />
       </div>
     </div>
   );
