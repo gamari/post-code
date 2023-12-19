@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 
 import { File } from "@/src/types";
 import { CodeFileList } from "../CodeEditorFileList";
@@ -10,10 +9,10 @@ import { CodeEditorFileDialog } from "../CodeEditorFileDialog";
 import { CodeEditorSaveButton } from "../CodeEditorSaveButton";
 import { fetchDeleteFile } from "@/src/libs/externals/supabase/queries/files";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
-import { RadioGroup, RadioGroupItem } from "@/src/components/ui/radio-group";
-import { Label } from "@/src/components/ui/label";
-import { Button } from "@/src/components/atoms/buttons/button";
 import { useAlert } from "@/src/hooks/useAlert";
+import { LinkButton } from "@/src/components/molecules/buttons/link-button";
+import { Typo } from "@/src/components/atoms/texts/typo";
+import { SelectRadioButtonList } from "@/src/components/molecules/forms/select-radio-button-list";
 
 export const CodeEditorSidebar = () => {
   const { client } = useSupabase();
@@ -52,9 +51,8 @@ export const CodeEditorSidebar = () => {
 
   return (
     <div className="w-[250px] h-fit border p-5 rounded-md bg-white">
-      <div className="flex flex-row gap-2">
-        <span>ファイル一覧</span>
-
+      <div className="flex flex-row gap-2 pb-2 border-b">
+        <Typo type="h4" text="ファイル一覧" />
         <CodeEditorFileDialog />
       </div>
 
@@ -68,43 +66,23 @@ export const CodeEditorSidebar = () => {
       </div>
 
       <div className="my-6">
-        <RadioGroup
+        <SelectRadioButtonList
           defaultValue={badCode?.is_public ? "public" : "private"}
-          className="flex flex-row"
-        >
-          <div className="flex items-center space-x-2">
-            <Label htmlFor="private" className="cursor-pointer">
-              <RadioGroupItem
-                value="private"
-                id="private"
-                onClick={() => {
-                  setIsPublic(false);
-                }}
-              />
-              非公開
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Label htmlFor="public" className="cursor-pointer">
-              <RadioGroupItem
-                value="public"
-                id="public"
-                onClick={() => {
-                  setIsPublic(true);
-                }}
-              />
-              公開
-            </Label>
-          </div>
-        </RadioGroup>
+          items={[
+            { label: "非公開", value: "private" },
+            { label: "公開", value: "public" },
+          ]}
+          onChange={(value) => {
+            console.log(value);
+            setIsPublic(value === "public");
+          }}
+        />
       </div>
 
       <div className="mt-6 flex flex-col gap-2">
         <CodeEditorSaveButton />
 
-        <Button variant="outline">
-          <Link href={`/codes/${badCode?.id}/detail`}>詳細画面へ</Link>
-        </Button>
+        <LinkButton url={`/codes/${badCode?.id}/detail`} label="詳細画面へ" />
       </div>
     </div>
   );

@@ -39,7 +39,7 @@ export const SupabaseProvider = ({
     } = await supabase.auth.getUser();
     setAuthUser(user);
 
-    return authUser;
+    return user;
   }
 
   return (

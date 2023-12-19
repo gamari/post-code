@@ -18,7 +18,7 @@ export const CodeFileList = ({
   onDeleteFile,
 }: Props) => {
   if (!files?.length)
-    return <div className="border p-2 text-gray-600">ファイルがありません</div>;
+    return <div className="p-2 text-gray-600">ファイルがありません</div>;
 
   return (
     <div>

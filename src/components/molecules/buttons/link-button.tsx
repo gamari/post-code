@@ -5,7 +5,7 @@ import Link from "next/link";
 interface Props {
   url: string;
   label: string;
-  isActive: boolean;
+  isActive?: boolean;
 }
 
 export const LinkButton = ({ url, label, isActive }: Props) => {
