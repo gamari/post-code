@@ -1,4 +1,5 @@
 import React from "react";
+import { IoMdClose } from "react-icons/io";
 
 interface Props {
   children: React.ReactNode;
@@ -18,8 +19,8 @@ export const Modal = ({ children, isOpen, onClose }: Props) => {
       className="fixed inset-0 z-[1000] bg-gray-600 bg-opacity-50 flex justify-center items-center"
       onClick={handleBackgroundClick}
     >
-      <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
-        {/* TODO 右上にXボタンを置く */}
+      <div className="relative bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+        <IoMdClose className="absolute top-2 right-2 w-6 h-6 hover:opacity-60" onClick={handleBackgroundClick} />
         {children}
       </div>
     </div>

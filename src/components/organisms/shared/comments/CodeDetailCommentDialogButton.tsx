@@ -1,23 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 import { Button } from "@/src/components/atoms/buttons/button";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/src/components/ui/dialog";
 import { FaRegComment } from "react-icons/fa6";
-import { CodeCommentForm } from "./CodeCommentForm";
 import { BadCode } from "@/src/types";
-import { Modal } from "@/src/components/molecules/displays/Modal";
 import { useModal } from "@/src/hooks/useModal";
+import { CodeDetailCommentModal } from "../../bad-code-detail/comments/code-detail-comment-modal";
 
 interface Props {
   code: BadCode;
@@ -33,11 +22,11 @@ export const CodeDetailCommentDialogButton = ({ code }: Props) => {
         コメントする
       </Button>
 
-      <Modal isOpen={isOpen} onClose={toggleModal}>
-        <div>
-          <Button onClick={toggleModal}>閉じる</Button>
-        </div>
-      </Modal>
+      <CodeDetailCommentModal
+        code={code}
+        isOpen={isOpen}
+        toggleModal={toggleModal}
+      />
     </>
   );
 };
