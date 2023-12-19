@@ -2,6 +2,26 @@
 
 必要なSQLに関して
 
+## limitのFunction作成
+
+```sql
+CREATE OR REPLACE FUNCTION enforce_file_limit()
+RETURNS TRIGGER AS $$
+BEGIN
+  IF (SELECT COUNT(*) FROM files WHERE bad_code_id = NEW.bad_code_id) >= 10 THEN
+    RAISE EXCEPTION 'このBadCodeには既に10個のファイルが関連付けられています。';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER check_file_limit
+BEFORE INSERT ON files
+FOR EACH ROW EXECUTE FUNCTION enforce_file_limit();
+```
+
+
+
 ## languagesテーブルの作成
 
 ```sql

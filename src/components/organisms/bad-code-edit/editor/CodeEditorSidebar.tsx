@@ -5,7 +5,7 @@ import React from "react";
 import { File } from "@/src/types";
 import { CodeFileList } from "../CodeEditorFileList";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
-import { CodeEditorFileDialog } from "../CodeEditorFileDialog";
+import { CodeEditorNewFileModal } from "../CodeEditorNewFileModal";
 import { CodeEditorSaveButton } from "../CodeEditorSaveButton";
 import { fetchDeleteFile } from "@/src/libs/externals/supabase/queries/files";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
@@ -51,9 +51,9 @@ export const CodeEditorSidebar = () => {
 
   return (
     <div className="w-[250px] h-fit border p-5 rounded-md bg-white">
-      <div className="flex flex-row gap-2 pb-2 border-b">
+      <div className="flex flex-row items-center gap-2 pb-2 border-b">
         <Typo type="h4" text="ファイル一覧" />
-        <CodeEditorFileDialog />
+        <CodeEditorNewFileModal />
       </div>
 
       <div className="mt-6 flex flex-col gap-2 max-h-[400px] overflow-auto">
