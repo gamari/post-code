@@ -1,9 +1,17 @@
-- Editor
+## Next
 
-- [?] dashboard への権限を考える。
 - [ ] SupabaseProvider の User 取得処理がおかしいので直す
 - [ ] いろんな言語に対応する
+- [ ] AceEditor で表示させる
+  - [ ] jsx, tsx に対応させる
 
+## Dashboard
+
+- [ ] ページネーションを作る
+
+## Hold
+
+- [?] dashboard への権限を考える。
 
 ## Done
 

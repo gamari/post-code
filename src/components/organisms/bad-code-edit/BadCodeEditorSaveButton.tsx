@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-import { useSaveCodeEditor } from "@/src/hooks/bad-codes-detail/useSaveCodeEditor";
+import { useSaveCodeEditor } from "@/src/hooks/bad-codes-edit/useSaveCodeEditor";
 import { useAlert } from "@/src/hooks/useAlert";
 import { SaveButton } from "../../molecules/buttons/save-button";
 

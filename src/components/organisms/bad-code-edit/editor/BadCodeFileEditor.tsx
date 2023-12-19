@@ -7,6 +7,9 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/mode-typescript";
+// import "ace-builds/src-noconflict/mode-jsx";
+// import "ace-builds/src-noconflict/mode-tsx";
 
 import { Input } from "@/src/components/atoms/forms/input";
 import { cn } from "@/src/libs/utils";
