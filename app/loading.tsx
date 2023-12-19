@@ -1,4 +1,4 @@
-import { Loader } from "@/src/components/base/client/Loader";
+import { Loader } from "@/src/components/molecules/displays/Loader";
 import React from "react";
 
 const Loading = () => {

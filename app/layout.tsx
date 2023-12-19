@@ -1,6 +1,6 @@
 import "./globals.css";
 
-import Header from "@/src/components/base/header";
+import Header from "@/src/components/organisms/shared/header";
 import { GeistSans } from "geist/font/sans";
 import { SupabaseProvider } from "@/src/contexts/SupabaseProvider";
 import { Toaster } from "@/src/components/ui/toaster";

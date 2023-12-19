@@ -1,8 +1,8 @@
 import React from "react";
 
 import { actionGetMySelf } from "@/src/actions/users";
-import { AccountForm } from "@/src/components/auth/client/AccountForm";
-import { LogoutButton } from "@/src/components/auth/logout-button";
+import { AccountForm } from "@/src/components/organisms/auth/AccountForm";
+import { LogoutButton } from "@/src/components/organisms/auth/logout-button";
 
 const Page = async () => {
   const user = await actionGetMySelf();
