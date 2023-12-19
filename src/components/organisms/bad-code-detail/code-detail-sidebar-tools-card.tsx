@@ -7,7 +7,7 @@ import { FavoriteCodeDetailButton } from "./favorite-code-detail-button";
 import { actionGetAuthUser } from "@/src/actions/users";
 import { BadCode } from "@/src/types";
 import { CodeDetailShareButton } from "../shared/bad-codes/CodeDetailShareButton";
-import { Typo } from "../../atoms/typo";
+import { Typo } from "../../atoms/texts/typo";
 
 interface Props {
   badCode: BadCode;

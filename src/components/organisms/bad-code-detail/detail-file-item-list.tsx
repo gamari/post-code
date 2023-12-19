@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { Typo } from "@/src/components/atoms/typo";
+import { Typo } from "@/src/components/atoms/texts/typo";
 import { useCodeDetailContext } from "@/src/contexts/CodeDetailProvider";
 import { File } from "@/src/types";
 import { MdOutlineInsertDriveFile } from "react-icons/md";

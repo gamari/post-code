@@ -4,7 +4,7 @@ import React from "react";
 
 import { Card, CardContent, CardHeader } from "@/src/components/ui/card";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
-import { Typo } from "@/src/components/atoms/typo";
+import { Typo } from "@/src/components/atoms/texts/typo";
 import { Input } from "@/src/components/ui/input";
 import { AuthUser, User } from "@/src/types";
 import { Button } from "@/src/components/ui/button";

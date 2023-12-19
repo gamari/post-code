@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { Typo } from "@/src/components/atoms/typo";
+import { Typo } from "@/src/components/atoms/texts/typo";
 import { Input } from "@/src/components/ui/input";
 import { Textarea } from "@/src/components/ui/textarea";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";

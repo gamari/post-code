@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "../../molecules/container";
-import { Typo } from "../../atoms/typo";
+import { Typo } from "../../atoms/texts/typo";
 import { MockBlock } from "../../molecules/displays/mock-block";
 
 export const TopAboutSection = () => {

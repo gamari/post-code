@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { Button } from "../../ui/button";
-import Link from "next/link";
+
 import { usePathname } from "next/navigation";
+import { LinkButton } from "../../molecules/buttons/link-button";
 
 interface Props {
   url: string;
@@ -11,11 +11,7 @@ interface Props {
 }
 
 export const SideLink = ({ label, url }: Props) => {
-    const pathname = usePathname();
+  const pathname = usePathname();
 
-  return (
-    <Button asChild variant={pathname == url ? "secondary" : "outline"} className="w-full">
-      <Link href={url}>{label}</Link>
-    </Button>
-  );
+  return <LinkButton isActive={pathname == url} url={url} label={label} />;
 };

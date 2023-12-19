@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Typo } from "../../atoms/typo";
+import { Typo } from "../../atoms/texts/typo";
 import { LatestCodePanelList } from "../shared/latest-code-panel-list";
 import { Container } from "../../molecules/container";
 

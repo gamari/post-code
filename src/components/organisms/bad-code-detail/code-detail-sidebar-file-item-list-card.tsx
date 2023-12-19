@@ -1,5 +1,5 @@
 import React from "react";
-import { Typo } from "../../atoms/typo";
+import { Typo } from "../../atoms/texts/typo";
 import { DetailFileItemList } from "./detail-file-item-list";
 import { actionGetFiles } from "@/src/actions/files";
 

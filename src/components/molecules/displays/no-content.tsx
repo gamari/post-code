@@ -2,7 +2,7 @@ import { cn } from "@/src/libs/utils";
 import React, { useEffect } from "react";
 
 interface Props {
-  text: string;
+  text?: string;
   className?: string;
 }
 
@@ -14,7 +14,7 @@ export const NoContent = ({ text, className }: Props) => {
         className
       )}
     >
-      {text}
+      {text ? text : "ありません"}
     </div>
   );
 };

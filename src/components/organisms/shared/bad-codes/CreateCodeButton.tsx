@@ -19,6 +19,7 @@ import {
 } from "@/src/components/ui/dialog";
 import { Input } from "@/src/components/ui/input";
 import { useToast } from "@/src/components/ui/use-toast";
+import { CreateButton } from "@/src/components/molecules/buttons/create-button";
 
 // TODO SSRで書く
 export const CreateCodeButton = () => {
@@ -56,20 +57,18 @@ export const CreateCodeButton = () => {
     <>
       <Dialog>
         <DialogTrigger>
-          <CiCirclePlus className="h-6 w-6 cursor-pointer hover:opacity-80" />
+          <CreateButton label="新規作成" />
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>タイトル</DialogTitle>
             <DialogDescription>
-              <div>
-                <Input
-                  type="text"
-                  placeholder="タイトルを入力してください"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
+              <Input
+                type="text"
+                placeholder="タイトルを入力してください"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </DialogDescription>
           </DialogHeader>
 

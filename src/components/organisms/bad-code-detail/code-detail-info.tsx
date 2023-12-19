@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 
-import { Typo } from "@/src/components/atoms/typo";
+import { Typo } from "@/src/components/atoms/texts/typo";
 import { actionGetBadCodeById } from "@/src/actions/bad-codes";
 
 interface Props {

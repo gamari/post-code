@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Typo } from "@/src/components/atoms/typo";
+import { Typo } from "@/src/components/atoms/texts/typo";
 import { CodeCommentList } from "../shared/comments/CodeCommentList";
 import { cn } from "@/src/libs/utils";
 

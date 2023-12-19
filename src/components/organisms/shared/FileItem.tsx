@@ -1,7 +1,7 @@
 import { cn } from "@/src/libs/utils";
 import React from "react";
 import { MdOutlineInsertDriveFile } from "react-icons/md";
-import { Typo } from "../../atoms/typo";
+import { Typo } from "../../atoms/texts/typo";
 import { File } from "@/src/types";
 
 interface Props {

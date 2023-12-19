@@ -15,9 +15,9 @@ const DashboardLayout: FunctionComponent<Props> = async ({ children }) => {
   }
 
   return (
-    <div className=" w-full flex flex-row bg-white">
+    <div className="max-w-7xl mx-auto flex flex-row pt-4 gap-6 w-full">
       <DashboardSidebar />
-      <div className="border-l flex-1">{children}</div>
+      <div className="flex-1">{children}</div>
     </div>
   );
 };

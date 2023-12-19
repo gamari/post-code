@@ -19,7 +19,7 @@ import { Button } from "@/src/components/ui/button";
 import { useBadCodeList } from "@/src/hooks/bad-codes/useBadCodeList";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchDeleteBadCode } from "@/src/libs/externals/supabase/queries/bad-codes";
-import { Typo } from "@/src/components/atoms/typo";
+import { Typo } from "@/src/components/atoms/texts/typo";
 import { cn } from "@/src/libs/utils";
 import { Badge } from "../../ui/badge";
 
