@@ -4,7 +4,7 @@ import React from "react";
 
 import Link from "next/link";
 
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/src/components/atoms/buttons/button";
 import {
   Dialog,
   DialogClose,

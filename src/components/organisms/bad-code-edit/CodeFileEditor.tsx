@@ -1,8 +1,8 @@
 import React from "react";
 
 import { File } from "@/src/types";
-import { Input } from "@/src/components/ui/input";
-import { Textarea } from "@/src/components/ui/textarea";
+import { Input } from "@/src/components/atoms/forms/input";
+import { Textarea } from "@/src/components/atoms/forms/textarea";
 import { cn } from "@/src/libs/utils";
 
 interface Props {

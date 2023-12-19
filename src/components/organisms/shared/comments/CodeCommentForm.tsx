@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/src/components/ui/button";
-import { Textarea } from "@/src/components/ui/textarea";
+import { Button } from "@/src/components/atoms/buttons/button";
+import { Textarea } from "@/src/components/atoms/forms/textarea";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchCreateComment } from "@/src/libs/externals/supabase/queries/comments";
 import React from "react";

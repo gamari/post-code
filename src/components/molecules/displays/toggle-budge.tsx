@@ -1,5 +1,5 @@
 import React from "react";
-import { Badge } from "../../ui/badge";
+import { Badge } from "../../atoms/badges/badge";
 
 interface Props {
   is_public: boolean;

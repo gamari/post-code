@@ -3,8 +3,8 @@
 import React from "react";
 
 import { Typo } from "@/src/components/atoms/texts/typo";
-import { Input } from "@/src/components/ui/input";
-import { Textarea } from "@/src/components/ui/textarea";
+import { Input } from "@/src/components/atoms/forms/input";
+import { Textarea } from "@/src/components/atoms/forms/textarea";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { cn } from "@/src/libs/utils";
 

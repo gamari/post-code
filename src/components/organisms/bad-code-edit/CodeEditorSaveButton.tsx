@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import { MdSave } from "react-icons/md";
 
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/src/components/atoms/buttons/button";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { useToast } from "@/src/components/ui/use-toast";

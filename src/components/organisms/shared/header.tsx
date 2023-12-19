@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/src/components/atoms/buttons/button";
 import { actionGetAuthUser } from "@/src/actions/users";
 import { Logo } from "../../molecules/logo";
 import { SearchBox } from "../search/SearchBox";

@@ -13,8 +13,8 @@ import {
   DialogDescription,
   DialogClose,
 } from "@/src/components/ui/dialog";
-import { Input } from "@/src/components/ui/input";
-import { Button } from "@/src/components/ui/button";
+import { Input } from "@/src/components/atoms/forms/input";
+import { Button } from "@/src/components/atoms/buttons/button";
 import { fetchAuthUser } from "@/src/libs/externals/supabase/queries/users";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";

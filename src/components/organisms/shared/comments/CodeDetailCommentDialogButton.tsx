@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/src/components/atoms/buttons/button";
 import {
   Dialog,
   DialogClose,

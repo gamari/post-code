@@ -12,7 +12,7 @@ import { fetchDeleteFile } from "@/src/libs/externals/supabase/queries/files";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { RadioGroup, RadioGroupItem } from "@/src/components/ui/radio-group";
 import { Label } from "@/src/components/ui/label";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/src/components/atoms/buttons/button";
 import Link from "next/link";
 
 export const CodeEditorSidebar = () => {
