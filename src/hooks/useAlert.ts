@@ -5,9 +5,18 @@ export const useAlert = () => {
 
     const errorAlert = (message: string, e: any) => {
         console.log(e);
-        toast({
-            title: message,
-        })
+        const errorMessage = e?.message;
+
+        if (errorMessage) {
+            toast({
+                title: message,
+                description: errorMessage,
+            })
+        } else {
+            toast({
+                title: message,
+            })
+        }
     }
 
     const infoAlert = (message: string) => {

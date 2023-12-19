@@ -10,6 +10,7 @@ interface Props {
   isActive?: boolean;
   Icon?: ReactNode;
   className?: string;
+  target?: "_blank";
 }
 
 export const LinkButton = ({
@@ -18,6 +19,7 @@ export const LinkButton = ({
   isActive,
   Icon,
   className,
+  target
 }: Props) => {
   return (
     <Button
@@ -25,7 +27,7 @@ export const LinkButton = ({
       variant={isActive ? "secondary" : "outline"}
       className={cn("w-full", className)}
     >
-      <Link href={url}>
+      <Link href={url} target={target}>
         {Icon && Icon}
         {label}
       </Link>

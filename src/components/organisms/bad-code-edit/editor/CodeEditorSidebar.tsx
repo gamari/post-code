@@ -82,7 +82,7 @@ export const CodeEditorSidebar = () => {
       <div className="mt-6 flex flex-col gap-2">
         <CodeEditorSaveButton />
 
-        <LinkButton url={`/codes/${badCode?.id}/detail`} label="詳細画面へ" />
+        <LinkButton url={`/codes/${badCode?.id}/detail`} label="詳細画面へ" target="_blank" />
       </div>
     </div>
   );

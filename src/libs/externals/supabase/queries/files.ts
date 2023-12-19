@@ -31,9 +31,7 @@ export const fetchCreateFile = async (file: File, client: SupabaseClient) => {
         .select("*")
         .maybeSingle();
 
-    console.log(data, error);
-
-    if (error) throw new Error("Fileの作成中にエラーが発生しました。");
+    if (error) throw new Error(error?.message || "Fileの作成中にエラーが発生しました。");
 
     return data;
 };
