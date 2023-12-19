@@ -3,8 +3,6 @@ import React from "react";
 import { SideLink } from "../base/client/SideLink";
 
 export const DashboardSidebar = () => {
-
-
   return (
     <div className="w-[300px]">
       <aside className="sticky top-[100px] h-screen/50 flex flex-col justify-between">

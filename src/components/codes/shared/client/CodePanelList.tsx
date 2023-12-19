@@ -21,8 +21,8 @@ export const CodePanelList = ({ codes, className }: Props) => {
       className={cn("w-full grid grid-cols-1 md:grid-cols-2 gap-6", className)}
     >
       {codes.map((code, index) => (
-        <SlideIn delay={index * 0.1} from="bottom">
-          <Link href={`/codes/${code.id}/detail`} key={code.id}>
+        <SlideIn delay={index * 0.1} from="bottom" key={code.id}>
+          <Link href={`/codes/${code.id}/detail`}>
             <CodePanel
               code={code}
               className="cursor-pointer hover:opacity-80"
