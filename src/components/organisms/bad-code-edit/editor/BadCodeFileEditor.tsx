@@ -10,7 +10,7 @@ import { Input } from "@/src/components/atoms/forms/input";
 import { cn } from "@/src/libs/utils";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
-import { getEditorMode } from "@/src/libs/editors";
+import { getFileType } from "@/src/libs/editors";
 
 interface Props {
   className?: string;
@@ -35,7 +35,7 @@ export const CodeFileEditor = ({ className }: Props) => {
         placeholder="ファイル名..."
       />
       <AceEditor
-        mode={getEditorMode(selectedFile.name)}
+        mode={getFileType(selectedFile.name)}
         theme="github"
         value={selectedFile?.content || ""}
         onChange={(newValue) => {

@@ -4,6 +4,8 @@ import { File } from "@/src/types";
 import { cn } from "@/src/libs/utils";
 import { CiFileOn } from "react-icons/ci";
 import { AiOutlineDelete } from "react-icons/ai";
+import { FileIcon } from "../../molecules/displays/file-icon";
+import { getFileType } from "@/src/libs/editors";
 
 interface Props {
   files: File[];
@@ -32,7 +34,7 @@ export const CodeFileList = ({
           )}
           onClick={() => onClickFile(file)}
         >
-          <CiFileOn className="h-5 w-5" />
+          <FileIcon fileType={getFileType(file.name)} />
           <div className="flex-1">{file.name}</div>
           {onDeleteFile && (
             <AiOutlineDelete

@@ -3,6 +3,8 @@ import React from "react";
 import { MdOutlineInsertDriveFile } from "react-icons/md";
 import { Typo } from "../../atoms/texts/typo";
 import { File } from "@/src/types";
+import { FileIcon } from "../../molecules/displays/file-icon";
+import { getFileType } from "@/src/libs/editors";
 
 interface Props {
   className?: string;
@@ -19,7 +21,7 @@ export const FileItem = ({ file, className, onClick }: Props) => {
       )}
       onClick={() => onClick && onClick(file)}
     >
-      <MdOutlineInsertDriveFile className="h-4 w-4" />
+      <FileIcon fileType={getFileType(file?.name)} />
       <Typo text={file.name} />
     </div>
   );
