@@ -3,8 +3,6 @@
 import React from "react";
 import Link from "next/link";
 
-import dayjs from "dayjs";
-
 import {
   Table,
   TableBody,
@@ -19,16 +17,23 @@ import { Button } from "@/src/components/ui/button";
 import { useBadCodeList } from "@/src/hooks/bad-codes/useBadCodeList";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchDeleteBadCode } from "@/src/libs/externals/supabase/queries/bad-codes";
-import { Typo } from "@/src/components/atoms/texts/typo";
 import { cn } from "@/src/libs/utils";
 import { Badge } from "../../ui/badge";
+import { DateString } from "../../atoms/texts/date-string";
+import { EditButton } from "../../molecules/buttons/edit-button";
+import { useRouter } from "next/navigation";
+import { ToggleBudge } from "../../molecules/displays/toggle-budge";
+import { LinkText } from "../../molecules/displays/link-text";
+import { DeleteButton } from "../../molecules/buttons/delete-button";
 
-interface Props {
+interface CodeTableProps {
   codes: BadCode[];
   className?: string;
 }
 
-export const CodeTable = ({ codes: initCodes, className }: Props) => {
+export const CodeTable = ({ codes: initCodes, className }: CodeTableProps) => {
+  const router = useRouter();
+
   const { codes, removeBadCode } = useBadCodeList(initCodes);
   const { client } = useSupabase();
 
@@ -48,46 +53,42 @@ export const CodeTable = ({ codes: initCodes, className }: Props) => {
           <TableHead></TableHead>
           <TableHead>タイトル</TableHead>
           <TableHead>更新日</TableHead>
-          <TableHead>操作</TableHead>
+          <TableHead></TableHead>
         </TableRow>
       </TableHeader>
+
       <TableBody className="bg-white">
         {codes?.map((code) => (
           <TableRow key={code.id}>
             <TableCell className="w-[100px]">
-              {code.is_public ? (
-                <Badge variant="default">公開</Badge>
-              ) : (
-                <Badge variant="outline">非公開</Badge>
-              )}
+              <ToggleBudge
+                is_public={code.is_public || false}
+                trueText="公開"
+                falseText="非公開"
+              />
             </TableCell>
             <TableCell>
-              <Link
-                href={`/codes/${code.id}/detail`}
+              <LinkText
+                url={`/codes/${code.id}/detail`}
                 className="w-full h-full "
-              >
-                <div className="h-full w-full p-6">{code.title}</div>
-              </Link>
-            </TableCell>
-            <TableCell className="w-[200px]">
-              <Typo
-                text={dayjs(code.updated_at).format("YYYY/MM/DD hh:mm")}
-                type="p"
+                label={code.title}
               />
             </TableCell>
             <TableCell className="w-[200px]">
+              <DateString value={code.updated_at} />
+            </TableCell>
+            <TableCell className="w-[200px]">
               <div className="flex flex-row items-center gap-2">
-                <Button asChild>
-                  <Link href={`/dashboard/codes/${code.id}/edit`}>編集</Link>
-                </Button>
-                <Button
-                  variant="destructive"
+                <EditButton
+                  onClick={() => {
+                    router.push(`/dashboard/codes/${code.id}/edit`);
+                  }}
+                />
+                <DeleteButton
                   onClick={() => {
                     handleDelete(code.id);
                   }}
-                >
-                  削除
-                </Button>
+                />
               </div>
             </TableCell>
           </TableRow>
