@@ -13,12 +13,17 @@ import { fetchUpdateBadCode } from "@/src/libs/externals/supabase/queries/bad-co
 import { fetchUpsertFiles } from "@/src/libs/externals/supabase/queries/files";
 import { BadCode } from "@/src/types";
 import { Loader } from "@/src/components/molecules/displays/Loader";
+import { useSaveCodeEditor } from "@/src/hooks/bad-codes-detail/useSaveCodeEditor";
+import { useAlert } from "@/src/hooks/useAlert";
+import { SaveButton } from "../../molecules/buttons/save-button";
 
 export const CodeEditorSaveButton = () => {
-  const router = useRouter();
   const { client, getAuthUser } = useSupabase();
-  const { toast } = useToast();
+  const { errorAlert, infoAlert } = useAlert();
+
   const { badCode, files, selectedFile, updateFile } = useCodeEditor();
+
+  const { saveEditor } = useSaveCodeEditor();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -35,9 +40,7 @@ export const CodeEditorSaveButton = () => {
       setIsLoading(true);
       if (selectedFile) {
         if (!selectedFile?.name) {
-          toast({
-            title: "ファイル名を入力して下さい",
-          });
+          infoAlert("ファイル名を入力して下さい");
           return;
         }
         updateFile(selectedFile);
@@ -52,35 +55,14 @@ export const CodeEditorSaveButton = () => {
       }
 
       await fetchUpsertFiles(newFiles, client);
-
-      const newBadCode: BadCode = {
-        id: badCode.id,
-        title: badCode.title,
-        description: badCode.description,
-        created_at: badCode.created_at,
-        updated_at: badCode.updated_at,
-        user_id: user.id,
-        is_public: badCode.is_public,
-        language: badCode.language,
-      };
-
-      await fetchUpdateBadCode(newBadCode, client);
-
-      // router.push(`/codes/${badCode?.id}/detail`);
-      toast({
-        title: "保存しました",
-      });
+      await saveEditor();
+      infoAlert("保存しました");
     } catch (error) {
-      console.error(error);
+      errorAlert("保存に失敗しました", error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  return (
-    <Button onClick={handleOnSave} className="w-full" disabled={isLoading}>
-      {isLoading ? <Loader /> : <MdSave className="h-4 w-4 mr-2" />}
-      保存
-    </Button>
-  );
+  return <SaveButton label="保存" onClick={handleOnSave} loading={isLoading} />;
 };

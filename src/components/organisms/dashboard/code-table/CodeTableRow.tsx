@@ -39,7 +39,7 @@ export const CodeTableRow = ({ code, onDelete }: Props) => {
         <DateString value={code.updated_at} />
       </TableCell>
       <TableCell className="w-fit">
-        <div className="flex flex-row items-center gap-2">
+        <div className="flex flex-row items-center gap-3">
           <EditButton
             onClick={() => {
               router.push(`/dashboard/codes/${code.id}/edit`);

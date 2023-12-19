@@ -1,9 +1,9 @@
 import React from "react";
 import { NextPage } from "next";
 
-import { CodeEditor } from "../../../../../../src/components/organisms/bad-code-edit/CodeEditor";
+import { CodeEditor } from "../../../../../../src/components/organisms/bad-code-edit/editor/CodeEditor";
 import { actionGetBadCodeById } from "@/src/actions/bad-codes";
-import { CodeEditorProvider } from "@/src/contexts/CodeEditorProvider";
+import { NoContent } from "@/src/components/molecules/displays/no-content";
 
 interface Props {
   params: {
@@ -15,17 +15,12 @@ const CodeEditPage: NextPage<Props> = async ({ params }) => {
   const { code_id } = params;
   const badCode = await actionGetBadCodeById(code_id);
 
-  if (!badCode) return <div>対象のコードがありません。</div>;
+  if (!code_id || !badCode)
+    return <NoContent text="コードが見つかりませんでした" />;
 
   return (
     <div className="p-10">
-      {badCode ? (
-        <CodeEditorProvider badCode={badCode}>
-          <CodeEditor />
-        </CodeEditorProvider>
-      ) : (
-        <div>コードが見つかりませんでした</div>
-      )}
+      <CodeEditor badCode={badCode} />
     </div>
   );
 };

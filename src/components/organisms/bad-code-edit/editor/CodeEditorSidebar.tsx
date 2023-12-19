@@ -1,23 +1,24 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 
 import { File } from "@/src/types";
-import { CodeFileList } from "./CodeEditorFileList";
+import { CodeFileList } from "../CodeEditorFileList";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
-import { useToast } from "@/src/components/ui/use-toast";
-import { CodeEditorFileDialog } from "./CodeEditorFileDialog";
-import { CodeEditorSaveButton } from "./CodeEditorSaveButton";
+import { CodeEditorFileDialog } from "../CodeEditorFileDialog";
+import { CodeEditorSaveButton } from "../CodeEditorSaveButton";
 import { fetchDeleteFile } from "@/src/libs/externals/supabase/queries/files";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { RadioGroup, RadioGroupItem } from "@/src/components/ui/radio-group";
 import { Label } from "@/src/components/ui/label";
 import { Button } from "@/src/components/atoms/buttons/button";
-import Link from "next/link";
+import { useAlert } from "@/src/hooks/useAlert";
 
 export const CodeEditorSidebar = () => {
   const { client } = useSupabase();
-  const { toast } = useToast();
+  const { infoAlert } = useAlert();
+
   const {
     badCode,
     files,
@@ -30,9 +31,7 @@ export const CodeEditorSidebar = () => {
 
   const handleClickFile = (file: File) => {
     if (selectedFile && !selectedFile?.name) {
-      toast({
-        title: "ファイル名を入力してください",
-      });
+      infoAlert("ファイル名を入力してください");
       return;
     }
 

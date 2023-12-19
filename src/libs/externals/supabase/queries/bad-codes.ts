@@ -1,15 +1,19 @@
-import { BadCode } from "@/src/types";
+import { BadCode, BadCodeDetail } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 
-export const fetchUpdateBadCode = async (newBadCodes: BadCode, client: SupabaseClient) => {
+export const fetchUpdateBadCode = async (newBadCodes: BadCodeDetail, client: SupabaseClient) => {
+    // TODO 一括でfilesを更新したい
     const { error } = await client
         .from("bad_codes")
-        .upsert(newBadCodes)
+        .upsert({
+            ...newBadCodes,
+            files: undefined,
+            users: undefined,
+            user: undefined
+        })
         .eq("id", newBadCodes.id);
 
     if (error) throw new Error("BadCodeの更新中にエラーが発生しました。");
-
-    return;
 }
 
 export const fetchLatestBadCodes = async (client: SupabaseClient) => {

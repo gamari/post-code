@@ -5,7 +5,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { File, BadCodeDetail, BadCode } from "@/src/types";
 
 interface ContextProps {
-  badCode?: BadCode;
+  badCode?: BadCodeDetail;
   setTitle: (title: string) => void;
   setDescription: (description: string) => void;
   selectedFile: File | undefined;
@@ -39,7 +39,9 @@ export const CodeEditorProvider = ({
   badCode: initBadCode,
   children,
 }: ProviderProps) => {
-  const [badCode, setBadCode] = useState<BadCode | undefined>(initBadCode);
+  const [badCode, setBadCode] = useState<BadCodeDetail | undefined>(
+    initBadCode
+  );
   const [files, setFiles] = useState<File[]>(initBadCode?.files || []);
   const [selectedFile, setSelectedFile] = useState<File | undefined>(undefined);
 
@@ -51,7 +53,7 @@ export const CodeEditorProvider = ({
     }
 
     init();
-  }, [])
+  }, []);
 
   function setTitle(title: string) {
     if (!badCode) return;

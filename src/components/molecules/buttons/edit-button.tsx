@@ -11,7 +11,7 @@ export const EditButton = ({ onClick }: Props) => {
       className=" p-2 rounded-full border text-gray-600 cursor-pointer hover:bg-gray-100"
       onClick={onClick}
     >
-      <MdModeEdit className="h-5 w-5" />
+      <MdModeEdit className="h-4 w-4" />
     </div>
   );
 };
