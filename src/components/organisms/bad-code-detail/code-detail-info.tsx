@@ -10,6 +10,8 @@ interface Props {
 export const CodeDetailInfo: FunctionComponent<Props> = async ({ id }) => {
   const badCode = await actionGetBadCodeById(id);
 
+  if (!badCode) throw new Error("コードが見つかりません");
+
   return (
     <div>
       <div className="p-4 flex flex-col gap-2 bg-white rounded-md">

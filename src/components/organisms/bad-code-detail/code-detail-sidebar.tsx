@@ -4,6 +4,7 @@ import { actionGetBadCodeById } from "@/src/actions/bad-codes";
 import { CodeDetailSidebarFileItemListCard } from "./code-detail-sidebar-file-item-list-card";
 import { UserDetailCard } from "../accounts/user-detail-card";
 import { CodeDetailSidebarToolsCard } from "./code-detail-sidebar-tools-card";
+import { NoContent } from "../../molecules/displays/no-content";
 
 interface Props {
   codeId: number;
@@ -13,7 +14,7 @@ export const CodeDetailSidebar = async ({ codeId }: Props) => {
   const badCode = await actionGetBadCodeById(codeId);
 
   if (!badCode) {
-    throw new Error("BadCodeが取得できませんでした");
+    throw new Error("コードが見つかりません");
   }
 
   return (
