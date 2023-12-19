@@ -5,7 +5,6 @@ import React from "react";
 import { File } from "@/src/types";
 import { CodeFileList } from "../CodeEditorFileList";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
-import { CodeEditorNewFileModal } from "../CodeEditorNewFileModal";
 import { CodeEditorSaveButton } from "../CodeEditorSaveButton";
 import { fetchDeleteFile } from "@/src/libs/externals/supabase/queries/files";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
@@ -13,6 +12,7 @@ import { useAlert } from "@/src/hooks/useAlert";
 import { LinkButton } from "@/src/components/molecules/buttons/link-button";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { SelectRadioButtonList } from "@/src/components/molecules/forms/select-radio-button-list";
+import { CodeEditorNewFileModalButton } from "../CodeEditorNewFileModalButton";
 
 export const CodeEditorSidebar = () => {
   const { client } = useSupabase();
@@ -53,7 +53,7 @@ export const CodeEditorSidebar = () => {
     <div className="w-[250px] h-fit border p-5 rounded-md bg-white">
       <div className="flex flex-row items-center gap-2 pb-2 border-b">
         <Typo type="h4" text="ファイル一覧" />
-        <CodeEditorNewFileModal />
+        <CodeEditorNewFileModalButton />
       </div>
 
       <div className="mt-6 flex flex-col gap-2 max-h-[400px] overflow-auto">
@@ -82,7 +82,11 @@ export const CodeEditorSidebar = () => {
       <div className="mt-6 flex flex-col gap-2">
         <CodeEditorSaveButton />
 
-        <LinkButton url={`/codes/${badCode?.id}/detail`} label="詳細画面へ" target="_blank" />
+        <LinkButton
+          url={`/codes/${badCode?.id}/detail`}
+          label="詳細画面へ"
+          target="_blank"
+        />
       </div>
     </div>
   );

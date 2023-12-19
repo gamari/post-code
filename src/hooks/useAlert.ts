@@ -3,7 +3,7 @@ import { useToast } from "../components/ui/use-toast"
 export const useAlert = () => {
     const { toast } = useToast();
 
-    const errorAlert = (message: string, e: any) => {
+    const errorAlert = (message: string, e?: any) => {
         console.log(e);
         const errorMessage = e?.message;
 
@@ -11,10 +11,12 @@ export const useAlert = () => {
             toast({
                 title: message,
                 description: errorMessage,
+                className: "text-red-500"
             })
         } else {
             toast({
                 title: message,
+                className: "text-red-500"
             })
         }
     }
@@ -22,6 +24,7 @@ export const useAlert = () => {
     const infoAlert = (message: string) => {
         toast({
             title: message,
+            className: "text-sky-600"
         })
     }
 

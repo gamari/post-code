@@ -3,11 +3,12 @@
 import { AuthUser } from "@/src/types";
 import { createBrowserClient } from "@supabase/ssr";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 interface SupabaseProviderContextProps {
   client: SupabaseClient | null;
   getAuthUser: () => Promise<AuthUser | null>;
+  authUser: AuthUser | null;
 }
 
 interface SupabaseProviderProps {
@@ -17,6 +18,7 @@ interface SupabaseProviderProps {
 const SupabaseProviderContext = createContext<SupabaseProviderContextProps>({
   client: null,
   getAuthUser: async () => null,
+  authUser: null,
 });
 
 export const SupabaseProvider = ({
@@ -29,6 +31,14 @@ export const SupabaseProvider = ({
     )
   );
   const [authUser, setAuthUser] = useState<AuthUser | null>(null);
+
+  useEffect(() => {
+    async function init() {
+      console.log("SupabaseProvider: useEffect");
+      getAuthUser();
+    }
+    init();
+  }, []);
 
   async function getAuthUser() {
     if (authUser) return authUser;
@@ -47,6 +57,7 @@ export const SupabaseProvider = ({
       value={{
         client: supabase,
         getAuthUser,
+        authUser,
       }}
     >
       {children}

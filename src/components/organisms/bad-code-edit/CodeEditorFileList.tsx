@@ -4,6 +4,7 @@ import { File } from "@/src/types";
 import { cn } from "@/src/libs/utils";
 import { CiFileOn } from "react-icons/ci";
 import { AiOutlineDelete } from "react-icons/ai";
+
 interface Props {
   files: File[];
   selectedFile: File | undefined;
