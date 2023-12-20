@@ -5,7 +5,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { File, CodeDetail, Code } from "@/src/types";
 
 interface ContextProps {
-  badCode?: CodeDetail;
+  code?: CodeDetail;
   setTitle: (title: string) => void;
   setDescription: (description: string) => void;
   selectedFile: File | undefined;
@@ -18,7 +18,7 @@ interface ContextProps {
 }
 
 const CodeEditorContext = createContext<ContextProps>({
-  badCode: undefined,
+  code: undefined,
   setTitle: () => {},
   setDescription: () => {},
   files: [],
@@ -31,17 +31,15 @@ const CodeEditorContext = createContext<ContextProps>({
 });
 
 interface ProviderProps {
-  badCode: CodeDetail;
+  code: CodeDetail;
   children: React.ReactNode;
 }
 
 export const CodeEditorProvider = ({
-  badCode: initBadCode,
+  code: initBadCode,
   children,
 }: ProviderProps) => {
-  const [badCode, setBadCode] = useState<CodeDetail | undefined>(
-    initBadCode
-  );
+  const [code, setBadCode] = useState<CodeDetail | undefined>(initBadCode);
   const [files, setFiles] = useState<File[]>(initBadCode?.files || []);
   const [selectedFile, setSelectedFile] = useState<File | undefined>(undefined);
 
@@ -56,18 +54,18 @@ export const CodeEditorProvider = ({
   }, []);
 
   function setTitle(title: string) {
-    if (!badCode) return;
-    setBadCode({ ...badCode, title });
+    if (!code) return;
+    setBadCode({ ...code, title });
   }
 
   function setIsPublic(isPublic: boolean) {
-    if (!badCode) return;
-    setBadCode({ ...badCode, is_public: isPublic });
+    if (!code) return;
+    setBadCode({ ...code, is_public: isPublic });
   }
 
   function setDescription(description: string) {
-    if (!badCode) return;
-    setBadCode({ ...badCode, description });
+    if (!code) return;
+    setBadCode({ ...code, description });
   }
 
   function addFile(file: File) {
@@ -92,7 +90,7 @@ export const CodeEditorProvider = ({
   return (
     <CodeEditorContext.Provider
       value={{
-        badCode,
+        code,
         setTitle,
         setDescription,
         setIsPublic,

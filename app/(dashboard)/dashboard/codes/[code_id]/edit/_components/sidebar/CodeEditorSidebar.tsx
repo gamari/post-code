@@ -3,20 +3,20 @@
 import React from "react";
 
 import { File } from "@/src/types";
-import { BadCodeEditorFileList } from "../files/BadCodeEditorFileList";
+import { CodeEditorFileList } from "../files/CodeEditorFileList";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
-import { CodeEditorSaveButton } from "../BadCodeEditorSaveButton";
+import { CodeEditorSaveButton } from "../CodeEditorSaveButton";
 import { useAlert } from "@/src/hooks/useAlert";
 import { LinkButton } from "@/src/components/molecules/buttons/link-button";
-import { Typo } from "@/src/components/atoms/texts/typo";
 import { SelectRadioButtonList } from "@/src/components/molecules/forms/select-radio-button-list";
-import { BadCodeEditorNewFileModalButton } from "../BadCodeEditorNewFileModalButton";
+import { CodeEditorNewFileModalButton } from "../CodeEditorNewFileModalButton";
 import { useDeleteCodeFile } from "@/src/hooks/codes/useDeleteCodeEditorFile";
 import { useSelectCodeFile } from "@/src/hooks/codes/useSelectCodeEditorFile";
+import { Heading } from "@/src/components/atoms/texts/heading";
 
 export const CodeEditorSidebar = () => {
   const { errorAlert } = useAlert();
-  const { badCode, files, selectedFile, setIsPublic } = useCodeEditor();
+  const { code, files, selectedFile, setIsPublic } = useCodeEditor();
   const { deleteFile } = useDeleteCodeFile();
   const { selectFile } = useSelectCodeFile();
 
@@ -36,12 +36,12 @@ export const CodeEditorSidebar = () => {
   return (
     <div className="w-[250px] h-fit border p-5 rounded-md bg-white">
       <div className="flex flex-row items-center gap-2 pb-2 border-b">
-        <Typo type="h4" text="ファイル一覧" />
-        <BadCodeEditorNewFileModalButton />
+        <Heading type="h4">ファイル一覧</Heading>
+        <CodeEditorNewFileModalButton />
       </div>
 
       <div className="mt-6 flex flex-col gap-2 max-h-[400px] overflow-auto">
-        <BadCodeEditorFileList
+        <CodeEditorFileList
           files={files}
           selectedFile={selectedFile}
           onClickFile={handleClickFile}
@@ -51,7 +51,7 @@ export const CodeEditorSidebar = () => {
 
       <div className="my-6">
         <SelectRadioButtonList
-          defaultValue={badCode?.is_public ? "public" : "private"}
+          defaultValue={code?.is_public ? "public" : "private"}
           items={[
             { label: "非公開", value: "private" },
             { label: "公開", value: "public" },
@@ -67,7 +67,7 @@ export const CodeEditorSidebar = () => {
         <CodeEditorSaveButton />
 
         <LinkButton
-          url={`/codes/${badCode?.id}/detail`}
+          url={`/codes/${code?.id}/detail`}
           label="詳細画面へ"
           target="_blank"
         />

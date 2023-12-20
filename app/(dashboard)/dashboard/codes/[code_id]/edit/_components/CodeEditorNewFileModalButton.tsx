@@ -4,9 +4,9 @@ import React from "react";
 
 import { useModal } from "@/src/hooks/useModal";
 import { PlusIcon } from "../../../../../../../src/components/atoms/icons/PlusIcon";
-import { NewFileModal } from "./BadCodeEditorNewFileModal";
+import { CodeEditorNewFileModal } from "./CodeEditorNewFileModal";
 
-export const BadCodeEditorNewFileModalButton = () => {
+export const CodeEditorNewFileModalButton = () => {
   const { isOpen, toggleModal } = useModal();
 
   return (
@@ -15,7 +15,7 @@ export const BadCodeEditorNewFileModalButton = () => {
         <PlusIcon className="h-5 w-5" onClick={toggleModal} />
       </div>
 
-      <NewFileModal isOpen={isOpen} onClose={toggleModal} />
+      <CodeEditorNewFileModal isOpen={isOpen} onClose={toggleModal} />
     </>
   );
 };

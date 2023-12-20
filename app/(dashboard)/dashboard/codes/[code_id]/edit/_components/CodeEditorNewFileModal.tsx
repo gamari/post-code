@@ -14,9 +14,9 @@ interface Props {
   onClose: () => void;
 }
 
-export const NewFileModal = ({ isOpen, onClose }: Props) => {
+export const CodeEditorNewFileModal = ({ isOpen, onClose }: Props) => {
   const { errorAlert } = useAlert();
-  const { badCode, addFile, setSelectedFile, files } = useCodeEditor();
+  const { code, addFile, setSelectedFile, files } = useCodeEditor();
   const { name, setName, saveFile } = useFormCodeFile();
 
   const handleAddFile = async () => {
@@ -26,7 +26,7 @@ export const NewFileModal = ({ isOpen, onClose }: Props) => {
     }
 
     try {
-      const retFile = await saveFile(badCode?.id);
+      const retFile = await saveFile(code?.id);
       addFile(retFile);
       setSelectedFile(retFile);
       setName("");

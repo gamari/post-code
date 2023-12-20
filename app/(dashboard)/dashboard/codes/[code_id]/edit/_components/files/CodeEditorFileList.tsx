@@ -13,7 +13,7 @@ interface Props {
   onDeleteFile?: (file: File) => void;
 }
 
-export const BadCodeEditorFileList = ({
+export const CodeEditorFileList = ({
   files,
   selectedFile,
   onClickFile,

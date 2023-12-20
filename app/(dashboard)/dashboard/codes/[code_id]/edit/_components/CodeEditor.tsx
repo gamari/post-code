@@ -2,23 +2,23 @@
 
 import React, { FunctionComponent } from "react";
 
-import { CodeEditorSidebar } from "./sidebar/BadCodeEditorSidebar";
-import { CodeFileEditor } from "./files/BadCodeFileEditor";
+import { CodeEditorSidebar } from "./sidebar/CodeEditorSidebar";
+import { CodeFileEditor } from "./files/CodeFileEditor";
 import { CodeEditorProvider } from "@/src/contexts/CodeEditorProvider";
-import { BadCodeDetailInfoEditor } from "./BadCodeDetailInfoEditor";
+import { CodeDetailInfoEditor } from "./CodeDetailInfoEditor";
 import { CodeDetail } from "@/src/types";
 
 interface Props {
-  badCode: CodeDetail;
+  code: CodeDetail;
 }
 
-export const BadCodeEditor: FunctionComponent<Props> = ({ badCode }: Props) => {
+export const CodeEditor: FunctionComponent<Props> = ({ code }: Props) => {
   return (
-    <CodeEditorProvider badCode={badCode}>
+    <CodeEditorProvider code={code}>
       <div className="sticky top-10 flex flex-row gap-4">
         <div className="w-[600px]">
           <CodeFileEditor className="h-[400px]" />
-          <BadCodeDetailInfoEditor className="border-t-2 mt-10 pt-4" />
+          <CodeDetailInfoEditor className="border-t-2 mt-10 pt-4" />
         </div>
 
         <CodeEditorSidebar />

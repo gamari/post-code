@@ -8,7 +8,7 @@ export const useSaveCodeEditor = () => {
     const router = useRouter();
     const { client, getAuthUser } = useSupabase();
 
-    const { badCode, selectedFile, updateFile, files } = useCodeEditor();
+    const { code: badCode, selectedFile, updateFile, files } = useCodeEditor();
 
     async function saveEditor() {
         if (!client) throw new Error("通信に失敗しました。");
