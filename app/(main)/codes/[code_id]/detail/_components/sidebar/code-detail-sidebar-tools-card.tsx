@@ -1,14 +1,14 @@
 import React from "react";
 
-import { CodeDetailCommentDialogButton } from "../../../../../src/components/organisms/shared/comments/CodeDetailCommentDialogButton";
-import { FavoriteCodeDetailButton } from "./favorite-code-detail-button";
 import { actionGetAuthUser } from "@/src/actions/users";
 import { BadCode } from "@/src/types";
-import { CodeDetailShareButton } from "../../../../../src/components/organisms/shared/bad-codes/CodeDetailShareButton";
-import { LinkButton } from "../../../../../src/components/molecules/buttons/link-button";
+import { CodeDetailShareButton } from "../../../../../../../src/components/organisms/shared/bad-codes/CodeDetailShareButton";
+import { LinkButton } from "../../../../../../../src/components/molecules/buttons/link-button";
 import { CODES_EDIT_URL } from "@/src/libs/constants";
-import { DateString } from "../../../../../src/components/atoms/texts/date-string";
+import { DateString } from "../../../../../../../src/components/atoms/texts/date-string";
 import { EditIcon } from "lucide-react";
+import { actionCheckFavoriteCode } from "@/src/actions/favorites";
+import { FavoriteBadCodeButton } from "@/src/components/organisms/bad-codes/FavoriteBadCodeButton";
 
 interface Props {
   badCode: BadCode;
@@ -16,14 +16,17 @@ interface Props {
 
 export const CodeDetailSidebarToolsCard = async ({ badCode }: Props) => {
   const authUser = await actionGetAuthUser();
+  const isFavorite = await actionCheckFavoriteCode(badCode?.id);
 
   return (
     <div className="border rounded-md bg-white w-[240px] p-5">
       <div className="flex flex-col gap-2">
         {authUser && (
           <>
-            <FavoriteCodeDetailButton codeId={badCode.id} />
-            <CodeDetailCommentDialogButton code={badCode} />
+            <FavoriteBadCodeButton
+              codeId={badCode.id}
+              isFavorite={isFavorite}
+            />
           </>
         )}
         {badCode?.user_id === authUser?.id && (

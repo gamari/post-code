@@ -1,9 +1,10 @@
 import React from "react";
 
 import { actionGetBadCodeById } from "@/src/actions/bad-codes";
-import { CodeDetailSidebarFileItemListCard } from "./code-detail-sidebar-file-item-list-card";
-import { UserDetailCard } from "./user-detail-card";
+import { FileItemListCard } from "../../../../../../../src/components/organisms/files/file-item-list-card";
+import { UserInfoCard } from "../../../../../../../src/components/organisms/users/user-info-card";
 import { CodeDetailSidebarToolsCard } from "./code-detail-sidebar-tools-card";
+import { actionGetFiles } from "@/src/actions/files";
 
 interface Props {
   codeId: number;
@@ -11,6 +12,7 @@ interface Props {
 
 export const CodeDetailSidebar = async ({ codeId }: Props) => {
   const badCode = await actionGetBadCodeById(codeId);
+  const files = await actionGetFiles(codeId);
 
   if (!badCode) {
     throw new Error("コードが見つかりません");
@@ -18,8 +20,8 @@ export const CodeDetailSidebar = async ({ codeId }: Props) => {
 
   return (
     <div className="sticky top-10 h-fit flex flex-col gap-6">
-      <UserDetailCard user={badCode.user} />
-      <CodeDetailSidebarFileItemListCard codeId={codeId} />
+      <UserInfoCard user={badCode.user} />
+      <FileItemListCard files={files} />
       <CodeDetailSidebarToolsCard badCode={badCode} />
     </div>
   );

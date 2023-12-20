@@ -1,23 +1,22 @@
 "use client";
 
+import React, { useState } from "react";
+
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import {
   fetchCreateFavoriteCode,
   fetchDeleteFavoriteCode,
 } from "@/src/libs/externals/supabase/queries/favorites";
-import React, { useState } from "react";
 import { MdOutlineStar, MdOutlineStarBorder } from "react-icons/md";
 import { Button } from "../../atoms/buttons/button";
 
 interface Props {
   codeId: number;
   isFavorite: boolean;
-  onClick?: () => void;
 }
 
 export const FavoriteBadCodeButton = ({
   isFavorite: initIsFavorite,
-  onClick,
   codeId,
 }: Props) => {
   const { client } = useSupabase();

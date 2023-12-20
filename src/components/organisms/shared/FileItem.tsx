@@ -1,6 +1,6 @@
-import { cn } from "@/src/libs/utils";
 import React from "react";
-import { MdOutlineInsertDriveFile } from "react-icons/md";
+
+import { cn } from "@/src/libs/utils";
 import { Typo } from "../../atoms/texts/typo";
 import { File } from "@/src/types";
 import { FileIcon } from "../../molecules/displays/file-icon";
