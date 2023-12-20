@@ -35,11 +35,7 @@ export const AccountForm = ({ user: initUser, className = "" }: Props) => {
   return (
     <Card className={cn("px-2 py-6", className)}>
       <CardHeader>
-        <Typo text="アカウント情報" type="h3" className="border-b pb-2" />
-      </CardHeader>
-
-      <CardContent>
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-10 mb-6">
           <LabelInput
             label="ユーザー名"
             value={user?.username || ""}
@@ -56,7 +52,7 @@ export const AccountForm = ({ user: initUser, className = "" }: Props) => {
         <Button onClick={handleUpdate} className="mt-3">
           更新する
         </Button>
-      </CardContent>
+      </CardHeader>
     </Card>
   );
 };

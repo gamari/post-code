@@ -1,6 +1,7 @@
 import React from "react";
 import { Textarea } from "../../atoms/forms/textarea";
 import { Typo } from "../../atoms/texts/typo";
+import { Heading } from "../../atoms/texts/heading";
 
 interface Props {
   label: string;
@@ -12,7 +13,7 @@ interface Props {
 export const LabelTextarea = ({ label, value, setValue, rows = 4 }: Props) => {
   return (
     <div>
-      <Typo type="h4" text={label} />
+      <Heading type="h4">{label}</Heading>
       <Textarea
         value={value}
         onChange={(e) => setValue(e.target.value)}
