@@ -4,6 +4,7 @@ import { File } from "@/src/types";
 import { FileItem } from "./FileItem";
 import { cn } from "@/src/libs/utils";
 import { SlideIn } from "../../molecules/animation/SlideIn";
+import { sortAscByName, sortDescByName } from "@/src/libs/sortes";
 
 interface Props {
   files: File[];
@@ -18,28 +19,24 @@ export const FileItemList = ({
   onClick,
   selectedFile,
 }: Props) => {
+  const sortedFiles = files.sort(sortAscByName);
+
   return (
     <div className="flex flex-col gap-1">
-      {files
-        .sort((a, b) => {
-          if (a.name < b.name) return -1;
-          if (a.name > b.name) return 1;
-          return 0;
-        })
-        .map((file, index) => (
-          <SlideIn delay={index * 0.1} from="right" key={file.name}>
-            <FileItem
-              key={file.id}
-              className={cn(
-                "",
-                selectedFile?.id === file.id ? "bg-slate-200" : "",
-                className
-              )}
-              file={file}
-              onClick={onClick}
-            />
-          </SlideIn>
-        ))}
+      {sortedFiles.map((file, index) => (
+        <SlideIn delay={index * 0.1} from="right" key={file.name}>
+          <FileItem
+            key={file.id}
+            className={cn(
+              "",
+              selectedFile?.id === file.id ? "bg-slate-200" : "",
+              className
+            )}
+            file={file}
+            onClick={onClick}
+          />
+        </SlideIn>
+      ))}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import { actionGetCommentsByCodeId } from "@/src/actions/comments";
 import { CodeCommentListProvider } from "@/src/contexts/CodeCommentListProvider";
