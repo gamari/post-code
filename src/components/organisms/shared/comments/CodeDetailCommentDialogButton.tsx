@@ -6,7 +6,7 @@ import { Button } from "@/src/components/atoms/buttons/button";
 import { FaRegComment } from "react-icons/fa6";
 import { BadCode } from "@/src/types";
 import { useModal } from "@/src/hooks/useModal";
-import { CodeDetailCommentModal } from "../../bad-code-detail/comments/code-detail-comment-modal";
+import { CodeDetailCommentModal } from "../../comments/code-detail-comment-modal";
 
 interface Props {
   code: BadCode;

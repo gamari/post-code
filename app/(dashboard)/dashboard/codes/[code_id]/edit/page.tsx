@@ -1,7 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 
-import { CodeEditor } from "../../../../../../src/components/organisms/bad-code-edit/editor/BadCodeEditor";
+import { BadCodeEditor } from "./BadCodeEditor";
 import { actionGetBadCodeById } from "@/src/actions/bad-codes";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 
@@ -20,7 +20,7 @@ const CodeEditPage: NextPage<Props> = async ({ params }) => {
 
   return (
     <div className="p-10">
-      <CodeEditor badCode={badCode} />
+      <BadCodeEditor badCode={badCode} />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Typo } from "../../atoms/texts/typo";
+import { Typo } from "../../../src/components/atoms/texts/typo";
 
 export const DashboardFavoriteCodeListTab = () => {
   return (

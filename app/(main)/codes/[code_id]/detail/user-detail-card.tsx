@@ -1,5 +1,5 @@
 import React from "react";
-import { UserIcon } from "./user-icon";
+import { UserIcon } from "../../../../../src/components/atoms/icons/user-icon";
 import { User } from "@/src/types";
 
 interface Props {

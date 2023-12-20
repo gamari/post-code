@@ -1,5 +1,6 @@
-import { Loader } from "@/src/components/molecules/displays/Loader";
 import React from "react";
+
+import { Loader } from "@/src/components/molecules/displays/Loader";
 
 const Loading = () => {
   return (

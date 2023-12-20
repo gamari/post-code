@@ -2,11 +2,11 @@ import { actionGetCommentsByCodeId } from "@/src/actions/comments";
 import { CodeCommentListProvider } from "@/src/contexts/CodeCommentListProvider";
 import { CodeDetailProvider } from "@/src/contexts/CodeDetailProvider";
 import React, { Suspense } from "react";
-import { CodeDetailFileViewer } from "../shared/bad-codes/CodeDetailFileViewer";
+import { CodeDetailFileViewer } from "../../../../../src/components/organisms/shared/bad-codes/CodeDetailFileViewer";
 import { CodeDetailCommentList } from "./code-detail-comment-list";
 import { CodeDetailInfo } from "./code-detail-info";
 import { CodeDetailSidebar } from "./code-detail-sidebar";
-import { Skeleton } from "../../molecules/displays/skeleton";
+import { Skeleton } from "../../../../../src/components/molecules/displays/skeleton";
 
 interface CodeDetailProps {
   codeId: number;

@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { unstable_noStore as noStore } from "next/cache";
 
 import { NextPage } from "next";
-import { CodeDetail } from "@/src/components/organisms/bad-code-detail/code-detail";
+import { CodeDetail } from "@/app/(main)/codes/[code_id]/detail/code-detail";
 
 interface Props {
   params: {

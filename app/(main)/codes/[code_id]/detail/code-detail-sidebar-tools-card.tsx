@@ -1,13 +1,13 @@
 import React from "react";
 
-import { CodeDetailCommentDialogButton } from "../shared/comments/CodeDetailCommentDialogButton";
+import { CodeDetailCommentDialogButton } from "../../../../../src/components/organisms/shared/comments/CodeDetailCommentDialogButton";
 import { FavoriteCodeDetailButton } from "./favorite-code-detail-button";
 import { actionGetAuthUser } from "@/src/actions/users";
 import { BadCode } from "@/src/types";
-import { CodeDetailShareButton } from "../shared/bad-codes/CodeDetailShareButton";
-import { LinkButton } from "../../molecules/buttons/link-button";
+import { CodeDetailShareButton } from "../../../../../src/components/organisms/shared/bad-codes/CodeDetailShareButton";
+import { LinkButton } from "../../../../../src/components/molecules/buttons/link-button";
 import { CODES_EDIT_URL } from "@/src/libs/constants";
-import { DateString } from "../../atoms/texts/date-string";
+import { DateString } from "../../../../../src/components/atoms/texts/date-string";
 import { EditIcon } from "lucide-react";
 
 interface Props {

@@ -3,8 +3,8 @@
 import React from "react";
 
 import { useModal } from "@/src/hooks/useModal";
-import { PlusIcon } from "../../atoms/icons/PlusIcon";
-import { NewFileModal } from "./NewFileModal";
+import { PlusIcon } from "../../../../../../src/components/atoms/icons/PlusIcon";
+import { NewFileModal } from "../../../../../../src/components/organisms/files/NewFileModal";
 
 export const CodeEditorNewFileModalButton = () => {
   const { isOpen, toggleModal } = useModal();

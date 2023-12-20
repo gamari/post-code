@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Typo } from "../../atoms/texts/typo";
-import { LatestCodePanelList } from "../shared/latest-code-panel-list";
-import { Container } from "../../molecules/container";
+import { Typo } from "../../src/components/atoms/texts/typo";
+import { LatestCodePanelList } from "../../src/components/organisms/shared/latest-code-panel-list";
+import { Container } from "../../src/components/molecules/container";
 
 export const TopLatestCodesSection = () => {
   return (

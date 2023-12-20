@@ -8,8 +8,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/src/components/ui/tabs";
-import { DashboardCodeListTab } from "@/src/components/organisms/dashboard/dashboard-code-list-tab";
-import { DashboardFavoriteCodeListTab } from "@/src/components/organisms/dashboard/dashboard-favorite-code-list-tab";
+import { DashboardCodeListTab } from "@/app/(dashboard)/dashboard/dashboard-code-list-tab";
+import { DashboardFavoriteCodeListTab } from "@/app/(dashboard)/dashboard/dashboard-favorite-code-list-tab";
 
 const Page = async () => {
   noStore();

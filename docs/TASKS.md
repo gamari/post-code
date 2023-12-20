@@ -1,5 +1,6 @@
 ## Next
 
+- [ ] atomicデザインにする
 - [ ] SupabaseProvider の User 取得処理がおかしいので直す
 - [ ] いろんな言語に対応する
 - [ ] AceEditor で表示させる

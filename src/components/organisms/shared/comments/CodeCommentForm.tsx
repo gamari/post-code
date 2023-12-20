@@ -7,7 +7,7 @@ import { fetchCreateComment } from "@/src/libs/externals/supabase/queries/commen
 import React from "react";
 import { useCodeCommentList } from "../../../../contexts/CodeCommentListProvider";
 import { useAlert } from "@/src/hooks/useAlert";
-import { useFormComment } from "@/src/hooks/bad-codes-detail/useFormComment";
+import { useFormComment } from "@/src/hooks/comments/useFormComment";
 
 interface Props {
   codeId: number;

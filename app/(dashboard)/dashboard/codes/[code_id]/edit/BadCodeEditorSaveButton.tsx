@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 
-import { useSaveCodeEditor } from "@/src/hooks/bad-codes-edit/useSaveCodeEditor";
+import { useSaveCodeEditor } from "@/src/hooks/bad-codes/useSaveCodeEditor";
 import { useAlert } from "@/src/hooks/useAlert";
-import { SaveButton } from "../../molecules/buttons/save-button";
+import { SaveButton } from "../../../../../../src/components/molecules/buttons/save-button";
 
 export const CodeEditorSaveButton = () => {
   const { errorAlert, infoAlert } = useAlert();

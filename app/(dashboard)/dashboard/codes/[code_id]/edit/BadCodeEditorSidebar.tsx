@@ -3,16 +3,16 @@
 import React from "react";
 
 import { File } from "@/src/types";
-import { CodeFileList } from "../BadCodeEditorFileList";
+import { CodeFileList } from "./BadCodeEditorFileList";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
-import { CodeEditorSaveButton } from "../BadCodeEditorSaveButton";
+import { CodeEditorSaveButton } from "./BadCodeEditorSaveButton";
 import { useAlert } from "@/src/hooks/useAlert";
 import { LinkButton } from "@/src/components/molecules/buttons/link-button";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { SelectRadioButtonList } from "@/src/components/molecules/forms/select-radio-button-list";
-import { CodeEditorNewFileModalButton } from "../BadCodeEditorNewFileModalButton";
-import { useDeleteCodeFile } from "@/src/hooks/bad-codes-edit/useDeleteCodeEditorFile";
-import { useSelectCodeFile } from "@/src/hooks/bad-codes-edit/useSelectCodeEditorFile";
+import { CodeEditorNewFileModalButton } from "./BadCodeEditorNewFileModalButton";
+import { useDeleteCodeFile } from "@/src/hooks/bad-codes/useDeleteCodeEditorFile";
+import { useSelectCodeFile } from "@/src/hooks/bad-codes/useSelectCodeEditorFile";
 
 export const CodeEditorSidebar = () => {
   const { errorAlert } = useAlert();

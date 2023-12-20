@@ -5,14 +5,14 @@ import React, { FunctionComponent } from "react";
 import { CodeEditorSidebar } from "./BadCodeEditorSidebar";
 import { CodeFileEditor } from "./BadCodeFileEditor";
 import { CodeEditorProvider } from "@/src/contexts/CodeEditorProvider";
-import { CodeDetailInfoEditor } from "../../bad-code-detail/CodeDetailInfoEditor";
+import { CodeDetailInfoEditor } from "./CodeDetailInfoEditor";
 import { BadCodeDetail } from "@/src/types";
 
 interface Props {
   badCode: BadCodeDetail;
 }
 
-export const CodeEditor: FunctionComponent<Props> = ({ badCode }: Props) => {
+export const BadCodeEditor: FunctionComponent<Props> = ({ badCode }: Props) => {
   return (
     <CodeEditorProvider badCode={badCode}>
       <div className="sticky top-10 flex flex-row gap-4">
