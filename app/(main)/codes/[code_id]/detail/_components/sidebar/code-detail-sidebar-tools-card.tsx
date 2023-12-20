@@ -1,18 +1,18 @@
 import React from "react";
 
 import { actionGetAuthUser } from "@/src/actions/users";
-import { BadCode } from "@/src/types";
+import { Code } from "@/src/types";
 import { CodeDetailShareButton } from "../CodeDetailShareButton";
 import { LinkButton } from "../../../../../../../src/components/molecules/buttons/link-button";
-import { CODES_EDIT_URL } from "@/src/libs/constants";
+import { CODES_EDIT_URL } from "@/src/libs/constants/urls";
 import { DateString } from "../../../../../../../src/components/atoms/texts/date-string";
 import { EditIcon } from "lucide-react";
 import { actionCheckFavoriteCode } from "@/src/actions/favorites";
-import { FavoriteBadCodeButton } from "@/src/components/organisms/bad-codes/FavoriteBadCodeButton";
+import { FavoriteCodeButton } from "@/src/components/organisms/codes/FavoriteCodeButton";
 import { CodeDetailCommentModalButton } from "../CodeDetailCommentModalButton";
 
 interface Props {
-  badCode: BadCode;
+  badCode: Code;
 }
 
 export const CodeDetailSidebarToolsCard = async ({ badCode }: Props) => {
@@ -24,10 +24,7 @@ export const CodeDetailSidebarToolsCard = async ({ badCode }: Props) => {
       <div className="flex flex-col gap-2">
         {authUser && (
           <>
-            <FavoriteBadCodeButton
-              codeId={badCode.id}
-              isFavorite={isFavorite}
-            />
+            <FavoriteCodeButton codeId={badCode.id} isFavorite={isFavorite} />
           </>
         )}
         {badCode?.user_id === authUser?.id && (

@@ -1,9 +1,9 @@
 import React from "react";
 
-import { CreateCodeButton } from "../../../../src/components/organisms/bad-codes/CreateCodeButton";
+import { CreateCodeButton } from "../../../../src/components/organisms/codes/CreateCodeButton";
 import { Title } from "../../../../src/components/atoms/texts/title";
-import { CodeTable } from "../../../../src/components/organisms/bad-codes/tables/CodeTable";
-import { actionGetMySelfBadCodeList } from "@/src/actions/bad-codes";
+import { CodeTable } from "../../../../src/components/organisms/codes/tables/CodeTable";
+import { actionGetMySelfBadCodeList } from "@/src/actions/codes";
 import { NoContent } from "../../../../src/components/molecules/displays/no-content";
 
 export const DashboardCodeListTab = async () => {

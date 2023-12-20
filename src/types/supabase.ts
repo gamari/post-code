@@ -9,7 +9,7 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      bad_codes: {
+      codes: {
         Row: {
           created_at: string | null
           description: string | null
@@ -42,14 +42,14 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "bad_codes_language_fkey"
+            foreignKeyName: "codes_language_fkey"
             columns: ["language"]
             isOneToOne: false
             referencedRelation: "languages"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "bad_codes_user_id_fkey"
+            foreignKeyName: "codes_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "users"
@@ -87,7 +87,7 @@ export interface Database {
             foreignKeyName: "comments_bad_code_id_fkey"
             columns: ["bad_code_id"]
             isOneToOne: false
-            referencedRelation: "bad_codes"
+            referencedRelation: "codes"
             referencedColumns: ["id"]
           },
           {
@@ -123,7 +123,7 @@ export interface Database {
             foreignKeyName: "favorites_bad_code_id_fkey"
             columns: ["bad_code_id"]
             isOneToOne: false
-            referencedRelation: "bad_codes"
+            referencedRelation: "codes"
             referencedColumns: ["id"]
           },
           {
@@ -168,7 +168,7 @@ export interface Database {
             foreignKeyName: "files_bad_code_id_fkey"
             columns: ["bad_code_id"]
             isOneToOne: false
-            referencedRelation: "bad_codes"
+            referencedRelation: "codes"
             referencedColumns: ["id"]
           },
           {

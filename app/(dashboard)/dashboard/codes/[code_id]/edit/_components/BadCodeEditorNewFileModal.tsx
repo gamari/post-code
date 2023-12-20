@@ -6,7 +6,7 @@ import { Input } from "@/src/components/atoms/forms/input";
 import { Button } from "@/src/components/atoms/buttons/button";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { Modal } from "../../../../../../../src/components/molecules/displays/Modal";
-import { useFormCodeFile } from "@/src/hooks/bad-codes/useFormCodeEditorFile";
+import { useFormCodeFile } from "@/src/hooks/codes/useFormCodeEditorFile";
 import { useAlert } from "@/src/hooks/useAlert";
 
 interface Props {

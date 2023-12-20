@@ -2,7 +2,7 @@ import React from "react";
 import { NextPage } from "next";
 
 import { BadCodeEditor } from "./_components/BadCodeEditor";
-import { actionGetBadCodeById } from "@/src/actions/bad-codes";
+import { actionGetBadCodeById } from "@/src/actions/codes";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 
 interface Props {

@@ -5,8 +5,8 @@ import Link from "next/link";
 
 import { Table, TableBody } from "@/src/components/ui/table";
 
-import { BadCode } from "@/src/types";
-import { useBadCodeList } from "@/src/hooks/bad-codes/useBadCodeList";
+import { Code } from "@/src/types";
+import { useBadCodeList } from "@/src/hooks/codes/useCodeList";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchDeleteBadCode } from "@/src/libs/externals/supabase/queries/bad-codes";
 import { cn } from "@/src/libs/utils";
@@ -14,7 +14,7 @@ import { CodeTableHeader } from "./CodeTableHeader";
 import { CodeTableRow } from "./CodeTableRow";
 
 interface CodeTableProps {
-  codes: BadCode[];
+  codes: Code[];
   className?: string;
 }
 

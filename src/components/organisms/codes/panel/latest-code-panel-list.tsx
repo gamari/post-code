@@ -2,7 +2,7 @@ import React from "react";
 
 import { cn } from "@/src/libs/utils";
 import { CodePanelList } from "./code-panel-list";
-import { actionGetLatestBadCodeList } from "@/src/actions/bad-codes";
+import { actionGetLatestBadCodeList } from "@/src/actions/codes";
 
 interface Props {
   className?: string;

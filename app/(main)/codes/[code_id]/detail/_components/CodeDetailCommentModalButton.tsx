@@ -4,12 +4,12 @@ import React from "react";
 
 import { Button } from "@/src/components/atoms/buttons/button";
 import { FaRegComment } from "react-icons/fa6";
-import { BadCode } from "@/src/types";
+import { Code } from "@/src/types";
 import { useModal } from "@/src/hooks/useModal";
-import { CodeDetailCommentModal } from "../../../../../../src/components/organisms/comments/code-detail-comment-modal";
+import { CommentModal } from "../../../../../../src/components/organisms/comments/comment-modal";
 
 interface Props {
-  code: BadCode;
+  code: Code;
 }
 
 export const CodeDetailCommentModalButton = ({ code }: Props) => {
@@ -22,7 +22,7 @@ export const CodeDetailCommentModalButton = ({ code }: Props) => {
         コメントする
       </Button>
 
-      <CodeDetailCommentModal
+      <CommentModal
         code={code}
         isOpen={isOpen}
         toggleModal={toggleModal}

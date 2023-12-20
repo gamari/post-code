@@ -9,10 +9,10 @@ import { EditButton } from "@/src/components/molecules/buttons/edit-button";
 import { LinkText } from "@/src/components/molecules/displays/link-text";
 import { ToggleBudge } from "@/src/components/molecules/displays/toggle-budge";
 import { TableRow, TableCell } from "@/src/components/ui/table";
-import { BadCode } from "@/src/types";
+import { Code } from "@/src/types";
 
 interface Props {
-  code: BadCode;
+  code: Code;
   onDelete: (id: number) => void;
 }
 

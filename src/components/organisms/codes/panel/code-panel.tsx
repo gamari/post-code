@@ -1,12 +1,13 @@
 import React, { FunctionComponent } from "react";
+
 import { MockBlock } from "@/src/components/molecules/displays/mock-block";
-import { BadCodeDetail } from "@/src/types";
+import { CodeDetail } from "@/src/types";
 import { cn } from "@/src/libs/utils";
 
 import { HeartIcon, PersonIcon } from "@radix-ui/react-icons";
 
 interface Props {
-  code: BadCodeDetail;
+  code: CodeDetail;
   className?: string;
 }
 

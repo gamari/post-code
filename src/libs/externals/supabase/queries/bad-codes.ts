@@ -1,10 +1,11 @@
-import { BadCode, BadCodeDetail } from "@/src/types";
+import { CODE_TABLE } from "@/src/libs/constants/tables";
+import { Code, CodeDetail } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 
-export const fetchUpdateBadCode = async (newBadCodes: BadCodeDetail, client: SupabaseClient) => {
+export const fetchUpdateCode = async (newBadCodes: CodeDetail, client: SupabaseClient) => {
     // TODO 一括でfilesを更新したい
     const { error } = await client
-        .from("bad_codes")
+        .from(CODE_TABLE)
         .upsert({
             ...newBadCodes,
             files: undefined,
@@ -16,10 +17,10 @@ export const fetchUpdateBadCode = async (newBadCodes: BadCodeDetail, client: Sup
     if (error) throw new Error("BadCodeの更新中にエラーが発生しました。");
 }
 
-export const fetchLatestBadCodes = async (client: SupabaseClient) => {
+export const fetchLatestCodes = async (client: SupabaseClient) => {
     // TODO usersが気持ち悪いので直したい
     const { data: codes, error } = await client
-        .from("bad_codes")
+        .from(CODE_TABLE)
         .select(`
             *,
             users: user_id (*)
@@ -38,13 +39,13 @@ export const fetchLatestBadCodes = async (client: SupabaseClient) => {
     });
 };
 
-export const fetchCreateBadCode = async (newBadCodes: BadCode, client: SupabaseClient) => {
+export const fetchCreateCode = async (newBadCodes: Code, client: SupabaseClient) => {
     const {
         data: { user },
     } = await client.auth.getUser();
 
     const { data, error } = await client
-        .from("bad_codes")
+        .from(CODE_TABLE)
         .insert({
             ...newBadCodes,
             user_id: user?.id,
@@ -57,10 +58,10 @@ export const fetchCreateBadCode = async (newBadCodes: BadCode, client: SupabaseC
     return data;
 };
 
-export const fetchBadCodeById = async (id: number, client: SupabaseClient) => {
+export const fetchCodeById = async (id: number, client: SupabaseClient) => {
     console.log(id);
     const { data: code, error } = await client
-        .from("bad_codes")
+        .from(CODE_TABLE)
         .select(`
           *, 
           users (*),
@@ -77,9 +78,9 @@ export const fetchBadCodeById = async (id: number, client: SupabaseClient) => {
     };
 };
 
-export const fetchBadCodesByUserId = async (userId: string, client: SupabaseClient) => {
+export const fetchCodesByUserId = async (userId: string, client: SupabaseClient) => {
     const { data: codes, error } = await client
-        .from("bad_codes")
+        .from(CODE_TABLE)
         .select("*")
         .eq("user_id", userId)
         .order("updated_at", { ascending: false });
@@ -89,13 +90,13 @@ export const fetchBadCodesByUserId = async (userId: string, client: SupabaseClie
     return codes;
 }
 
-export const fetchBadCodesBySelf = async (client: SupabaseClient) => {
+export const fetchCodesBySelf = async (client: SupabaseClient) => {
     const {
         data: { user },
     } = await client.auth.getUser();
 
     const { data: codes, error } = await client
-        .from("bad_codes")
+        .from(CODE_TABLE)
         .select("*")
         .eq("user_id", user?.id);
 
@@ -105,9 +106,9 @@ export const fetchBadCodesBySelf = async (client: SupabaseClient) => {
     return codes;
 };
 
-export const fetchBadCodeWithFilesById = async (id: number, client: SupabaseClient) => {
+export const fetchCodeWithFilesById = async (id: number, client: SupabaseClient) => {
     const { data: codeWithFiles, error } = await client
-        .from("bad_codes")
+        .from(CODE_TABLE)
         .select("*")
         .eq("id", id)
         .select(
@@ -126,7 +127,7 @@ export const fetchBadCodeWithFilesById = async (id: number, client: SupabaseClie
 
 export const fetchDeleteBadCode = async (id: number, client: SupabaseClient) => {
     const { error } = await client
-        .from("bad_codes")
+        .from(CODE_TABLE)
         .delete()
         .eq("id", id);
 

@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 
 import { Typo } from "@/src/components/atoms/texts/typo";
-import { actionGetBadCodeById } from "@/src/actions/bad-codes";
+import { actionGetBadCodeById } from "@/src/actions/codes";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { Description } from "@/src/components/atoms/texts/description";
 

@@ -11,8 +11,8 @@ import { LinkButton } from "@/src/components/molecules/buttons/link-button";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { SelectRadioButtonList } from "@/src/components/molecules/forms/select-radio-button-list";
 import { BadCodeEditorNewFileModalButton } from "../BadCodeEditorNewFileModalButton";
-import { useDeleteCodeFile } from "@/src/hooks/bad-codes/useDeleteCodeEditorFile";
-import { useSelectCodeFile } from "@/src/hooks/bad-codes/useSelectCodeEditorFile";
+import { useDeleteCodeFile } from "@/src/hooks/codes/useDeleteCodeEditorFile";
+import { useSelectCodeFile } from "@/src/hooks/codes/useSelectCodeEditorFile";
 
 export const CodeEditorSidebar = () => {
   const { errorAlert } = useAlert();

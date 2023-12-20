@@ -2,10 +2,10 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { File, BadCodeDetail, BadCode } from "@/src/types";
+import { File, CodeDetail, Code } from "@/src/types";
 
 interface ContextProps {
-  badCode?: BadCodeDetail;
+  badCode?: CodeDetail;
   setTitle: (title: string) => void;
   setDescription: (description: string) => void;
   selectedFile: File | undefined;
@@ -31,7 +31,7 @@ const CodeEditorContext = createContext<ContextProps>({
 });
 
 interface ProviderProps {
-  badCode: BadCodeDetail;
+  badCode: CodeDetail;
   children: React.ReactNode;
 }
 
@@ -39,7 +39,7 @@ export const CodeEditorProvider = ({
   badCode: initBadCode,
   children,
 }: ProviderProps) => {
-  const [badCode, setBadCode] = useState<BadCodeDetail | undefined>(
+  const [badCode, setBadCode] = useState<CodeDetail | undefined>(
     initBadCode
   );
   const [files, setFiles] = useState<File[]>(initBadCode?.files || []);

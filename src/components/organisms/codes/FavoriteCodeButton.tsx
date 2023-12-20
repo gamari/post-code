@@ -15,7 +15,7 @@ interface Props {
   isFavorite: boolean;
 }
 
-export const FavoriteBadCodeButton = ({
+export const FavoriteCodeButton = ({
   isFavorite: initIsFavorite,
   codeId,
 }: Props) => {

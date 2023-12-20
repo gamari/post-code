@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { unstable_noStore as noStore } from "next/cache";
 
-import { actionGetBadCodeById } from "@/src/actions/bad-codes";
+import { actionGetBadCodeById } from "@/src/actions/codes";
 import { UserInfoCard } from "../../../../../../../src/components/organisms/users/user-info-card";
 import { CodeDetailSidebarToolsCard } from "./code-detail-sidebar-tools-card";
 import { actionGetFiles } from "@/src/actions/files";

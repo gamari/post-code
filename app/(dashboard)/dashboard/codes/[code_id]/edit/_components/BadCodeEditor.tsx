@@ -6,10 +6,10 @@ import { CodeEditorSidebar } from "./sidebar/BadCodeEditorSidebar";
 import { CodeFileEditor } from "./files/BadCodeFileEditor";
 import { CodeEditorProvider } from "@/src/contexts/CodeEditorProvider";
 import { BadCodeDetailInfoEditor } from "./BadCodeDetailInfoEditor";
-import { BadCodeDetail } from "@/src/types";
+import { CodeDetail } from "@/src/types";
 
 interface Props {
-  badCode: BadCodeDetail;
+  badCode: CodeDetail;
 }
 
 export const BadCodeEditor: FunctionComponent<Props> = ({ badCode }: Props) => {

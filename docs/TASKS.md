@@ -1,5 +1,7 @@
 ## Next
 
+- [ ] bad_codes -> codesに変更する
+
 - [ ] SupabaseProvider の User 取得処理がおかしいので直す
 - [ ] いろんな言語に対応する
 - [ ] AceEditor で表示させる

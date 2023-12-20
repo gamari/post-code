@@ -15,12 +15,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/src/components/ui/dialog";
-import { BadCode } from "@/src/types";
+import { Code } from "@/src/types";
 import { FaRegShareFromSquare, FaXTwitter } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
 
 interface Props {
-  code: BadCode;
+  code: Code;
 }
 
 export const CodeDetailShareButton = ({ code }: Props) => {

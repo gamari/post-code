@@ -1,6 +1,6 @@
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider"
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
-import { fetchUpdateBadCode } from "@/src/libs/externals/supabase/queries/bad-codes";
+import { fetchUpdateCode } from "@/src/libs/externals/supabase/queries/bad-codes";
 import { fetchUpsertFiles } from "@/src/libs/externals/supabase/queries/files";
 import { useRouter } from "next/navigation";
 
@@ -34,7 +34,7 @@ export const useSaveCodeEditor = () => {
         }
 
         await fetchUpsertFiles(newFiles, client);
-        await fetchUpdateBadCode(badCode, client);
+        await fetchUpdateCode(badCode, client);
         router.refresh();
     }
 

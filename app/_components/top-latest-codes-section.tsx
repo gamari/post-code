@@ -1,6 +1,6 @@
 import React from "react";
 
-import { LatestCodePanelList } from "../../src/components/organisms/bad-codes/code-panel/latest-code-panel-list";
+import { LatestCodePanelList } from "../../src/components/organisms/codes/panel/latest-code-panel-list";
 import { Container } from "../../src/components/molecules/container";
 import { Heading } from "@/src/components/atoms/texts/heading";
 
