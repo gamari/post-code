@@ -11,7 +11,7 @@ export const CommentPanelList = ({ comments }: Props) => {
   return (
     <div>
       {comments.map((comment) => (
-        <CommentPanel comment={comment} key={`comment-${comment.id}`} />
+        <CommentPanel comment={comment} key={`comment-${comment.id}`} className="border-b" />
       ))}
     </div>
   );
