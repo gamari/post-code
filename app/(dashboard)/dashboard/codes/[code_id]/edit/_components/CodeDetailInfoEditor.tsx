@@ -17,7 +17,7 @@ export const CodeDetailInfoEditor = ({ className }: Props) => {
 
   return (
     <div className={cn("", className)}>
-      <Heading type="h4">詳細情報</Heading>
+      <Heading type="h4" className="mb-3">コード詳細</Heading>
 
       <div>
         <Input
@@ -25,6 +25,7 @@ export const CodeDetailInfoEditor = ({ className }: Props) => {
           placeholder="タイトル"
           value={code?.title || ""}
           onChange={(e) => setTitle(e.target.value)}
+          className="w-[66%]"
         />
       </div>
 

@@ -16,7 +16,7 @@ export const UserInfoCard = ({ user }: Props) => {
         </div>
       </div>
 
-      <div className="mt-2 border-t py-2">{user.description}</div>
+      {user?.description && <div className="mt-2 py-2 border-t">{user.description}</div>}
     </div>
   );
 };

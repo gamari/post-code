@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useMemo } from "react";
 
-import Prism from "prismjs";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { okaidia as style } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { CiFileOn } from "react-icons/ci";
 
 import { File } from "@/src/types";
 import { cn } from "@/src/libs/utils";
+import { getFileType } from "@/src/libs/editors";
 
 interface Props {
   file: File;
@@ -14,10 +16,6 @@ interface Props {
 }
 
 export const FileViewer = ({ file, className }: Props) => {
-  useEffect(() => {
-    Prism.highlightAll();
-  }, [file]);
-
   return (
     <div
       className={cn(
@@ -25,14 +23,19 @@ export const FileViewer = ({ file, className }: Props) => {
         className
       )}
     >
-      <div className=" absolute -top-3 left-1 border border-gray-400 shadow-md z-20 text-sm p-1 px-2 bg-white border-b flex flex-row items-center">
+      <div className="absolute -top-3 left-1 border shadow-md z-20 text-sm p-1 px-2 bg-white border-b flex flex-row items-center">
         <CiFileOn className="cursor-pointer hover:opacity-70" />
         <span>{file?.name}</span>
       </div>
-      <pre className="line-numbers p-4 bg-gray-800 text-white overflow-x-auto  flex-1">
-        {/* TODO languageを入れる */}
-        <code className={`language-js`}>{file.content}</code>
-      </pre>
+
+      <SyntaxHighlighter
+        language={getFileType(file?.name)}
+        style={style}
+        className="p-4 flex-1 "
+        showLineNumbers
+      >
+        {file.content || ""}
+      </SyntaxHighlighter>
     </div>
   );
 };

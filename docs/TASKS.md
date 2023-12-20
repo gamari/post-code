@@ -1,8 +1,5 @@
 ## Next
 
-- [ ] bad_codes -> codesに変更する
-
-- [ ] SupabaseProvider の User 取得処理がおかしいので直す
 - [ ] いろんな言語に対応する
 - [ ] AceEditor で表示させる
   - [ ] jsx, tsx に対応させる
@@ -12,7 +9,7 @@
   - 良いね数なども
 - [ ] good, badの例を書く
 - [ ] ダッシュボード＞コメント一覧機能を作成する
-
+- [ ] 
 
 
 ## Dashboard
@@ -34,3 +31,5 @@
 - [x] 言語指定
 - [x] ファイル数を 10 個以内にする
 - [x] atomicデザインにする
+- [x] bad_codes -> codesに変更する
+- [x] SupabaseProvider の User 取得処理がおかしいので直す

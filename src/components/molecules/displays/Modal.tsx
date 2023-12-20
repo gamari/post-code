@@ -11,7 +11,7 @@ export const Modal = ({ children, isOpen, onClose }: Props) => {
   if (!isOpen) return null;
 
   const handleBackgroundClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) onClose?.();
+    onClose?.();
   };
 
   return (
@@ -20,7 +20,10 @@ export const Modal = ({ children, isOpen, onClose }: Props) => {
       onClick={handleBackgroundClick}
     >
       <div className="relative bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
-        <IoMdClose className="absolute top-2 right-2 w-6 h-6 hover:opacity-60 cursor-pointer" onClick={handleBackgroundClick} />
+        <IoMdClose
+          className="absolute top-2 right-2 w-7 h-7 hover:opacity-40 cursor-pointer"
+          onClick={handleBackgroundClick}
+        />
         {children}
       </div>
     </div>

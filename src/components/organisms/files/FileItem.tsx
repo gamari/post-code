@@ -18,7 +18,7 @@ export const FileItem = ({ file, className, onClick }: Props) => {
   return (
     <div
       className={cn(
-        "flex flex-row items-center gap-2 rounded-md hover:bg-gray-100 px-2 py-1 cursor-pointer select-none text-sm",
+        "flex flex-row items-center gap-2 rounded-md hover:bg-gray-100 p-2 cursor-pointer select-none text-sm",
         className
       )}
       onClick={() => onClick && onClick(file)}

@@ -2,14 +2,10 @@ import React from "react";
 
 import AceEditor from "react-ace";
 
-// import "ace-builds/src-noconflict/theme-github";
-// import 'ace-builds/src-noconflict/theme-ambiance';
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/mode-typescript";
-// import "ace-builds/src-noconflict/mode-jsx";
-// import "ace-builds/src-noconflict/mode-tsx";
 
 import { Input } from "@/src/components/atoms/forms/input";
 import { cn } from "@/src/libs/utils";
@@ -38,7 +34,6 @@ export const CodeFileEditor = ({ className }: Props) => {
           setSelectedFile({ ...selectedFile, name: e.target.value });
         }}
         placeholder="ファイル名..."
-        className="w-[85%]"
       />
       <AceEditor
         mode={getFileType(selectedFile.name)}
@@ -50,7 +45,8 @@ export const CodeFileEditor = ({ className }: Props) => {
         }}
         name="codeEditor"
         editorProps={{ $blockScrolling: true }}
-        className="flex-1 w-full"
+        height="100%"
+        width="100%"
       />
     </div>
   );

@@ -23,7 +23,7 @@ export const CodeEditorFileList = ({
     return <div className="p-2 text-gray-600">ファイルがありません</div>;
 
   return (
-    <div>
+    <div className="flex flex-col gap-1">
       {files?.map((file) => (
         <div
           key={file.id}
