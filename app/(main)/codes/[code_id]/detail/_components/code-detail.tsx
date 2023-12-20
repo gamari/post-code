@@ -1,8 +1,9 @@
+import React, { Suspense } from "react";
+
 import { actionGetCommentsByCodeId } from "@/src/actions/comments";
 import { CodeCommentListProvider } from "@/src/contexts/CodeCommentListProvider";
 import { CodeDetailProvider } from "@/src/contexts/CodeDetailProvider";
-import React, { Suspense } from "react";
-import { CodeDetailFileViewer } from "../../../../../../src/components/organisms/shared/bad-codes/CodeDetailFileViewer";
+import { CodeDetailFileViewer } from "./CodeDetailFileViewer";
 import { CodeDetailCommentList } from "./code-detail-comment-list";
 import { CodeDetailInfo } from "./code-detail-info";
 import { CodeDetailSidebar } from "./sidebar/code-detail-sidebar";

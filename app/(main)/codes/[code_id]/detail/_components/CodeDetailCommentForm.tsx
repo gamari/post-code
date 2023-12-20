@@ -5,7 +5,7 @@ import { Textarea } from "@/src/components/atoms/forms/textarea";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchCreateComment } from "@/src/libs/externals/supabase/queries/comments";
 import React from "react";
-import { useCodeCommentList } from "../../../../contexts/CodeCommentListProvider";
+import { useCodeCommentList } from "../../../../../../src/contexts/CodeCommentListProvider";
 import { useAlert } from "@/src/hooks/useAlert";
 import { useFormComment } from "@/src/hooks/comments/useFormComment";
 
@@ -27,7 +27,7 @@ export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
 
     try {
       const retComment = await saveComment(codeId);
-      addComments([retComment]);
+      addComments?.([retComment]);
       setComment("");
       infoAlert("コメントを投稿しました");
       onSubmit();

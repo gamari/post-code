@@ -2,7 +2,7 @@ import { Button } from "@/src/components/atoms/buttons/button";
 import { Modal } from "@/src/components/molecules/displays/Modal";
 import { BadCode } from "@/src/types";
 import React from "react";
-import { CodeCommentForm } from "../shared/comments/CodeCommentForm";
+import { CodeCommentForm } from "../../../../app/(main)/codes/[code_id]/detail/_components/CodeDetailCommentForm";
 
 interface Props {
   code: BadCode;

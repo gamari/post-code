@@ -5,6 +5,7 @@ import { FileItemListCard } from "../../../../../../../src/components/organisms/
 import { UserInfoCard } from "../../../../../../../src/components/organisms/users/user-info-card";
 import { CodeDetailSidebarToolsCard } from "./code-detail-sidebar-tools-card";
 import { actionGetFiles } from "@/src/actions/files";
+import { CodeDetailCommentModalButton } from "../CodeDetailCommentModalButton";
 
 interface Props {
   codeId: number;

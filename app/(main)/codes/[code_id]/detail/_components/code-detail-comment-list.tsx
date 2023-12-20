@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Typo } from "@/src/components/atoms/texts/typo";
-import { CodeCommentList } from "../../../../../../src/components/organisms/shared/comments/CodeCommentList";
+import { CodeCommentList } from "./CodeDetailCommentList";
 import { cn } from "@/src/libs/utils";
 
 interface Props {
