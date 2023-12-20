@@ -9,7 +9,7 @@ export default async function Header() {
   const authUser = await actionGetAuthUser();
 
   return (
-    <nav className="sticky top-0 w-full flex justify-center border-b border-b-foreground/10 h-16  bg-white">
+    <nav className="sticky top-0 w-full flex justify-center border-b border-b-foreground/10 h-16 bg-white z-30">
       <div className="w-full max-w-6xl flex justify-between items-center p-3 text-sm px-10">
         <div>
           <Logo />

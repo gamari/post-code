@@ -22,7 +22,7 @@ export const CodeDetailSidebar = async ({ codeId }: Props) => {
   }
 
   return (
-    <div className="sticky top-10 h-fit flex flex-col gap-6">
+    <div className="sticky top-20 h-fit flex flex-col gap-6">
       <UserInfoCard user={badCode.user} />
       <Suspense>
         <CodeDetailFileListCard files={files} />

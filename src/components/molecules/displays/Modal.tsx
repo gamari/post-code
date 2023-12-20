@@ -16,7 +16,7 @@ export const Modal = ({ children, isOpen, onClose }: Props) => {
 
   return (
     <div
-      className="fixed inset-0 z-[1000] bg-gray-600 bg-opacity-50 flex justify-center items-center"
+      className="fixed inset-0 z-[500] bg-gray-100 bg-opacity-50 flex justify-center items-center"
       onClick={handleBackgroundClick}
     >
       <div className="relative bg-white rounded-lg shadow-xl p-6 w-full max-w-md">

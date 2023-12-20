@@ -6,6 +6,7 @@ import { Typo } from "../../atoms/texts/typo";
 import { HDotIcon } from "../../atoms/icons/HDotIcon";
 import { Avatar } from "../../molecules/avatar";
 import { Username } from "../../atoms/texts/username";
+import { DateString } from "../../atoms/texts/date-string";
 
 interface Props {
   comment?: Comment;
@@ -23,7 +24,8 @@ export const CommentPanel = ({ comment, className = "" }: Props) => {
             <Username value="ユーザー名" />
           </div>
 
-          <div>
+          <div className="flex flex-row gap-2 items-center">
+            <DateString value={comment?.created_at} type="datetime" />
             <HDotIcon className="hover rounded-full hover:bg-gray-100 h-6 w-6 p-1 cursor-pointer" />
           </div>
         </div>

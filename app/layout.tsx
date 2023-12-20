@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="ja" className={GeistSans.className}>
       <body className="bg-background text-foreground w-screen overflow-x-hidden">
         <SupabaseProvider>
-          <main className="flex flex-col min-h-screen">
+          <main className="flex flex-col min-h-screen relative">
             <Header />
             <div className="flex-1 grid">{children}</div>
           </main>
