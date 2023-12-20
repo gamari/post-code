@@ -1,7 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 
-import { BadCodeEditor } from "./BadCodeEditor";
+import { BadCodeEditor } from "./_components/BadCodeEditor";
 import { actionGetBadCodeById } from "@/src/actions/bad-codes";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 

@@ -3,14 +3,14 @@
 import React from "react";
 
 import { File } from "@/src/types";
-import { CodeFileList } from "./BadCodeEditorFileList";
+import { BadCodeEditorFileList } from "../files/BadCodeEditorFileList";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
-import { CodeEditorSaveButton } from "./BadCodeEditorSaveButton";
+import { CodeEditorSaveButton } from "../BadCodeEditorSaveButton";
 import { useAlert } from "@/src/hooks/useAlert";
 import { LinkButton } from "@/src/components/molecules/buttons/link-button";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { SelectRadioButtonList } from "@/src/components/molecules/forms/select-radio-button-list";
-import { CodeEditorNewFileModalButton } from "./BadCodeEditorNewFileModalButton";
+import { BadCodeEditorNewFileModalButton } from "../BadCodeEditorNewFileModalButton";
 import { useDeleteCodeFile } from "@/src/hooks/bad-codes/useDeleteCodeEditorFile";
 import { useSelectCodeFile } from "@/src/hooks/bad-codes/useSelectCodeEditorFile";
 
@@ -37,11 +37,11 @@ export const CodeEditorSidebar = () => {
     <div className="w-[250px] h-fit border p-5 rounded-md bg-white">
       <div className="flex flex-row items-center gap-2 pb-2 border-b">
         <Typo type="h4" text="ファイル一覧" />
-        <CodeEditorNewFileModalButton />
+        <BadCodeEditorNewFileModalButton />
       </div>
 
       <div className="mt-6 flex flex-col gap-2 max-h-[400px] overflow-auto">
-        <CodeFileList
+        <BadCodeEditorFileList
           files={files}
           selectedFile={selectedFile}
           onClickFile={handleClickFile}

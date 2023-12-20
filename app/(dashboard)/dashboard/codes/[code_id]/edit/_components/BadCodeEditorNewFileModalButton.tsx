@@ -3,10 +3,10 @@
 import React from "react";
 
 import { useModal } from "@/src/hooks/useModal";
-import { PlusIcon } from "../../../../../../src/components/atoms/icons/PlusIcon";
-import { NewFileModal } from "../../../../../../src/components/organisms/files/NewFileModal";
+import { PlusIcon } from "../../../../../../../src/components/atoms/icons/PlusIcon";
+import { NewFileModal } from "./BadCodeEditorNewFileModal";
 
-export const CodeEditorNewFileModalButton = () => {
+export const BadCodeEditorNewFileModalButton = () => {
   const { isOpen, toggleModal } = useModal();
 
   return (

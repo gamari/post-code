@@ -4,7 +4,7 @@ import { File } from "@/src/types";
 import { cn } from "@/src/libs/utils";
 import { CiFileOn } from "react-icons/ci";
 import { AiOutlineDelete } from "react-icons/ai";
-import { FileIcon } from "../../../../../../src/components/molecules/displays/file-icon";
+import { FileIcon } from "../../../../../../../../src/components/molecules/displays/file-icon";
 import { getFileType } from "@/src/libs/editors";
 
 interface Props {
@@ -14,7 +14,7 @@ interface Props {
   onDeleteFile?: (file: File) => void;
 }
 
-export const CodeFileList = ({
+export const BadCodeEditorFileList = ({
   files,
   selectedFile,
   onClickFile,
@@ -29,8 +29,8 @@ export const CodeFileList = ({
         <div
           key={file.id}
           className={cn(
-            "flex flex-row items-center cursor-pointer hover:bg-gray-100 p-2 rounded-lg gap-2",
-            selectedFile?.id === file.id && "bg-gray-100"
+            "flex flex-row items-center cursor-pointer hover:bg-gray-200 p-2 rounded-lg gap-2",
+            selectedFile?.id === file.id && "bg-gray-200"
           )}
           onClick={() => onClickFile(file)}
         >

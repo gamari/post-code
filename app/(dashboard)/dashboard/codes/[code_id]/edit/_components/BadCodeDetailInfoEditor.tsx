@@ -12,7 +12,7 @@ interface Props {
     className?: string;
 }
 
-export const CodeDetailInfoEditor = ({
+export const BadCodeDetailInfoEditor = ({
     className
 }: Props) => {
   const { badCode, setTitle, setDescription } = useCodeEditor();
