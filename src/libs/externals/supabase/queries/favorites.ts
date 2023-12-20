@@ -8,7 +8,7 @@ export const fetchCreateFavoriteCode = async (code_id: number, client: SupabaseC
 
     const { data, error } = await client
         .from("favorites")
-        .insert({ bad_code_id: code_id, user_id: user?.id });
+        .insert({ code_id: code_id, user_id: user?.id });
 
     if (error) throw error;
 
@@ -24,7 +24,7 @@ export const fetchDeleteFavoriteCode = async (code_id: number, client: SupabaseC
     const { data, error } = await client
         .from("favorites")
         .delete()
-        .eq("bad_code_id", code_id)
+        .eq("code_id", code_id)
         .eq("user_id", user?.id);
 
     if (error) throw error;
@@ -41,7 +41,7 @@ export const fetchIsFavoriteCode = async (code_id: number, client: SupabaseClien
     const { data, error } = await client
         .from("favorites")
         .select("*")
-        .eq("bad_code_id", code_id)
+        .eq("code_id", code_id)
         .eq("user_id", user?.id);
 
     if (error) throw error;

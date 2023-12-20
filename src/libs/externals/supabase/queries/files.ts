@@ -6,7 +6,7 @@ export const fetchFilesByCodeId = async (codeId: number, client: SupabaseClient)
     const { data: files, error } = await client
         .from("files")
         .select("*")
-        .eq("bad_code_id", codeId);
+        .eq("code_id", codeId);
 
     if (error) throw new Error("Fileの取得中にエラーが発生しました。");
 

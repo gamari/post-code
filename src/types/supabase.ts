@@ -59,7 +59,7 @@ export interface Database {
       }
       comments: {
         Row: {
-          bad_code_id: number
+          code_id: number
           comment: string
           created_at: string | null
           id: number
@@ -67,7 +67,7 @@ export interface Database {
           user_id: string
         }
         Insert: {
-          bad_code_id: number
+          code_id: number
           comment: string
           created_at?: string | null
           id?: number
@@ -75,7 +75,7 @@ export interface Database {
           user_id: string
         }
         Update: {
-          bad_code_id?: number
+          code_id?: number
           comment?: string
           created_at?: string | null
           id?: number
@@ -84,8 +84,8 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "comments_bad_code_id_fkey"
-            columns: ["bad_code_id"]
+            foreignKeyName: "comments_code_id_fkey"
+            columns: ["code_id"]
             isOneToOne: false
             referencedRelation: "codes"
             referencedColumns: ["id"]
@@ -101,27 +101,27 @@ export interface Database {
       }
       favorites: {
         Row: {
-          bad_code_id: number
+          code_id: number
           created_at: string | null
           id: number
           user_id: string
         }
         Insert: {
-          bad_code_id: number
+          code_id: number
           created_at?: string | null
           id?: number
           user_id: string
         }
         Update: {
-          bad_code_id?: number
+          code_id?: number
           created_at?: string | null
           id?: number
           user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "favorites_bad_code_id_fkey"
-            columns: ["bad_code_id"]
+            foreignKeyName: "favorites_code_id_fkey"
+            columns: ["code_id"]
             isOneToOne: false
             referencedRelation: "codes"
             referencedColumns: ["id"]
@@ -137,7 +137,7 @@ export interface Database {
       }
       files: {
         Row: {
-          bad_code_id: number
+          code_id: number
           content: string | null
           created_at: string | null
           id: number
@@ -146,7 +146,7 @@ export interface Database {
           user_id: string
         }
         Insert: {
-          bad_code_id: number
+          code_id: number
           content?: string | null
           created_at?: string | null
           id?: number
@@ -155,7 +155,7 @@ export interface Database {
           user_id: string
         }
         Update: {
-          bad_code_id?: number
+          code_id?: number
           content?: string | null
           created_at?: string | null
           id?: number
@@ -165,8 +165,8 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "files_bad_code_id_fkey"
-            columns: ["bad_code_id"]
+            foreignKeyName: "files_code_id_fkey"
+            columns: ["code_id"]
             isOneToOne: false
             referencedRelation: "codes"
             referencedColumns: ["id"]

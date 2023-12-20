@@ -16,7 +16,7 @@ export const useFormCodeFile = () => {
         const newFile: any = {
             name: name,
             user_id: authUser.id,
-            bad_code_id: codeId,
+            code_id: codeId,
         };
 
         const retFile = await fetchCreateFile(newFile, client);

@@ -36,11 +36,11 @@ interface ProviderProps {
 }
 
 export const CodeEditorProvider = ({
-  code: initBadCode,
+  code: initCode,
   children,
 }: ProviderProps) => {
-  const [code, setBadCode] = useState<CodeDetail | undefined>(initBadCode);
-  const [files, setFiles] = useState<File[]>(initBadCode?.files || []);
+  const [code, setCode] = useState<CodeDetail | undefined>(initCode);
+  const [files, setFiles] = useState<File[]>(initCode?.files || []);
   const [selectedFile, setSelectedFile] = useState<File | undefined>(undefined);
 
   useEffect(() => {
@@ -55,17 +55,17 @@ export const CodeEditorProvider = ({
 
   function setTitle(title: string) {
     if (!code) return;
-    setBadCode({ ...code, title });
+    setCode({ ...code, title });
   }
 
   function setIsPublic(isPublic: boolean) {
     if (!code) return;
-    setBadCode({ ...code, is_public: isPublic });
+    setCode({ ...code, is_public: isPublic });
   }
 
   function setDescription(description: string) {
     if (!code) return;
-    setBadCode({ ...code, description });
+    setCode({ ...code, description });
   }
 
   function addFile(file: File) {

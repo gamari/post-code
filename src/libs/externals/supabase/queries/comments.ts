@@ -1,10 +1,10 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 
-export const fetchCommentsByCodeId = async (badCodeId: number, client: SupabaseClient) => {
+export const fetchCommentsByCodeId = async (codeId: number, client: SupabaseClient) => {
     const { data, error } = await client
         .from("comments")
         .select("*")
-        .eq("bad_code_id", badCodeId)
+        .eq("code_id", codeId)
         .order("created_at", { ascending: true });
 
     if (error) throw error;
@@ -13,7 +13,7 @@ export const fetchCommentsByCodeId = async (badCodeId: number, client: SupabaseC
 
 }
 
-export const fetchCreateComment = async (badCodeId: number, comment: string, client: SupabaseClient) => {
+export const fetchCreateComment = async (codeId: number, comment: string, client: SupabaseClient) => {
     const { data: { user }, error: userError } = await client.auth.getUser();
 
     if (userError) throw userError;
@@ -22,7 +22,7 @@ export const fetchCreateComment = async (badCodeId: number, comment: string, cli
     const { data, error } = await client
         .from("comments")
         .insert({
-            bad_code_id: badCodeId,
+            code_id: codeId,
             comment,
             user_id: user.id,
         })
