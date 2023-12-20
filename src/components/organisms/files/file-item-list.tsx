@@ -22,15 +22,14 @@ export const FileItemList = ({
   const sortedFiles = files.sort(sortAscByName);
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className={cn("flex flex-col gap-1", className)}>
       {sortedFiles.map((file, index) => (
         <SlideIn delay={index * 0.1} from="right" key={file.name}>
           <FileItem
             key={file.id}
             className={cn(
               "",
-              selectedFile?.id === file.id ? "bg-slate-200" : "",
-              className
+              selectedFile?.id === file.id ? "bg-slate-200" : ""
             )}
             file={file}
             onClick={onClick}

@@ -1,12 +1,13 @@
 import React from "react";
+
 import { Container } from "../../src/components/molecules/container";
-import { Typo } from "../../src/components/atoms/texts/typo";
+import { Heading } from "@/src/components/atoms/texts/heading";
 
 export const TopFavoriteCodesSection = () => {
   return (
     <section>
       <Container>
-        <Typo type="h1" text="人気" />
+        <Heading type="h2">人気のコード</Heading>
       </Container>
     </section>
   );

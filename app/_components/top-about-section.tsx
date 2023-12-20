@@ -1,7 +1,8 @@
 import React from "react";
 import { Container } from "../../src/components/molecules/container";
-import { Typo } from "../../src/components/atoms/texts/typo";
 import { MockBlock } from "../../src/components/molecules/displays/mock-block";
+import { Heading } from "@/src/components/atoms/texts/heading";
+import { Description } from "@/src/components/atoms/texts/description";
 
 export const TopAboutSection = () => {
   return (
@@ -13,9 +14,11 @@ export const TopAboutSection = () => {
           </div>
 
           <div className="flex-1 flex flex-col items-center justify-center px-6 gap-6">
-            <Typo type="h2" text="About" />
-            <p>BadCodesとは、悪いコードを収集し、</p>
-            <p>どうすれば良いコードにできるかを議論するためのサイトです。</p>
+            <Heading type="h2">BadCodesとは？</Heading>
+            <Description>BadCodesとは、悪いコードを収集し、</Description>
+            <Description>
+              どうすれば良いコードにできるかを議論するためのサイトです。
+            </Description>
           </div>
         </div>
       </Container>

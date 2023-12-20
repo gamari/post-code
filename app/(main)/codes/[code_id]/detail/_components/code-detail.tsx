@@ -20,7 +20,7 @@ export const CodeDetail = async ({ codeId }: CodeDetailProps) => {
       <CodeDetailProvider>
         <div className="flex flex-col items-center">
           <div className="p-10 flex flex-row gap-10">
-            <div className="flex-1 flex flex-col gap-6 w-[650px]">
+            <div className="flex-1 flex flex-col gap-6 w-[650px] pb-32">
               <CodeDetailInfo id={codeId} />
               <CodeDetailFileViewer />
               <CodeDetailCommentList />
