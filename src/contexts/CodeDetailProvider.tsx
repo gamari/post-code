@@ -30,3 +30,15 @@ export const CodeDetailProvider = ({ children }: ProviderProps) => {
 export const useCodeDetailContext = () => {
   return useContext(CodeDetailContext);
 };
+
+export const useCodeDetailSelectedFileContext = () => {
+  const { selectedFile } = useCodeDetailContext();
+
+  return selectedFile;
+};
+
+export const useCodeDetailSetSelectedFileContext = () => {
+  const { setSelectedFile } = useCodeDetailContext();
+
+  return setSelectedFile;
+};

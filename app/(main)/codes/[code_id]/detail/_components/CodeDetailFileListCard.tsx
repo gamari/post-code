@@ -3,17 +3,17 @@
 import React from "react";
 
 import { File } from "@/src/types";
-import { Typo } from "../../atoms/texts/typo";
 import { useCodeDetailContext } from "@/src/contexts/CodeDetailProvider";
-import { MdOutlineInsertDriveFile } from "react-icons/md";
+import { Typo } from "@/src/components/atoms/texts/typo";
 import { FileItemList } from "@/src/components/organisms/files/file-item-list";
+import { MdOutlineInsertDriveFile } from "react-icons/md";
 
 interface Props {
   files: File[];
 }
 
-export const FileItemListCard = async ({ files }: Props) => {
-  const { selectedFile, setSelectedFile } = useCodeDetailContext();
+export const CodeDetailFileListCard = ({ files }: Props) => {
+  const { setSelectedFile, selectedFile } = useCodeDetailContext();
 
   const onSelectFile = (file: File) => {
     setSelectedFile && setSelectedFile(file);

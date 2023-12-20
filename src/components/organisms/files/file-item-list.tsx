@@ -27,7 +27,7 @@ export const FileItemList = ({
           return 0;
         })
         .map((file, index) => (
-          <SlideIn delay={index * 0.1} from="right">
+          <SlideIn delay={index * 0.1} from="right" key={file.name}>
             <FileItem
               key={file.id}
               className={cn(

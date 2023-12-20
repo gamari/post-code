@@ -24,12 +24,20 @@ export const useAlert = () => {
     const infoAlert = (message: string) => {
         toast({
             title: message,
-            className: "text-sky-600"
+            className: "text-gray-600"
+        })
+    }
+
+    const successAlert = (message: string) => {
+        toast({
+            title: message,
+            className: "text-green-500"
         })
     }
 
     return {
         errorAlert,
+        successAlert,
         infoAlert
     }
 }

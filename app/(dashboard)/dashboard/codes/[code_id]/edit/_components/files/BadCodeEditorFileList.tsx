@@ -2,7 +2,6 @@ import React from "react";
 
 import { File } from "@/src/types";
 import { cn } from "@/src/libs/utils";
-import { CiFileOn } from "react-icons/ci";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FileIcon } from "../../../../../../../../src/components/molecules/displays/file-icon";
 import { getFileType } from "@/src/libs/editors";

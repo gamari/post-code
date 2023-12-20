@@ -34,7 +34,6 @@ export const SupabaseProvider = ({
 
   useEffect(() => {
     async function init() {
-      console.log("SupabaseProvider: useEffect");
       getAuthUser();
     }
     init();

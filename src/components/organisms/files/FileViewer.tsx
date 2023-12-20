@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect } from "react";
 
 import Prism from "prismjs";
@@ -10,6 +12,7 @@ interface Props {
   file: File;
   className?: string;
 }
+
 export const FileViewer = ({ file, className }: Props) => {
   useEffect(() => {
     Prism.highlightAll();

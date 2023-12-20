@@ -1,6 +1,5 @@
 ## Next
 
-- [ ] atomicデザインにする
 - [ ] SupabaseProvider の User 取得処理がおかしいので直す
 - [ ] いろんな言語に対応する
 - [ ] AceEditor で表示させる
@@ -23,3 +22,4 @@
 - [x] Comment 作成処理のエラーを出す
 - [x] 言語指定
 - [x] ファイル数を 10 個以内にする
+- [x] atomicデザインにする

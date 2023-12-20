@@ -1,8 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 
-import { useCodeDetailContext } from "@/src/contexts/CodeDetailProvider";
+import {
+  useCodeDetailContext,
+  useCodeDetailSelectedFileContext,
+} from "@/src/contexts/CodeDetailProvider";
 import { cn } from "@/src/libs/utils";
 import { FileViewer } from "@/src/components/organisms/files/FileViewer";
 
@@ -12,6 +15,11 @@ interface Props {
 
 export const CodeDetailFileViewer = ({ className }: Props) => {
   const { selectedFile } = useCodeDetailContext();
+
+  useEffect(() => {
+    console.log("CodeDetailFileViewer")
+    console.log("selectedFile", selectedFile);
+  }, [selectedFile]);
 
   if (!selectedFile)
     return (
