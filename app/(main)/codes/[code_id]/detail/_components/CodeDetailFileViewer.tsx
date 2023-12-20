@@ -4,7 +4,7 @@ import React from "react";
 
 import { useCodeDetailContext } from "@/src/contexts/CodeDetailProvider";
 import { cn } from "@/src/libs/utils";
-import { FileViewer } from "@/src/components/organisms/shared/FileViewer";
+import { FileViewer } from "@/src/components/organisms/files/FileViewer";
 
 interface Props {
   className?: string;

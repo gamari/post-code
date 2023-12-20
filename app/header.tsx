@@ -2,8 +2,8 @@ import Link from "next/link";
 
 import { Button } from "@/src/components/atoms/buttons/button";
 import { actionGetAuthUser } from "@/src/actions/users";
-import { Logo } from "../../molecules/logo";
-import { SearchBox } from "../search/SearchBox";
+import { Logo } from "../src/components/molecules/logo";
+import { SearchBox } from "../src/components/organisms/search/SearchBox";
 
 export default async function Header() {
   const authUser = await actionGetAuthUser();
