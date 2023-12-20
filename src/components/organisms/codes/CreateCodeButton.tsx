@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/src/components/atoms/buttons/button";
-import { fetchCreateCode } from "@/src/libs/externals/supabase/queries/bad-codes";
+import { fetchCreateCode } from "@/src/libs/externals/supabase/queries/codes";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { CiCirclePlus } from "react-icons/ci";
 import {

@@ -1,6 +1,6 @@
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider"
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
-import { fetchUpdateCode } from "@/src/libs/externals/supabase/queries/bad-codes";
+import { fetchUpdateCode } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchUpsertFiles } from "@/src/libs/externals/supabase/queries/files";
 import { useRouter } from "next/navigation";
 

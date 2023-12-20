@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardHeader } from "@/src/components/ui/card";
+import { Card, CardHeader } from "@/src/components/molecules/displays/card";
 
 const Error = () => {
   return (

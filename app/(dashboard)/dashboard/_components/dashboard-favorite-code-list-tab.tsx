@@ -1,10 +1,20 @@
 import React from "react";
-import { Typo } from "../../../../src/components/atoms/texts/typo";
 
-export const DashboardFavoriteCodeListTab = () => {
+import { actionGetFavoriteCodeList } from "@/src/actions/codes";
+import { Heading } from "@/src/components/atoms/texts/heading";
+
+export const DashboardFavoriteCodeListTab = async () => {
+  const codes = await actionGetFavoriteCodeList();
+
   return (
     <div>
-      <Typo text="お気に入り一覧" type="h2" />
+      <Heading>お気に入りコード</Heading>
+
+      {codes?.map((code) => (
+        <div key={`${code.id}`}>
+          <div>{code.title}</div>
+        </div>
+      ))}
     </div>
   );
 };
