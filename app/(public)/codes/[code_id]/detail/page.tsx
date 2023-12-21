@@ -1,7 +1,6 @@
 import React from "react";
 
 import { NextPage } from "next";
-import { unstable_noStore as noStore } from "next/cache";
 
 import { actionGetCommentsByCodeId } from "@/src/actions/comments";
 import { CodeCommentListProvider } from "@/src/contexts/CodeCommentListProvider";
@@ -19,8 +18,6 @@ interface Props {
 }
 
 const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
-  noStore();
-
   const comments = await actionGetCommentsByCodeId(code_id);
 
   return (

@@ -7,7 +7,6 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 
 const Page = async () => {
   const user = await actionGetMySelf();
-  console.log(user);
 
   return (
     <div className="p-10">

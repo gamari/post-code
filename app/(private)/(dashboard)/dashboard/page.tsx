@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-import { unstable_noStore as noStore } from "next/cache";
 
 import { Skeleton } from "@/src/components/molecules/displays/skeleton";
 import {
@@ -12,8 +11,6 @@ import { DashboardCodeListTab } from "@/app/(private)/(dashboard)/dashboard/dash
 import { DashboardFavoriteCodeListTab } from "@/app/(private)/(dashboard)/dashboard/dashboard-favorite-code-list-tab";
 
 const Page = async () => {
-  noStore();
-
   return (
     <Tabs defaultValue="codes" className="p-10">
       <TabsList className="mb-6">

@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-import { unstable_noStore as noStore } from "next/cache";
 
 import { actionGetBadCodeById } from "@/src/actions/codes";
 import { UserInfoCard } from "../../../../../../../src/components/organisms/users/user-info-card";
@@ -12,8 +11,6 @@ interface Props {
 }
 
 export const CodeDetailSidebar = async ({ codeId }: Props) => {
-  noStore();
-
   const badCode = await actionGetBadCodeById(codeId);
   const files = await actionGetFiles(codeId);
 
