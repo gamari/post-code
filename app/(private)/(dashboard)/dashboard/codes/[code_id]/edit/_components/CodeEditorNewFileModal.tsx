@@ -8,6 +8,8 @@ import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { Modal } from "../../../../../../../../src/components/molecules/displays/Modal";
 import { useFormCodeFile } from "@/src/hooks/codes/useFormCodeEditorFile";
 import { useAlert } from "@/src/hooks/useAlert";
+import { useLoading } from "@/src/hooks/useLoading";
+import { CreateButton } from "@/src/components/molecules/buttons/create-button";
 
 interface Props {
   isOpen: boolean;
@@ -15,6 +17,7 @@ interface Props {
 }
 
 export const CodeEditorNewFileModal = ({ isOpen, onClose }: Props) => {
+  const { loading, startLoading, stopLoading } = useLoading();
   const { errorAlert } = useAlert();
   const { code, addFile, setSelectedFile, files } = useCodeEditor();
   const { name, setName, saveFile } = useFormCodeFile();
@@ -26,6 +29,7 @@ export const CodeEditorNewFileModal = ({ isOpen, onClose }: Props) => {
     }
 
     try {
+      startLoading();
       const retFile = await saveFile(code?.id);
       addFile(retFile);
       setSelectedFile(retFile);
@@ -34,7 +38,7 @@ export const CodeEditorNewFileModal = ({ isOpen, onClose }: Props) => {
     } catch (e) {
       errorAlert("ファイルの作成に失敗しました", e);
     } finally {
-      //
+      stopLoading();
     }
   };
 
@@ -52,7 +56,11 @@ export const CodeEditorNewFileModal = ({ isOpen, onClose }: Props) => {
         </div>
 
         <div className="flex flex-row mt-3">
-          <Button onClick={handleAddFile}>作成</Button>
+          <CreateButton
+            loading={loading}
+            label="作成"
+            onClick={handleAddFile}
+          />
         </div>
       </div>
     </Modal>

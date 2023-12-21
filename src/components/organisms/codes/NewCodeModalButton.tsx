@@ -11,9 +11,11 @@ import { useToast } from "@/src/components/ui/use-toast";
 import { Modal } from "../../molecules/displays/Modal";
 import { useModal } from "@/src/hooks/useModal";
 import { CreateButton } from "../../molecules/buttons/create-button";
+import { useLoading } from "@/src/hooks/useLoading";
 
 // TODO SSRで書く
 export const NewCodeModalButton = () => {
+  const { loading, startLoading, stopLoading } = useLoading();
   const router = useRouter();
   const { isOpen, toggleModal } = useModal();
   const { client } = useSupabase();
@@ -21,7 +23,7 @@ export const NewCodeModalButton = () => {
 
   const [name, setName] = useState("");
 
-  const handleCreateCode = async (e: any) => {
+  const handleCreateCode = async () => {
     if (!client) throw new Error("接続できません。");
 
     if (!name) {
@@ -36,18 +38,25 @@ export const NewCodeModalButton = () => {
       title: name,
     };
 
-    const retBadCode = await fetchCreateCode(newBadCode, client);
+    try {
+      startLoading();
+      const retBadCode = await fetchCreateCode(newBadCode, client);
 
-    router.refresh();
+      router.refresh();
 
-    if (retBadCode) {
-      router.push(`/dashboard/codes/${retBadCode.id}/edit`);
+      if (retBadCode) {
+        router.push(`/dashboard/codes/${retBadCode.id}/edit`);
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      stopLoading();
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      handleCreateCode(e);
+      handleCreateCode();
     }
   };
 
@@ -64,6 +73,11 @@ export const NewCodeModalButton = () => {
           onKeyDown={handleKeyDown}
         />
         <Button onClick={handleCreateCode}>作成</Button>
+        <CreateButton
+          loading={loading}
+          label="作成"
+          onClick={handleCreateCode}
+        />
       </Modal>
     </>
   );
