@@ -3,9 +3,11 @@ import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchUpdateCode } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchUpsertFiles } from "@/src/libs/externals/supabase/queries/files";
 import { useRouter } from "next/navigation";
+import { useLoading } from "../useLoading";
 
 export const useSaveCodeEditor = () => {
     const router = useRouter();
+    const { loading, startLoading, stopLoading } = useLoading();
     const { client, getAuthUser } = useSupabase();
 
     const { code, selectedFile, updateFile, files } = useCodeEditor();
@@ -32,12 +34,20 @@ export const useSaveCodeEditor = () => {
             });
         }
 
-        await fetchUpsertFiles(newFiles, client);
-        await fetchUpdateCode(code, client);
-        router.refresh();
+        try {
+            startLoading();
+            await fetchUpsertFiles(newFiles, client);
+            await fetchUpdateCode(code, client);
+            router.refresh();
+        } catch (e) {
+            throw e;
+        } finally {
+            stopLoading();
+        }
     }
 
     return {
-        saveEditor
+        saveEditor,
+        loading
     }
 }

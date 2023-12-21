@@ -77,7 +77,7 @@ export const fetchLatestCodes = async (client: SupabaseClient, limit: number = 6
             favorites_count: favorites (count)
         `)
         .eq("is_public", true)
-        .order("created_at", { ascending: false })
+        .order("updated_at", { ascending: false })
         .limit(limit);
 
     if (error) throw new Error("BadCodeの取得中にエラーが発生しました。");
@@ -150,7 +150,7 @@ export const fetchDeleteBadCode = async (id: number, client: SupabaseClient) => 
 
 export const fetchUpdateCode = async (newBadCodes: CodeDetail, client: SupabaseClient) => {
     // TODO 一括でfilesを更新したい
-    const { error } = await client
+    const { data, error } = await client
         .from(CODE_TABLE)
         .upsert({
             ...newBadCodes,
@@ -160,5 +160,9 @@ export const fetchUpdateCode = async (newBadCodes: CodeDetail, client: SupabaseC
         })
         .eq("id", newBadCodes.id);
 
+    console.log(data);
+
     if (error) throw new Error("BadCodeの更新中にエラーが発生しました。");
+
+    return data;
 }

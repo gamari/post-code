@@ -1,5 +1,5 @@
 import React from "react";
-import { Loader2, PlusIcon, SaveIcon } from "lucide-react";
+import { Loader2, SaveIcon } from "lucide-react";
 import { Button } from "../../atoms/buttons/button";
 
 interface Props {
@@ -16,7 +16,12 @@ export const SaveButton = ({
   disabled,
 }: Props) => {
   return (
-    <Button onClick={onClick} asChild disabled={disabled || loading} className="cursor-pointer">
+    <Button
+      onClick={onClick}
+      asChild
+      disabled={disabled || loading}
+      className="cursor-pointer"
+    >
       <div>
         {loading ? (
           <Loader2 className="mr-1 h-4 w-4 animate-spin" />

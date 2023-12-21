@@ -41,6 +41,7 @@ export const NewCodeModalButton = () => {
     try {
       startLoading();
       const retBadCode = await fetchCreateCode(newBadCode, client);
+      toggleModal();
 
       router.refresh();
 
@@ -71,8 +72,8 @@ export const NewCodeModalButton = () => {
           onChange={(e) => setName(e.target.value)}
           className="mb-3"
           onKeyDown={handleKeyDown}
+          autoFocus
         />
-        <Button onClick={handleCreateCode}>作成</Button>
         <CreateButton
           loading={loading}
           label="作成"

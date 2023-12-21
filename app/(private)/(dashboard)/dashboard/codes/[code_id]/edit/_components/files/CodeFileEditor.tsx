@@ -13,13 +13,21 @@ import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 import { getFileType } from "@/src/libs/editors";
 import { Heading } from "@/src/components/atoms/texts/heading";
+import { useSaveCodeEditor } from "@/src/hooks/codes/useSaveCodeEditor";
 
 interface Props {
   className?: string;
 }
 
 export const CodeFileEditor = ({ className }: Props) => {
+  const { saveEditor } = useSaveCodeEditor();
   const { selectedFile, setSelectedFile } = useCodeEditor();
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.ctrlKey && e.key === "s") {
+      saveEditor();
+    }
+  };
 
   if (!selectedFile)
     return (
