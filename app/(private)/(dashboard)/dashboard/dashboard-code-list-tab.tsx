@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CreateCodeButton } from "../../../../src/components/organisms/codes/CreateCodeButton";
+import { NewCodeModalButton } from "../../../../src/components/organisms/codes/NewCodeModalButton";
 import { Title } from "../../../../src/components/atoms/texts/title";
 import { CodeTable } from "../../../../src/components/organisms/codes/tables/CodeTable";
 import { actionGetMySelfBadCodeList } from "@/src/actions/codes";
@@ -14,7 +14,7 @@ export const DashboardCodeListTab = async () => {
       <div>
         <div className="flex flex-row justify-between items-center gap-2 mb-6">
           <Title label="コード一覧" />
-          <CreateCodeButton />
+          <NewCodeModalButton />
         </div>
 
         <NoContent />
@@ -25,7 +25,7 @@ export const DashboardCodeListTab = async () => {
     <div>
       <div className="flex flex-row justify-between items-center gap-2 mb-6">
         <Title label="コード一覧" />
-        <CreateCodeButton />
+        <NewCodeModalButton />
       </div>
 
       <CodeTable codes={codes} className="max-w-5xl" />

@@ -4,13 +4,18 @@ import React from "react";
 interface Props {
   value?: string | null;
   type?: "date" | "datetime";
+  className?: string;
 }
 
-export const DateString = ({ value, type = "date" }: Props) => {
+export const DateString = ({ value, type = "date", className }: Props) => {
   if (!value) return <></>;
 
   if (type == "datetime")
-    return <span>{dayjs(value).format("YYYY/MM/DD HH:mm")}</span>;
+    return (
+      <span className={className}>
+        {dayjs(value).format("YYYY/MM/DD HH:mm")}
+      </span>
+    );
 
-  return <span>{dayjs(value).format("YYYY/MM/DD")}</span>;
+  return <span className={className}>{dayjs(value).format("YYYY/MM/DD")}</span>;
 };

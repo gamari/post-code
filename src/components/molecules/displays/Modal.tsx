@@ -15,11 +15,13 @@ export const Modal = ({ children, isOpen, onClose }: Props) => {
   };
 
   return (
-    <div
-      className="fixed inset-0 z-[500] bg-gray-100 bg-opacity-50 flex justify-center items-center"
-      onClick={handleBackgroundClick}
-    >
-      <div className="relative bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+    <div className="fixed inset-0 z-[500] flex justify-center items-center">
+      <div
+        className="h-full absolute inset-0 w-full bg-gray-100 bg-opacity-50"
+        onClick={handleBackgroundClick}
+      />
+
+      <div className="relative bg-white rounded-lg shadow-xl p-8 pt-12 w-full max-w-md z-[501]">
         <IoMdClose
           className="absolute top-2 right-2 w-7 h-7 hover:opacity-40 cursor-pointer"
           onClick={handleBackgroundClick}

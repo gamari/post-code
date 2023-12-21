@@ -11,7 +11,7 @@ interface Props {
 
 export const CreateButton = ({ label, onClick, loading = false }: Props) => {
   return (
-    <Button onClick={onClick} asChild>
+    <Button onClick={onClick} asChild className="cursor-pointer">
       <div>
         {loading ? (
           <Loader2 className="mr-1 h-4 w-4 animate-spin" />
