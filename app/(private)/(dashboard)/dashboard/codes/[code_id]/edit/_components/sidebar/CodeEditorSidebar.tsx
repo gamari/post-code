@@ -13,6 +13,8 @@ import { CodeEditorNewFileModalButton } from "../CodeEditorNewFileModalButton";
 import { useDeleteCodeFile } from "@/src/hooks/codes/useDeleteCodeEditorFile";
 import { useSelectCodeFile } from "@/src/hooks/codes/useSelectCodeEditorFile";
 import { Heading } from "@/src/components/atoms/texts/heading";
+import { Switch } from "@/src/components/ui/switch";
+import { Typo } from "@/src/components/atoms/texts/typo";
 
 export const CodeEditorSidebar = () => {
   const { errorAlert } = useAlert();
@@ -49,16 +51,12 @@ export const CodeEditorSidebar = () => {
         />
       </div>
 
-      <div className="my-6">
-        <SelectRadioButtonList
-          defaultValue={code?.is_public ? "public" : "private"}
-          items={[
-            { label: "非公開", value: "private" },
-            { label: "公開", value: "public" },
-          ]}
-          onChange={(value) => {
-            console.log(value);
-            setIsPublic(value === "public");
+      <div className="my-6 flex items-center gap-2">
+        <Typo text="公開" className="text-gray-700 font-semibold text-sm" />
+        <Switch
+          checked={code?.is_public || false}
+          onCheckedChange={(value) => {
+            setIsPublic(value);
           }}
         />
       </div>

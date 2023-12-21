@@ -17,7 +17,7 @@ export const CodeDetailInfoEditor = ({ className }: Props) => {
 
   return (
     <div className={cn("", className)}>
-      <Heading type="h4" className="mb-3">コード詳細</Heading>
+      <Heading className="mb-3">詳細</Heading>
 
       <div>
         <Input

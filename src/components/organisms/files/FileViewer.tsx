@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React from "react";
 
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { okaidia as style } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -23,7 +23,7 @@ export const FileViewer = ({ file, className }: Props) => {
         className
       )}
     >
-      <div className="absolute -top-3 left-1 border shadow-md z-20 text-sm p-1 px-2 bg-white border-b flex flex-row items-center">
+      <div className="absolute -top-4 left-1 shadow-md z-20 text-sm p-1 px-2 flex flex-row items-center font-bold bg-slate-50 rounded-lg">
         <CiFileOn className="cursor-pointer hover:opacity-70" />
         <span>{file?.name}</span>
       </div>

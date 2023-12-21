@@ -19,13 +19,13 @@ export const LinkButton = ({
   isActive,
   Icon,
   className,
-  target
+  target,
 }: Props) => {
   return (
     <Button
       asChild
       variant={isActive ? "secondary" : "outline"}
-      className={cn("w-full", className)}
+      className={cn("w-full", isActive && "font-bold text-gray-700", className)}
     >
       <Link href={url} target={target}>
         {Icon && Icon}

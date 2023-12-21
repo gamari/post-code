@@ -12,6 +12,7 @@ import { cn } from "@/src/libs/utils";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 import { getFileType } from "@/src/libs/editors";
+import { Heading } from "@/src/components/atoms/texts/heading";
 
 interface Props {
   className?: string;
@@ -27,6 +28,7 @@ export const CodeFileEditor = ({ className }: Props) => {
 
   return (
     <div className={cn("flex flex-col gap-4 w-full", className)}>
+      <Heading>コードエディタ</Heading>
       <Input
         value={selectedFile?.name || ""}
         onChange={(e) => {
@@ -47,6 +49,7 @@ export const CodeFileEditor = ({ className }: Props) => {
         editorProps={{ $blockScrolling: true }}
         height="100%"
         width="100%"
+        fontSize={16}
       />
     </div>
   );

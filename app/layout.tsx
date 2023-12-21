@@ -1,5 +1,7 @@
 import "./globals.css";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import Header from "@/app/header";
 import { GeistSans } from "geist/font/sans";
 import { SupabaseProvider } from "@/src/contexts/SupabaseProvider";
@@ -28,6 +30,7 @@ export default function RootLayout({
             <Header />
             <div className="flex-1 grid">{children}</div>
             <Toaster />
+            <SpeedInsights />
           </main>
         </SupabaseProvider>
       </body>
