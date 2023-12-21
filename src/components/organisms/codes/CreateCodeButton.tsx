@@ -22,6 +22,7 @@ import { useToast } from "@/src/components/ui/use-toast";
 import { CreateButton } from "@/src/components/molecules/buttons/create-button";
 
 // TODO SSRで書く
+// TODO CreateModalにする
 export const CreateCodeButton = () => {
   const router = useRouter();
   const { client } = useSupabase();
