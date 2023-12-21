@@ -34,7 +34,6 @@ export const fetchDeleteFavoriteCode = async (code_id: number, client: SupabaseC
 }
 
 export const fetchIsFavoriteCode = async (code_id: number, client: SupabaseClient) => {
-    console.log("fetchIsFavoriteCode");
     const authUser = await fetchAuthUser(client);
 
     if (!authUser?.id) return false;

@@ -10,8 +10,6 @@ export const fetchFilesByCodeId = async (codeId: number, client: SupabaseClient)
 
     if (error) throw new Error("Fileの取得中にエラーが発生しました。");
 
-    console.log(files)
-
     return files as File[];
 }
 

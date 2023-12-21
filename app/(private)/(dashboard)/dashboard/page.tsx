@@ -23,7 +23,9 @@ const Page = async () => {
         </Suspense>
       </TabsContent>
       <TabsContent value="favorites">
-        <DashboardFavoriteCodeListTab />
+        <Suspense fallback={<Skeleton />}>
+          <DashboardFavoriteCodeListTab />
+        </Suspense>
       </TabsContent>
     </Tabs>
   );

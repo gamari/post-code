@@ -9,6 +9,7 @@ interface Props {
 }
 
 export const CodeDetailCommentList = async ({ className }: Props) => {
+  
   return (
     <div className={cn("rounded-md bg-white", className)}>
       <div className="flex flex-row gap-2 items-center p-6 border-b">
