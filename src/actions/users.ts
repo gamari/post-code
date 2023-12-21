@@ -6,10 +6,10 @@ import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function actionLogin(formData: FormData) {
+    const supabase = getServerClient()
+
     const email = formData.get('email') as string
     const password = formData.get('password') as string
-    const cookieStore = cookies()
-    const supabase = getServerClient(cookieStore)
 
     const { error } = await supabase.auth.signInWithPassword({
         email,
@@ -24,12 +24,12 @@ export async function actionLogin(formData: FormData) {
 }
 
 export async function actionSignUp(formData: FormData) {
+    const supabase = getServerClient()
+
     const origin = headers().get('origin')
     const username = formData.get('username') as string
     const email = formData.get('email') as string
     const password = formData.get('password') as string
-    const cookieStore = cookies()
-    const supabase = getServerClient(cookieStore)
 
     const { error } = await supabase.auth.signUp({
         email,

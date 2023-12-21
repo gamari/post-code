@@ -6,6 +6,7 @@ import { BackButton } from "@/src/components/molecules/back-button";
 import React from "react";
 import { LabelInput } from "@/src/components/molecules/forms/LabelInput";
 import { LoginFormErrorMessage } from "./login-form-error-message";
+import { Heading } from "@/src/components/atoms/texts/heading";
 
 interface Props {
   errorStatus: string;
@@ -13,8 +14,10 @@ interface Props {
 
 export const LoginForm = ({ errorStatus }: Props) => {
   return (
-    <div className="relative flex flex-col w-full h-full justify-center items-center">
+    <div className="relative flex flex-col w-full h-full justify-center items-center gap-3">
       <BackButton url="/" className="absolute left-8 top-8 " label="ホームへ" />
+
+      <Heading>ログイン画面</Heading>
 
       <form
         className="max-w-md border px-8 py-12 rounded-md flex flex-col w-full justify-center gap-2 text-foreground"
