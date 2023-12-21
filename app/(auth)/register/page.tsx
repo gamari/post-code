@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import { RegisterForm } from "./register-form";
 
-const Page = () => {
-  return (
-    <div>Page</div>
-  )
-}
+const Page = ({
+  searchParams,
+}: {
+  searchParams: { message: string; error_status: string };
+}) => {
+  const { message, error_status } = searchParams;
 
-export default Page
+  return <RegisterForm message={message} errorStatus={error_status} />;
+};
+
+export default Page;

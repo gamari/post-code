@@ -39,7 +39,8 @@ export async function actionSignUp(formData: FormData) {
     })
 
     if (error) {
-        return redirect('/login?message=Could not authenticate user')
+        console.log(error)
+        return redirect('/register?error_status=9')
     }
 
     return redirect('/dashboard')
