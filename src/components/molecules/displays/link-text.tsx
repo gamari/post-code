@@ -11,7 +11,7 @@ interface Props {
 export const LinkText = ({ url, label }: Props) => {
   return (
     <Link href={url}>
-      <Typo type="p" text={label} />
+      <Typo text={label} />
     </Link>
   );
 };
