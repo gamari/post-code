@@ -27,9 +27,9 @@ export default function RootLayout({
           <main className="flex flex-col min-h-screen relative">
             <Header />
             <div className="flex-1 grid">{children}</div>
+            <Toaster />
           </main>
         </SupabaseProvider>
-        <Toaster />
       </body>
     </html>
   );

@@ -25,16 +25,16 @@ export const CodeDetailSidebarToolsCard = async ({ badCode }: Props) => {
         {authUser && (
           <>
             <FavoriteCodeButton codeId={badCode.id} isFavorite={isFavorite} />
-          </>
-        )}
-        {badCode?.user_id === authUser?.id && (
-          <>
-            <LinkButton
-              url={CODES_EDIT_URL(badCode.id)}
-              label="編集"
-              Icon={<EditIcon className="h-4 w-4 mr-2 " />}
-              className="bg-gray-100 border-none"
-            />
+            {badCode?.user_id === authUser?.id && (
+              <>
+                <LinkButton
+                  url={CODES_EDIT_URL(badCode.id)}
+                  label="編集"
+                  Icon={<EditIcon className="h-4 w-4 mr-2 " />}
+                  className="bg-gray-100 border-none"
+                />
+              </>
+            )}
           </>
         )}
         <CodeDetailCommentModalButton code={badCode} />

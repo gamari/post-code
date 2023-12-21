@@ -1,4 +1,5 @@
 import { SupabaseClient } from "@supabase/supabase-js";
+import { fetchAuthUser } from "./users";
 
 export const fetchCreateFavoriteCode = async (code_id: number, client: SupabaseClient) => {
     const { data: { user }, error: userError } = await client.auth.getUser();
@@ -33,16 +34,16 @@ export const fetchDeleteFavoriteCode = async (code_id: number, client: SupabaseC
 }
 
 export const fetchIsFavoriteCode = async (code_id: number, client: SupabaseClient) => {
-    const { data: { user }, error: userError } = await client.auth.getUser();
+    console.log("fetchIsFavoriteCode");
+    const authUser = await fetchAuthUser(client);
 
-    if (userError) throw userError;
-    if (!user?.id) throw new Error("User not found");
+    if (!authUser?.id) return false;
 
     const { data, error } = await client
         .from("favorites")
         .select("*")
         .eq("code_id", code_id)
-        .eq("user_id", user?.id);
+        .eq("user_id", authUser?.id);
 
     if (error) throw error;
 

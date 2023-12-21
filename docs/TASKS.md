@@ -1,6 +1,6 @@
 ## Next
 
-- [ ] アカウント設定ページの内容がおかしいため修正
+
 - [ ] codesをupdate_atするようにする
 
 - [ ] code-panelのコメント数を取得する
@@ -37,3 +37,4 @@
 - [x] bad_codes -> codesに変更する
 - [x] SupabaseProvider の User 取得処理がおかしいので直す
 - [x] AceEditor で表示させる
+- [x] アカウント設定ページの内容がおかしいため修正

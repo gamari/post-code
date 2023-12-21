@@ -55,6 +55,8 @@ export const actionGetAuthUser = async () => {
 
         return authUser;
     } catch (error) {
+        console.log("actionGetAuthUser error");
+        console.log(error);
         return null;
     }
 }
