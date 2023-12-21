@@ -17,7 +17,7 @@ export async function actionLogin(formData: FormData) {
     })
 
     if (error) {
-        return redirect('/login?message=Could not authenticate user')
+        return redirect('/login?error_status=9')
     }
 
     return redirect('/dashboard')
@@ -25,6 +25,7 @@ export async function actionLogin(formData: FormData) {
 
 export async function actionSignUp(formData: FormData) {
     const origin = headers().get('origin')
+    const username = formData.get('username') as string
     const email = formData.get('email') as string
     const password = formData.get('password') as string
     const cookieStore = cookies()
@@ -34,6 +35,7 @@ export async function actionSignUp(formData: FormData) {
         email,
         password,
         options: {
+            data: { username },
             emailRedirectTo: `${origin}/auth/callback`,
         },
     })
@@ -61,7 +63,7 @@ export const actionGetMySelf = async () => {
     const supabase = getServerClient();
     const authUser = await fetchAuthUser(supabase);
 
-    if (!authUser) throw new Error("User not found");
+    if (!authUser) throw new Error("ログインしてください。");
 
     const user = await fetchUserById(authUser.id, supabase);
 

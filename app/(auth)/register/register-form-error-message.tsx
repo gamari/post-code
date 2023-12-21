@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Typo } from "@/src/components/atoms/texts/typo";
+import { ErrorMessage } from "@/src/components/molecules/displays/error-message";
 
 interface Props {
   status?: string;
@@ -8,9 +8,7 @@ interface Props {
 
 export const RegisterFormErrorMessage = ({ status }: Props) => {
   if (status == "9")
-    return (
-      <Typo text="ユーザー登録に失敗しました。" className="text-red-500" />
-    );
+    return <ErrorMessage message={"ユーザー登録に失敗しました"} />;
 
-  return <div>{status}</div>;
+  return <ErrorMessage message={"エラーが発生しました"} />;
 };

@@ -12,6 +12,7 @@ interface Props {
   value?: string;
   placeholder?: string;
   setValue?: (value: string) => void;
+  type?: "text" | "password" | "email";
 }
 
 export const LabelInput = ({
@@ -21,6 +22,7 @@ export const LabelInput = ({
   placeholder,
   value,
   setValue,
+  type
 }: Props) => {
   return (
     <div>
@@ -29,6 +31,7 @@ export const LabelInput = ({
         id={id}
         name={name}
         value={value}
+        type={type}
         onChange={(e) => setValue?.(e.target.value)}
         placeholder={placeholder}
       />

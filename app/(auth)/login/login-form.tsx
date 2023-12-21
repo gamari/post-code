@@ -5,12 +5,13 @@ import { BackButton } from "@/src/components/molecules/back-button";
 
 import React from "react";
 import { LabelInput } from "@/src/components/molecules/forms/LabelInput";
+import { LoginFormErrorMessage } from "./login-form-error-message";
 
 interface Props {
-  message: string;
+  errorStatus: string;
 }
 
-export const LoginForm = ({ message }: Props) => {
+export const LoginForm = ({ errorStatus }: Props) => {
   return (
     <div className="relative flex flex-col w-full h-full justify-center items-center">
       <BackButton url="/" className="absolute left-8 top-8 " label="ホームへ" />
@@ -34,12 +35,7 @@ export const LoginForm = ({ message }: Props) => {
 
         <Button type="submit">ログイン</Button>
         <LinkButton url="/register" label="ユーザー登録画面へ" />
-
-        {message && (
-          <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
-            {message}
-          </p>
-        )}
+        <LoginFormErrorMessage status={errorStatus} />
       </form>
     </div>
   );
