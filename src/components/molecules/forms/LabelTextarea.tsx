@@ -1,6 +1,8 @@
+"use client";
+
 import React from "react";
+
 import { Textarea } from "../../atoms/forms/textarea";
-import { Typo } from "../../atoms/texts/typo";
 import { Heading } from "../../atoms/texts/heading";
 
 interface Props {

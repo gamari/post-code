@@ -7,8 +7,8 @@ import { Card, CardContent, CardHeader } from "@/src/components/molecules/displa
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { Button } from "@/src/components/atoms/buttons/button";
 import { cn } from "@/src/libs/utils";
-import { LabelInput } from "../../molecules/forms/label-input";
-import { LabelTextarea } from "../../molecules/forms/label-textarea";
+import { LabelInput } from "../../molecules/forms/LabelInput";
+import { LabelTextarea } from "../../molecules/forms/LabelTextarea";
 import { useFormAccount } from "@/src/hooks/accounts/useFormAccount";
 import { useAlert } from "@/src/hooks/useAlert";
 import { useRouter } from "next/navigation";
