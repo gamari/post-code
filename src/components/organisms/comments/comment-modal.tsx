@@ -2,7 +2,7 @@ import React from "react";
 
 import { Modal } from "@/src/components/molecules/displays/Modal";
 import { Code } from "@/src/types";
-import { CodeCommentForm } from "../../../../app/(main)/codes/[code_id]/detail/_components/CodeDetailCommentForm";
+import { CodeCommentForm } from "../../../../app/(public)/codes/[code_id]/detail/_components/CodeDetailCommentForm";
 
 interface Props {
   code: Code;

@@ -20,16 +20,18 @@ export const LoginForm = ({ errorStatus }: Props) => {
       <Heading>ログイン画面</Heading>
 
       <form
-        className="max-w-md border px-8 py-12 rounded-md flex flex-col w-full justify-center gap-2 text-foreground"
+        className="max-w-md bg-white border px-8 py-12 rounded-md flex flex-col w-full justify-center gap-2 text-foreground"
         action={actionLogin}
       >
         <LabelInput
+          type="email"
           id="email"
           name="email"
           label="メールアドレス"
           placeholder="taro@example.com"
         />
         <LabelInput
+          type="password"
           id="password"
           name="password"
           label="パスワード"

@@ -1,8 +1,6 @@
 ## Next
 
-
-- [ ] codesをupdate_atするようにする
-
+- [ ] directoryの修正
 - [ ] code-panelのコメント数を取得する
   - 良いね数なども
 - [ ] good, badの例を書く
@@ -38,3 +36,4 @@
 - [x] SupabaseProvider の User 取得処理がおかしいので直す
 - [x] AceEditor で表示させる
 - [x] アカウント設定ページの内容がおかしいため修正
+- [x] codesをupdate_atするようにする

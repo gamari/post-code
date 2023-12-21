@@ -19,7 +19,7 @@ export const RegisterForm = ({ errorStatus }: Props) => {
       <Heading>ユーザー登録画面</Heading>
 
       <form
-        className="max-w-md border px-8 py-12 rounded-md flex flex-col w-full justify-center gap-2 text-foreground"
+        className="max-w-md bg-white border px-8 py-12 rounded-md flex flex-col w-full justify-center gap-2 text-foreground"
         action={actionSignUp}
       >
         <LabelInput

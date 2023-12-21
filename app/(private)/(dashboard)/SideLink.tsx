@@ -3,7 +3,7 @@
 import React from "react";
 
 import { usePathname } from "next/navigation";
-import { LinkButton } from "../../src/components/molecules/buttons/link-button";
+import { LinkButton } from "../../../src/components/molecules/buttons/link-button";
 
 interface Props {
   url: string;
