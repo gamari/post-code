@@ -2,8 +2,39 @@ import { CODE_TABLE } from "@/src/libs/constants/tables";
 import { Code, CodeDetail } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 
-// Select
+// Select-One
 
+export const fetchCodeById = async (id: number, client: SupabaseClient) => {
+    const { data: code, error } = await client
+        .from(CODE_TABLE)
+        .select(`
+            *, 
+            users (*),
+            files: files(*)
+        `)
+        .eq("id", id)
+        .single();
+
+    if (error) return null;
+
+    return {
+        ...code,
+        user: code.users
+    };
+};
+
+// Select-Many
+export const fetchCodesByUserId = async (userId: string, client: SupabaseClient) => {
+    const { data: codes, error } = await client
+        .from(CODE_TABLE)
+        .select("*")
+        .eq("user_id", userId)
+        .order("updated_at", { ascending: false });
+
+    if (error) throw error;
+
+    return codes;
+}
 export const fetchCodesBySelf = async (client: SupabaseClient) => {
     const {
         data: { user },
@@ -25,12 +56,10 @@ export const fetchCodeWithFilesById = async (id: number, client: SupabaseClient)
         .from(CODE_TABLE)
         .select("*")
         .eq("id", id)
-        .select(
-            `
+        .select(`
             *,
             files: files(*)
-            `
-        )
+        `)
         .maybeSingle();
 
     if (error) return null;
@@ -38,26 +67,28 @@ export const fetchCodeWithFilesById = async (id: number, client: SupabaseClient)
     return codeWithFiles;
 };
 
-export const fetchLatestCodes = async (client: SupabaseClient) => {
+export const fetchLatestCodes = async (client: SupabaseClient, limit: number = 6) => {
     // TODO usersが気持ち悪いので直したい
     const { data: codes, error } = await client
-        .from(CODE_TABLE)
+        .from('codes')
         .select(`
             *,
-            users: user_id (*)
+            users: user_id (*),
+            favorites_count: favorites (count)
         `)
         .eq("is_public", true)
         .order("created_at", { ascending: false })
-        .limit(10);
+        .limit(limit);
 
     if (error) throw new Error("BadCodeの取得中にエラーが発生しました。");
 
     return codes.map((code) => {
         return {
             ...code,
-            user: code.users
+            user: code.users,
+            favorites_count: code.favorites_count[0]?.count || 0
         }
-    });
+    }) as CodeDetail[];
 };
 
 export const fetchFavoriteCodes = async (client: SupabaseClient) => {
@@ -78,10 +109,7 @@ export const fetchFavoriteCodes = async (client: SupabaseClient) => {
         `)
         .eq('user_id', user.id)
 
-    if (error) {
-        console.error('Error fetching data', error)
-        return []
-    }
+    if (error) throw error;
 
     return data.map((favoriteCode) => {
         // TODO fix types
@@ -90,6 +118,7 @@ export const fetchFavoriteCodes = async (client: SupabaseClient) => {
     });
 }
 
+// Create-Update-Delete
 export const fetchCreateCode = async (newBadCodes: Code, client: SupabaseClient) => {
     const {
         data: { user },
@@ -108,39 +137,6 @@ export const fetchCreateCode = async (newBadCodes: Code, client: SupabaseClient)
 
     return data;
 };
-
-export const fetchCodeById = async (id: number, client: SupabaseClient) => {
-    console.log(id);
-    const { data: code, error } = await client
-        .from(CODE_TABLE)
-        .select(`
-          *, 
-          users (*),
-          files: files(*)
-        `)
-        .eq("id", id)
-        .single();
-
-    if (error) return null;
-
-    return {
-        ...code,
-        user: code.users
-    };
-};
-
-export const fetchCodesByUserId = async (userId: string, client: SupabaseClient) => {
-    const { data: codes, error } = await client
-        .from(CODE_TABLE)
-        .select("*")
-        .eq("user_id", userId)
-        .order("updated_at", { ascending: false });
-
-    if (error) throw error;
-
-    return codes;
-}
-
 
 
 export const fetchDeleteBadCode = async (id: number, client: SupabaseClient) => {

@@ -21,4 +21,5 @@ export interface CodeWithUser extends Code {
 export interface CodeDetail extends Code {
     user: User;
     files: File[];
+    favorites_count?: number;
 }

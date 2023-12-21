@@ -32,7 +32,7 @@ export const CodePanel: FunctionComponent<Props> = ({ code, className }) => {
 
           <div className="flex flex-row items-center gap-2">
             <HeartIcon className="h-5 w-5" />
-            <span>3</span>
+            <span>{code?.favorites_count || 0}</span>
           </div>
         </div>
       </div>
