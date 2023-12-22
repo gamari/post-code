@@ -23,8 +23,8 @@ export const CodeDetailSidebar = async ({ codeId }: Props) => {
       <UserInfoCard user={badCode.user} />
       <Suspense>
         <CodeDetailFileListCard files={files} />
+        <CodeDetailSidebarToolsCard badCode={badCode} />
       </Suspense>
-      <CodeDetailSidebarToolsCard badCode={badCode} />
     </div>
   );
 };

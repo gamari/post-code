@@ -3,7 +3,8 @@
 悪いコード収集のアプリ。
 
 [GitHub](https://github.com/gamari/bad-codes-nextjs)
-[Vercel](https://bad-codes-nextjs.vercel.app/)
+[Vercel-App](https://bad-codes-nextjs.vercel.app/)
+[Vercel-Dashboard](https://vercel.com/gamari/bad-codes-nextjs)
 
 ## Sites
 
