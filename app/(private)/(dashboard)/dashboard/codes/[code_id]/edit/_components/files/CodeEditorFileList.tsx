@@ -5,6 +5,13 @@ import { cn } from "@/src/libs/utils";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FileIcon } from "../../../../../../../../../src/components/molecules/displays/file-icon";
 import { getFileType } from "@/src/libs/editors";
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from "@/src/components/ui/context-menu";
+import { Typo } from "@/src/components/atoms/texts/typo";
 
 interface Props {
   files: File[];
@@ -25,26 +32,32 @@ export const CodeEditorFileList = ({
   return (
     <div className="flex flex-col gap-1">
       {files?.map((file) => (
-        <div
-          key={file.id}
-          className={cn(
-            "flex flex-row items-center cursor-pointer hover:bg-gray-200 p-2 rounded-lg gap-2",
-            selectedFile?.id === file.id && "bg-gray-200"
-          )}
-          onClick={() => onClickFile(file)}
-        >
-          <FileIcon fileType={getFileType(file.name)} />
-          <div className="flex-1">{file.name}</div>
-          {onDeleteFile && (
-            <AiOutlineDelete
-              className="h-6 w-6 p-1 cursor-pointer border border-gray-300 hover:bg-gray-500 rounded-lg hover:opacity-50"
+        <ContextMenu key={file.id}>
+          <ContextMenuTrigger>
+            <div
+              className={cn(
+                "flex flex-row items-center cursor-pointer hover:bg-gray-200 p-2 rounded-lg gap-2",
+                selectedFile?.id === file.id && "bg-gray-200"
+              )}
+              onClick={() => onClickFile(file)}
+            >
+              <FileIcon fileType={getFileType(file.name)} />
+              <div className="flex-1">{file.name}</div>
+            </div>
+          </ContextMenuTrigger>
+          <ContextMenuContent>
+            <ContextMenuItem>名前変更</ContextMenuItem>
+            <ContextMenuItem
               onClick={(e) => {
                 e.stopPropagation();
-                onDeleteFile(file);
+                onDeleteFile?.(file);
               }}
-            />
-          )}
-        </div>
+              className="border-t mt-3 cursor-pointer"
+            >
+              <Typo className="text-red-500" text="削除" />
+            </ContextMenuItem>
+          </ContextMenuContent>
+        </ContextMenu>
       ))}
     </div>
   );

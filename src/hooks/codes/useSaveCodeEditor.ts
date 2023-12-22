@@ -13,6 +13,7 @@ export const useSaveCodeEditor = () => {
     const { code, selectedFile, updateFile, files } = useCodeEditor();
 
     async function saveEditor() {
+        console.log("saveEditor");
         if (!client) throw new Error("通信に失敗しました。");
 
         const user = await getAuthUser();
@@ -21,6 +22,7 @@ export const useSaveCodeEditor = () => {
         if (!client) throw new Error("通信に失敗しました。");
         if (!code?.id) throw new Error("対象のコードがありません。");
 
+        console.log(selectedFile);
         if (selectedFile) {
             if (!selectedFile?.name) throw new Error("ファイル名がありません。");
             updateFile(selectedFile);

@@ -5,7 +5,6 @@ import React, { FunctionComponent } from "react";
 import { CodeEditorSidebar } from "./sidebar/CodeEditorSidebar";
 import { CodeFileEditor } from "./files/CodeFileEditor";
 import { CodeEditorProvider } from "@/src/contexts/CodeEditorProvider";
-import { CodeDetailInfoEditor } from "./CodeDetailInfoEditor";
 import { CodeDetail } from "@/src/types";
 
 interface Props {
