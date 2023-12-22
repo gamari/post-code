@@ -4,6 +4,7 @@ import { useSetEditorFiles } from "./useSetEditorFiles";
 import { useGetEditorFiles } from "./useGetEditorFiles";
 import { useUpdateEditorSelectedFile } from "./useUpdateEditorSelectedFile";
 
+/** Filesのファイルを更新 */
 export const useUpdateEditorFile = () => {
     const { files } = useGetEditorFiles();
     const { setFiles } = useSetEditorFiles();

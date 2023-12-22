@@ -2,34 +2,24 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { File, CodeDetail, Code } from "@/src/types";
+import { File, CodeDetail } from "@/src/types";
 
 interface ContextProps {
   code?: CodeDetail;
-  setTitle: (title: string) => void;
-  setDescription: (description: string) => void;
+  setCode: (code: CodeDetail | undefined) => void;
   selectedFile: File | undefined;
   setSelectedFile: (file: File | undefined) => void;
   files: File[];
   setFiles: (files: File[]) => void;
-  addFile: (file: File) => void;
-  deleteFile: (file: File) => void;
-  updateFile: (file: File) => void;
-  setIsPublic: (isPublic: boolean) => void;
 }
 
 const CodeEditorContext = createContext<ContextProps>({
   code: undefined,
-  setTitle: () => {},
-  setDescription: () => {},
+  setCode: () => {},
   files: [],
   setFiles: () => {},
   selectedFile: undefined,
   setSelectedFile: () => {},
-  addFile: () => {},
-  deleteFile: () => {},
-  updateFile: () => {},
-  setIsPublic: () => {},
 });
 
 interface ProviderProps {
@@ -55,54 +45,15 @@ export const CodeEditorProvider = ({
     init();
   }, []);
 
-  function setTitle(title: string) {
-    if (!code) return;
-    setCode({ ...code, title });
-  }
-
-  function setIsPublic(isPublic: boolean) {
-    if (!code) return;
-    setCode({ ...code, is_public: isPublic });
-  }
-
-  function setDescription(description: string) {
-    if (!code) return;
-    setCode({ ...code, description });
-  }
-
-  function addFile(file: File) {
-    setFiles([...files, file]);
-  }
-
-  function deleteFile(file: File) {
-    const newFiles = files.filter((f) => f.id !== file.id);
-    setFiles(newFiles);
-  }
-
-  function updateFile(file: File) {
-    const newFiles = files.map((f) => {
-      if (f.id === file.id) {
-        return file;
-      }
-      return f;
-    });
-    setFiles(newFiles);
-  }
-
   return (
     <CodeEditorContext.Provider
       value={{
         code,
-        setTitle,
-        setDescription,
-        setIsPublic,
+        setCode,
         files,
         setFiles,
         selectedFile,
         setSelectedFile,
-        addFile,
-        deleteFile,
-        updateFile,
       }}
     >
       {children}

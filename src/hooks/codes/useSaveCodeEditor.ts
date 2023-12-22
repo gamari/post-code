@@ -4,13 +4,21 @@ import { fetchUpdateCode } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchUpsertFiles } from "@/src/libs/externals/supabase/queries/files";
 import { useRouter } from "next/navigation";
 import { useLoading } from "../useLoading";
+import { useGetEditorCode } from "./editors/useGetEditorCode";
+import { useGetEditorSelectedFile } from "./editors/useGetEditorSelectedFile";
+import { useGetEditorFiles } from "./editors/useGetEditorFiles";
+import { useUpdateEditorFile } from "./editors/useUpdateEditorFile";
 
 export const useSaveCodeEditor = () => {
     const router = useRouter();
     const { loading, startLoading, stopLoading } = useLoading();
     const { client, getAuthUser } = useSupabase();
 
-    const { code, selectedFile, updateFile, files } = useCodeEditor();
+    const { code } = useGetEditorCode();
+    const { selectedFile } = useGetEditorSelectedFile();
+    const { files } = useGetEditorFiles();
+    const { updateFile } = useUpdateEditorFile();
+
 
     async function saveEditor() {
         console.log("saveEditor");

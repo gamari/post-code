@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import { File } from "@/src/types";
 import { cn } from "@/src/libs/utils";
-import { AiOutlineDelete } from "react-icons/ai";
 import { FileIcon } from "../../../../../../../../../src/components/molecules/displays/file-icon";
 import { getFileType } from "@/src/libs/editors";
 import {
@@ -13,23 +12,31 @@ import {
 } from "@/src/components/ui/context-menu";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { useUpdateEditorFile } from "@/src/hooks/codes/editors/useUpdateEditorFile";
+import { useDeleteFileInEditor } from "@/src/hooks/codes/editors/useDeleteFileInEditor";
+import { useSelectCodeFile } from "@/src/hooks/codes/useSelectCodeEditorFile";
+import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/useGetEditorSelectedFile";
 
 interface Props {
   files: File[];
-  selectedFile: File | undefined;
-  onClickFile: (file: File) => void;
-  onDeleteFile?: (file: File) => void;
 }
 
-export const CodeEditorFileList = ({
-  files,
-  selectedFile,
-  onClickFile,
-  onDeleteFile,
-}: Props) => {
+export const CodeEditorFileList = ({ files }: Props) => {
+  const { selectedFile } = useGetEditorSelectedFile();
   const { updateFile } = useUpdateEditorFile();
+  const { deleteFileInEditor } = useDeleteFileInEditor();
+  const { selectFile } = useSelectCodeFile();
+
   const [editingFile, setEditingFile] = useState<File | null>(null);
   const [editingName, setEditingName] = useState("");
+
+  const handleDeleteFile = async (file: File) => {
+    if (!confirm("本当に削除しますか？")) return;
+    deleteFileInEditor(file);
+  };
+
+  const onClickFile = (file: File) => {
+    selectFile(file);
+  };
 
   const handleRename = (file: File) => {
     setEditingFile(file);
@@ -84,7 +91,7 @@ export const CodeEditorFileList = ({
             <ContextMenuItem
               onClick={(e) => {
                 e.stopPropagation();
-                onDeleteFile?.(file);
+                handleDeleteFile?.(file);
               }}
               className="border-t mt-3 cursor-pointer"
             >

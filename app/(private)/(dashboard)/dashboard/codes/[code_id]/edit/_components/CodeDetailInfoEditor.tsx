@@ -7,13 +7,16 @@ import { Textarea } from "@/src/components/atoms/forms/textarea";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { cn } from "@/src/libs/utils";
 import { Heading } from "@/src/components/atoms/texts/heading";
+import { useGetEditorCode } from "@/src/hooks/codes/editors/useGetEditorCode";
+import { useSetEditorCode } from "@/src/hooks/codes/editors/useSetEditorCode";
 
 interface Props {
   className?: string;
 }
 
 export const CodeDetailInfoEditor = ({ className }: Props) => {
-  const { code, setTitle, setDescription } = useCodeEditor();
+  const { code } = useGetEditorCode();
+  const { setTitle, setDescription } = useSetEditorCode();
 
   return (
     <div className={cn("", className)}>

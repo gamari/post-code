@@ -8,17 +8,19 @@ import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/mode-typescript";
 
 import { cn } from "@/src/libs/utils";
-import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 import { getFileType } from "@/src/libs/editors";
 import { Heading } from "@/src/components/atoms/texts/heading";
+import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/useGetEditorSelectedFile";
+import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/useSetEditorSelectedFile";
 
 interface Props {
   className?: string;
 }
 
 export const CodeFileEditor = ({ className }: Props) => {
-  const { selectedFile, setSelectedFile } = useCodeEditor();
+  const { selectedFile } = useGetEditorSelectedFile();
+  const { setSelectedFile } = useSetEditorSelectedFile();
 
   if (!selectedFile)
     return (

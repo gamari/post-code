@@ -2,38 +2,21 @@
 
 import React from "react";
 
-import { File } from "@/src/types";
 import { CodeEditorFileList } from "../files/CodeEditorFileList";
-import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { CodeEditorSaveModalButton } from "../CodeEditorSaveModalButton";
-import { useAlert } from "@/src/hooks/useAlert";
 import { LinkButton } from "@/src/components/molecules/buttons/link-button";
-import { SelectRadioButtonList } from "@/src/components/molecules/forms/select-radio-button-list";
 import { CodeEditorNewFileModalButton } from "../CodeEditorNewFileModalButton";
-import { useDeleteCodeFile } from "@/src/hooks/codes/useDeleteCodeEditorFile";
-import { useSelectCodeFile } from "@/src/hooks/codes/useSelectCodeEditorFile";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { Switch } from "@/src/components/ui/switch";
 import { Typo } from "@/src/components/atoms/texts/typo";
+import { useGetEditorCode } from "@/src/hooks/codes/editors/useGetEditorCode";
+import { useGetEditorFiles } from "@/src/hooks/codes/editors/useGetEditorFiles";
+import { useSetEditorCode } from "@/src/hooks/codes/editors/useSetEditorCode";
 
 export const CodeEditorSidebar = () => {
-  const { errorAlert } = useAlert();
-  const { code, files, selectedFile, setIsPublic } = useCodeEditor();
-  const { deleteFile } = useDeleteCodeFile();
-  const { selectFile } = useSelectCodeFile();
-
-  const handleClickFile = (file: File) => {
-    try {
-      selectFile(file);
-    } catch (e) {
-      errorAlert("ファイル選択できませんでした。", e);
-    }
-  };
-
-  const handleDeleteFile = async (file: File) => {
-    if (!confirm("本当に削除しますか？")) return;
-    deleteFile(file);
-  };
+  const { code } = useGetEditorCode();
+  const { files } = useGetEditorFiles();
+  const { setIsPublic } = useSetEditorCode();
 
   return (
     <div className="w-[250px] h-fit border p-5 rounded-md bg-white">
@@ -43,12 +26,7 @@ export const CodeEditorSidebar = () => {
       </div>
 
       <div className="mt-6 flex flex-col gap-2 max-h-[400px] overflow-auto">
-        <CodeEditorFileList
-          files={files}
-          selectedFile={selectedFile}
-          onClickFile={handleClickFile}
-          onDeleteFile={handleDeleteFile}
-        />
+        <CodeEditorFileList files={files} />
       </div>
 
       <div className="my-6 flex items-center gap-2">
