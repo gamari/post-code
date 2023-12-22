@@ -1,15 +1,16 @@
 import { File } from "@/src/types";
-import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
+
+import { useGetEditorSelectedFile } from "./editors/useGetEditorSelectedFile";
+import { useSetEditorSelectedFile } from "./editors/useSetEditorSelectedFile";
+import { useUpdateEditorFile } from "./editors/useUpdateEditorFile";
 
 export const useSelectCodeFile = () => {
-    const { selectedFile, setSelectedFile, updateFile } = useCodeEditor();
+    const { selectedFile } = useGetEditorSelectedFile();
+    const { setSelectedFile } = useSetEditorSelectedFile();
+    const { updateFile } = useUpdateEditorFile();
 
     const selectFile = (file: File) => {
-        if (selectedFile && !selectedFile?.name) {
-            // infoAlert("ファイル名を入力してください");
-            // return;
-            throw new Error("ファイル名を入力してください");
-        }
+        if (selectedFile && !selectedFile?.name) throw new Error("ファイル名を入力してください");
 
         if (selectedFile?.id === file.id) return;
         if (selectedFile?.id !== file.id && selectedFile?.content) {

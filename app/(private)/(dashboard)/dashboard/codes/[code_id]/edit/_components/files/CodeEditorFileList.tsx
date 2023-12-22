@@ -15,18 +15,22 @@ import { useUpdateEditorFile } from "@/src/hooks/codes/editors/useUpdateEditorFi
 import { useDeleteFileInEditor } from "@/src/hooks/codes/editors/useDeleteFileInEditor";
 import { useSelectCodeFile } from "@/src/hooks/codes/useSelectCodeEditorFile";
 import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/useGetEditorSelectedFile";
+import { useAlert } from "@/src/hooks/useAlert";
+import { sortAscByName, sortDescByName } from "@/src/libs/sortes";
 
 interface Props {
   files: File[];
 }
 
 export const CodeEditorFileList = ({ files }: Props) => {
+  const { errorAlert } = useAlert();
+
   const { selectedFile } = useGetEditorSelectedFile();
   const { updateFile } = useUpdateEditorFile();
   const { deleteFileInEditor } = useDeleteFileInEditor();
   const { selectFile } = useSelectCodeFile();
 
-  const [editingFile, setEditingFile] = useState<File | null>(null);
+  const [isEditing, setIsEditing] = useState<File | null>(null);
   const [editingName, setEditingName] = useState("");
 
   const handleDeleteFile = async (file: File) => {
@@ -39,14 +43,19 @@ export const CodeEditorFileList = ({ files }: Props) => {
   };
 
   const handleRename = (file: File) => {
-    setEditingFile(file);
+    setIsEditing(file);
     setEditingName(file.name);
   };
 
   const saveName = () => {
-    if (editingFile) {
-      setEditingFile(null);
-      updateFile({ ...editingFile, name: editingName });
+    if (isEditing) {
+      if (!editingName) {
+        errorAlert("ファイル名を入力してください");
+        setIsEditing(null);
+        return;
+      }
+      setIsEditing(null);
+      updateFile({ ...isEditing, name: editingName });
     }
   };
 
@@ -55,7 +64,7 @@ export const CodeEditorFileList = ({ files }: Props) => {
 
   return (
     <div className="flex flex-col gap-1">
-      {files?.map((file) => (
+      {files?.sort(sortAscByName).map((file) => (
         <ContextMenu key={file.id}>
           <ContextMenuTrigger>
             <div
@@ -66,7 +75,7 @@ export const CodeEditorFileList = ({ files }: Props) => {
               onClick={() => onClickFile(file)}
             >
               <FileIcon fileType={getFileType(file.name)} />
-              {editingFile?.id === file.id ? (
+              {isEditing?.id === file.id ? (
                 <input
                   type="text"
                   value={editingName}
