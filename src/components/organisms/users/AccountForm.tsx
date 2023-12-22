@@ -3,7 +3,11 @@
 import React from "react";
 
 import { User } from "@/src/types";
-import { Card, CardContent, CardHeader } from "@/src/components/molecules/displays/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+} from "@/src/components/molecules/displays/card";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { Button } from "@/src/components/atoms/buttons/button";
 import { cn } from "@/src/libs/utils";
@@ -12,6 +16,8 @@ import { LabelTextarea } from "../../molecules/forms/LabelTextarea";
 import { useFormAccount } from "@/src/hooks/accounts/useFormAccount";
 import { useAlert } from "@/src/hooks/useAlert";
 import { useRouter } from "next/navigation";
+import { Heading } from "../../atoms/texts/heading";
+import { Input } from "../../atoms/forms/input";
 
 interface Props {
   user: User;
@@ -47,6 +53,20 @@ export const AccountForm = ({ user: initUser, className = "" }: Props) => {
             setValue={setDescription}
             rows={6}
           />
+
+          <div>
+            <Heading type="h4">SNS</Heading>
+            <div>
+              <Typo className="text-gray-700 border p-1" text="X(旧Twitter)" />
+              <div className="flex flex-row items-center gap-2">
+                <Typo className="text-gray-700" text="https://twitter.com/" />
+                <Input
+                  value={"gamari"}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
         <Button onClick={handleUpdate} className="mt-3">

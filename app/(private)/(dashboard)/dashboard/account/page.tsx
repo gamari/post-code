@@ -11,7 +11,7 @@ const Page = async () => {
   return (
     <div className="p-10">
       <Heading className="mb-6">アカウント設定</Heading>
-      <AccountForm user={user} className="max-w-md" />
+      <AccountForm user={user} className="w-[500px]" />
       <LogoutButton />
     </div>
   );

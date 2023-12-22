@@ -17,7 +17,9 @@ export const CodeDetailInfoEditor = ({ className }: Props) => {
 
   return (
     <div className={cn("", className)}>
-      <Heading className="mb-3">詳細</Heading>
+      <Heading type="h4" className="mb-3">
+        タイトル
+      </Heading>
 
       <div>
         <Input
@@ -28,6 +30,10 @@ export const CodeDetailInfoEditor = ({ className }: Props) => {
           className="w-[66%]"
         />
       </div>
+
+      <Heading type="h4" className="mb-3">
+        説明
+      </Heading>
 
       <div className="mt-6">
         <Textarea

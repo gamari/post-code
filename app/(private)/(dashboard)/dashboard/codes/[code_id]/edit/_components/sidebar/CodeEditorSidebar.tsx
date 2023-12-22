@@ -5,7 +5,7 @@ import React from "react";
 import { File } from "@/src/types";
 import { CodeEditorFileList } from "../files/CodeEditorFileList";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
-import { CodeEditorSaveButton } from "../CodeEditorSaveButton";
+import { CodeEditorSaveModalButton } from "../CodeEditorSaveModalButton";
 import { useAlert } from "@/src/hooks/useAlert";
 import { LinkButton } from "@/src/components/molecules/buttons/link-button";
 import { SelectRadioButtonList } from "@/src/components/molecules/forms/select-radio-button-list";
@@ -62,7 +62,7 @@ export const CodeEditorSidebar = () => {
       </div>
 
       <div className="mt-6 flex flex-col gap-2">
-        <CodeEditorSaveButton />
+        <CodeEditorSaveModalButton />
 
         <LinkButton
           url={`/codes/${code?.id}/detail`}
