@@ -7,7 +7,6 @@ import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/mode-typescript";
 
-import { Input } from "@/src/components/atoms/forms/input";
 import { cn } from "@/src/libs/utils";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
@@ -29,14 +28,6 @@ export const CodeFileEditor = ({ className }: Props) => {
   return (
     <div className={cn("flex flex-col gap-4 w-full", className)}>
       <Heading>コードエディタ</Heading>
-      <Input
-        value={selectedFile?.name || ""}
-        onChange={(e) => {
-          if (!selectedFile) return;
-          setSelectedFile({ ...selectedFile, name: e.target.value });
-        }}
-        placeholder="ファイル名..."
-      />
       <AceEditor
         mode={getFileType(selectedFile.name)}
         theme="monokai"
@@ -50,16 +41,6 @@ export const CodeFileEditor = ({ className }: Props) => {
         height="100%"
         width="100%"
         fontSize={16}
-        // TODO 保存処理が上手くいかないので一旦コメントアウト
-        // onLoad={(editor) => {
-        //   editor.commands.addCommand({
-        //     name: "saveFile",
-        //     bindKey: { win: "Ctrl-S", mac: "Cmd-S" },
-        //     exec: () => {
-        //       saveEditor();
-        //     },
-        //   });
-        // }}
       />
     </div>
   );

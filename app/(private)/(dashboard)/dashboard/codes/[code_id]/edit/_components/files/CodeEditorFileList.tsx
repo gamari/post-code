@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { File } from "@/src/types";
 import { cn } from "@/src/libs/utils";
@@ -12,6 +12,7 @@ import {
   ContextMenuTrigger,
 } from "@/src/components/ui/context-menu";
 import { Typo } from "@/src/components/atoms/texts/typo";
+import { useUpdateEditorFile } from "@/src/hooks/codes/editors/useUpdateEditorFile";
 
 interface Props {
   files: File[];
@@ -26,6 +27,22 @@ export const CodeEditorFileList = ({
   onClickFile,
   onDeleteFile,
 }: Props) => {
+  const { updateFile } = useUpdateEditorFile();
+  const [editingFile, setEditingFile] = useState<File | null>(null);
+  const [editingName, setEditingName] = useState("");
+
+  const handleRename = (file: File) => {
+    setEditingFile(file);
+    setEditingName(file.name);
+  };
+
+  const saveName = () => {
+    if (editingFile) {
+      setEditingFile(null);
+      updateFile({ ...editingFile, name: editingName });
+    }
+  };
+
   if (!files?.length)
     return <div className="p-2 text-gray-600">ファイルがありません</div>;
 
@@ -42,11 +59,28 @@ export const CodeEditorFileList = ({
               onClick={() => onClickFile(file)}
             >
               <FileIcon fileType={getFileType(file.name)} />
-              <div className="flex-1">{file.name}</div>
+              {editingFile?.id === file.id ? (
+                <input
+                  type="text"
+                  value={editingName}
+                  onChange={(e) => setEditingName(e.target.value)}
+                  onBlur={saveName}
+                  className="w-full focus:border-none outline-none"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") saveName();
+                  }}
+                  autoFocus
+                />
+              ) : (
+                file.name
+              )}
             </div>
           </ContextMenuTrigger>
           <ContextMenuContent>
-            <ContextMenuItem>名前変更</ContextMenuItem>
+            <ContextMenuItem onClick={() => handleRename(file)}>
+              名前変更
+            </ContextMenuItem>
+
             <ContextMenuItem
               onClick={(e) => {
                 e.stopPropagation();

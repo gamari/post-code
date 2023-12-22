@@ -11,6 +11,7 @@ interface ContextProps {
   selectedFile: File | undefined;
   setSelectedFile: (file: File | undefined) => void;
   files: File[];
+  setFiles: (files: File[]) => void;
   addFile: (file: File) => void;
   deleteFile: (file: File) => void;
   updateFile: (file: File) => void;
@@ -22,6 +23,7 @@ const CodeEditorContext = createContext<ContextProps>({
   setTitle: () => {},
   setDescription: () => {},
   files: [],
+  setFiles: () => {},
   selectedFile: undefined,
   setSelectedFile: () => {},
   addFile: () => {},
@@ -95,6 +97,7 @@ export const CodeEditorProvider = ({
         setDescription,
         setIsPublic,
         files,
+        setFiles,
         selectedFile,
         setSelectedFile,
         addFile,
