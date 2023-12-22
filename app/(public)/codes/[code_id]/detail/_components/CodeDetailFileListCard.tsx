@@ -21,7 +21,7 @@ export const CodeDetailFileListCard = ({ files }: Props) => {
   };
 
   return (
-    <div className="border rounded-md bg-white w-[240px] p-5">
+    <div className="border rounded-md bg-white w-full p-5">
       <div>
         <Heading className="border-b pb-1">ファイル一覧</Heading>
 

@@ -5,12 +5,16 @@ interface Props {
   rows?: number;
 }
 
-export const Skeleton = ({ className }: Props) => {
+export const Skeleton = ({ className, rows = 3 }: Props) => {
   return (
     <div className={`flex flex-col space-y-4 p-10 ${className}`}>
-      <div className="h-4 w-full bg-gray-200 animate-pulse rounded"></div>
-      <div className="h-4 w-full bg-gray-200 animate-pulse rounded"></div>
-      <div className="h-4 w-full bg-gray-200 animate-pulse rounded"></div>
+      {rows &&
+        [...Array(rows)].map((_, i) => (
+          <div
+            key={i}
+            className="h-4 w-full bg-gray-200 animate-pulse rounded"
+          ></div>
+        ))}
     </div>
   );
 };

@@ -20,7 +20,7 @@ export const CodeDetailSidebarToolsCard = async ({ badCode }: Props) => {
   const isFavorite = await actionCheckFavoriteCode(badCode?.id);
 
   return (
-    <div className="border rounded-md bg-white w-[240px] p-5">
+    <div className="border rounded-md bg-white w-full p-5">
       <div className="flex flex-col gap-2">
         {authUser && (
           <>
