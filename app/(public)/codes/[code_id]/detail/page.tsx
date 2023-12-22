@@ -19,10 +19,9 @@ interface Props {
 }
 
 const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
-  const comments = await actionGetCommentsByCodeId(code_id);
 
   return (
-    <CodeCommentListProvider comments={comments}>
+    <CodeCommentListProvider comments={[]}>
       <CodeDetailProvider>
         <Center>
           <div className="p-10 flex flex-row gap-10">
@@ -30,7 +29,7 @@ const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
               <Suspense fallback={<Skeleton className="w-[500px]" />}>
                 <CodeDetailInfo id={code_id} />
                 <CodeDetailFileViewer />
-                <CodeDetailCommentList />
+                <CodeDetailCommentList codeId={code_id} />
               </Suspense>
             </div>
 
