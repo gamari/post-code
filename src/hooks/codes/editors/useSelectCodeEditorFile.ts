@@ -1,8 +1,8 @@
 import { File } from "@/src/types";
 
-import { useGetEditorSelectedFile } from "./editors/useGetEditorSelectedFile";
-import { useSetEditorSelectedFile } from "./editors/useSetEditorSelectedFile";
-import { useUpdateEditorFile } from "./editors/useUpdateEditorFile";
+import { useGetEditorSelectedFile } from "./useGetEditorSelectedFile";
+import { useSetEditorSelectedFile } from "./useSetEditorSelectedFile";
+import { useUpdateEditorFile } from "./useUpdateEditorFile";
 
 export const useSelectCodeFile = () => {
     const { selectedFile } = useGetEditorSelectedFile();

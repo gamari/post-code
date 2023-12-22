@@ -3,11 +3,11 @@ import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchUpdateCode } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchUpsertFiles } from "@/src/libs/externals/supabase/queries/files";
 import { useRouter } from "next/navigation";
-import { useLoading } from "../useLoading";
-import { useGetEditorCode } from "./editors/useGetEditorCode";
-import { useGetEditorSelectedFile } from "./editors/useGetEditorSelectedFile";
-import { useGetEditorFiles } from "./editors/useGetEditorFiles";
-import { useUpdateEditorFile } from "./editors/useUpdateEditorFile";
+import { useLoading } from "../../useLoading";
+import { useGetEditorCode } from "./useGetEditorCode";
+import { useGetEditorSelectedFile } from "./useGetEditorSelectedFile";
+import { useGetEditorFiles } from "./useGetEditorFiles";
+import { useUpdateEditorFile } from "./useUpdateEditorFile";
 
 export const useSaveCodeEditor = () => {
     const router = useRouter();

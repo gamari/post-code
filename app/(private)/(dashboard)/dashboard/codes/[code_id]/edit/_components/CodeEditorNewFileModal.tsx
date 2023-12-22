@@ -6,10 +6,14 @@ import { Input } from "@/src/components/atoms/forms/input";
 import { Button } from "@/src/components/atoms/buttons/button";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { Modal } from "../../../../../../../../src/components/molecules/displays/Modal";
-import { useFormCodeFile } from "@/src/hooks/codes/useFormCodeEditorFile";
+import { useFormCodeFile } from "@/src/hooks/codes/editors/useFormCodeEditorFile";
 import { useAlert } from "@/src/hooks/useAlert";
 import { useLoading } from "@/src/hooks/useLoading";
 import { CreateButton } from "@/src/components/molecules/buttons/create-button";
+import { useGetEditorFiles } from "@/src/hooks/codes/editors/useGetEditorFiles";
+import { useAddEditorFile } from "@/src/hooks/codes/editors/useAddEditorFile";
+import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/useSetEditorSelectedFile";
+import { useGetEditorCode } from "@/src/hooks/codes/editors/useGetEditorCode";
 
 interface Props {
   isOpen: boolean;
@@ -19,7 +23,12 @@ interface Props {
 export const CodeEditorNewFileModal = ({ isOpen, onClose }: Props) => {
   const { loading, startLoading, stopLoading } = useLoading();
   const { errorAlert } = useAlert();
-  const { code, addFile, setSelectedFile, files } = useCodeEditor();
+
+  const { code } = useGetEditorCode();
+  const { files } = useGetEditorFiles();
+  const { addFile } = useAddEditorFile();
+  const { setSelectedFile } = useSetEditorSelectedFile();
+
   const { name, setName, saveFile } = useFormCodeFile();
 
   const handleAddFile = async () => {

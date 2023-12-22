@@ -10,7 +10,7 @@ interface ContextProps {
   selectedFile: File | undefined;
   setSelectedFile: (file: File | undefined) => void;
   files: File[];
-  setFiles: (files: File[]) => void;
+  setFiles: React.Dispatch<React.SetStateAction<File[]>>;
 }
 
 const CodeEditorContext = createContext<ContextProps>({

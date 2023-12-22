@@ -13,10 +13,11 @@ import {
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { useUpdateEditorFile } from "@/src/hooks/codes/editors/useUpdateEditorFile";
 import { useDeleteFileInEditor } from "@/src/hooks/codes/editors/useDeleteFileInEditor";
-import { useSelectCodeFile } from "@/src/hooks/codes/useSelectCodeEditorFile";
+import { useSelectCodeFile } from "@/src/hooks/codes/editors/useSelectCodeEditorFile";
 import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/useGetEditorSelectedFile";
 import { useAlert } from "@/src/hooks/useAlert";
 import { sortAscByName, sortDescByName } from "@/src/libs/sortes";
+import { CodeEditorNewFileModalButton } from "../CodeEditorNewFileModalButton";
 
 interface Props {
   files: File[];
@@ -60,7 +61,12 @@ export const CodeEditorFileList = ({ files }: Props) => {
   };
 
   if (!files?.length)
-    return <div className="p-2 text-gray-600">ファイルがありません</div>;
+    return (
+      <div className="p-2 text-gray-600 flex items-center gap-3">
+        ファイルを追加
+        <CodeEditorNewFileModalButton />
+      </div>
+    );
 
   return (
     <div className="flex flex-col gap-1">

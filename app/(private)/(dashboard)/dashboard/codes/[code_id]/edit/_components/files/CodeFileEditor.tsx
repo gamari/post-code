@@ -29,7 +29,6 @@ export const CodeFileEditor = ({ className }: Props) => {
 
   return (
     <div className={cn("flex flex-col gap-4 w-full", className)}>
-      <Heading>コードエディタ</Heading>
       <AceEditor
         mode={getFileType(selectedFile.name)}
         theme="monokai"
