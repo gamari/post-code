@@ -33,7 +33,9 @@ const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
               </Suspense>
             </div>
 
-            <CodeDetailSidebar codeId={code_id} />
+            <Suspense fallback={null}>
+              <CodeDetailSidebar codeId={code_id} />
+            </Suspense>
           </div>
         </Center>
       </CodeDetailProvider>

@@ -14,14 +14,12 @@ export const CodeDetailSidebar = async ({ codeId }: Props) => {
   const badCode = await actionGetBadCodeById(codeId);
   const files = await actionGetFiles(codeId);
 
-  if (!badCode) {
-    throw new Error("コードが見つかりません");
-  }
+  if (!badCode) throw new Error("コードが見つかりません");
 
   return (
     <div className="sticky top-20 h-fit flex flex-col gap-6">
       <UserInfoCard user={badCode.user} />
-      <Suspense>
+      <Suspense fallback={null}>
         <CodeDetailFileListCard files={files} />
         <CodeDetailSidebarToolsCard badCode={badCode} />
       </Suspense>
