@@ -19,10 +19,8 @@ export const CodeDetailSidebar = async ({ codeId }: Props) => {
   return (
     <div className="sticky top-20 h-fit flex flex-col gap-6 w-[250px]">
       <UserInfoCard user={badCode.user} />
-      <Suspense fallback={null}>
-        <CodeDetailFileListCard files={files} />
-        <CodeDetailSidebarToolsCard badCode={badCode} />
-      </Suspense>
+      <CodeDetailFileListCard files={files} />
+      <CodeDetailSidebarToolsCard badCode={badCode} />
     </div>
   );
 };
