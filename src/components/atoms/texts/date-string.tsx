@@ -13,7 +13,7 @@ export const DateString = ({ value, type = "date", className }: Props) => {
   if (type == "datetime")
     return (
       <span className={className}>
-        {dayjs(value).format("YYYY/MM/DD HH:mm")}
+        {dayjs(value, "Asia/Tokyo").format("YYYY/MM/DD HH:mm")}
       </span>
     );
 
