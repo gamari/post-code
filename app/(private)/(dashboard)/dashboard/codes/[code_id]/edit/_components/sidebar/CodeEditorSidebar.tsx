@@ -19,7 +19,7 @@ export const CodeEditorSidebar = () => {
   const { setIsPublic } = useSetEditorCode();
 
   return (
-    <div className="w-[250px] h-fit border p-5 rounded-md bg-white">
+    <div className="w-full h-fit border p-5 rounded-md bg-white">
       <div className="flex flex-row items-center gap-2 pb-2 border-b">
         <Heading type="h4">ファイル一覧</Heading>
         <CodeEditorNewFileModalButton />
