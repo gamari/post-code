@@ -6,7 +6,7 @@ import { Description } from "@/src/components/atoms/texts/description";
 
 export const TopAboutSection = () => {
   return (
-    <section className="py-12">
+    <section className="py-12 w-full bg-white">
       <Container>
         <div className="flex flex-row">
           <div className="flex-1">
