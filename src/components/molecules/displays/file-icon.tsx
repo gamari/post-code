@@ -1,7 +1,7 @@
 import React from "react";
 
 import { MdOutlineInsertDriveFile } from "react-icons/md";
-import { DiPython, DiJavascript1 } from "react-icons/di";
+import { DiPython, DiJavascript1, DiJava, DiGo } from "react-icons/di";
 import { FileType } from "@/src/libs/editors";
 
 interface Props {
@@ -14,8 +14,11 @@ export const FileIcon = ({ fileType }: Props) => {
   } else if (fileType === "javascript" || fileType === "jsx") {
     return <DiJavascript1 className="h-5 w-5" />;
   } else if (fileType === "tsx" || fileType === "typescript") {
-    // TODO fix typescriptにする
     return <DiJavascript1 className="h-5 w-5" />;
+  } else if (fileType === "java") {
+    return <DiJava className="h-5 w-5" />;
+  } else if (fileType === "go") {
+    return <DiGo className="h-5 w-5" />;
   }
 
   return <MdOutlineInsertDriveFile className="h-5 w-5" />;

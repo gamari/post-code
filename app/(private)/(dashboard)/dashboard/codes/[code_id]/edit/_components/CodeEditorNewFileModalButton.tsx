@@ -11,10 +11,10 @@ export const CodeEditorNewFileModalButton = () => {
 
   return (
     <>
-      <div className="p-1 rounded-full border hover:bg-gray-100 cursor-pointer">
-        <PlusIcon className="h-5 w-5" onClick={toggleModal} />
-      </div>
-
+      <PlusIcon
+        className="p-1 rounded-full border h-8 w-8 cursor-pointer hover:bg-gray-100"
+        onClick={toggleModal}
+      />
       <CodeEditorNewFileModal isOpen={isOpen} onClose={toggleModal} />
     </>
   );

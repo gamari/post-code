@@ -19,7 +19,7 @@ export const CodeEditorSaveModalButton = () => {
   const handleOnSave = async () => {
     try {
       await saveEditor();
-      infoAlert("保存しました");
+      // infoAlert("保存しました");
       toggleModal();
     } catch (error) {
       errorAlert("保存に失敗しました", error);

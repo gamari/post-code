@@ -1,13 +1,53 @@
-export type FileType = "python" | "javascript" | "typescript" | "text" | "tsx" | "jsx";
+export type Extension = 
+"js" | "ts" | "jsx" | "tsx" |
+"py" |
+"java" |
+"go" |
+"c" | "cpp" |
+"php" | "rb" |  "html" | "css" | "md" |  "sql"
+;
 
-export const getFileType = (filename: string) => {
-    if (filename.endsWith('.py')) {
-        return 'python';
-    } else if (filename.endsWith('.js')) {
-        return 'javascript';
-    } else if (filename.endsWith('.tsx') || filename.endsWith('.jsx')) {
-        return "tsx"
+export type FileType =
+"javascript" | "typescript" | "tsx" | "jsx" |
+"python" |
+"java" | "c_cpp" | "c" | "php" | "ruby" |
+"go" |
+"html" | "css" |
+"text" | "markdown" | "sql"
+;
+
+export const getFileType: (filename: string) => FileType = (filename: string) => {
+    const extension = filename.split('.').pop() as Extension;
+
+    switch (extension) {
+        case 'js':
+            return 'javascript';
+        case 'java':
+            return 'java';
+        case 'cpp':
+        case 'c':
+            return 'c_cpp';
+        case 'php':
+            return 'php';
+        case 'rb':
+            return 'ruby';
+        case 'ts':
+            return 'typescript';
+        case 'html':
+            return 'html';
+        case 'css':
+            return 'css';
+        case 'md':
+            return 'markdown';
+        case 'jsx':
+            return 'jsx';
+        case 'sql':
+            return 'sql';
+        case 'py':
+            return 'python';
+        case "go":
+            return "go";
+        default:
+            return 'text';
     }
-
-    return 'text';
 };

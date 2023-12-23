@@ -7,6 +7,7 @@ import { CodeFileEditor } from "./files/CodeFileEditor";
 import { CodeEditorProvider } from "@/src/contexts/CodeEditorProvider";
 import { CodeDetail } from "@/src/types";
 import { Skeleton } from "@/src/components/molecules/displays/skeleton";
+import { CodeEditorTitleInput } from "./CodeEditorTitleInput";
 
 interface Props {
   code: CodeDetail;
@@ -17,6 +18,7 @@ export const CodeEditor: FunctionComponent<Props> = ({ code }: Props) => {
     <CodeEditorProvider code={code}>
       <div className="sticky top-10 flex flex-row gap-4">
         <div className="w-[600px]">
+          <CodeEditorTitleInput />
           <CodeFileEditor className="h-[600px]" />
         </div>
 

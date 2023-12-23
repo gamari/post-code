@@ -9,6 +9,8 @@ import { cn } from "@/src/libs/utils";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";
 import { useSetEditorCode } from "@/src/hooks/codes/editors/setter/useSetEditorCode";
+import { Typo } from "@/src/components/atoms/texts/typo";
+import { Switch } from "@/src/components/ui/switch";
 
 interface Props {
   className?: string;
@@ -16,34 +18,30 @@ interface Props {
 
 export const CodeDetailInfoEditor = ({ className }: Props) => {
   const { code } = useGetEditorCode();
-  const { setTitle, setDescription } = useSetEditorCode();
+  const { setDescription, setIsPublic } = useSetEditorCode();
 
   return (
     <div className={cn("", className)}>
       <Heading type="h4" className="mb-3">
-        タイトル
-      </Heading>
-
-      <div>
-        <Input
-          type="text"
-          placeholder="タイトル"
-          value={code?.title || ""}
-          onChange={(e) => setTitle(e.target.value)}
-          className="w-[66%]"
-        />
-      </div>
-
-      <Heading type="h4" className="mb-3">
-        説明
+        コード説明
       </Heading>
 
       <div className="mt-6">
         <Textarea
           value={code?.description || ""}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="コードの悪い部分を説明してください……"
+          placeholder="コードの解説を書いてください……"
           rows={8}
+        />
+      </div>
+
+      <div className="my-6 flex items-center gap-2">
+        <Typo text="公開設定" className="text-gray-700 font-semibold text-sm" />
+        <Switch
+          checked={code?.is_public || false}
+          onCheckedChange={(value) => {
+            setIsPublic(value);
+          }}
         />
       </div>
     </div>

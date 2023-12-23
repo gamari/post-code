@@ -20,7 +20,7 @@ export const CodeDetailFileViewer = ({ className }: Props) => {
     return (
       <div
         className={cn(
-          "h-[400px] flex items-center justify-center bg-white rounded-md",
+          "h-[400px] flex items-center justify-center bg-white rounded-md sticky top-10",
           className
         )}
       >

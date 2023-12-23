@@ -26,6 +26,7 @@ export const useSaveEditorCode = () => {
 
         const user = await getAuthUser();
 
+        if (!code?.title) throw new Error("タイトルがありません。");
         if (!user?.id) throw new Error("ユーザーが見つかりませんでした。");
         if (!client) throw new Error("通信に失敗しました。");
         if (!code?.id) throw new Error("対象のコードがありません。");
@@ -49,6 +50,7 @@ export const useSaveEditorCode = () => {
             await fetchUpsertFiles(newFiles, client);
             await fetchUpdateCode(code, client);
             router.refresh();
+            router.push(`/codes/${code.id}/detail`);
         } catch (e) {
             throw e;
         } finally {
