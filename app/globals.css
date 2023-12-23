@@ -13,6 +13,15 @@ li {
   list-style: none;
 }
 
+/* Ace Editorの設定 */
+body .ace_scrollbar-v {
+  overflow-y: hidden;
+}
+
+body .ace_scrollbar-h {
+  overflow-x: hidden;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

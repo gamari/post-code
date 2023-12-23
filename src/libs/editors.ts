@@ -41,6 +41,8 @@ export const getFileType: (filename: string) => FileType = (filename: string) =>
             return 'markdown';
         case 'jsx':
             return 'jsx';
+        case 'tsx':
+            return 'tsx';
         case 'sql':
             return 'sql';
         case 'py':

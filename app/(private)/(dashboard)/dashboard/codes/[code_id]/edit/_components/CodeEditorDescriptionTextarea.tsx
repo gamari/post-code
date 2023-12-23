@@ -1,10 +1,11 @@
 "use client";
 
+import React from "react";
+
 import { Textarea } from "@/src/components/atoms/forms/textarea";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
 import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/setter/useSetEditorSelectedFile";
-import React from "react";
 
 export const CodeEditorDescriptionTextarea = () => {
   const { selectedFile } = useGetEditorSelectedFile();

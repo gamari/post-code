@@ -2,11 +2,10 @@
 
 import React from "react";
 
-import {
-  useCodeDetailContext,
-} from "@/src/contexts/CodeDetailProvider";
+import { useCodeDetailContext } from "@/src/contexts/CodeDetailProvider";
 import { cn } from "@/src/libs/utils";
 import { FileViewer } from "@/src/components/organisms/files/FileViewer";
+import { CodeDetailFileDescription } from "./CodeDetailFileDescription";
 
 interface Props {
   className?: string;
@@ -30,6 +29,9 @@ export const CodeDetailFileViewer = ({ className }: Props) => {
     );
 
   return (
-    <FileViewer file={selectedFile} className={cn("h-[400px]", className)} />
+    <div className={cn(className)}>
+      <FileViewer file={selectedFile} className={cn("h-[400px]", className)} />
+      <CodeDetailFileDescription />
+    </div>
   );
 };
