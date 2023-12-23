@@ -4,6 +4,7 @@ import { TopFooter } from "@/app/_components/top-footer";
 import { TopFavoriteCodesSection } from "@/app/_components/top-favorite-codes-section";
 import { Suspense } from "react";
 import { Skeleton } from "@/src/components/molecules/displays/skeleton";
+import { TopLatestCommentSection } from "./_components/top-latest-comment-section";
 
 export default async function Index() {
   return (
@@ -11,7 +12,8 @@ export default async function Index() {
       <Suspense fallback={<Skeleton rows={5} className="w-[600px]" />}>
         <TopLatestCodesSection />
         <TopAboutSection />
-        <TopFavoriteCodesSection />
+        <TopLatestCommentSection />
+        {/* <TopFavoriteCodesSection /> */}
         <TopFooter />
       </Suspense>
     </div>

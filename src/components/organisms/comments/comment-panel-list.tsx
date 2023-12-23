@@ -11,6 +11,13 @@ interface Props {
 export const CommentPanelList = ({ comments }: Props) => {
   const sortedComments = [...comments].sort(sortDescByCreatedAt);
 
+  if (!comments?.length)
+    return (
+      <div className="p-6 border-b">
+        <p className="text-gray-500">まだコメントはありません</p>
+      </div>
+    );
+
   return (
     <div>
       {sortedComments.map((comment) => (

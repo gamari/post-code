@@ -8,6 +8,7 @@ import { CodeEditorProvider } from "@/src/contexts/CodeEditorProvider";
 import { CodeDetail } from "@/src/types";
 import { Skeleton } from "@/src/components/molecules/displays/skeleton";
 import { CodeEditorTitleInput } from "./CodeEditorTitleInput";
+import { CodeEditorDescriptionTextarea } from "./CodeEditorDescriptionTextarea";
 
 interface Props {
   code: CodeDetail;
@@ -19,7 +20,8 @@ export const CodeEditor: FunctionComponent<Props> = ({ code }: Props) => {
       <div className="sticky top-10 flex flex-row gap-4">
         <div className="w-[600px]">
           <CodeEditorTitleInput />
-          <CodeFileEditor className="h-[600px]" />
+          <CodeFileEditor className="h-[300px]" />
+          <CodeEditorDescriptionTextarea />
         </div>
 
         <Suspense fallback={<Skeleton className="w-[250px]" />}>

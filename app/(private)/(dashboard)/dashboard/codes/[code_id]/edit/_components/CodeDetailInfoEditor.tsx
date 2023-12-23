@@ -23,14 +23,14 @@ export const CodeDetailInfoEditor = ({ className }: Props) => {
   return (
     <div className={cn("", className)}>
       <Heading type="h4" className="mb-3">
-        コード説明
+        全体説明
       </Heading>
 
       <div className="mt-6">
         <Textarea
           value={code?.description || ""}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="コードの解説を書いてください……"
+          placeholder="全体を通したコードの解説を書いてください。"
           rows={8}
         />
       </div>

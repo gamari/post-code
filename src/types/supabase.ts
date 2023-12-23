@@ -140,6 +140,7 @@ export interface Database {
           code_id: number
           content: string | null
           created_at: string | null
+          description: string | null
           id: number
           name: string
           updated_at: string | null
@@ -149,6 +150,7 @@ export interface Database {
           code_id: number
           content?: string | null
           created_at?: string | null
+          description?: string | null
           id?: number
           name: string
           updated_at?: string | null
@@ -158,6 +160,7 @@ export interface Database {
           code_id?: number
           content?: string | null
           created_at?: string | null
+          description?: string | null
           id?: number
           name?: string
           updated_at?: string | null
@@ -204,21 +207,21 @@ export interface Database {
           description: string | null
           email: string | null
           id: string
-          username: string | null
+          username: string
         }
         Insert: {
           avatar_url?: string | null
           description?: string | null
           email?: string | null
           id: string
-          username?: string | null
+          username: string
         }
         Update: {
           avatar_url?: string | null
           description?: string | null
           email?: string | null
           id?: string
-          username?: string | null
+          username?: string
         }
         Relationships: [
           {

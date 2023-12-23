@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import { LatestCodePanelList } from "../../src/components/organisms/codes/panel/latest-code-panel-list";
 import { Container } from "../../src/components/molecules/container";
@@ -8,7 +8,7 @@ export const TopLatestCodesSection = () => {
   return (
     <section className="bg-sky-100 py-12 w-full">
       <Container>
-        <Heading type="h2">最新</Heading>
+        <Heading type="h2">最新のコード</Heading>
 
         <LatestCodePanelList className="mt-6" />
 
