@@ -24,47 +24,31 @@ import { useModal } from "@/src/hooks/useModal";
 import { Button } from "@/src/components/atoms/buttons/button";
 import { Input } from "@/src/components/atoms/forms/input";
 import { Heading } from "@/src/components/atoms/texts/heading";
+import { RenameFileModal } from "./RenameFileModal";
 
 interface Props {}
 
 export const CodeEditorFileList = ({}: Props) => {
-  const { errorAlert } = useAlert();
   const { isOpen, toggleModal } = useModal();
 
   const { files } = useGetEditorFiles();
   const { selectedFile } = useGetEditorSelectedFile();
-  const { updateFile } = useUpdateEditorFile();
   const { deleteFileInEditor } = useDeleteFileInEditor();
   const { selectFile } = useSelectEditorFile();
 
   const [targetFile, setTargetFile] = useState<File | null>(null);
-  const [editingName, setEditingName] = useState("");
 
-  const onDeleteFile = async (file: File) => {
+  const handleDeleteFile = async (file: File) => {
     if (!confirm("本当に削除しますか？")) return;
     deleteFileInEditor(file);
   };
 
-  const onClickFile = (file: File) => {
+  const handleClickFile = (file: File) => {
     selectFile(file);
   };
 
-  const onRename = (file: File) => {
-    setEditingName(file.name);
-  };
-
-  const saveName = () => {
-    if (targetFile) {
-      if (!editingName) {
-        errorAlert("ファイル名を入力してください");
-        return;
-      }
-      updateFile({ ...targetFile, name: editingName });
-    }
-  };
-
-  const handleRename = () => {
-    saveName();
+  const handleRename = (file: File) => {
+    setTargetFile(file);
     toggleModal();
   };
 
@@ -80,7 +64,7 @@ export const CodeEditorFileList = ({}: Props) => {
                 "flex flex-row items-center cursor-pointer hover:bg-gray-200 p-2 rounded-lg gap-2",
                 selectedFile?.id === file.id && "bg-gray-200"
               )}
-              onClick={() => onClickFile(file)}
+              onClick={() => handleClickFile(file)}
             >
               <FileIcon fileType={getFileType(file.name)} />
               {file.name}
@@ -89,9 +73,7 @@ export const CodeEditorFileList = ({}: Props) => {
           <ContextMenuContent>
             <ContextMenuItem
               onClick={() => {
-                toggleModal();
-                onRename(file);
-                setTargetFile(file);
+                handleRename(file);
               }}
               className="cursor-pointer hover:bg-gray-100"
             >
@@ -101,7 +83,7 @@ export const CodeEditorFileList = ({}: Props) => {
             <ContextMenuItem
               onClick={(e) => {
                 e.stopPropagation();
-                onDeleteFile?.(file);
+                handleDeleteFile?.(file);
               }}
               className="mt-3 cursor-pointer"
             >
@@ -111,20 +93,11 @@ export const CodeEditorFileList = ({}: Props) => {
         </ContextMenu>
       ))}
 
-      <Modal isOpen={isOpen} onClose={toggleModal}>
-        <Heading className="mb-3">ファイル名変更</Heading>
-        <div>
-          <Input
-            type="text"
-            className="p-2 w-full"
-            value={editingName}
-            onChange={(e) => setEditingName(e.target.value)}
-          />
-        </div>
-        <Button onClick={handleRename} className="mt-2">
-          変更する
-        </Button>
-      </Modal>
+      <RenameFileModal
+        targetFile={targetFile}
+        isOpen={isOpen}
+        onClose={toggleModal}
+      />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { IoMdClose } from "react-icons/io";
+import { SlideIn } from "../animation/SlideIn";
 
 interface Props {
   children: React.ReactNode;
@@ -21,13 +22,15 @@ export const Modal = ({ children, isOpen, onClose }: Props) => {
         onClick={handleBackgroundClick}
       />
 
-      <div className="relative bg-white rounded-lg shadow-xl p-8 pt-12 w-full max-w-md ">
-        <IoMdClose
-          className="absolute top-2 right-2 w-7 h-7 hover:opacity-40 cursor-pointer"
-          onClick={handleBackgroundClick}
-        />
-        {children}
-      </div>
+      <SlideIn from="bottom" className="w-full max-w-[600px]">
+        <div className="relative bg-white rounded-lg shadow-xl p-8 pt-12 w-full max-w-md ">
+          <IoMdClose
+            className="absolute top-2 right-2 w-7 h-7 hover:opacity-40 cursor-pointer"
+            onClick={handleBackgroundClick}
+          />
+          {children}
+        </div>
+      </SlideIn>
     </div>
   );
 };

@@ -3,12 +3,14 @@
 import React from "react";
 
 import { motion } from "framer-motion";
+import { cn } from "@/src/libs/utils";
 
 interface Props {
   children: React.ReactNode;
   from?: "left" | "right" | "top" | "bottom";
   delay?: number;
   duration?: number;
+  className?: string;
 }
 
 const initialiMapping = {
@@ -54,6 +56,7 @@ export const SlideIn = ({
   from = "left",
   delay = 0,
   duration = 0.5,
+  className = "",
 }: Props) => {
   return (
     <motion.div
@@ -66,6 +69,7 @@ export const SlideIn = ({
         opacity: 1,
       }}
       transition={{ duration, delay }}
+      className={cn("", className)}
     >
       {children}
     </motion.div>

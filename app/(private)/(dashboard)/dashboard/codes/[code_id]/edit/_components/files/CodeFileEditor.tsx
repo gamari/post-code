@@ -10,7 +10,6 @@ import "ace-builds/src-noconflict/mode-typescript";
 import { cn } from "@/src/libs/utils";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 import { getFileType } from "@/src/libs/editors";
-import { Heading } from "@/src/components/atoms/texts/heading";
 import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
 import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/setter/useSetEditorSelectedFile";
 

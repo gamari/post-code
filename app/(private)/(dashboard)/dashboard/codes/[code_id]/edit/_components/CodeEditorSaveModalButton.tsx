@@ -39,7 +39,9 @@ export const CodeEditorSaveModalButton = () => {
             onClick={handleOnSave}
             loading={loading}
           />
-          <Button variant="outline">閉じる</Button>
+          <Button variant="outline" onClick={toggleModal}>
+            閉じる
+          </Button>
         </div>
       </Modal>
     </>
