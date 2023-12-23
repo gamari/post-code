@@ -10,12 +10,10 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 import { Switch } from "@/src/components/ui/switch";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";
-import { useGetEditorFiles } from "@/src/hooks/codes/editors/getter/useGetEditorFiles";
 import { useSetEditorCode } from "@/src/hooks/codes/editors/setter/useSetEditorCode";
 
 export const CodeEditorSidebar = () => {
   const { code } = useGetEditorCode();
-  const { files } = useGetEditorFiles();
   const { setIsPublic } = useSetEditorCode();
 
   return (
@@ -26,7 +24,7 @@ export const CodeEditorSidebar = () => {
       </div>
 
       <div className="mt-6 flex flex-col gap-2 max-h-[400px] overflow-auto">
-        <CodeEditorFileList files={files} />
+        <CodeEditorFileList />
       </div>
 
       <div className="my-6 flex items-center gap-2">
