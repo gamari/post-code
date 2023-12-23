@@ -6,6 +6,7 @@ import { ReactNode, createContext, useContext, useState } from "react";
 interface ContextProps {
   comments: Comment[];
   addComments: (newComments: Comment[]) => void;
+  setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
 }
 
 interface ProviderProps {
@@ -16,6 +17,7 @@ interface ProviderProps {
 export const CodeCommentListContext = createContext<ContextProps>({
   comments: [],
   addComments: () => {},
+  setComments: () => {},
 });
 
 export const CodeCommentListProvider = ({
@@ -24,12 +26,15 @@ export const CodeCommentListProvider = ({
 }: ProviderProps) => {
   const [comments, setComments] = useState<Comment[]>(initComments || []);
 
+  // TODO 廃止
   function addComments(newComments: Comment[]) {
     setComments([...comments, ...newComments]);
   }
 
   return (
-    <CodeCommentListContext.Provider value={{ comments, addComments }}>
+    <CodeCommentListContext.Provider
+      value={{ comments, addComments, setComments }}
+    >
       {children}
     </CodeCommentListContext.Provider>
   );

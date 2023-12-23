@@ -1,9 +1,12 @@
+"use client";
+
 import React from "react";
 
 import { cn } from "@/src/libs/utils";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { CodeCommentList } from "./CodeDetailCommentList";
-import { actionGetCommentsByCodeId } from "@/src/actions/comments";
+import { useInitCommentList } from "@/src/hooks/comments/useInitCommentList";
+import { Skeleton } from "@/src/components/molecules/displays/skeleton";
 
 interface Props {
   className?: string;
@@ -11,7 +14,7 @@ interface Props {
 }
 
 export const CodeDetailCommentList = async ({ className, codeId }: Props) => {
-  const comments = await actionGetCommentsByCodeId(codeId);
+  const { loading } = useInitCommentList(codeId);
 
   return (
     <div className={cn("rounded-md bg-white", className)}>
@@ -20,7 +23,8 @@ export const CodeDetailCommentList = async ({ className, codeId }: Props) => {
           議論
         </Heading>
       </div>
-      <CodeCommentList />
+
+      {loading ? <Skeleton /> : <CodeCommentList />}
 
       <div className="p-6">{/* TODO */}</div>
     </div>

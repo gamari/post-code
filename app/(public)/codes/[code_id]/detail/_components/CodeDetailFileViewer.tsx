@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 
 import {
   useCodeDetailContext,
-  useCodeDetailSelectedFileContext,
 } from "@/src/contexts/CodeDetailProvider";
 import { cn } from "@/src/libs/utils";
 import { FileViewer } from "@/src/components/organisms/files/FileViewer";
@@ -20,7 +19,7 @@ export const CodeDetailFileViewer = ({ className }: Props) => {
     return (
       <div
         className={cn(
-          "h-[400px] flex items-center justify-center bg-white rounded-md sticky top-10",
+          "h-[400px] flex items-center justify-center bg-white rounded-md",
           className
         )}
       >
