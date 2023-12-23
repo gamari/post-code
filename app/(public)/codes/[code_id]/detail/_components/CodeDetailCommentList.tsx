@@ -2,17 +2,33 @@
 
 import React from "react";
 
-import { useCodeCommentList } from "../../../../../../src/contexts/CodeCommentListProvider";
-import { CommentPanelList } from "../../../../../../src/components/organisms/comments/comment-panel-list";
+import { cn } from "@/src/libs/utils";
+import { Heading } from "@/src/components/atoms/texts/heading";
+import { useInitCommentList } from "@/src/hooks/comments/useInitCommentList";
+import { Skeleton } from "@/src/components/molecules/displays/skeleton";
+import { useGetCommentList } from "@/src/hooks/comments/useGetCommentList";
+import { CommentPanelList } from "@/src/components/organisms/comments/comment-panel-list";
 
-interface Props {}
+interface Props {
+  className?: string;
+  codeId: number;
+}
 
-export const CodeCommentList = ({}: Props) => {
-  const { comments } = useCodeCommentList();
-
-  if (!comments?.length) return <div className="flex items-center justify-center p-6 py-20 border-b">コメントがありません</div>;
+export const CodeDetailCommentList = ({ className, codeId }: Props) => {
+  const { loading } = useInitCommentList(codeId);
+  const { commentList } = useGetCommentList();
 
   return (
-    <CommentPanelList comments={comments} />
+    <div className={cn("rounded-md bg-white", className)}>
+      <div className="flex flex-row gap-2 items-center p-6 border-b">
+        <Heading type="h3" className="text-gray-700 mb-3">
+          議論
+        </Heading>
+      </div>
+
+      {loading ? <Skeleton /> : <CommentPanelList comments={commentList} />}
+
+      <div className="p-6">{/* TODO */}</div>
+    </div>
   );
 };

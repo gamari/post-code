@@ -1,13 +1,13 @@
 "use client";
 
+import React from "react";
+
 import { Button } from "@/src/components/atoms/buttons/button";
 import { Textarea } from "@/src/components/atoms/forms/textarea";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
-import { fetchCreateComment } from "@/src/libs/externals/supabase/queries/comments";
-import React from "react";
-import { useCodeCommentList } from "../../../../../../src/contexts/CodeCommentListProvider";
 import { useAlert } from "@/src/hooks/useAlert";
 import { useFormComment } from "@/src/hooks/comments/useFormComment";
+import { useAddCommentToList } from "@/src/hooks/comments/useAddCommentToList";
 
 interface Props {
   codeId: number;
@@ -18,16 +18,16 @@ export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
   const { client } = useSupabase();
 
   const { comment, setComment, saveComment } = useFormComment();
-  const { addComments } = useCodeCommentList();
-  const { errorAlert, infoAlert } = useAlert();
 
+  const { addCommentListToList } = useAddCommentToList();
+  const { errorAlert, infoAlert } = useAlert();
 
   const handleCreateComment = async () => {
     if (!client) return;
 
     try {
       const retComment = await saveComment(codeId);
-      addComments?.([retComment]);
+      addCommentListToList?.([retComment]);
       setComment("");
       infoAlert("コメントを投稿しました");
       onSubmit();

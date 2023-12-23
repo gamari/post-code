@@ -5,7 +5,7 @@ import { NextPage } from "next";
 import { CodeCommentListProvider } from "@/src/contexts/CodeCommentListProvider";
 import { CodeDetailProvider } from "@/src/contexts/CodeDetailProvider";
 import { CodeDetailFileViewer } from "./_components/CodeDetailFileViewer";
-import { CodeDetailCommentList } from "./_components/code-detail-comment-list";
+import { CodeDetailCommentList } from "./_components/CodeDetailCommentList";
 import { CodeDetailInfo } from "./_components/code-detail-info";
 import { CodeDetailSidebar } from "./_components/sidebar/code-detail-sidebar";
 import { Center } from "@/src/components/atoms/containers/Center";
