@@ -8,12 +8,17 @@ import { Typo } from "@/src/components/atoms/texts/typo";
 import { FileItemList } from "@/src/components/organisms/files/file-item-list";
 import { MdOutlineInsertDriveFile } from "react-icons/md";
 import { Heading } from "@/src/components/atoms/texts/heading";
+import { LinkButton } from "@/src/components/molecules/buttons/link-button";
+import { CODES_EDIT_URL } from "@/src/libs/constants/urls";
+import { EditIcon } from "lucide-react";
 
 interface Props {
   files: File[];
+  isAuthor: boolean;
+  codeId: number;
 }
 
-export const CodeDetailFileListCard = ({ files }: Props) => {
+export const CodeDetailFileListCard = ({ files, isAuthor, codeId }: Props) => {
   const { setSelectedFile, selectedFile } = useCodeDetailContext();
 
   const onSelectFile = (file: File) => {
@@ -41,6 +46,15 @@ export const CodeDetailFileListCard = ({ files }: Props) => {
           />
         )}
       </div>
+
+      {isAuthor && (
+        <LinkButton
+          url={CODES_EDIT_URL(codeId)}
+          label="編集"
+          Icon={<EditIcon className="h-4 w-4 mr-2 " />}
+          className="bg-gray-100 border-none mt-4"
+        />
+      )}
     </div>
   );
 };

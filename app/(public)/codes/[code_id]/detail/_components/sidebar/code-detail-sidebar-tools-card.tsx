@@ -13,31 +13,24 @@ import { CodeDetailCommentModalButton } from "../CodeDetailCommentModalButton";
 
 interface Props {
   badCode: Code;
+  isLogin: boolean;
 }
 
-export const CodeDetailSidebarToolsCard = async ({ badCode }: Props) => {
-  const authUser = await actionGetAuthUser();
+export const CodeDetailSidebarToolsCard = async ({
+  badCode,
+  isLogin,
+}: Props) => {
   const isFavorite = await actionCheckFavoriteCode(badCode?.id);
 
   return (
     <div className="border rounded-md bg-white w-full p-5">
       <div className="flex flex-col gap-2">
-        {authUser && (
+        {isLogin && (
           <>
             <FavoriteCodeButton codeId={badCode.id} isFavorite={isFavorite} />
-            {badCode?.user_id === authUser?.id && (
-              <>
-                <LinkButton
-                  url={CODES_EDIT_URL(badCode.id)}
-                  label="編集"
-                  Icon={<EditIcon className="h-4 w-4 mr-2 " />}
-                  className="bg-gray-100 border-none"
-                />
-              </>
-            )}
+            <CodeDetailCommentModalButton code={badCode} />
           </>
         )}
-        <CodeDetailCommentModalButton code={badCode} />
         <CodeDetailShareButton code={badCode} />
       </div>
 
