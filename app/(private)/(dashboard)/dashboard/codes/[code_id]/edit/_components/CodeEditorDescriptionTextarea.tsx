@@ -15,7 +15,7 @@ export const CodeEditorDescriptionTextarea = () => {
 
   return (
     <div className="mt-6">
-      <Heading className="mb-3">コード説明</Heading>
+      <Heading className="mb-3">コード説明(空欄可)</Heading>
       <Textarea
         className="w-full"
         value={selectedFile?.description || ""}
@@ -23,7 +23,7 @@ export const CodeEditorDescriptionTextarea = () => {
           setDescription(e.target.value);
         }}
         rows={10}
-        placeholder="上記コードの説明を書いてください（空欄可）"
+        placeholder="上記コードの説明を書いてください（マークダウン形式）"
       />
     </div>
   );
