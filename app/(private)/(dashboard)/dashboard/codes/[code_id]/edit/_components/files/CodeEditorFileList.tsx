@@ -61,7 +61,7 @@ export const CodeEditorFileList = ({}: Props) => {
           <ContextMenuTrigger>
             <div
               className={cn(
-                "flex flex-row items-center cursor-pointer hover:bg-gray-200 p-2 rounded-lg gap-2",
+                "flex flex-row items-center cursor-pointer hover:bg-gray-200 p-2 rounded-lg gap-2 select-none",
                 selectedFile?.id === file.id && "bg-gray-200"
               )}
               onClick={() => handleClickFile(file)}
