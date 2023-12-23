@@ -10,8 +10,25 @@ export const fetchCommentsByCodeId = async (codeId: number, client: SupabaseClie
     if (error) throw error;
 
     return data;
-
 }
+
+export const fetchCommentListByUser = async (userId: string, client: SupabaseClient) => {
+    const { data, error } = await client
+        .from("comments")
+        .select(`
+          *,
+          code: codes (
+            *
+          )
+        `)
+        .eq("user_id", userId)
+        .order("created_at", { ascending: true });
+
+    if (error) throw error;
+
+    return data;
+}
+
 
 export const fetchCreateComment = async (codeId: number, comment: string, client: SupabaseClient) => {
     const { data: { user }, error: userError } = await client.auth.getUser();
