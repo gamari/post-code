@@ -2,7 +2,7 @@ import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchCreateFile } from "@/src/libs/externals/supabase/queries/files";
 import { useState } from "react";
 
-export const useFormCodeFile = () => {
+export const useFormFileOfEditor = () => {
     const { client, authUser } = useSupabase();
 
     const [name, setName] = useState("");

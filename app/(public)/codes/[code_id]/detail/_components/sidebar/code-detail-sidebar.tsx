@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import { actionGetBadCodeById } from "@/src/actions/codes";
 import { UserInfoCard } from "../../../../../../../src/components/organisms/users/user-info-card";
@@ -15,7 +15,6 @@ export const CodeDetailSidebar = async ({ codeId }: Props) => {
   const badCode = await actionGetBadCodeById(codeId);
   const files = await actionGetFiles(codeId);
   const authUser = await actionGetAuthUser();
-  console.log(authUser);
 
   if (!badCode) throw new Error("コードが見つかりません");
 

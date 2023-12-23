@@ -7,8 +7,8 @@ import { Textarea } from "@/src/components/atoms/forms/textarea";
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
 import { cn } from "@/src/libs/utils";
 import { Heading } from "@/src/components/atoms/texts/heading";
-import { useGetEditorCode } from "@/src/hooks/codes/editors/useGetEditorCode";
-import { useSetEditorCode } from "@/src/hooks/codes/editors/useSetEditorCode";
+import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";
+import { useSetEditorCode } from "@/src/hooks/codes/editors/setter/useSetEditorCode";
 
 interface Props {
   className?: string;

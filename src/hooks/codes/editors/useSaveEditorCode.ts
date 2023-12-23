@@ -4,12 +4,12 @@ import { fetchUpdateCode } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchUpsertFiles } from "@/src/libs/externals/supabase/queries/files";
 import { useRouter } from "next/navigation";
 import { useLoading } from "../../useLoading";
-import { useGetEditorCode } from "./useGetEditorCode";
-import { useGetEditorSelectedFile } from "./useGetEditorSelectedFile";
-import { useGetEditorFiles } from "./useGetEditorFiles";
+import { useGetEditorCode } from "./getter/useGetEditorCode";
+import { useGetEditorSelectedFile } from "./getter/useGetEditorSelectedFile";
+import { useGetEditorFiles } from "./getter/useGetEditorFiles";
 import { useUpdateEditorFile } from "./useUpdateEditorFile";
 
-export const useSaveCodeEditor = () => {
+export const useSaveEditorCode = () => {
     const router = useRouter();
     const { loading, startLoading, stopLoading } = useLoading();
     const { client, getAuthUser } = useSupabase();

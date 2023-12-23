@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { useSaveCodeEditor } from "@/src/hooks/codes/editors/useSaveCodeEditor";
+import { useSaveEditorCode } from "@/src/hooks/codes/editors/useSaveEditorCode";
 import { useAlert } from "@/src/hooks/useAlert";
 import { SaveButton } from "../../../../../../../../src/components/molecules/buttons/save-button";
 import { useModal } from "@/src/hooks/useModal";
@@ -13,7 +13,7 @@ import { Button } from "@/src/components/atoms/buttons/button";
 export const CodeEditorSaveModalButton = () => {
   const { isOpen, toggleModal } = useModal();
 
-  const { loading, saveEditor } = useSaveCodeEditor();
+  const { loading, saveEditor } = useSaveEditorCode();
   const { errorAlert, infoAlert } = useAlert();
 
   const handleOnSave = async () => {

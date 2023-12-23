@@ -1,9 +1,9 @@
 import { File  } from "@/src/types";
 
-import { useGetEditorFiles } from "./useGetEditorFiles"
-import { useSetEditorFiles } from "./useSetEditorFiles";
+import { useGetEditorFiles } from "./getter/useGetEditorFiles"
+import { useSetEditorFiles } from "./setter/useSetEditorFiles";
 
-export const useDeleteEditorFile = () => {
+export const useDeleteFileFromEditorFiles = () => {
     const { files } = useGetEditorFiles();
     const { setFiles } = useSetEditorFiles();
 

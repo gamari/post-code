@@ -13,8 +13,8 @@ import {
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { useUpdateEditorFile } from "@/src/hooks/codes/editors/useUpdateEditorFile";
 import { useDeleteFileInEditor } from "@/src/hooks/codes/editors/useDeleteFileInEditor";
-import { useSelectCodeFile } from "@/src/hooks/codes/editors/useSelectCodeEditorFile";
-import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/useGetEditorSelectedFile";
+import { useSelectEditorFile } from "@/src/hooks/codes/editors/useSelectEditorFile";
+import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
 import { useAlert } from "@/src/hooks/useAlert";
 import { sortAscByName, sortDescByName } from "@/src/libs/sortes";
 import { CodeEditorNewFileModalButton } from "../CodeEditorNewFileModalButton";
@@ -29,7 +29,7 @@ export const CodeEditorFileList = ({ files }: Props) => {
   const { selectedFile } = useGetEditorSelectedFile();
   const { updateFile } = useUpdateEditorFile();
   const { deleteFileInEditor } = useDeleteFileInEditor();
-  const { selectFile } = useSelectCodeFile();
+  const { selectFile } = useSelectEditorFile();
 
   const [isEditing, setIsEditing] = useState<File | null>(null);
   const [editingName, setEditingName] = useState("");

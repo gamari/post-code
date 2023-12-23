@@ -9,9 +9,9 @@ import { CodeEditorNewFileModalButton } from "../CodeEditorNewFileModalButton";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { Switch } from "@/src/components/ui/switch";
 import { Typo } from "@/src/components/atoms/texts/typo";
-import { useGetEditorCode } from "@/src/hooks/codes/editors/useGetEditorCode";
-import { useGetEditorFiles } from "@/src/hooks/codes/editors/useGetEditorFiles";
-import { useSetEditorCode } from "@/src/hooks/codes/editors/useSetEditorCode";
+import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";
+import { useGetEditorFiles } from "@/src/hooks/codes/editors/getter/useGetEditorFiles";
+import { useSetEditorCode } from "@/src/hooks/codes/editors/setter/useSetEditorCode";
 
 export const CodeEditorSidebar = () => {
   const { code } = useGetEditorCode();

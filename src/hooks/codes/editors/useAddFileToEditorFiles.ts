@@ -1,8 +1,8 @@
 import { File } from "@/src/types";
 
-import { useSetEditorFiles } from "./useSetEditorFiles"
+import { useSetEditorFiles } from "./setter/useSetEditorFiles"
 
-export const useAddEditorFile = () => {
+export const useAddFileToEditorFiles = () => {
     const { setFiles } = useSetEditorFiles();
 
     const addFile = (file: File) => {

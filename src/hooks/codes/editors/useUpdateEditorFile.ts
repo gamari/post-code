@@ -1,7 +1,7 @@
 import { File } from "@/src/types";
 
-import { useSetEditorFiles } from "./useSetEditorFiles";
-import { useGetEditorFiles } from "./useGetEditorFiles";
+import { useSetEditorFiles } from "./setter/useSetEditorFiles";
+import { useGetEditorFiles } from "./getter/useGetEditorFiles";
 import { useUpdateEditorSelectedFile } from "./useUpdateEditorSelectedFile";
 
 /** Filesのファイルを更新 */

@@ -1,10 +1,10 @@
 import { File } from "@/src/types";
 
-import { useGetEditorSelectedFile } from "./useGetEditorSelectedFile";
-import { useSetEditorSelectedFile } from "./useSetEditorSelectedFile";
+import { useGetEditorSelectedFile } from "./getter/useGetEditorSelectedFile";
+import { useSetEditorSelectedFile } from "./setter/useSetEditorSelectedFile";
 import { useUpdateEditorFile } from "./useUpdateEditorFile";
 
-export const useSelectCodeFile = () => {
+export const useSelectEditorFile = () => {
     const { selectedFile } = useGetEditorSelectedFile();
     const { setSelectedFile } = useSetEditorSelectedFile();
     const { updateFile } = useUpdateEditorFile();
