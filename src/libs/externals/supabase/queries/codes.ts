@@ -1,5 +1,5 @@
 import { CODE_TABLE, FILE_TABLE } from "@/src/libs/constants/tables";
-import { Code, CodeDetail } from "@/src/types";
+import { Code, CodeDetail, SearchResultCode } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 
 interface FetchOptions {
@@ -42,7 +42,7 @@ export const fetchCodeListByFileCode = async (fileCode: string, client: Supabase
           codes (*)
         `)
         .like("content", `%${fileCode}%`)
-        // .eq('is_public', true);
+    // .eq('is_public', true);
 
     if (options?.eq) {
         options.eq.forEach(condition => {
@@ -65,8 +65,9 @@ export const fetchCodeListByFileCode = async (fileCode: string, client: Supabase
 
     return data.map(file => {
         return {
-            ...file.codes
-        } as CodeDetail
+            ...file.codes,
+            file
+        } as SearchResultCode
     })
 }
 

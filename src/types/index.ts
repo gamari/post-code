@@ -13,9 +13,8 @@ export interface CodeWithFiles extends Code {
     files: File[];
 }
 
-// deprecated
-export interface CodeWithUser extends Code {
-    user: User;
+export interface SearchResultCode extends Code {
+    file: File;
 }
 
 export interface CodeDetail extends Code {
@@ -23,6 +22,12 @@ export interface CodeDetail extends Code {
     files: File[];
     favorites_count?: number;
 }
+// deprecated
+
+export interface CodeWithUser extends Code {
+    user: User;
+}
+
 
 export interface CommentDetail extends Comment {
     user: User;

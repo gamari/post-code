@@ -2,7 +2,8 @@ import React from "react";
 import { unstable_noStore } from "next/cache";
 
 import { actionGetCodeListByFileCode } from "@/src/actions/codes";
-import { CodePanelList } from "@/src/components/organisms/codes/panel/code-panel-list";
+import { SearchCodeResultList } from "./SearchCodeResultList";
+import { Heading } from "@/src/components/atoms/texts/heading";
 
 interface Props {
   code: string;
@@ -14,8 +15,9 @@ export const SearchCodeResult = async ({ code }: Props) => {
 
   return (
     <div>
-      {/* TODO Detail用にする */}
-      <CodePanelList codes={codeList} />
+      <Heading className="mb-6">検索: {code}</Heading>
+
+      <SearchCodeResultList codes={codeList} query={code} />
     </div>
   );
 };
