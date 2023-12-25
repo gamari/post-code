@@ -34,6 +34,46 @@ export const fetchCodeList = async (client: SupabaseClient, options?: FetchOptio
     return data as Code[];
 }
 
+export const fetchCodeListWithUser = async (client: SupabaseClient, options?: FetchOptions) => {
+    let query = client
+        .from(CODE_TABLE)
+        .select(`
+            *,
+            user_public_info!user_id (
+                *
+            ),
+            favorites_count: favorites (count)
+        `);
+
+    if (options?.eq) {
+        options.eq.forEach(condition => {
+            query = query.eq(condition.field, condition.value);
+        });
+    }
+
+    if (options?.order) {
+        options.order.forEach(condition => {
+            query = query.order(condition.field, { ascending: condition.ascending ?? true });
+        });
+    }
+
+    query = query.limit(options?.limit || 6);
+
+    const { data, error } = await query;
+    console.log(data);
+    console.log(error);
+
+    if (error) throw error;
+
+    return data.map((code) => {
+        return {
+            ...code,
+            user: code.user_public_info,
+            favorites_count: code.favorites_count[0]?.count || 0
+        }
+    }) as CodeDetail[];
+}
+
 export const fetchCodeListByFileCode = async (fileCode: string, client: SupabaseClient, options?: FetchOptions) => {
     let query = client
         .from(FILE_TABLE)
@@ -135,30 +175,6 @@ export const fetchCodeWithFilesById = async (id: number, client: SupabaseClient)
     if (error) return null;
 
     return codeWithFiles;
-};
-
-export const fetchLatestCodes = async (client: SupabaseClient, limit: number = 6) => {
-    // TODO usersが気持ち悪いので直したい
-    const { data: codes, error } = await client
-        .from('codes')
-        .select(`
-            *,
-            users: user_id (*),
-            favorites_count: favorites (count)
-        `)
-        .eq("is_public", true)
-        .order("updated_at", { ascending: false })
-        .limit(limit);
-
-    if (error) throw new Error("BadCodeの取得中にエラーが発生しました。");
-
-    return codes.map((code) => {
-        return {
-            ...code,
-            user: code.users,
-            favorites_count: code.favorites_count[0]?.count || 0
-        }
-    }) as CodeDetail[];
 };
 
 export const fetchFavoriteCodes = async (client: SupabaseClient) => {

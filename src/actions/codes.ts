@@ -1,7 +1,7 @@
 "use server";
 
 import { getServerClient } from "@/src/libs/externals/supabase/admin-client";
-import { fetchCodeById, fetchCodeListByFileCode, fetchCodesByUserId, fetchFavoriteCodes, fetchLatestCodes } from "@/src/libs/externals/supabase/queries/codes";
+import { fetchCodeById, fetchCodeListByFileCode, fetchCodeListWithUser, fetchCodesByUserId, fetchFavoriteCodes } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchAuthUser } from "@/src/libs/externals/supabase/queries/users";
 
 // One
@@ -27,9 +27,10 @@ export const actionGetMySelfBadCodeList = async () => {
     return codes;
 }
 
+/** 最新のコード一覧を取得。 */
 export const actionGetLatestBadCodeList = async () => {
     const client = getServerClient();
-    const codes = await fetchLatestCodes(client);
+    const codes = await fetchCodeListWithUser(client);
     return codes;
 }
 
