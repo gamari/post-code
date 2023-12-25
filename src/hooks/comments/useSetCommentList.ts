@@ -1,7 +1,7 @@
-import { useCodeCommentList } from "@/src/contexts/CodeCommentListProvider"
+import { useDetailCodeCommentList } from "@/src/contexts/CodeCommentListProvider"
 
 export const useSetCommentList = () => {
-    const { setComments } = useCodeCommentList();
+    const { setComments } = useDetailCodeCommentList();
 
     return {
         setCommentList: setComments

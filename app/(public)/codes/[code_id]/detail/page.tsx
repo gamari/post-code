@@ -3,10 +3,10 @@ import { unstable_noStore } from "next/cache";
 
 import { NextPage } from "next";
 
-import { CodeCommentListProvider } from "@/src/contexts/CodeCommentListProvider";
+import { DetailCodeCommentListProvider } from "@/src/contexts/CodeCommentListProvider";
 import { CodeDetailProvider } from "@/src/contexts/CodeDetailProvider";
 import { CodeDetailFileViewer } from "./_components/CodeDetailFileViewer";
-import { CodeDetailCommentList } from "./_components/CodeDetailCommentList";
+import { CodeDetailCommentList } from "./_components/comments/CodeDetailCommentList";
 import { CodeDetailInfo } from "./_components/code-detail-info";
 import { CodeDetailSidebar } from "./_components/sidebar/code-detail-sidebar";
 import { Center } from "@/src/components/atoms/containers/Center";
@@ -22,7 +22,7 @@ const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
   unstable_noStore();
   
   return (
-    <CodeCommentListProvider comments={[]}>
+    <DetailCodeCommentListProvider comments={[]}>
       <CodeDetailProvider>
         <Center>
           <div className="p-10 flex flex-row gap-10 ">
@@ -40,7 +40,7 @@ const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
           </div>
         </Center>
       </CodeDetailProvider>
-    </CodeCommentListProvider>
+    </DetailCodeCommentListProvider>
   );
 };
 

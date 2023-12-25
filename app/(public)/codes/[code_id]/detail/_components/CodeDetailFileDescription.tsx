@@ -15,13 +15,11 @@ export const CodeDetailFileDescription = ({ className = "" }) => {
 
   return (
     <div className={cn("", className)}>
-      <div className="bg-white p-6">
-        {!selectedFile?.description ? (
-          <p className="text-gray-600">説明がありません</p>
-        ) : (
+      {selectedFile?.description && (
+        <div className="bg-white p-6">
           <MarkdownPreviewer content={selectedFile?.description || ""} />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

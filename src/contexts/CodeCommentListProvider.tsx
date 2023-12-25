@@ -18,7 +18,7 @@ export const CodeCommentListContext = createContext<ContextProps>({
   setComments: () => {},
 });
 
-export const CodeCommentListProvider = ({
+export const DetailCodeCommentListProvider = ({
   children,
   comments: initComments,
 }: ProviderProps) => {
@@ -31,6 +31,6 @@ export const CodeCommentListProvider = ({
   );
 };
 
-export const useCodeCommentList = () => {
+export const useDetailCodeCommentList = () => {
   return useContext(CodeCommentListContext);
 };

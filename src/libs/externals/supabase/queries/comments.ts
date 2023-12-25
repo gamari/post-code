@@ -66,6 +66,39 @@ export const fetchCommentListWithCode = async (client: SupabaseClient, options?:
 }
 
 
+export const fetchCreateComment = async (codeId: number, comment: string, client: SupabaseClient) => {
+    const { data: { user }, error: userError } = await client.auth.getUser();
+
+    if (userError) throw userError;
+    if (!user?.id) throw new Error("user not found");
+
+    const { data, error } = await client
+        .from("comments")
+        .insert({
+            code_id: codeId,
+            comment,
+            user_id: user.id,
+        })
+        .select("*")
+        .maybeSingle();
+
+    if (error) throw error;
+
+    return data;
+}
+
+export const fetchDeleteComment = async (id: number, client: SupabaseClient) => {
+    const { error } = await client
+        .from("comments")
+        .delete()
+        .eq("id", id);
+
+    console.log(error);
+
+    if (error) throw error;
+}
+
+
 
 // TODo 以下削除予定
 export const fetchCommentListByCodeId = async (codeId: number, client: SupabaseClient) => {
@@ -97,24 +130,3 @@ export const fetchCommentListByUser = async (userId: string, client: SupabaseCli
     return data;
 }
 
-
-export const fetchCreateComment = async (codeId: number, comment: string, client: SupabaseClient) => {
-    const { data: { user }, error: userError } = await client.auth.getUser();
-
-    if (userError) throw userError;
-    if (!user?.id) throw new Error("user not found");
-
-    const { data, error } = await client
-        .from("comments")
-        .insert({
-            code_id: codeId,
-            comment,
-            user_id: user.id,
-        })
-        .select("*")
-        .maybeSingle();
-
-    if (error) throw error;
-
-    return data;
-}

@@ -6,7 +6,7 @@ import { Button } from "@/src/components/atoms/buttons/button";
 import { FaRegComment } from "react-icons/fa6";
 import { Code } from "@/src/types";
 import { useModal } from "@/src/hooks/useModal";
-import { CommentModal } from "../../../../../../src/components/organisms/comments/comment-modal";
+import { CommentModal } from "../../../../../../../src/components/organisms/comments/comment-modal";
 
 interface Props {
   code: Code;

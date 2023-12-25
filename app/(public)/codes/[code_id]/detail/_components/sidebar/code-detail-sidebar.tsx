@@ -5,7 +5,7 @@ import { actionGetBadCodeById } from "@/src/actions/codes";
 import { UserInfoCard } from "../../../../../../../src/components/organisms/users/user-info-card";
 import { CodeDetailSidebarToolsCard } from "./code-detail-sidebar-tools-card";
 import { actionGetFiles } from "@/src/actions/files";
-import { CodeDetailFileListCard } from "../CodeDetailFileListCard";
+import { CodeDetailFileListCard } from "./CodeDetailFileListCard";
 import { actionGetAuthUser } from "@/src/actions/users";
 
 interface Props {

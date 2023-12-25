@@ -1,6 +1,5 @@
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchCreateComment } from "@/src/libs/externals/supabase/queries/comments";
-import { Comment } from "@/src/types";
 import { useState } from "react";
 
 export const useFormComment = () => {
