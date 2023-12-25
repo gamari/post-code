@@ -9,7 +9,7 @@ interface Props {
 export const DeleteButton = ({ onClick }: Props) => {
   return (
     <div
-      className="p-2 rounded-full border border-red-500 text-red-500 cursor-pointer hover:bg-gray-100"
+      className="p-2 rounded-full border border-red-500 text-red-500 cursor-pointer hover:bg-red-100"
       onClick={onClick}
     >
       <MdDelete className="h-4 w-4" />
