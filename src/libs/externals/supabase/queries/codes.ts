@@ -1,4 +1,4 @@
-import { CODE_TABLE, FILE_TABLE } from "@/src/libs/constants/tables";
+import { CODE_TABLE, FILE_TABLE, PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
 import { Code, CodeDetail, SearchResultCode } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 
@@ -39,7 +39,7 @@ export const fetchCodeListWithUser = async (client: SupabaseClient, options?: Fe
         .from(CODE_TABLE)
         .select(`
             *,
-            user_public_info!user_id (
+            ${PUBLIC_USER_TABLE}!user_id (
                 *
             ),
             favorites_count: favorites (count)
@@ -68,7 +68,7 @@ export const fetchCodeListWithUser = async (client: SupabaseClient, options?: Fe
     return data.map((code) => {
         return {
             ...code,
-            user: code.user_public_info,
+            user: code.public_users,
             favorites_count: code.favorites_count[0]?.count || 0
         }
     }) as CodeDetail[];
