@@ -1,5 +1,19 @@
-## Next
+# 概要
 
+タスクやリンクをまとめます。
+
+
+## 参考リンク
+
+[Qiita](https://qiita.com/)
+[GitHub](https://github.com/search?q=django&type=repositories)
+[CodeCanYou](https://codecanyon.net/category/mobile)
+
+## タスク一覧
+
+### Next
+
+- [ ] コード検索機能を作成する
 - [ ] コードをStickyにする
 
 - [ ] 詳細ページの「最初のコード」を表示させたい
@@ -31,6 +45,7 @@
 
 ## Hold
 
+- [ ] ページネーション（一番最後）
 - [ ] ctrl + sで保存する
 - [ ] detail ページの CSS を直す
 - [?] dashboard への権限を考える。
