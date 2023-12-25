@@ -10,7 +10,7 @@ interface Props {
 
 export const LinkText = ({ url, label }: Props) => {
   return (
-    <Link href={url}>
+    <Link href={url} className="hover:text-sky-500">
       <Typo text={label} />
     </Link>
   );

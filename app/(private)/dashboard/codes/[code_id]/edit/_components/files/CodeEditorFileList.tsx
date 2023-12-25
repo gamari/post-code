@@ -11,24 +11,23 @@ import {
   ContextMenuTrigger,
 } from "@/src/components/ui/context-menu";
 import { Typo } from "@/src/components/atoms/texts/typo";
-import { useUpdateEditorFile } from "@/src/hooks/codes/editors/useUpdateEditorFile";
 import { useDeleteFileInEditor } from "@/src/hooks/codes/editors/useDeleteFileInEditor";
 import { useSelectEditorFile } from "@/src/hooks/codes/editors/useSelectEditorFile";
 import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
-import { useAlert } from "@/src/hooks/useAlert";
 import { sortAscByName } from "@/src/libs/sortes";
 import { CodeEditorNewFileModalButton } from "../../CodeEditorNewFileModalButton";
 import { useGetEditorFiles } from "@/src/hooks/codes/editors/getter/useGetEditorFiles";
-import { Modal } from "@/src/components/molecules/displays/Modal";
 import { useModal } from "@/src/hooks/useModal";
-import { Button } from "@/src/components/atoms/buttons/button";
-import { Input } from "@/src/components/atoms/forms/input";
-import { Heading } from "@/src/components/atoms/texts/heading";
 import { RenameFileModal } from "./RenameFileModal";
 
-interface Props {}
+interface Props {
+  className?: string;
+}
 
-export const CodeEditorFileList = ({}: Props) => {
+// TODO リファクタリングする
+export const CodeEditorFileList = ({
+  className
+}: Props) => {
   const { isOpen, toggleModal } = useModal();
 
   const { files } = useGetEditorFiles();
@@ -55,7 +54,7 @@ export const CodeEditorFileList = ({}: Props) => {
   if (!files?.length) return <NoFiles />;
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className={cn("flex flex-col gap-1", className)}>
       {files?.sort(sortAscByName).map((file) => (
         <ContextMenu key={file.id}>
           <ContextMenuTrigger>

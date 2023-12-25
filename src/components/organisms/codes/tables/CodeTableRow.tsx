@@ -31,7 +31,7 @@ export const CodeTableRow = ({ code, onDelete }: Props) => {
       <TableCell>
         <LinkText
           url={`/codes/${code.id}/detail`}
-          className="w-full h-full "
+          className="w-full h-full"
           label={code.title}
         />
       </TableCell>

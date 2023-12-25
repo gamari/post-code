@@ -1,4 +1,5 @@
 import React, { Suspense } from "react";
+import { unstable_noStore } from "next/cache";
 
 import { NextPage } from "next";
 
@@ -18,6 +19,8 @@ interface Props {
 }
 
 const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
+  unstable_noStore();
+  
   return (
     <CodeCommentListProvider comments={[]}>
       <CodeDetailProvider>

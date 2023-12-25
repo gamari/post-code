@@ -7,6 +7,8 @@ import { Modal } from "@/src/components/molecules/displays/Modal";
 import { useUpdateEditorFile } from "@/src/hooks/codes/editors/useUpdateEditorFile";
 import { useAlert } from "@/src/hooks/useAlert";
 import { File } from "@/src/types";
+import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
+import { useUpdateEditorSelectedFile } from "@/src/hooks/codes/editors/useUpdateEditorSelectedFile";
 
 interface Props {
   targetFile: File | null;
@@ -19,6 +21,8 @@ export const RenameFileModal = ({ targetFile, isOpen, onClose }: Props) => {
 
   const { errorAlert } = useAlert();
   const { updateFile } = useUpdateEditorFile();
+  const { selectedFile } = useGetEditorSelectedFile();
+  const { updateSelectedFile } = useUpdateEditorSelectedFile();
 
   useEffect(() => {
     setEditingName(targetFile?.name || "");
@@ -30,7 +34,13 @@ export const RenameFileModal = ({ targetFile, isOpen, onClose }: Props) => {
         errorAlert("ファイル名を入力してください");
         return;
       }
-      updateFile({ ...targetFile, name: editingName });
+
+      if (selectedFile?.id === targetFile.id) {
+        updateFile({ ...selectedFile, name: editingName });
+        updateSelectedFile({ ...selectedFile, name: editingName });
+      } else {
+        updateFile({ ...targetFile, name: editingName });
+      }
     }
   };
 

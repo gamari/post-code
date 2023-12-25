@@ -10,16 +10,16 @@ import { Modal } from "@/src/components/molecules/displays/Modal";
 import { CodeDetailInfoEditor } from "./CodeDetailInfoEditor";
 import { Button } from "@/src/components/atoms/buttons/button";
 
+// TODO save buttonを抜き出す
 export const CodeEditorSaveModalButton = () => {
   const { isOpen, toggleModal } = useModal();
 
   const { loading, saveEditor } = useSaveEditorCode();
-  const { errorAlert, infoAlert } = useAlert();
+  const { errorAlert } = useAlert();
 
   const handleOnSave = async () => {
     try {
       await saveEditor();
-      // infoAlert("保存しました");
       toggleModal();
     } catch (error) {
       errorAlert("保存に失敗しました", error);

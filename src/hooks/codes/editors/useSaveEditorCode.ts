@@ -49,7 +49,6 @@ export const useSaveEditorCode = () => {
             startLoading();
             await fetchUpsertFiles(newFiles, client);
             await fetchUpdateCode(code, client);
-            router.refresh();
             router.push(`/codes/${code.id}/detail`);
         } catch (e) {
             throw e;

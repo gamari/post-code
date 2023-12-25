@@ -7,5 +7,5 @@ interface Props {
 }
 
 export const Typo: FunctionComponent<Props> = ({ text, className = "" }) => {
-  return <span className={cn("text-gray-700", className)}>{text}</span>;
+  return <span className={cn(className)}>{text}</span>;
 };
