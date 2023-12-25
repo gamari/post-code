@@ -3,7 +3,7 @@
 import React from "react";
 
 import { useModal } from "@/src/hooks/useModal";
-import { PlusIcon } from "../../../../../../../../src/components/atoms/icons/PlusIcon";
+import { PlusIcon } from "../../../../src/components/atoms/icons/PlusIcon";
 import { CodeEditorNewFileModal } from "./CodeEditorNewFileModal";
 
 export const CodeEditorNewFileModalButton = () => {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { File } from "@/src/types";
 import { cn } from "@/src/libs/utils";
-import { FileIcon } from "../../../../../../../../../src/components/molecules/displays/file-icon";
+import { FileIcon } from "../../../../../../src/components/molecules/displays/file-icon";
 import { getFileType } from "@/src/libs/editors";
 import {
   ContextMenu,
@@ -17,7 +17,7 @@ import { useSelectEditorFile } from "@/src/hooks/codes/editors/useSelectEditorFi
 import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
 import { useAlert } from "@/src/hooks/useAlert";
 import { sortAscByName } from "@/src/libs/sortes";
-import { CodeEditorNewFileModalButton } from "../CodeEditorNewFileModalButton";
+import { CodeEditorNewFileModalButton } from "../../CodeEditorNewFileModalButton";
 import { useGetEditorFiles } from "@/src/hooks/codes/editors/getter/useGetEditorFiles";
 import { Modal } from "@/src/components/molecules/displays/Modal";
 import { useModal } from "@/src/hooks/useModal";

@@ -2,8 +2,8 @@
 
 import React, { FunctionComponent, Suspense } from "react";
 
-import { CodeEditorSidebar } from "./sidebar/CodeEditorSidebar";
-import { CodeFileEditor } from "./files/CodeFileEditor";
+import { CodeEditorSidebar } from "./_components/sidebar/CodeEditorSidebar";
+import { CodeFileEditor } from "./_components/files/CodeFileEditor";
 import { CodeEditorProvider } from "@/src/contexts/CodeEditorProvider";
 import { CodeDetail } from "@/src/types";
 import { Skeleton } from "@/src/components/molecules/displays/skeleton";

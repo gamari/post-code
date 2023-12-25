@@ -3,7 +3,7 @@
 import React from "react";
 
 import { Input } from "@/src/components/atoms/forms/input";
-import { Modal } from "../../../../../../../../src/components/molecules/displays/Modal";
+import { Modal } from "../../../../src/components/molecules/displays/Modal";
 import { useFormFileOfEditor } from "@/src/hooks/codes/editors/useFormFileOfEditor";
 import { useAlert } from "@/src/hooks/useAlert";
 import { useLoading } from "@/src/hooks/useLoading";
