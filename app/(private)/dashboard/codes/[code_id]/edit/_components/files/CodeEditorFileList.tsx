@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { File } from "@/src/types";
 import { cn } from "@/src/libs/utils";
-import { FileIcon } from "../../../../../../src/components/molecules/displays/file-icon";
+import { FileIcon } from "../../../../../../../../src/components/molecules/displays/file-icon";
 import { getFileType } from "@/src/libs/editors";
 import {
   ContextMenu,

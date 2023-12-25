@@ -4,7 +4,7 @@ import React from "react";
 
 import { useSaveEditorCode } from "@/src/hooks/codes/editors/useSaveEditorCode";
 import { useAlert } from "@/src/hooks/useAlert";
-import { SaveButton } from "../../../../src/components/molecules/buttons/save-button";
+import { SaveButton } from "../../../../../../src/components/molecules/buttons/save-button";
 import { useModal } from "@/src/hooks/useModal";
 import { Modal } from "@/src/components/molecules/displays/Modal";
 import { CodeDetailInfoEditor } from "./CodeDetailInfoEditor";
