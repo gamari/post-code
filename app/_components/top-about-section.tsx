@@ -8,7 +8,7 @@ import { TopSection } from "./top-section";
 export const TopAboutSection = () => {
   return (
     <TopSection className="bg-white">
-      <div className="flex flex-row w-full max-w-4xl">
+      <div className="flex flex-row">
         <div className="flex-1">
           <MockBlock height={300} />
         </div>

@@ -1,11 +1,30 @@
 import { getServerClient } from "@/src/libs/externals/supabase/admin-client"
-import { fetchCommentListByUser, fetchCommentsByCodeId } from "@/src/libs/externals/supabase/queries/comments";
+import { fetchCommentListByUser, fetchCommentList } from "@/src/libs/externals/supabase/queries/comments";
 import { fetchAuthUser } from "../libs/externals/supabase/queries/users";
 
-export const actionGetCommentsByCodeId = async (codeId: number) => {
+export const actionGetLatestCommentList = async () => {
     const client = await getServerClient();
 
-    const comments = await fetchCommentsByCodeId(codeId, client);
+    const comments = await fetchCommentList(client, {
+        order: [
+            { field: "created_at", ascending: true },
+        ],
+    });
+
+    return comments;
+}
+
+export const actionGetCommentListByCodeId = async (codeId: number) => {
+    const client = await getServerClient();
+
+    const comments = await fetchCommentList(client, {
+        eq: [
+            { field: "code_id", value: codeId },
+        ],
+        order: [
+            { field: "created_at", ascending: true },
+        ],
+    });
 
     return comments;
 }

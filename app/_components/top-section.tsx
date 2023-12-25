@@ -1,7 +1,7 @@
-import { Center } from "@/src/components/atoms/containers/Center";
+import React from "react";
+
 import { Section } from "@/src/components/atoms/containers/section";
 import { cn } from "@/src/libs/utils";
-import React from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -11,7 +11,7 @@ interface Props {
 export const TopSection = ({ className, children }: Props) => {
   return (
     <Section className={cn("py-12", className)}>
-      <Center>{children}</Center>
+      <div className="max-w-5xl w-full mx-auto">{children}</div>
     </Section>
   );
 };
