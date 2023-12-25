@@ -4,7 +4,7 @@ import { unstable_noStore } from "next/cache";
 
 import { actionGetBadCodeById } from "@/src/actions/codes";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
-import { CodeEditor } from "./CodeEditor";
+import { CodeEditor } from "./_components/CodeEditor";
 
 interface Props {
   params: {

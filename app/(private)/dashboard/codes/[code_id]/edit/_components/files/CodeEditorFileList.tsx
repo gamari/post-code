@@ -15,7 +15,7 @@ import { useDeleteFileInEditor } from "@/src/hooks/codes/editors/useDeleteFileIn
 import { useSelectEditorFile } from "@/src/hooks/codes/editors/useSelectEditorFile";
 import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
 import { sortAscByName } from "@/src/libs/sortes";
-import { CodeEditorNewFileModalButton } from "../../CodeEditorNewFileModalButton";
+import { CodeEditorNewFileModalButton } from "./CodeEditorNewFileModalButton";
 import { useGetEditorFiles } from "@/src/hooks/codes/editors/getter/useGetEditorFiles";
 import { useModal } from "@/src/hooks/useModal";
 import { RenameFileModal } from "./RenameFileModal";

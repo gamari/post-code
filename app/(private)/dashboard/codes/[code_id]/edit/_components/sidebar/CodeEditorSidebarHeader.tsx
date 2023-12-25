@@ -1,5 +1,5 @@
 import React from "react";
-import { CodeEditorNewFileModalButton } from "../../CodeEditorNewFileModalButton";
+import { CodeEditorNewFileModalButton } from "../files/CodeEditorNewFileModalButton";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { cn } from "@/src/libs/utils";
 

@@ -25,7 +25,7 @@ import { getFileType } from "@/src/libs/editors";
 import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
 import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/setter/useSetEditorSelectedFile";
 import { Typo } from "@/src/components/atoms/texts/typo";
-import { CodeEditorNewFileModalButton } from "../../CodeEditorNewFileModalButton";
+import { CodeEditorNewFileModalButton } from "./CodeEditorNewFileModalButton";
 
 interface Props {
   className?: string;
