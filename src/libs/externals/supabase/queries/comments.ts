@@ -1,4 +1,4 @@
-import { Comment } from "@/src/types";
+import { Comment, CommentDetail } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 
 export interface FetchCommentsOptions {
@@ -34,6 +34,40 @@ export const fetchCommentList = async (client: SupabaseClient, options?: FetchCo
     return data as Comment[];
 }
 
+export const fetchCommentListWithCode = async (client: SupabaseClient, options?: FetchCommentsOptions) => {
+    let query = client
+        .from("comments")
+        .select(`
+          *,
+          code: codes (
+            *
+          )
+        `);
+
+    if (options?.eq) {
+        options.eq.forEach(condition => {
+            query = query.eq(condition.field, condition.value);
+        });
+    }
+
+    if (options?.order) {
+        options.order.forEach(condition => {
+            query = query.order(condition.field, { ascending: condition.ascending ?? true });
+        });
+    }
+
+    query = query.limit(options?.limit || 3);
+
+    const { data, error } = await query;
+
+    if (error) throw error;
+
+    return data as CommentDetail[];
+}
+
+
+
+// TODo 以下削除予定
 export const fetchCommentListByCodeId = async (codeId: number, client: SupabaseClient) => {
     const { data, error } = await client
         .from("comments")

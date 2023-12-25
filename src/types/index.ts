@@ -23,3 +23,8 @@ export interface CodeDetail extends Code {
     files: File[];
     favorites_count?: number;
 }
+
+export interface CommentDetail extends Comment {
+    user: User;
+    code: Code;
+}
