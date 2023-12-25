@@ -1,6 +1,7 @@
 import { CODE_TABLE, FILE_TABLE, PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
 import { Code, CodeDetail, SearchResultCode } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
+import { applyQueryOptions } from ".";
 
 interface FetchOptions {
     eq?: { field: string; value: any }[];
@@ -13,19 +14,7 @@ export const fetchCodeList = async (client: SupabaseClient, options?: FetchOptio
         .from(CODE_TABLE)
         .select("*");
 
-    if (options?.eq) {
-        options.eq.forEach(condition => {
-            query = query.eq(condition.field, condition.value);
-        });
-    }
-
-    if (options?.order) {
-        options.order.forEach(condition => {
-            query = query.order(condition.field, { ascending: condition.ascending ?? true });
-        });
-    }
-
-    query = query.limit(options?.limit || 3);
+    query = applyQueryOptions(query, options);
 
     const { data, error } = await query;
 
@@ -45,19 +34,7 @@ export const fetchCodeListWithUser = async (client: SupabaseClient, options?: Fe
             favorites_count: favorites (count)
         `);
 
-    if (options?.eq) {
-        options.eq.forEach(condition => {
-            query = query.eq(condition.field, condition.value);
-        });
-    }
-
-    if (options?.order) {
-        options.order.forEach(condition => {
-            query = query.order(condition.field, { ascending: condition.ascending ?? true });
-        });
-    }
-
-    query = query.limit(options?.limit || 6);
+    query = applyQueryOptions(query, options);
 
     const { data, error } = await query;
     console.log(data);
@@ -82,21 +59,8 @@ export const fetchCodeListByFileCode = async (fileCode: string, client: Supabase
           codes (*)
         `)
         .like("content", `%${fileCode}%`)
-    // .eq('is_public', true);
 
-    if (options?.eq) {
-        options.eq.forEach(condition => {
-            query = query.eq(condition.field, condition.value);
-        });
-    }
-
-    if (options?.order) {
-        options.order.forEach(condition => {
-            query = query.order(condition.field, { ascending: condition.ascending ?? true });
-        });
-    }
-
-    query = query.limit(options?.limit || 30);
+    query = applyQueryOptions(query, options);
 
     const { data, error } = await query;
     console.log(data);
@@ -109,6 +73,34 @@ export const fetchCodeListByFileCode = async (fileCode: string, client: Supabase
             file
         } as SearchResultCode
     })
+}
+
+
+export const fetchFavoriteCodes = async (client: SupabaseClient) => {
+    const {
+        data: { user },
+    } = await client.auth.getUser();
+
+    if (!user?.id) throw new Error("ログインしていません。");
+
+    // TODO fix types
+    const { data, error } = await client
+        .from('favorites')
+        .select(`
+            code_id,
+            codes (
+                *
+            )
+        `)
+        .eq('user_id', user.id)
+
+    if (error) throw error;
+
+    return data.map((favoriteCode) => {
+        // TODO fix types
+        const code = favoriteCode.codes as unknown as Code
+        return code
+    });
 }
 
 
@@ -177,32 +169,6 @@ export const fetchCodeWithFilesById = async (id: number, client: SupabaseClient)
     return codeWithFiles;
 };
 
-export const fetchFavoriteCodes = async (client: SupabaseClient) => {
-    const {
-        data: { user },
-    } = await client.auth.getUser();
-
-    if (!user?.id) throw new Error("ログインしていません。");
-
-    // TODO fix types
-    const { data, error } = await client
-        .from('favorites')
-        .select(`
-            code_id,
-            codes (
-                *
-            )
-        `)
-        .eq('user_id', user.id)
-
-    if (error) throw error;
-
-    return data.map((favoriteCode) => {
-        // TODO fix types
-        const code = favoriteCode.codes as unknown as Code
-        return code
-    });
-}
 
 // Create-Update-Delete
 export const fetchCreateCode = async (newBadCodes: Code, client: SupabaseClient) => {
