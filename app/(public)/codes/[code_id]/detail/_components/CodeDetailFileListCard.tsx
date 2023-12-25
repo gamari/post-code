@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 
 import { File } from "@/src/types";
 import { useCodeDetailContext } from "@/src/contexts/CodeDetailProvider";
@@ -20,6 +20,11 @@ interface Props {
 
 export const CodeDetailFileListCard = ({ files, isAuthor, codeId }: Props) => {
   const { setSelectedFile, selectedFile } = useCodeDetailContext();
+
+  useEffect(() => {
+    if (!files?.length) return;
+    setSelectedFile && setSelectedFile(files[0]);
+  }, [files]);
 
   const onSelectFile = (file: File) => {
     setSelectedFile && setSelectedFile(file);

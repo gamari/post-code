@@ -1,7 +1,7 @@
 "use server";
 
 import { getServerClient } from "@/src/libs/externals/supabase/admin-client";
-import { fetchCodeById, fetchCodesByUserId, fetchFavoriteCodes, fetchLatestCodes } from "@/src/libs/externals/supabase/queries/codes";
+import { fetchCodeById, fetchCodeListByFileCode, fetchCodesByUserId, fetchFavoriteCodes, fetchLatestCodes } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchAuthUser } from "@/src/libs/externals/supabase/queries/users";
 
 // One
@@ -12,6 +12,14 @@ export const actionGetBadCodeById = async (id: number) => {
 }
 
 // List
+export const actionGetCodeListByFileCode = async (fileCode: string) => {
+    const client = getServerClient();
+    const codes = await fetchCodeListByFileCode(fileCode, client);
+    return codes;
+
+}
+
+
 export const actionGetMySelfBadCodeList = async () => {
     const client = getServerClient();
     const authUser = await fetchAuthUser(client);

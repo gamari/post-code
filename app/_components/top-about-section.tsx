@@ -15,9 +15,8 @@ export const TopAboutSection = () => {
 
         <div className="flex-1 flex flex-col items-center justify-center px-6 gap-6">
           <Heading type="h2">BadCodesとは？</Heading>
-          <Description>BadCodesとは、悪いコードを収集し、</Description>
           <Description>
-            どうすれば良いコードにできるかを議論するためのサイトです。
+            「アンチパターン」や「リファクタリングすべきコード」を題材に、それに関して解決策を出したり、議論し合うためのサイトです。
           </Description>
         </div>
       </div>

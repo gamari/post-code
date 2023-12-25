@@ -1,9 +1,78 @@
-import { CODE_TABLE } from "@/src/libs/constants/tables";
+import { CODE_TABLE, FILE_TABLE } from "@/src/libs/constants/tables";
 import { Code, CodeDetail } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 
-// Select-One
+interface FetchOptions {
+    eq?: { field: string; value: any }[];
+    order?: { field: string; ascending?: boolean }[];
+    limit?: number;
+}
 
+export const fetchCodeList = async (client: SupabaseClient, options?: FetchOptions) => {
+    let query = client
+        .from(CODE_TABLE)
+        .select("*");
+
+    if (options?.eq) {
+        options.eq.forEach(condition => {
+            query = query.eq(condition.field, condition.value);
+        });
+    }
+
+    if (options?.order) {
+        options.order.forEach(condition => {
+            query = query.order(condition.field, { ascending: condition.ascending ?? true });
+        });
+    }
+
+    query = query.limit(options?.limit || 3);
+
+    const { data, error } = await query;
+
+    if (error) throw error;
+
+    return data as Code[];
+}
+
+export const fetchCodeListByFileCode = async (fileCode: string, client: SupabaseClient, options?: FetchOptions) => {
+    let query = client
+        .from(FILE_TABLE)
+        .select(`
+          *,
+          codes (*)
+        `)
+        .like("content", `%${fileCode}%`)
+        // .eq('is_public', true);
+
+    if (options?.eq) {
+        options.eq.forEach(condition => {
+            query = query.eq(condition.field, condition.value);
+        });
+    }
+
+    if (options?.order) {
+        options.order.forEach(condition => {
+            query = query.order(condition.field, { ascending: condition.ascending ?? true });
+        });
+    }
+
+    query = query.limit(options?.limit || 30);
+
+    const { data, error } = await query;
+    console.log(data);
+
+    if (error) throw error;
+
+    return data.map(file => {
+        return {
+            ...file.codes
+        } as CodeDetail
+    })
+}
+
+
+// TODO 下記を削除する
+// Select-One
 export const fetchCodeById = async (id: number, client: SupabaseClient) => {
     const { data: code, error } = await client
         .from(CODE_TABLE)
