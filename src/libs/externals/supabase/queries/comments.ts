@@ -104,13 +104,18 @@ export const fetchDeleteComment = async (id: number, client: SupabaseClient) => 
 export const fetchCommentListByCodeId = async (codeId: number, client: SupabaseClient) => {
     const { data, error } = await client
         .from("comments")
-        .select("*")
+        .select(`
+          *,
+          user: users (
+            username
+          )
+        `)
         .eq("code_id", codeId)
         .order("created_at", { ascending: true });
 
     if (error) throw error;
 
-    return data;
+    return data as CommentDetail[];
 }
 
 export const fetchCommentListByUser = async (userId: string, client: SupabaseClient) => {

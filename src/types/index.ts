@@ -9,6 +9,7 @@ export type Favorite = Database["public"]["Tables"]["favorites"]["Row"];
 export type Comment = Database["public"]["Tables"]["comments"]["Row"];
 export type AuthUser = SupabaseUser;
 
+// Code
 export interface CodeWithFiles extends Code {
     files: File[];
 }
@@ -22,6 +23,13 @@ export interface CodeDetail extends Code {
     files: File[];
     favorites_count?: number;
 }
+
+// Comment
+export interface CommentDetail extends Comment {
+    user: User;
+}
+
+
 // deprecated
 
 export interface CodeWithUser extends Code {

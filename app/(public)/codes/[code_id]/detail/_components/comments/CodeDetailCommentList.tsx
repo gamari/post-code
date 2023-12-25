@@ -17,7 +17,6 @@ interface Props {
 
 export const CodeDetailCommentList = ({ className, codeId }: Props) => {
   const { loading } = useInitCommentList(codeId);
-  const { commentList } = useGetCommentList();
 
   return (
     <div className={cn("rounded-md bg-white", className)}>

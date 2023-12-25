@@ -1,16 +1,16 @@
 "use client";
 
-import { Comment } from "@/src/types";
+import { Comment, CommentDetail } from "@/src/types";
 import { ReactNode, createContext, useContext, useState } from "react";
 
 interface ContextProps {
-  comments: Comment[];
-  setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
+  comments: CommentDetail[];
+  setComments: React.Dispatch<React.SetStateAction<CommentDetail[]>>;
 }
 
 interface ProviderProps {
   children: ReactNode;
-  comments: Comment[];
+  comments: CommentDetail[];
 }
 
 export const CodeCommentListContext = createContext<ContextProps>({
@@ -22,7 +22,7 @@ export const DetailCodeCommentListProvider = ({
   children,
   comments: initComments,
 }: ProviderProps) => {
-  const [comments, setComments] = useState<Comment[]>(initComments || []);
+  const [comments, setComments] = useState<CommentDetail[]>(initComments || []);
 
   return (
     <CodeCommentListContext.Provider value={{ comments, setComments }}>

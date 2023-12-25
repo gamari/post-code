@@ -1,7 +1,7 @@
 import React from "react";
 
 import { SlideIn } from "../../molecules/animation/SlideIn";
-import { Comment } from "@/src/types";
+import { Comment, CommentDetail } from "@/src/types";
 import { HDotIcon } from "../../atoms/icons/HDotIcon";
 import { Avatar } from "../../molecules/avatar";
 import { Username } from "../../atoms/texts/username";
@@ -17,7 +17,7 @@ import {
 import { DeleteIcon } from "lucide-react";
 
 interface Props {
-  comment?: Comment;
+  comment?: CommentDetail;
   className?: string;
   onDelete: (comment: Comment) => void;
 }
@@ -29,7 +29,7 @@ export const CommentPanel = ({ comment, className = "", onDelete }: Props) => {
         <div className="flex flex-row items-center justify-between">
           <div className="flex flex-row items-center gap-2">
             <Avatar />
-            <Username value="ユーザー名" />
+            <Username value={comment?.user?.username || ""} />
           </div>
 
           <div className="flex flex-row gap-2 items-center">
@@ -45,15 +45,16 @@ export const CommentPanel = ({ comment, className = "", onDelete }: Props) => {
                   <HDotIcon className="hover rounded-full hover:bg-gray-100 h-6 w-6 p-1 cursor-pointer" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56">
+              <DropdownMenuContent className="w-24">
                 <DropdownMenuGroup>
                   <DropdownMenuItem
                     onClick={() => {
                       comment && onDelete(comment);
                     }}
+                    className="cursor-pointer"
                   >
                     <DeleteIcon className="mr-2 h-4 w-4" />
-                    <span>Delete</span>
+                    <span>削除</span>
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
               </DropdownMenuContent>
