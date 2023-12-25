@@ -4,9 +4,10 @@ import React, { useEffect } from "react";
 interface Props {
   text?: string;
   className?: string;
+  children?: React.ReactNode;
 }
 
-export const NoContent = ({ text, className }: Props) => {
+export const NoContent = ({ text, className, children }: Props) => {
   return (
     <div
       className={cn(
@@ -14,7 +15,7 @@ export const NoContent = ({ text, className }: Props) => {
         className
       )}
     >
-      {text ? text : "ありません"}
+      {children ? children : <>{text ? text : "ありません"}</>}
     </div>
   );
 };

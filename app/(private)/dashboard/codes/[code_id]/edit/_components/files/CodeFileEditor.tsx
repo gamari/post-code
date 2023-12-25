@@ -25,6 +25,7 @@ import { getFileType } from "@/src/libs/editors";
 import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
 import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/setter/useSetEditorSelectedFile";
 import { Typo } from "@/src/components/atoms/texts/typo";
+import { CodeEditorNewFileModalButton } from "../../CodeEditorNewFileModalButton";
 
 interface Props {
   className?: string;
@@ -36,7 +37,10 @@ export const CodeFileEditor = ({ className }: Props) => {
 
   if (!selectedFile)
     return (
-      <NoContent text="ファイルを選択してください" className="h-[400px]" />
+      <NoContent className="h-[400px] gap-3">
+        <Typo text="ファイルを追加" />
+        <CodeEditorNewFileModalButton />
+      </NoContent>
     );
 
   return (
