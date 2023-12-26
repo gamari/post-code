@@ -1,15 +1,29 @@
 import { CODE_TABLE, FILE_TABLE, PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
 import { Code, CodeDetail, SearchResultCode } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { applyQueryOptions } from ".";
+import { QueryOptions, applyQueryOptions } from ".";
 
-interface FetchOptions {
-    eq?: { field: string; value: any }[];
-    order?: { field: string; ascending?: boolean }[];
-    limit?: number;
-}
 
-export const fetchCodeList = async (client: SupabaseClient, options?: FetchOptions) => {
+export const fetchCodeById = async (id: number, client: SupabaseClient) => {
+    const { data: code, error } = await client
+        .from(CODE_TABLE)
+        .select(`
+            *, 
+            ${PUBLIC_USER_TABLE}!user_id (*),
+            ${FILE_TABLE}: files(*)
+        `)
+        .eq("id", id)
+        .single();
+
+    if (error) return null;
+
+    return {
+        ...code,
+        user: code.public_users
+    };
+};
+
+export const fetchCodeList = async (client: SupabaseClient, options?: QueryOptions) => {
     let query = client
         .from(CODE_TABLE)
         .select("*");
@@ -23,7 +37,7 @@ export const fetchCodeList = async (client: SupabaseClient, options?: FetchOptio
     return data as Code[];
 }
 
-export const fetchCodeListWithUser = async (client: SupabaseClient, options?: FetchOptions) => {
+export const fetchCodeListWithUser = async (client: SupabaseClient, options?: QueryOptions) => {
     let query = client
         .from(CODE_TABLE)
         .select(`
@@ -37,8 +51,6 @@ export const fetchCodeListWithUser = async (client: SupabaseClient, options?: Fe
     query = applyQueryOptions(query, options);
 
     const { data, error } = await query;
-    console.log(data);
-    console.log(error);
 
     if (error) throw error;
 
@@ -51,7 +63,7 @@ export const fetchCodeListWithUser = async (client: SupabaseClient, options?: Fe
     }) as CodeDetail[];
 }
 
-export const fetchCodeListByFileCode = async (fileCode: string, client: SupabaseClient, options?: FetchOptions) => {
+export const fetchCodeListByFileCode = async (fileCode: string, client: SupabaseClient, options?: QueryOptions) => {
     let query = client
         .from(FILE_TABLE)
         .select(`
@@ -63,7 +75,6 @@ export const fetchCodeListByFileCode = async (fileCode: string, client: Supabase
     query = applyQueryOptions(query, options);
 
     const { data, error } = await query;
-    console.log(data);
 
     if (error) throw error;
 
@@ -76,23 +87,19 @@ export const fetchCodeListByFileCode = async (fileCode: string, client: Supabase
 }
 
 
-export const fetchFavoriteCodes = async (client: SupabaseClient) => {
-    const {
-        data: { user },
-    } = await client.auth.getUser();
-
-    if (!user?.id) throw new Error("ログインしていません。");
-
-    // TODO fix types
-    const { data, error } = await client
+export const fetchFavoriteCodeList = async (client: SupabaseClient, options?: QueryOptions) => {
+    let query = client
         .from('favorites')
         .select(`
             code_id,
             codes (
                 *
             )
-        `)
-        .eq('user_id', user.id)
+        `);
+
+    query = applyQueryOptions(query, options);
+
+    const { data, error } = await query;
 
     if (error) throw error;
 
@@ -105,38 +112,6 @@ export const fetchFavoriteCodes = async (client: SupabaseClient) => {
 
 
 // TODO 下記を削除する
-// Select-One
-export const fetchCodeById = async (id: number, client: SupabaseClient) => {
-    const { data: code, error } = await client
-        .from(CODE_TABLE)
-        .select(`
-            *, 
-            users (*),
-            files: files(*)
-        `)
-        .eq("id", id)
-        .single();
-
-    if (error) return null;
-
-    return {
-        ...code,
-        user: code.users
-    };
-};
-
-// Select-Many
-export const fetchCodesByUserId = async (userId: string, client: SupabaseClient) => {
-    const { data: codes, error } = await client
-        .from(CODE_TABLE)
-        .select("*")
-        .eq("user_id", userId)
-        .order("updated_at", { ascending: false });
-
-    if (error) throw error;
-
-    return codes;
-}
 export const fetchCodesBySelf = async (client: SupabaseClient) => {
     const {
         data: { user },
@@ -148,7 +123,7 @@ export const fetchCodesBySelf = async (client: SupabaseClient) => {
         .eq("user_id", user?.id);
 
 
-    if (error) return [];
+    if (error) throw error;
 
     return codes;
 };
@@ -164,7 +139,7 @@ export const fetchCodeWithFilesById = async (id: number, client: SupabaseClient)
         `)
         .maybeSingle();
 
-    if (error) return null;
+    if (error) throw error;
 
     return codeWithFiles;
 };
@@ -185,7 +160,7 @@ export const fetchCreateCode = async (newBadCodes: Code, client: SupabaseClient)
         .select()
         .maybeSingle();
 
-    if (error) throw new Error("BadCodeの作成中にエラーが発生しました。");
+    if (error) throw error;
 
     return data;
 };
@@ -197,7 +172,7 @@ export const fetchDeleteBadCode = async (id: number, client: SupabaseClient) => 
         .delete()
         .eq("id", id);
 
-    if (error) throw new Error("BadCodeの削除中にエラーが発生しました。");
+    if (error) throw error;
 }
 
 export const fetchUpdateCode = async (newBadCodes: CodeDetail, client: SupabaseClient) => {
@@ -214,7 +189,7 @@ export const fetchUpdateCode = async (newBadCodes: CodeDetail, client: SupabaseC
 
     console.log(data);
 
-    if (error) throw new Error("BadCodeの更新中にエラーが発生しました。");
+    if (error) throw error;
 
     return data;
 }

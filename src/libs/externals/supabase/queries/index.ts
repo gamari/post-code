@@ -23,5 +23,12 @@ export const applyQueryOptions = (query: PostgrestFilterBuilder<any, any, any[],
     query = query.limit(options?.limit || 6);
 
     return query;
+}
 
+export const createEqConditions = (conditions: Array<{ field: string, value: any }>) => {
+    return conditions.map(condition => ({ field: condition.field, value: condition.value }));
+}
+
+export const createEqCondition = (field: string, value: any) => {
+    return { field, value };
 }

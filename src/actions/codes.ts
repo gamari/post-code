@@ -1,8 +1,9 @@
 "use server";
 
 import { getServerClient } from "@/src/libs/externals/supabase/admin-client";
-import { fetchCodeById, fetchCodeListByFileCode, fetchCodeListWithUser, fetchCodesByUserId, fetchFavoriteCodes } from "@/src/libs/externals/supabase/queries/codes";
+import { fetchCodeById, fetchCodeList, fetchCodeListByFileCode, fetchCodeListWithUser, fetchFavoriteCodeList } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchAuthUser } from "@/src/libs/externals/supabase/queries/users";
+import { createEqCondition, createEqConditions } from "../libs/externals/supabase/queries";
 
 // One
 export const actionGetBadCodeById = async (id: number) => {
@@ -19,11 +20,14 @@ export const actionGetCodeListByFileCode = async (fileCode: string) => {
 
 }
 
-
 export const actionGetMySelfBadCodeList = async () => {
     const client = getServerClient();
     const authUser = await fetchAuthUser(client);
-    const codes = await fetchCodesByUserId(authUser?.id || "", client);
+    const codes = await fetchCodeList(client, {
+        eq: [
+            createEqCondition("user_id", authUser?.id)
+        ]
+    });
     return codes;
 }
 
@@ -36,6 +40,11 @@ export const actionGetLatestBadCodeList = async () => {
 
 export const actionGetFavoriteCodeList = async () => {
     const client = getServerClient();
-    const codes = await fetchFavoriteCodes(client);
+    const authUser = await fetchAuthUser(client);
+    const codes = await fetchFavoriteCodeList(client, {
+        eq: [
+            createEqCondition("user_id", authUser?.id)
+        ]
+    });
     return codes;
 }
