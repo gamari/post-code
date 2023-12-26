@@ -1,14 +1,14 @@
-import { Heading } from "@/src/components/atoms/texts/heading";
+import React from "react";
+
 import { MarkdownPreviewer } from "@/src/components/molecules/displays/markdown-previewer";
 import { useCodeDetailContext } from "@/src/contexts/CodeDetailProvider";
 import { cn } from "@/src/libs/utils";
-import React from "react";
 
 interface Props {
   className?: string;
 }
 
-export const CodeDetailFileDescription = ({ className = "" }) => {
+export const CodeDetailFileDescription = ({ className = "" }: Props) => {
   const { selectedFile } = useCodeDetailContext();
 
   if (!selectedFile) return null;

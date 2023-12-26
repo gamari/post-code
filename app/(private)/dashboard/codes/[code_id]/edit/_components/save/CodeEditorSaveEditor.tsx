@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 import { cn } from "@/src/libs/utils";
 import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";

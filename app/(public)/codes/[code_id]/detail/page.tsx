@@ -39,6 +39,8 @@ const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
               </div>
             </Suspense>
           </div>
+
+          {/* TODO */}
         </Center>
       </CodeDetailProvider>
     </DetailCodeCommentListProvider>

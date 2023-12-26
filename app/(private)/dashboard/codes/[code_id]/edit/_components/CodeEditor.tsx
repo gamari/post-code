@@ -17,7 +17,7 @@ interface Props {
 export const CodeEditor: FunctionComponent<Props> = ({ code }: Props) => {
   return (
     <CodeEditorProvider code={code}>
-      <div className="sticky top-10 flex flex-row gap-4">
+      <div className="flex flex-row gap-4">
         <div className="w-[600px]">
           <CodeEditorTitleInput />
           <CodeFileEditor className="h-[300px]" />

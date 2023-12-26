@@ -21,7 +21,7 @@ export const CodeDetailSidebar = async ({ codeId }: Props) => {
   if (!badCode) throw new Error("コードが見つかりません");
 
   return (
-    <div className="sticky top-20 h-fit flex flex-col gap-6 w-[250px]">
+    <div className="sticky top-20 h-fit flex flex-col gap-6 w-[250px] z-[200]">
       <UserInfoCard user={badCode.user} />
       <CodeDetailFileListCard
         files={files}

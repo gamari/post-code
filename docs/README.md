@@ -10,6 +10,15 @@
 [GitHub](https://github.com/search?q=django&type=repositories)
 [CodeCanYou](https://codecanyon.net/category/mobile)
 
+## デザイン
+
+- z-index
+  - Header
+    - 100
+  - Sidebar
+    - 200
+
+
 ## タスク一覧
 
 ### Next

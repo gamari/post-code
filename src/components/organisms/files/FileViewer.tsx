@@ -23,7 +23,7 @@ export const FileViewer = ({ file, className }: Props) => {
         className
       )}
     >
-      <div className="absolute -top-4 left-1 shadow-md z-20 text-sm p-1 px-2 flex flex-row items-center font-bold bg-slate-50 rounded-lg">
+      <div className="absolute -top-4 left-1 shadow-md z-[2] text-sm p-1 px-2 flex flex-row items-center font-bold bg-slate-50 rounded-lg">
         <CiFileOn className="cursor-pointer hover:opacity-70" />
         <span>{file?.name}</span>
       </div>

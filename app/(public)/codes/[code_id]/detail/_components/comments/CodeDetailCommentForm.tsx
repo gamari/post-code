@@ -8,6 +8,7 @@ import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { useAlert } from "@/src/hooks/useAlert";
 import { useFormComment } from "@/src/hooks/comments/useFormComment";
 import { useAddCommentToList } from "@/src/hooks/comments/useAddCommentToList";
+import { Heading } from "@/src/components/atoms/texts/heading";
 
 interface Props {
   codeId: number;
@@ -37,11 +38,13 @@ export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
   };
 
   return (
-    <div>
+    <div className="w-full">
+      <Heading className="mb-3">コメント</Heading>
       <Textarea
         value={comment}
         onChange={(e) => setComment(e.target.value)}
         placeholder="コメントを入力"
+        rows={8}
       />
 
       <div className="flex flex-row-reverse mt-3">
