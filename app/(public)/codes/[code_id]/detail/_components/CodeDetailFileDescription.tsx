@@ -16,7 +16,7 @@ export const CodeDetailFileDescription = ({ className = "" }) => {
   return (
     <div className={cn("", className)}>
       {selectedFile?.description && (
-        <div className="bg-white p-6">
+        <div className="bg-white py-12 px-8">
           <MarkdownPreviewer content={selectedFile?.description || ""} />
         </div>
       )}
