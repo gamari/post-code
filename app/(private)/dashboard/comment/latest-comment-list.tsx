@@ -1,8 +1,6 @@
 import React from "react";
 
 import { actionGetMyselfCommentList } from "@/src/actions/comments";
-import { Typo } from "@/src/components/atoms/texts/typo";
-import Link from "next/link";
 import { CODES_DETAIL_URL } from "@/src/libs/constants/urls";
 import { DateString } from "@/src/components/atoms/texts/date-string";
 import { LinkText } from "@/src/components/molecules/displays/link-text";

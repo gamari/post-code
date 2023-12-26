@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "../../ui/dropdown-menu";
 import { DeleteIcon } from "lucide-react";
+import { MarkdownPreviewer } from "../../molecules/displays/markdown-previewer";
 
 interface Props {
   comment?: CommentDetail;
@@ -70,7 +71,9 @@ export const CommentPanel = ({
           )}
         </div>
 
-        <div className="mt-3">{comment?.comment}</div>
+        <div className="mt-3">
+          <MarkdownPreviewer content={comment?.comment || ""} />
+        </div>
 
         <div>
           <div>{/* TODO いいねとか */}</div>
