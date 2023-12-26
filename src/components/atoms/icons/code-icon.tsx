@@ -5,6 +5,7 @@ import { DiJava, DiPython } from "react-icons/di";
 import { Logo } from "../../molecules/logo";
 import { SiGoland, SiJavascript, SiTypescript } from "react-icons/si";
 import { cn } from "@/src/libs/utils";
+import { TbFileTypeSql } from "react-icons/tb";
 
 interface Props {
   fileType: FileType;
@@ -28,6 +29,8 @@ export const CodeIcon = ({ fileType, size = "md" }: Props) => {
     return <DiJava className={className} />;
   } else if (fileType === "go") {
     return <SiGoland className={className} />;
+  } else if (fileType === "sql") {
+    return <TbFileTypeSql className={className} />;
   }
 
   return <Logo className={className} />;

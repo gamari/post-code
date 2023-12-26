@@ -9,11 +9,12 @@ import { useModal } from "@/src/hooks/useModal";
 import { Modal } from "@/src/components/molecules/displays/Modal";
 import { CodeDetailInfoEditor } from "./CodeEditorSaveEditor";
 import { Button } from "@/src/components/atoms/buttons/button";
+import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";
 
 // TODO save buttonを抜き出す
 export const CodeEditorSaveModalButton = () => {
+  const { code } = useGetEditorCode();
   const { isOpen, toggleModal } = useModal();
-
   const { loading, saveEditor } = useSaveEditorCode();
   const { errorAlert } = useAlert();
 
@@ -28,7 +29,17 @@ export const CodeEditorSaveModalButton = () => {
 
   return (
     <>
-      <SaveButton label="保存" onClick={toggleModal} loading={loading} />
+      <SaveButton
+        label="保存"
+        onClick={() => {
+          if (!code?.title) {
+            errorAlert("タイトルを入力してください");
+            return;
+          }
+          toggleModal();
+        }}
+        loading={loading}
+      />
 
       <Modal isOpen={isOpen} onClose={toggleModal} className="w-[500px]">
         <CodeDetailInfoEditor />

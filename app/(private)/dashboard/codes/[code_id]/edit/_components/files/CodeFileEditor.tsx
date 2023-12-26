@@ -37,7 +37,7 @@ export const CodeFileEditor = ({ className }: Props) => {
 
   if (!selectedFile)
     return (
-      <NoContent className="h-[400px] gap-3">
+      <NoContent className={cn("h-[400px] gap-3", className)}>
         <Typo text="ファイルを追加" />
         <CodeEditorNewFileModalButton />
       </NoContent>

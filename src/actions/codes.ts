@@ -37,7 +37,14 @@ export const actionGetOwnBadCodeList = async () => {
 /** 最新のコード一覧を取得。 */
 export const actionGetLatestBadCodeList = async () => {
     const client = getServerClient();
-    const codes = await fetchCodeListWithUser(client);
+    const codes = await fetchCodeListWithUser(client, {
+        eq: [
+            createEqCondition("is_public", true)
+        ],
+        order: [
+            createOrderCondition("updated_at", false)
+        ]
+    });
     return codes;
 }
 

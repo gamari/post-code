@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import { Code } from "@/src/types";
+import { CodeDetail } from "@/src/types";
 
-export const useBadCodeList = (initBadCodes: Code[]) => {
-    const [codes, setCodes] = useState<Code[]>(initBadCodes);
+export const useBadCodeList = (initBadCodes: CodeDetail[]) => {
+    const [codes, setCodes] = useState<CodeDetail[]>(initBadCodes);
 
     const removeBadCode = (id: number) => {
         setCodes(codes.filter((code) => code.id !== id));

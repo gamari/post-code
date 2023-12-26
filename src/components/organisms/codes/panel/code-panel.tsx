@@ -9,6 +9,7 @@ import { CodeIcon } from "@/src/components/atoms/icons/code-icon";
 import { FileType } from "@/src/libs/editors";
 import { AccountIcon } from "@/src/components/atoms/icons/account-icon";
 import { HeartIcon } from "@/src/components/atoms/icons/heart-icon";
+import { FavoriteIcon } from "@/src/components/atoms/icons/favorite-icon";
 
 interface Props {
   code: CodeDetail;
@@ -25,7 +26,7 @@ export const CodePanel: FunctionComponent<Props> = ({ code, className }) => {
     >
       <CodeIcon fileType={code?.language?.name as FileType} size="lg" />
 
-      <div className="flex flex-col justify-between h-full w-full">
+      <div className="flex flex-col justify-between gap-2 h-full w-full">
         <div className="text-lg font-bold text-gray-700">{code.title}</div>
         <CodePanelFooter code={code} />
       </div>
@@ -36,14 +37,14 @@ export const CodePanel: FunctionComponent<Props> = ({ code, className }) => {
 const CodePanelFooter = ({ code }: { code: CodeDetail }) => {
   return (
     <div className="flex flex-row justify-between w-full items-center text-gray-600">
-      <div className="flex flex-row gap-4 ">
+      <div className="flex flex-row gap-2">
         <div className="flex flex-row items-center gap-2">
           <AccountIcon />
           <div>{code?.user?.username}</div>
         </div>
 
         <div className="flex flex-row items-center gap-2">
-          <HeartIcon />
+          <FavoriteIcon />
           <span>{code?.favorites_count || 0}</span>
         </div>
       </div>

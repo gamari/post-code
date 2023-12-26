@@ -9,7 +9,7 @@ import { useLoading } from "../useLoading";
 
 
 const codeSchema = z.object({
-    title: z.string().min(1, "タイトルは入力して下しさい。").max(60, "タイトルは60文字以内にしてください。"),
+    title: z.string().min(1, "入力して下さい。").max(60, "タイトルは60文字以内にしてください。"),
 });
 
 export const useFormCode = () => {

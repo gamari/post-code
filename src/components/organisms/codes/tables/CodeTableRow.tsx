@@ -9,10 +9,10 @@ import { EditButton } from "@/src/components/molecules/buttons/edit-button";
 import { LinkText } from "@/src/components/molecules/displays/link-text";
 import { ToggleBudge } from "@/src/components/molecules/displays/toggle-budge";
 import { TableRow, TableCell } from "@/src/components/ui/table";
-import { Code } from "@/src/types";
+import { CodeDetail } from "@/src/types";
 
 interface Props {
-  code: Code;
+  code: CodeDetail;
   onDelete: (id: number) => void;
 }
 
@@ -35,8 +35,9 @@ export const CodeTableRow = ({ code, onDelete }: Props) => {
           label={code.title}
         />
       </TableCell>
+      <TableCell className="w-fit">{code?.language?.display}</TableCell>
       <TableCell className="w-fit">
-        <DateString value={code.updated_at} />
+        <DateString value={code.updated_at} type="datetime" />
       </TableCell>
       <TableCell className="w-fit">
         <div className="flex flex-row items-center gap-3">

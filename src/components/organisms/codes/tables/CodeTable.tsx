@@ -1,11 +1,10 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 
 import { Table, TableBody } from "@/src/components/ui/table";
 
-import { Code } from "@/src/types";
+import { CodeDetail } from "@/src/types";
 import { useBadCodeList } from "@/src/hooks/codes/useCodeList";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchDeleteBadCode } from "@/src/libs/externals/supabase/queries/codes";
@@ -14,7 +13,7 @@ import { CodeTableHeader } from "./CodeTableHeader";
 import { CodeTableRow } from "./CodeTableRow";
 
 interface CodeTableProps {
-  codes: Code[];
+  codes: CodeDetail[];
   className?: string;
 }
 

@@ -7,6 +7,7 @@ export const CodeTableHeader = () => {
       <TableRow>
         <TableHead></TableHead>
         <TableHead>タイトル</TableHead>
+        <TableHead>言語</TableHead>
         <TableHead>更新日</TableHead>
         <TableHead></TableHead>
       </TableRow>

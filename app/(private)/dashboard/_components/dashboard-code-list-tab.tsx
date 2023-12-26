@@ -1,5 +1,4 @@
 import React from "react";
-import { unstable_noStore } from "next/cache";
 
 import { NewCodeModalButton } from "../../../../src/components/organisms/codes/NewCodeModalButton";
 import { Title } from "../../../../src/components/atoms/texts/title";
@@ -8,7 +7,6 @@ import { actionGetOwnBadCodeList } from "@/src/actions/codes";
 import { NoContent } from "../../../../src/components/molecules/displays/no-content";
 
 export const DashboardCodeListTab = async () => {
-  unstable_noStore();
   const codes = await actionGetOwnBadCodeList();
 
   if (!codes?.length)

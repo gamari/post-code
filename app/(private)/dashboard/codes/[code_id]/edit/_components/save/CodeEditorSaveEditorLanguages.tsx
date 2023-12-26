@@ -82,7 +82,7 @@ export const CodeEditorSaveEditorLanguages = () => {
               value={language}
               onChange={onChange}
               onKeyDown={handleKeyDown}
-              placeholder="言語を入力"
+              placeholder="言語を入力（空欄可）"
               className="border p-2 w-[200px] outline-none focus:border focus:border-sky-500"
               onBlur={onBlug}
             />

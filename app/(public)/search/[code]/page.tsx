@@ -1,4 +1,6 @@
 import React from "react";
+import { unstable_noStore } from "next/cache";
+
 import { SearchSection } from "./search-section";
 import { SearchCodeResult } from "./search-code-result";
 
@@ -9,6 +11,8 @@ interface Props {
 }
 
 const Page = ({ params: { code } }: Props) => {
+  unstable_noStore();
+
   return (
     <div>
       <SearchSection className="max-w-4xl">
