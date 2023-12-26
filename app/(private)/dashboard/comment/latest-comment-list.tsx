@@ -5,6 +5,7 @@ import { Typo } from "@/src/components/atoms/texts/typo";
 import Link from "next/link";
 import { CODES_DETAIL_URL } from "@/src/libs/constants/urls";
 import { DateString } from "@/src/components/atoms/texts/date-string";
+import { LinkText } from "@/src/components/molecules/displays/link-text";
 
 /** 最新コメント一覧 */
 export const LatestCommentList = async () => {
@@ -16,10 +17,11 @@ export const LatestCommentList = async () => {
         return (
           <div className={"bg-white rounded-lg p-6"} key={comment.id}>
             <div>
-              <Link href={CODES_DETAIL_URL(comment?.code?.id)}>
-                <Typo text={`【${comment?.code?.title}】`} className="mr-2" />
-                へのコメント
-              </Link>
+              【<LinkText
+                url={CODES_DETAIL_URL(comment?.code?.id)}
+                label={comment?.code?.title}
+              />】
+              へのコメント
             </div>
             <div className="mt-3 border-t pt-2">
               <div>{comment.comment}</div>

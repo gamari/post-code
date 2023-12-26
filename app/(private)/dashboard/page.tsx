@@ -7,8 +7,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/src/components/ui/tabs";
-import { DashboardCodeListTab } from "@/app/(private)/dashboard/dashboard-code-list-tab";
-import { DashboardFavoriteCodeListTab } from "@/app/(private)/dashboard/dashboard-favorite-code-list-tab";
+import { DashboardCodeListTab } from "@/app/(private)/dashboard/_components/dashboard-code-list-tab";
+import { DashboardFavoriteCodeListTab } from "@/app/(private)/dashboard/_components/dashboard-favorite-code-list-tab";
 
 const Page = async () => {
   return (

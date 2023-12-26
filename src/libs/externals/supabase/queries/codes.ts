@@ -1,5 +1,5 @@
 import { CODE_TABLE, FILE_TABLE, PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
-import { Code, CodeDetail, SearchResultCode } from "@/src/types";
+import { Code, CodeDetail, SearchResultCode, User } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { QueryOptions, applyQueryOptions } from ".";
 
@@ -88,12 +88,13 @@ export const fetchCodeListByFileCode = async (fileCode: string, client: Supabase
 
 
 export const fetchFavoriteCodeList = async (client: SupabaseClient, options?: QueryOptions) => {
+    // TODO 最低限のフィールドにする
     let query = client
         .from('favorites')
         .select(`
-            code_id,
-            codes (
-                *
+            codes!code_id (
+                *,
+                ${PUBLIC_USER_TABLE}!user_id (*)
             )
         `);
 
@@ -102,11 +103,14 @@ export const fetchFavoriteCodeList = async (client: SupabaseClient, options?: Qu
     const { data, error } = await query;
 
     if (error) throw error;
+    console.log(data);
 
-    return data.map((favoriteCode) => {
-        // TODO fix types
-        const code = favoriteCode.codes as unknown as Code
-        return code
+    // TODO fix Types
+    return data.map((favorite) => {
+        return {
+            ...favorite.codes,
+            user: (favorite.codes as any).public_users as User
+        } as unknown as CodeDetail
     });
 }
 

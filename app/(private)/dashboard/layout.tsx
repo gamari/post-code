@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 
-import { DashboardSidebar } from "@/app/(private)/dashboard/dashboard-sidebar";
+import { DashboardSidebar } from "@/app/(private)/dashboard/_components/dashboard-sidebar";
 import { actionGetMySelf } from "@/src/actions/users";
 
 interface Props {

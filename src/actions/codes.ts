@@ -44,7 +44,8 @@ export const actionGetFavoriteCodeList = async () => {
     const codes = await fetchFavoriteCodeList(client, {
         eq: [
             createEqCondition("user_id", authUser?.id)
-        ]
+        ],
+        limit: 20
     });
     return codes;
 }
