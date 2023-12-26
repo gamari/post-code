@@ -1,7 +1,7 @@
 import { CODE_TABLE, FILE_TABLE, PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
 import { Code, CodeDetail, SearchResultCode, User } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { QueryOptions, applyQueryOptions } from ".";
+import { QueryOptions, applyOrderBy, applyQueryOptions } from ".";
 
 
 export const fetchCodeById = async (id: number, client: SupabaseClient) => {
@@ -29,6 +29,7 @@ export const fetchCodeList = async (client: SupabaseClient, options?: QueryOptio
         .select("*");
 
     query = applyQueryOptions(query, options);
+    query = applyOrderBy(query, options);
 
     const { data, error } = await query;
 
@@ -187,7 +188,8 @@ export const fetchUpdateCode = async (newBadCodes: CodeDetail, client: SupabaseC
             ...newBadCodes,
             files: undefined,
             users: undefined,
-            user: undefined
+            user: undefined,
+            public_users: undefined
         })
         .eq("id", newBadCodes.id);
 

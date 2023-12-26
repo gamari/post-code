@@ -1,16 +1,19 @@
 import React from "react";
-import Link from "next/link";
 
-import { AiOutlineThunderbolt } from "react-icons/ai";
-import { FaSlash } from "react-icons/fa";
-import { TbBackslash } from "react-icons/tb";
 import { HiCodeBracket } from "react-icons/hi2";
+import { cn } from "@/src/libs/utils";
 
-export const Logo = () => {
-  return (
-    <Link href="/" className="flex flex-row gap-2 items-center">
-      <HiCodeBracket className="h-7 w-7" />
-      <span className="text-xl text-gray-800 font-bold">BadCodes</span>
-    </Link>
-  );
+interface Props {
+  size?: "sm" | "md" | "lg";
+}
+
+export const Logo = ({
+  size = "md"
+}) => {
+  return <HiCodeBracket className={cn(
+    size == "sm" && "h-6 w-6",
+    size == "md" && "h-8 w-8",
+    size == "lg" && "h-12 w-12",
+    size == "xl" && "h-16 w-16",
+  )} />;
 };

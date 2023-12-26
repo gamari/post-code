@@ -4,12 +4,12 @@ import { unstable_noStore } from "next/cache";
 import { NewCodeModalButton } from "../../../../src/components/organisms/codes/NewCodeModalButton";
 import { Title } from "../../../../src/components/atoms/texts/title";
 import { CodeTable } from "../../../../src/components/organisms/codes/tables/CodeTable";
-import { actionGetMySelfBadCodeList } from "@/src/actions/codes";
+import { actionGetOwnBadCodeList } from "@/src/actions/codes";
 import { NoContent } from "../../../../src/components/molecules/displays/no-content";
 
 export const DashboardCodeListTab = async () => {
   unstable_noStore();
-  const codes = await actionGetMySelfBadCodeList();
+  const codes = await actionGetOwnBadCodeList();
 
   if (!codes?.length)
     return (

@@ -25,10 +25,26 @@ export const applyQueryOptions = (query: PostgrestFilterBuilder<any, any, any[],
     return query;
 }
 
+export const applyOrderBy = (query: PostgrestFilterBuilder<any, any, any[], unknown, unknown>, options?: QueryOptions) => {
+    if (options?.order) {
+        console.log(options.order);
+        options.order.forEach(condition => {
+            query = query.order(condition.field, { ascending: condition.ascending ?? true });
+        });
+    }
+
+    return query;
+}
+
+
 export const createEqConditions = (conditions: Array<{ field: string, value: any }>) => {
     return conditions.map(condition => ({ field: condition.field, value: condition.value }));
 }
 
 export const createEqCondition = (field: string, value: any) => {
     return { field, value };
+}
+
+export const createOrderCondition = (field: string, ascending?: boolean) => {
+    return { field, ascending };
 }

@@ -12,7 +12,10 @@ export default async function Header() {
     <nav className="sticky top-0 w-full flex justify-center border-b border-b-foreground/10 h-16 bg-white z-30">
       <div className="w-full max-w-6xl flex justify-between items-center p-3 text-sm px-10">
         <div>
-          <Logo />
+          <Link href="/" className="flex flex-row gap-2 items-center">
+            <Logo />
+            <span className="text-xl text-gray-800 font-bold">BadCodes</span>
+          </Link>
         </div>
 
         <div className="flex items-center gap-4">
