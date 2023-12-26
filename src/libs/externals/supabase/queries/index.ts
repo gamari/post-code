@@ -1,4 +1,3 @@
-import { SupabaseClient } from "@supabase/supabase-js";
 import { PostgrestFilterBuilder } from '@supabase/postgrest-js';
 
 export interface QueryOptions {

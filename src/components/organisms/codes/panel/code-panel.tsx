@@ -6,6 +6,8 @@ import { cn } from "@/src/libs/utils";
 
 import { HeartIcon, PersonIcon } from "@radix-ui/react-icons";
 import { DateString } from "@/src/components/atoms/texts/date-string";
+import { Logo } from "@/src/components/molecules/logo";
+import { DateIcon } from "@/src/components/atoms/icons/date-icon";
 
 interface Props {
   code: CodeDetail;
@@ -20,26 +22,34 @@ export const CodePanel: FunctionComponent<Props> = ({ code, className }) => {
         className
       )}
     >
-      <MockBlock width={50} height={50} />
+      <Logo size="lg" className="text-gray-800" />
 
       <div className="flex flex-col justify-between h-full w-full">
-        <div className="text-lg font-bold">{code.title}</div>
+        <div className="text-lg font-bold text-gray-700">{code.title}</div>
+        <CodePanelFooter code={code} />
+      </div>
+    </div>
+  );
+};
 
-        <div className="flex flex-row justify-between w-full items-center">
-          <div className="flex flex-row gap-4 text-gray-600">
-            <div className="flex flex-row items-center gap-2">
-              <PersonIcon className="h-5 w-5" />
-              <div>{code?.user?.username}</div>
-            </div>
-
-            <div className="flex flex-row items-center gap-2">
-              <HeartIcon className="h-5 w-5" />
-              <span>{code?.favorites_count || 0}</span>
-            </div>
-          </div>
-
-          <DateString value={code?.created_at} className="pr-2 text-gray-600" />
+const CodePanelFooter = ({ code }: { code: CodeDetail }) => {
+  return (
+    <div className="flex flex-row justify-between w-full items-center text-gray-600">
+      <div className="flex flex-row gap-4 ">
+        <div className="flex flex-row items-center gap-2">
+          <PersonIcon className="h-5 w-5" />
+          <div>{code?.user?.username}</div>
         </div>
+
+        <div className="flex flex-row items-center gap-2">
+          <HeartIcon className="h-5 w-5" />
+          <span>{code?.favorites_count || 0}</span>
+        </div>
+      </div>
+
+      <div className="flex flex-row items-center gap-2">
+        <DateIcon size="sm" />
+        <DateString value={code?.created_at} className="pr-2" />
       </div>
     </div>
   );

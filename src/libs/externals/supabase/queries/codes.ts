@@ -68,8 +68,10 @@ export const fetchCodeListByFileCode = async (fileCode: string, client: Supabase
     let query = client
         .from(FILE_TABLE)
         .select(`
-          *,
-          codes (*)
+            *,
+            codes (
+                *
+            )
         `)
         .like("content", `%${fileCode}%`)
 
@@ -94,8 +96,12 @@ export const fetchFavoriteCodeList = async (client: SupabaseClient, options?: Qu
         .from('favorites')
         .select(`
             codes!code_id (
-                *,
-                ${PUBLIC_USER_TABLE}!user_id (*)
+                id,
+                title,
+                created_at,
+                updated_at,
+                ${PUBLIC_USER_TABLE}!user_id (*),
+                favorites_count: favorites (count)
             )
         `);
 
@@ -110,7 +116,8 @@ export const fetchFavoriteCodeList = async (client: SupabaseClient, options?: Qu
     return data.map((favorite) => {
         return {
             ...favorite.codes,
-            user: (favorite.codes as any).public_users as User
+            user: (favorite.codes as any).public_users as User,
+            favorites_count: (favorite.codes as any).favorites_count[0]?.count || 0
         } as unknown as CodeDetail
     });
 }
