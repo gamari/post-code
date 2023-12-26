@@ -1,6 +1,7 @@
 import { Comment, CommentDetail } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { applyQueryOptions } from ".";
+import { PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
 
 export interface FetchCommentsOptions {
     eq?: { field: string; value: any }[];
@@ -73,12 +74,20 @@ export const fetchCreateComment = async (codeId: number, comment: string, client
             comment,
             user_id: user.id,
         })
-        .select("*")
+        .select(`
+          *,
+          ${PUBLIC_USER_TABLE}!user_id(
+            username
+          )
+        `)
         .maybeSingle();
 
     if (error) throw error;
 
-    return data;
+    return {
+        ...data,
+        user: data?.public_users
+    };
 }
 
 export const fetchDeleteComment = async (id: number, client: SupabaseClient) => {

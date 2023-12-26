@@ -22,7 +22,8 @@ export const useInitCommentList = (codeId: number) => {
 
         const comments = await fetchCommentListWithUser(client, {
             eq: [
-                createEqCondition("user_id", authUser?.id)
+                // createEqCondition("user_id", authUser?.id)
+                createEqCondition("code_id", codeId)
             ],
         });
         setCommentList(comments);
