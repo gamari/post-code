@@ -8,10 +8,12 @@ import { useGetCommentList } from "@/src/hooks/comments/useGetCommentList";
 import { sortDescByCreatedAt } from "@/src/libs/sortes";
 import { useDeleteComment } from "@/src/hooks/comments/useDeleteComment";
 import { useSetCommentList } from "@/src/hooks/comments/useSetCommentList";
+import { useSupabase } from "@/src/contexts/SupabaseProvider";
 
 interface Props {}
 
 export const CodeDetailCommentPanelList = ({}: Props) => {
+  const { authUser } = useSupabase();
   const { commentList } = useGetCommentList();
   const { setCommentList } = useSetCommentList();
   const { deleteComment } = useDeleteComment();
@@ -37,6 +39,7 @@ export const CodeDetailCommentPanelList = ({}: Props) => {
           key={`comment-${comment.id}`}
           className="border-b"
           onDelete={handleDeleteComment}
+          isAuthor={authUser?.id === comment.user_id}
         />
       ))}
     </div>
