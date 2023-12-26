@@ -1,7 +1,7 @@
 import { Comment, CommentDetail } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { applyQueryOptions } from ".";
-import { PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
+import { LANGUAGE_TABLE, PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
 
 export interface FetchCommentsOptions {
     eq?: { field: string; value: any }[];
@@ -49,6 +49,9 @@ export const fetchCommentListWithCode = async (client: SupabaseClient, options?:
           *,
           code: codes (
             *
+          ),
+          ${PUBLIC_USER_TABLE}!user_id(
+            username
           )
         `);
     query = applyQueryOptions(query, options);
@@ -57,7 +60,10 @@ export const fetchCommentListWithCode = async (client: SupabaseClient, options?:
 
     if (error) throw error;
 
-    return data as CommentDetail[];
+    return data.map(item => ({
+        ...item,
+        user: item?.public_users,
+    })) as CommentDetail[];
 }
 
 // Create-Update-Delete
@@ -95,8 +101,6 @@ export const fetchDeleteComment = async (id: number, client: SupabaseClient) => 
         .from("comments")
         .delete()
         .eq("id", id);
-
-    console.log(error);
 
     if (error) throw error;
 }

@@ -8,7 +8,7 @@ export const actionGetLatestCommentList = async () => {
 
     const comments = await fetchCommentListWithCode(client, {
         order: [
-            { field: "created_at", ascending: true },
+            { field: "created_at", ascending: false },
         ],
     });
 

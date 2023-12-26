@@ -3,7 +3,7 @@
 import React from "react";
 
 import { Comment } from "@/src/types";
-import { CommentPanel } from "../../../../../../../src/components/organisms/comments/comment-panel";
+import { CommentItem } from "../../../../../../../src/components/organisms/comments/comment-item";
 import { useGetCommentList } from "@/src/hooks/comments/useGetCommentList";
 import { sortDescByCreatedAt } from "@/src/libs/sortes";
 import { useDeleteComment } from "@/src/hooks/comments/useDeleteComment";
@@ -12,7 +12,7 @@ import { useSupabase } from "@/src/contexts/SupabaseProvider";
 
 interface Props {}
 
-export const CodeDetailCommentPanelList = ({}: Props) => {
+export const CodeDetailCommentItemList = ({}: Props) => {
   const { authUser } = useSupabase();
   const { commentList } = useGetCommentList();
   const { setCommentList } = useSetCommentList();
@@ -34,7 +34,7 @@ export const CodeDetailCommentPanelList = ({}: Props) => {
   return (
     <div>
       {sortedComments?.map((comment) => (
-        <CommentPanel
+        <CommentItem
           comment={comment}
           key={`comment-${comment.id}`}
           className="border-b"

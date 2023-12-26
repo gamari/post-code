@@ -6,7 +6,7 @@ import { cn } from "@/src/libs/utils";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { useInitCommentList } from "@/src/hooks/comments/useInitCommentList";
 import { Skeleton } from "@/src/components/molecules/displays/skeleton";
-import { CodeDetailCommentPanelList } from "@/app/(public)/codes/[code_id]/detail/_components/comments/CodeDetailCommentPanelList";
+import { CodeDetailCommentItemList } from "@/app/(public)/codes/[code_id]/detail/_components/comments/CodeDetailCommentItemList";
 import { CommentIcon } from "@/src/components/atoms/icons/comment-icon";
 
 interface Props {
@@ -26,7 +26,7 @@ export const CodeDetailCommentList = ({ className, codeId }: Props) => {
         </Heading>
       </div>
 
-      {loading ? <Skeleton /> : <CodeDetailCommentPanelList />}
+      {loading ? <Skeleton /> : <CodeDetailCommentItemList />}
 
       <div className="p-6">{/* TODO */}</div>
     </div>

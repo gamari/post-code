@@ -10,8 +10,19 @@ interface Props extends IconProps {
   className?: string;
 }
 
-export const Avatar = ({ src, className = "" }: Props) => {
-  if (!src) return <AccountIcon className={cn("text-gray-700", className)} />;
+export const Avatar = ({ src, size = "md", className = "" }: Props) => {
+  if (!src)
+    return (
+      <AccountIcon
+        className={cn(
+          "text-gray-700",
+          size == "sm" && "h-5 w-5",
+          size == "md" && "h-8 w-8",
+          size == "lg" && "h-12 w-12",
+          className
+        )}
+      />
+    );
 
   return <Image src={src} alt="avatar" width={40} height={40} />;
 };
