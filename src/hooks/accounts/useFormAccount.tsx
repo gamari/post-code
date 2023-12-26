@@ -1,12 +1,13 @@
-import { useSupabase } from "@/src/contexts/SupabaseProvider";
-import { fetchUpdateUser } from "@/src/libs/externals/supabase/queries/users";
-import { User } from "@/src/types";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
+
+import { useSupabase } from "@/src/contexts/SupabaseProvider";
+import { fetchUpdateUser } from "@/src/libs/externals/supabase/queries/users";
+import { User } from "@/src/types";
 
 const userSchema = z.object({
   id: z.string().optional(),
@@ -57,6 +58,6 @@ export const useFormAccount = (initUser: User) => {
     register,
     handleSubmit,
     errors,
-    saveUser
+    saveUser,
   };
 };

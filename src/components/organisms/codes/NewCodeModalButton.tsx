@@ -12,73 +12,30 @@ import { Modal } from "../../molecules/displays/Modal";
 import { useModal } from "@/src/hooks/useModal";
 import { CreateButton } from "../../molecules/buttons/create-button";
 import { useLoading } from "@/src/hooks/useLoading";
+import { Heading } from "../../atoms/texts/heading";
+import { useFormCode } from "@/src/hooks/codes/useFormCode";
 
 // TODO SSRで書く
 export const NewCodeModalButton = () => {
-  const { loading, startLoading, stopLoading } = useLoading();
-  const router = useRouter();
   const { isOpen, toggleModal } = useModal();
-  const { client } = useSupabase();
-  const { toast } = useToast();
 
-  const [name, setName] = useState("");
-
-  const handleCreateCode = async () => {
-    if (!client) throw new Error("接続できません。");
-
-    if (!name) {
-      toast({
-        title: "タイトルを入力してください",
-      });
-      return;
-    }
-
-    // TODO fix type
-    const newBadCode: any = {
-      title: name,
-    };
-
-    try {
-      startLoading();
-      const retBadCode = await fetchCreateCode(newBadCode, client);
-      toggleModal();
-
-      router.refresh();
-
-      if (retBadCode) {
-        router.push(`/dashboard/codes/${retBadCode.id}/edit`);
-      }
-    } catch (e) {
-      console.error(e);
-    } finally {
-      stopLoading();
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      handleCreateCode();
-    }
-  };
+  const { register, handleSubmit, loading } = useFormCode();
 
   return (
     <>
       <CreateButton onClick={toggleModal} label="新規作成" />
       <Modal isOpen={isOpen} onClose={toggleModal}>
-        <Input
-          type="text"
-          placeholder="どんな内容を書きますか？"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="mb-3"
-          onKeyDown={handleKeyDown}
-          autoFocus
-        />
-        <CreateButton
-          loading={loading}
-          label="作成"
-          onClick={handleCreateCode}
-        />
+        <form onSubmit={handleSubmit}>
+          <Heading className="mb-3">コード作成</Heading>
+          <div className="mb-2">
+            <Input
+              {...register("title")}
+              autoFocus
+              placeholder="どんな内容を書きますか？"
+            />
+          </div>
+          <CreateButton type="submit" label="コードの追加" loading={loading} />
+        </form>
       </Modal>
     </>
   );

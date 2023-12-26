@@ -6,9 +6,7 @@ import { cn } from "@/src/libs/utils";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { useInitCommentList } from "@/src/hooks/comments/useInitCommentList";
 import { Skeleton } from "@/src/components/molecules/displays/skeleton";
-import { useGetCommentList } from "@/src/hooks/comments/useGetCommentList";
 import { CodeDetailCommentPanelList } from "@/app/(public)/codes/[code_id]/detail/_components/comments/CodeDetailCommentPanelList";
-import { CodeDetailCommentModalButton } from "./CodeDetailCommentModalButton";
 import { CommentIcon } from "@/src/components/atoms/icons/comment-icon";
 
 interface Props {

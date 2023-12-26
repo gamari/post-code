@@ -14,6 +14,7 @@ import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/setter/useSe
 import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";
 import { useSetEditorFile } from "@/src/hooks/codes/editors/setter/useSetEditorFile";
 import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
+import { Heading } from "@/src/components/atoms/texts/heading";
 
 interface Props {
   isOpen: boolean;
@@ -55,8 +56,10 @@ export const CodeEditorNewFileModal = ({ isOpen, onClose }: Props) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <div className="pt-4">
+    <Modal isOpen={isOpen} onClose={onClose} className="w-[400px]">
+      <Heading className="mb-3">ファイル追加</Heading>
+
+      <div>
         <div>
           <Input
             type="text"

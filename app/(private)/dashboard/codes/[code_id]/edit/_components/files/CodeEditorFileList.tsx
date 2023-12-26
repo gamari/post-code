@@ -103,9 +103,8 @@ export const CodeEditorFileList = ({
 
 const NoFiles = () => {
   return (
-    <div className="p-2 text-gray-600 flex items-center gap-3">
-      ファイルを追加
-      <CodeEditorNewFileModalButton />
+    <div className="p-2 text-gray-600 flex items-center gap-3 my-3">
+      ファイルがありません
     </div>
   );
 };

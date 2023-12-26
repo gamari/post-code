@@ -51,8 +51,8 @@ export const RenameFileModal = ({ targetFile, isOpen, onClose }: Props) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <Heading className="mb-3">ファイル名変更</Heading>
+    <Modal isOpen={isOpen} onClose={onClose} className="w-[400px]">
+      <Heading className="mb-3">ファイル名の変更</Heading>
       <div>
         <Input
           type="text"

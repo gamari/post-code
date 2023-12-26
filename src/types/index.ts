@@ -11,6 +11,10 @@ export type Comment = Database["public"]["Tables"]["comments"]["Row"];
 export type Language = Database["public"]["Tables"]["languages"]["Row"];
 
 // Code
+export interface CodeFormType {
+    title: string;
+}
+
 export interface CodeWithFiles extends Code {
     files: File[];
 }

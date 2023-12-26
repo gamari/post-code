@@ -1,5 +1,5 @@
 import { CODE_TABLE, FILE_TABLE, LANGUAGE_TABLE, PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
-import { Code, CodeDetail, SearchResultCode, User } from "@/src/types";
+import { Code, CodeDetail, CodeFormType, SearchResultCode, User } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { QueryOptions, applyOrderBy, applyQueryOptions } from ".";
 
@@ -166,7 +166,7 @@ export const fetchCodeWithFilesById = async (id: number, client: SupabaseClient)
 
 
 // Create-Update-Delete
-export const fetchCreateCode = async (newBadCodes: Code, client: SupabaseClient) => {
+export const fetchCreateCode = async (newBadCodes: CodeFormType, client: SupabaseClient) => {
     const {
         data: { user },
     } = await client.auth.getUser();
