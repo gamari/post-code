@@ -2,10 +2,9 @@ import { FileIcon } from "@/src/components/molecules/displays/file-icon";
 import { LinkText } from "@/src/components/molecules/displays/link-text";
 import { Logo } from "@/src/components/molecules/logo";
 import { HilightCodeViewer } from "@/src/components/organisms/codes/HilightCodeViewer";
-import { FileViewer } from "@/src/components/organisms/files/FileViewer";
 import { CODES_DETAIL_URL } from "@/src/libs/constants/urls";
 import { getFileExtensionType } from "@/src/libs/editors";
-import { Code, SearchResultCode } from "@/src/types";
+import { SearchResultCode } from "@/src/types";
 import React from "react";
 
 interface Props {

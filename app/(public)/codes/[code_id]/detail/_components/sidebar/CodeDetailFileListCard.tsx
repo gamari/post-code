@@ -31,7 +31,7 @@ export const CodeDetailFileListCard = ({ files, isAuthor, codeId }: Props) => {
   };
 
   return (
-    <div className="border rounded-md bg-white w-full p-5">
+    <div className="rounded-md bg-white w-full p-5">
       <div>
         <Heading className="border-b pb-1">ファイル一覧</Heading>
 

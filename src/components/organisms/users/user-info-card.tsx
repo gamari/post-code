@@ -14,7 +14,7 @@ interface Props {
 
 export const UserInfoCard = ({ user }: Props) => {
   return (
-    <div className="border rounded-md bg-white px-5 py-6">
+    <div className="rounded-md bg-white px-5 py-6">
       <div className="flex flex-row gap-2 items-center">
         <Avatar src={user.avatar_url} size="md" />
         <Typo text={user.username} size="xs" />
