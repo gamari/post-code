@@ -7,3 +7,8 @@ export interface IconProps {
     className?: string;
     onClick?: () => void;
 }
+
+export interface TextProps extends BaseProps {
+    text?: string;
+    size?: "sm" | "md" | "lg" | "xl";
+}

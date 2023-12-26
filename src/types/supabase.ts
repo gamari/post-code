@@ -236,6 +236,7 @@ export interface Database {
           email: string | null
           id: string
           username: string
+          x_url: string | null
         }
         Insert: {
           avatar_url?: string | null
@@ -243,6 +244,7 @@ export interface Database {
           email?: string | null
           id: string
           username: string
+          x_url?: string | null
         }
         Update: {
           avatar_url?: string | null
@@ -250,6 +252,7 @@ export interface Database {
           email?: string | null
           id?: string
           username?: string
+          x_url?: string | null
         }
         Relationships: [
           {
@@ -269,18 +272,21 @@ export interface Database {
           description: string | null
           id: string | null
           username: string | null
+          x_url: string | null
         }
         Insert: {
           avatar_url?: string | null
           description?: string | null
           id?: string | null
           username?: string | null
+          x_url?: string | null
         }
         Update: {
           avatar_url?: string | null
           description?: string | null
           id?: string | null
           username?: string | null
+          x_url?: string | null
         }
         Relationships: [
           {
