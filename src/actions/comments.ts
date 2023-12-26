@@ -1,5 +1,5 @@
 import { getServerClient } from "@/src/libs/externals/supabase/admin-client"
-import { fetchCommentListByUser, fetchCommentList, fetchCommentListWithCode } from "@/src/libs/externals/supabase/queries/comments";
+import { fetchCommentList, fetchCommentListWithCode } from "@/src/libs/externals/supabase/queries/comments";
 import { fetchAuthUser } from "../libs/externals/supabase/queries/users";
 
 /** 最新リスト。 */
@@ -37,7 +37,14 @@ export const actionGetMyselfCommentList = async () => {
     const authUser = await fetchAuthUser(client);
     if (!authUser) throw new Error("ログインしてください。");
 
-    const comments = await fetchCommentListByUser(authUser.id, client);
+    const comments = await fetchCommentListWithCode(client, {
+        eq: [
+            { field: "user_id", value: authUser.id },
+        ],
+        order: [
+            { field: "created_at", ascending: true },
+        ],
+    });
 
     return comments;
 }

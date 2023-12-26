@@ -18,5 +18,10 @@ export const useSetEditorCode = () => {
         setCode({ ...code, is_public: isPublic });
     }
 
-    return { setTitle, setDescription, setIsPublic };
+    function setLanguage(languageId: number | null) {
+        if (!code) return;
+        setCode({ ...code, language: languageId });
+    }
+
+    return { setTitle, setDescription, setIsPublic, setLanguage };
 }

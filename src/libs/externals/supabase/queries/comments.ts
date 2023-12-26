@@ -1,5 +1,6 @@
 import { Comment, CommentDetail } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
+import { applyQueryOptions } from ".";
 
 export interface FetchCommentsOptions {
     eq?: { field: string; value: any }[];
@@ -13,25 +14,31 @@ export const fetchCommentList = async (client: SupabaseClient, options?: FetchCo
         .from("comments")
         .select("*");
 
-    if (options?.eq) {
-        options.eq.forEach(condition => {
-            query = query.eq(condition.field, condition.value);
-        });
-    }
-
-    if (options?.order) {
-        options.order.forEach(condition => {
-            query = query.order(condition.field, { ascending: condition.ascending ?? true });
-        });
-    }
-
-    query = query.limit(options?.limit || 3);
+    query = applyQueryOptions(query, options);
 
     const { data, error } = await query;
 
     if (error) throw error;
 
     return data as Comment[];
+}
+
+export const fetchCommentListWithUser = async (client: SupabaseClient, options?: FetchCommentsOptions) => {
+    let query = client
+        .from("comments")
+        .select(`
+          *,
+          user: users (
+            username
+          )
+        `);
+    query = applyQueryOptions(query, options);
+
+    const { data, error } = await query;
+
+    if (error) throw error;
+
+    return data as CommentDetail[];
 }
 
 export const fetchCommentListWithCode = async (client: SupabaseClient, options?: FetchCommentsOptions) => {
@@ -43,20 +50,7 @@ export const fetchCommentListWithCode = async (client: SupabaseClient, options?:
             *
           )
         `);
-
-    if (options?.eq) {
-        options.eq.forEach(condition => {
-            query = query.eq(condition.field, condition.value);
-        });
-    }
-
-    if (options?.order) {
-        options.order.forEach(condition => {
-            query = query.order(condition.field, { ascending: condition.ascending ?? true });
-        });
-    }
-
-    query = query.limit(options?.limit || 3);
+    query = applyQueryOptions(query, options);
 
     const { data, error } = await query;
 
@@ -65,7 +59,7 @@ export const fetchCommentListWithCode = async (client: SupabaseClient, options?:
     return data as CommentDetail[];
 }
 
-
+// Create-Update-Delete
 export const fetchCreateComment = async (codeId: number, comment: string, client: SupabaseClient) => {
     const { data: { user }, error: userError } = await client.auth.getUser();
 
@@ -96,42 +90,5 @@ export const fetchDeleteComment = async (id: number, client: SupabaseClient) => 
     console.log(error);
 
     if (error) throw error;
-}
-
-
-
-// TODo 以下削除予定
-export const fetchCommentListByCodeId = async (codeId: number, client: SupabaseClient) => {
-    const { data, error } = await client
-        .from("comments")
-        .select(`
-          *,
-          user: users (
-            username
-          )
-        `)
-        .eq("code_id", codeId)
-        .order("created_at", { ascending: true });
-
-    if (error) throw error;
-
-    return data as CommentDetail[];
-}
-
-export const fetchCommentListByUser = async (userId: string, client: SupabaseClient) => {
-    const { data, error } = await client
-        .from("comments")
-        .select(`
-          *,
-          code: codes (
-            *
-          )
-        `)
-        .eq("user_id", userId)
-        .order("created_at", { ascending: true });
-
-    if (error) throw error;
-
-    return data;
 }
 
