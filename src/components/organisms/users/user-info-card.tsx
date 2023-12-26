@@ -17,7 +17,7 @@ export const UserInfoCard = ({ user }: Props) => {
     <div className="border rounded-md bg-white px-5 py-6">
       <div className="flex flex-row gap-2 items-center">
         <Avatar src={user.avatar_url} size="md" />
-        <Typo text={user.username} />
+        <Typo text={user.username} size="xs" />
       </div>
 
       {user?.description && (

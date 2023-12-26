@@ -10,6 +10,7 @@ import { FileType } from "@/src/libs/editors";
 import { AccountIcon } from "@/src/components/atoms/icons/account-icon";
 import { HeartIcon } from "@/src/components/atoms/icons/heart-icon";
 import { FavoriteIcon } from "@/src/components/atoms/icons/favorite-icon";
+import { Typo } from "@/src/components/atoms/texts/typo";
 
 interface Props {
   code: CodeDetail;
@@ -39,18 +40,18 @@ const CodePanelFooter = ({ code }: { code: CodeDetail }) => {
     <div className="flex flex-row justify-between w-full items-center text-gray-600">
       <div className="flex flex-row gap-2">
         <div className="flex flex-row items-center gap-2">
-          <AccountIcon />
-          <div>{code?.user?.username}</div>
+          <AccountIcon size="sm" />
+          <Typo text={code?.user?.username} size="xs" />
         </div>
 
         <div className="flex flex-row items-center gap-2">
-          <FavoriteIcon />
-          <span>{code?.favorites_count || 0}</span>
+          <FavoriteIcon size="sm" />
+          <Typo text={code?.favorites_count || 0} />
         </div>
       </div>
 
       <div className="flex flex-row items-center gap-2">
-        <DateIcon />
+        <DateIcon size="sm" />
         <DateString value={code?.created_at} className="pr-2" />
       </div>
     </div>

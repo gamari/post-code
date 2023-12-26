@@ -1,7 +1,7 @@
 export const getIconSizeClassName = (size: string) => {
     switch (size) {
         case "sm":
-            return "w-4 h-4";
+            return "w-5 h-5";
         case "md":
             return "w-6 h-6";
         case "lg":

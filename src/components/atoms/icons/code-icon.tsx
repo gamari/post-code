@@ -14,9 +14,9 @@ interface Props {
 
 export const CodeIcon = ({ fileType, size = "md" }: Props) => {
   const className = cn(
-    size === "sm" && "text-md",
-    size === "md" && "text-xl",
-    size == "lg" && "text-3xl"
+    size === "sm" && "h-5 w-5",
+    size === "md" && "h-8 w-8",
+    size == "lg" && "h-12 w-12"
   );
 
   if (fileType === "python") {

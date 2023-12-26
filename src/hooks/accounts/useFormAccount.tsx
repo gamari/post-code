@@ -11,7 +11,7 @@ import { User } from "@/src/types";
 
 const userSchema = z.object({
   id: z.string().optional(),
-  username: z.string().min(1, "ユーザー名を入力してください"),
+  username: z.string().min(1, "ユーザー名を入力してください").max(16, "16文字以内で入力してください"),
   description: z.string().optional(),
   x_url: z.string().optional(),
 });
@@ -26,6 +26,7 @@ export interface AccountFormValues {
 export const useFormAccount = (initUser: User) => {
   const { client } = useSupabase();
   const router = useRouter();
+  
   const {
     register,
     handleSubmit,
