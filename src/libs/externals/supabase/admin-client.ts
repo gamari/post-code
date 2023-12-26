@@ -7,6 +7,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 
 export const getServerClient = (cookie?: ReturnType<typeof cookies>) => {
+  console.log("SERVER_CLIENT")
   let cookieStore: ReadonlyRequestCookies;
   if (cookie) {
     cookieStore = cookie
@@ -45,6 +46,7 @@ export const getServerClient = (cookie?: ReturnType<typeof cookies>) => {
 
 
 export const getMiddleClient = (request: NextRequest) => {
+  console.log("MIDDLE_CLIENT")
   let response = NextResponse.next({
     request: {
       headers: request.headers,

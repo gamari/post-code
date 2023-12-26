@@ -1,7 +1,7 @@
 import { actionLogin } from "@/src/actions/users";
 import { Button } from "@/src/components/atoms/buttons/button";
 import { LinkButton } from "@/src/components/molecules/buttons/link-button";
-import { BackButton } from "@/src/components/molecules/back-button";
+import { BackButton } from "@/src/components/molecules/buttons/back-button";
 
 import React from "react";
 import { LabelInput } from "@/src/components/molecules/forms/LabelInput";

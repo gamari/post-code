@@ -5,6 +5,7 @@ import { actionGetAuthUser } from "@/src/actions/users";
 import { Logo } from "../src/components/molecules/logo";
 import { SearchBox } from "../src/components/organisms/search/SearchBox";
 import { cn } from "@/src/libs/utils";
+import { TextLinkLogo } from "@/src/components/molecules/text-link-logo";
 
 export default async function Header() {
   const authUser = await actionGetAuthUser();
@@ -17,12 +18,7 @@ export default async function Header() {
       )}
     >
       <div className="w-full max-w-6xl flex justify-between items-center p-3 text-sm px-10">
-        <div>
-          <Link href="/" className="flex flex-row gap-2 items-center">
-            <Logo />
-            <span className="text-xl text-gray-800 font-bold">BadCodes</span>
-          </Link>
-        </div>
+        <TextLinkLogo url="/" label="BadCodes" />
 
         <div className="flex items-center gap-4">
           <SearchBox />

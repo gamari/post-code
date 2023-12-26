@@ -1,7 +1,8 @@
-import Link from "next/link";
 import React from "react";
-import { LeftIcon } from "../atoms/icons/left-icon";
-import { Typo } from "../atoms/texts/typo";
+import Link from "next/link";
+
+import { LeftIcon } from "../../atoms/icons/left-icon";
+import { Typo } from "../../atoms/texts/typo";
 
 interface Props {
   url: string;
