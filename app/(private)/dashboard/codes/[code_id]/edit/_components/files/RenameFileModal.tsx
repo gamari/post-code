@@ -9,6 +9,7 @@ import { useAlert } from "@/src/hooks/useAlert";
 import { File } from "@/src/types";
 import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
 import { useUpdateEditorSelectedFile } from "@/src/hooks/codes/editors/useUpdateEditorSelectedFile";
+import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/setter/useSetEditorSelectedFile";
 
 interface Props {
   targetFile: File | null;
@@ -22,7 +23,7 @@ export const RenameFileModal = ({ targetFile, isOpen, onClose }: Props) => {
   const { errorAlert } = useAlert();
   const { updateFile } = useUpdateEditorFile();
   const { selectedFile } = useGetEditorSelectedFile();
-  const { updateSelectedFile } = useUpdateEditorSelectedFile();
+  const { setSelectedFile } = useSetEditorSelectedFile();
 
   useEffect(() => {
     setEditingName(targetFile?.name || "");
@@ -37,7 +38,7 @@ export const RenameFileModal = ({ targetFile, isOpen, onClose }: Props) => {
 
       if (selectedFile?.id === targetFile.id) {
         updateFile({ ...selectedFile, name: editingName });
-        updateSelectedFile({ ...selectedFile, name: editingName });
+        setSelectedFile({ ...selectedFile, name: editingName });
       } else {
         updateFile({ ...targetFile, name: editingName });
       }

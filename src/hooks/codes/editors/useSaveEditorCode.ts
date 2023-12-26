@@ -21,7 +21,6 @@ export const useSaveEditorCode = () => {
 
 
     async function saveEditor() {
-        console.log("saveEditor");
         if (!client) throw new Error("通信に失敗しました。");
 
         const user = await getAuthUser();

@@ -2,7 +2,9 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { File, CodeDetail } from "@/src/types";
+import { File, CodeDetail, Language } from "@/src/types";
+import { useSupabase } from "./SupabaseProvider";
+import { fetchLanguageList } from "../libs/externals/supabase/queries/languages";
 
 interface ContextProps {
   code?: CodeDetail;
@@ -31,19 +33,21 @@ export const CodeEditorProvider = ({
   code: initCode,
   children,
 }: ProviderProps) => {
+  const { client } = useSupabase();
   const [code, setCode] = useState<CodeDetail | undefined>(initCode);
   const [files, setFiles] = useState<File[]>(initCode?.files || []);
   const [selectedFile, setSelectedFile] = useState<File | undefined>(undefined);
 
   useEffect(() => {
-    function init() {
+    async function init() {
+      if (!client) return;
       if (files.length) {
         setSelectedFile(files[0]);
       }
     }
 
     init();
-  }, []);
+  }, [client]);
 
   return (
     <CodeEditorContext.Provider

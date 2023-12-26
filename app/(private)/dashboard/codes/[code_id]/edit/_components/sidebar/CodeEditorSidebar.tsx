@@ -3,7 +3,7 @@
 import React from "react";
 
 import { CodeEditorFileList } from "../files/CodeEditorFileList";
-import { CodeEditorSaveModalButton } from "../CodeEditorSaveModalButton";
+import { CodeEditorSaveModalButton } from "../save/CodeEditorSaveModalButton";
 import { LinkButton } from "@/src/components/molecules/buttons/link-button";
 import { CodeEditorNewFileModalButton } from "../files/CodeEditorNewFileModalButton";
 import { Heading } from "@/src/components/atoms/texts/heading";

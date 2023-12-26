@@ -1,5 +1,5 @@
 import React from "react";
-import { CodeEditorSaveModalButton } from "../CodeEditorSaveModalButton";
+import { CodeEditorSaveModalButton } from "../save/CodeEditorSaveModalButton";
 import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";
 import { LinkButton } from "@/src/components/molecules/buttons/link-button";
 
