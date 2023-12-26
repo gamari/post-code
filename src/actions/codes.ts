@@ -3,7 +3,7 @@
 import { getServerClient } from "@/src/libs/externals/supabase/admin-client";
 import { fetchCodeById, fetchCodeList, fetchCodeListByFileCode, fetchCodeListWithUser, fetchFavoriteCodeList } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchAuthUser } from "@/src/libs/externals/supabase/queries/users";
-import { createEqCondition, createEqConditions, createOrderCondition } from "../libs/externals/supabase/queries";
+import { createEqCondition, createOrderCondition } from "../libs/externals/supabase/queries";
 
 // One
 export const actionGetBadCodeById = async (id: number) => {

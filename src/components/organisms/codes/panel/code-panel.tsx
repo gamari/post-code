@@ -8,6 +8,8 @@ import { HeartIcon, PersonIcon } from "@radix-ui/react-icons";
 import { DateString } from "@/src/components/atoms/texts/date-string";
 import { Logo } from "@/src/components/molecules/logo";
 import { DateIcon } from "@/src/components/atoms/icons/date-icon";
+import { CodeIcon } from "@/src/components/atoms/icons/code-icon";
+import { FileType } from "@/src/libs/editors";
 
 interface Props {
   code: CodeDetail;
@@ -22,7 +24,10 @@ export const CodePanel: FunctionComponent<Props> = ({ code, className }) => {
         className
       )}
     >
-      <Logo size="lg" className="text-gray-800" />
+      <CodeIcon
+        fileType={code?.language?.name as FileType}
+        size="lg"
+      />
 
       <div className="flex flex-col justify-between h-full w-full">
         <div className="text-lg font-bold text-gray-700">{code.title}</div>

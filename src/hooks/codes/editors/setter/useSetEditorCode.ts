@@ -1,4 +1,5 @@
 import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
+import { Language } from "@/src/types";
 
 export const useSetEditorCode = () => {
     const { code, setCode } = useCodeEditor();
@@ -18,9 +19,9 @@ export const useSetEditorCode = () => {
         setCode({ ...code, is_public: isPublic });
     }
 
-    function setLanguage(languageId: number | null) {
+    function setLanguage(language: Language | undefined) {
         if (!code) return;
-        setCode({ ...code, language: languageId });
+        setCode({ ...code, language });
     }
 
     return { setTitle, setDescription, setIsPublic, setLanguage };

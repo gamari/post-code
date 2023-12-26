@@ -1,18 +1,23 @@
 import React from "react";
 
-import { MdOutlineInsertDriveFile } from "react-icons/md";
-import { DiPython, DiGo } from "react-icons/di";
 import { FileType } from "@/src/libs/editors";
-import { SiJavascript, SiTypescript } from "react-icons/si";
-import { FaJava } from "react-icons/fa";
-import { SiGoland } from "react-icons/si";
+import { DiJava, DiPython } from "react-icons/di";
+import { Logo } from "../../molecules/logo";
+import { SiGoland, SiJavascript, SiTypescript } from "react-icons/si";
+import { cn } from "@/src/libs/utils";
 
 interface Props {
   fileType: FileType;
+  size?: "sm" | "md" | "lg";
 }
 
-export const FileIcon = ({ fileType }: Props) => {
-  const className = "h-5 w-5"
+export const CodeIcon = ({ fileType, size = "md" }: Props) => {
+  const className = cn(
+    size === "sm" && "text-md",
+    size === "md" && "text-xl",
+    size == "lg" && "text-3xl"
+  );
+
   if (fileType === "python") {
     return <DiPython className={className} />;
   } else if (fileType === "javascript" || fileType === "jsx") {
@@ -20,10 +25,10 @@ export const FileIcon = ({ fileType }: Props) => {
   } else if (fileType === "tsx" || fileType === "typescript") {
     return <SiTypescript className={className} />;
   } else if (fileType === "java") {
-    return <FaJava className={className} />;
+    return <DiJava className={className} />;
   } else if (fileType === "go") {
     return <SiGoland className={className} />;
   }
 
-  return <MdOutlineInsertDriveFile className="h-5 w-5" />;
+  return <Logo className={className} />;
 };

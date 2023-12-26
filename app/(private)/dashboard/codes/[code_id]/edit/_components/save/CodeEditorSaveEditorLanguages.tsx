@@ -58,14 +58,15 @@ export const CodeEditorSaveEditorLanguages = () => {
   };
 
   const selectLanguage = (language: Language) => {
-    setEditorLanguage(language.id);
+    console.log(language);
+    setEditorLanguage(language);
     setSuggestedLanguages([]);
     setLanguage("");
   };
 
   const cancelLanguageSelection = () => {
     setLanguage("");
-    setEditorLanguage(null);
+    setEditorLanguage(undefined);
     setSuggestedLanguages([]);
   };
 
@@ -78,51 +79,54 @@ export const CodeEditorSaveEditorLanguages = () => {
     <div>
       <div className="mt-6">
         <Heading type="h4">言語</Heading>
-        <div className="flex flex-row gap-2 mt-3">
-          <input
-            type="text"
-            ref={inputRef}
-            value={language}
-            onChange={onChange}
-            onKeyDown={handleKeyDown}
-            placeholder="言語を入力"
-            className="border p-2 w-[200px]"
-            onBlur={onBlug}
-          />
 
-          <div className="flex items-center gap-2 border p-1  text-sm text-gray-600">
-            {code?.language ? (
-              <>
-                <Typo
-                  text={getLanguageName(code.language) || ""}
-                  className="text-gray-700 font-semibold text-sm ml-2"
-                />
-                <CloseIcon
-                  onClick={cancelLanguageSelection}
-                  className="cursor-pointer"
-                />
-              </>
-            ) : (
-              <div>未選択</div>
-            )}
+        <div className="relative">
+          <div className="flex flex-row gap-2 mt-3">
+            <input
+              type="text"
+              ref={inputRef}
+              value={language}
+              onChange={onChange}
+              onKeyDown={handleKeyDown}
+              placeholder="言語を入力"
+              className="border p-2 w-[200px] outline-none focus:border focus:border-sky-500"
+              onBlur={onBlug}
+            />
+
+            <div className="flex items-center gap-2 border p-1  text-sm text-gray-600">
+              {code?.language ? (
+                <>
+                  <Typo
+                    text={getLanguageName(code?.language?.id) || ""}
+                    className="text-gray-700 font-semibold text-sm ml-2"
+                  />
+                  <CloseIcon
+                    onClick={cancelLanguageSelection}
+                    className="cursor-pointer"
+                  />
+                </>
+              ) : (
+                <div className="px-2">未選択</div>
+              )}
+            </div>
           </div>
-        </div>
 
-        {suggestedLanguages.length > 0 && (
-          <ul className="border">
-            {suggestedLanguages.map((language, index) => (
-              <li
-                key={language.id}
-                onClick={() => selectLanguage(language)}
-                className={`p-2 cursor-pointer hover:bg-gray-100 ${
-                  index === selectedIndex ? "bg-gray-200" : ""
-                }`}
-              >
-                {language.display}
-              </li>
-            ))}
-          </ul>
-        )}
+          {suggestedLanguages.length > 0 && (
+            <ul className="border absolute top-10 bg-white z-[400]">
+              {suggestedLanguages.map((language, index) => (
+                <li
+                  key={language.id}
+                  onClick={() => selectLanguage(language)}
+                  className={`p-2 cursor-pointer hover:bg-gray-100 ${
+                    index === selectedIndex ? "bg-gray-200" : ""
+                  }`}
+                >
+                  {language.display}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { File } from "@/src/types";
 import { cn } from "@/src/libs/utils";
 import { FileIcon } from "../../../../../../../../src/components/molecules/displays/file-icon";
-import { getFileType } from "@/src/libs/editors";
+import { getFileExtensionType } from "@/src/libs/editors";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -65,7 +65,7 @@ export const CodeEditorFileList = ({
               )}
               onClick={() => handleClickFile(file)}
             >
-              <FileIcon fileType={getFileType(file.name)} />
+              <FileIcon fileType={getFileExtensionType(file.name)} />
               {file.name}
             </div>
           </ContextMenuTrigger>

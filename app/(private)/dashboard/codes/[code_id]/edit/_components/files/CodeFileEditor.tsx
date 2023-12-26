@@ -21,7 +21,7 @@ import "ace-builds/src-noconflict/mode-sql";
 
 import { cn } from "@/src/libs/utils";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
-import { getFileType } from "@/src/libs/editors";
+import { getFileExtensionType } from "@/src/libs/editors";
 import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
 import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/setter/useSetEditorSelectedFile";
 import { Typo } from "@/src/components/atoms/texts/typo";
@@ -50,7 +50,7 @@ export const CodeFileEditor = ({ className }: Props) => {
       </div>
 
       <AceEditor
-        mode={getFileType(selectedFile.name)}
+        mode={getFileExtensionType(selectedFile.name)}
         theme="monokai"
         value={selectedFile?.content || ""}
         onChange={(newValue) => {

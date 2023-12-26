@@ -1,4 +1,4 @@
-import { CODE_TABLE, FILE_TABLE, PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
+import { CODE_TABLE, FILE_TABLE, LANGUAGE_TABLE, PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
 import { Code, CodeDetail, SearchResultCode, User } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { QueryOptions, applyOrderBy, applyQueryOptions } from ".";
@@ -10,16 +10,19 @@ export const fetchCodeById = async (id: number, client: SupabaseClient) => {
         .select(`
             *, 
             ${PUBLIC_USER_TABLE}!user_id (*),
-            ${FILE_TABLE}: files(*)
+            ${FILE_TABLE}: files(*),
+            ${LANGUAGE_TABLE}!language_id(*)
         `)
         .eq("id", id)
         .single();
+    console.log(code);
 
     if (error) return null;
 
     return {
         ...code,
-        user: code.public_users
+        user: code.public_users,
+        language: code.languages
     };
 };
 
@@ -46,12 +49,16 @@ export const fetchCodeListWithUser = async (client: SupabaseClient, options?: Qu
             ${PUBLIC_USER_TABLE}!user_id (
                 *
             ),
+            ${LANGUAGE_TABLE}!language_id(
+                *
+            ),
             favorites_count: favorites (count)
         `);
 
     query = applyQueryOptions(query, options);
 
     const { data, error } = await query;
+    console.log(data);
 
     if (error) throw error;
 
@@ -59,7 +66,8 @@ export const fetchCodeListWithUser = async (client: SupabaseClient, options?: Qu
         return {
             ...code,
             user: code.public_users,
-            favorites_count: code.favorites_count[0]?.count || 0
+            favorites_count: code.favorites_count[0]?.count || 0,
+            language: code.languages
         }
     }) as CodeDetail[];
 }
@@ -193,10 +201,13 @@ export const fetchUpdateCode = async (newBadCodes: CodeDetail, client: SupabaseC
         .from(CODE_TABLE)
         .upsert({
             ...newBadCodes,
+            language_id: newBadCodes.language?.id,
+            language: undefined,
+            languages: undefined,
             files: undefined,
             users: undefined,
             user: undefined,
-            public_users: undefined
+            public_users: undefined,
         })
         .eq("id", newBadCodes.id);
 

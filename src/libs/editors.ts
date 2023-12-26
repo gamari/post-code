@@ -1,22 +1,24 @@
-export type Extension = 
-"js" | "ts" | "jsx" | "tsx" |
-"py" |
-"java" |
-"go" |
-"c" | "cpp" |
-"php" | "rb" |  "html" | "css" | "md" |  "sql"
-;
+export type Extension =
+    "js" | "ts" | "jsx" | "tsx" |
+    "py" |
+    "java" |
+    "go" |
+    "c" | "cpp" |
+    "php" | "rb" | "html" | "css" | "md" | "sql"
+    ;
 
 export type FileType =
-"javascript" | "typescript" | "tsx" | "jsx" |
-"python" |
-"java" | "c_cpp" | "c" | "php" | "ruby" |
-"go" |
-"html" | "css" |
-"text" | "markdown" | "sql"
-;
+    "javascript" | "typescript" | "tsx" | "jsx" |
+    "python" |
+    "java" | "c_cpp" | "c" | "php" | "ruby" |
+    "go" |
+    "html" | "css" |
+    "text" | "markdown" | "sql"
+    ;
 
-export const getFileType: (filename: string) => FileType = (filename: string) => {
+
+export const getFileExtensionType: (filename: string) => FileType = (filename?: string) => {
+    if (!filename) return 'text';
     const extension = filename.split('.').pop() as Extension;
 
     switch (extension) {

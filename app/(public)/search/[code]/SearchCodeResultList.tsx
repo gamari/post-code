@@ -4,7 +4,7 @@ import { Logo } from "@/src/components/molecules/logo";
 import { HilightCodeViewer } from "@/src/components/organisms/codes/HilightCodeViewer";
 import { FileViewer } from "@/src/components/organisms/files/FileViewer";
 import { CODES_DETAIL_URL } from "@/src/libs/constants/urls";
-import { getFileType } from "@/src/libs/editors";
+import { getFileExtensionType } from "@/src/libs/editors";
 import { Code, SearchResultCode } from "@/src/types";
 import React from "react";
 
@@ -33,7 +33,7 @@ export const SearchCodeResultList = ({ codes, query }: Props) => {
 
             <div className="p-4">
               <div className="flex flex-row items-center gap-2 mb-2">
-                <FileIcon fileType={getFileType(code.file.name)} />
+                <FileIcon fileType={getFileExtensionType(code.file.name)} />
                 <span className="text-sm text-gray-600">{code.file.name}</span>
               </div>
               <HilightCodeViewer code={code.file.content || ""} query={query} />
