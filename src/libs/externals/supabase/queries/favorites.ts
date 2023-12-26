@@ -1,6 +1,23 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import { fetchAuthUser } from "./users";
 
+export const fetchFavoriteCount = async (code_id: number, client: SupabaseClient) => {
+    const { count, error } = await client
+        .from("favorites")
+        .select(`
+          code_id
+        `, {
+            count: "exact"
+        })
+        .match({ code_id: code_id })
+
+    if (error) throw error;
+
+    return count || 0;
+}
+
+
+// Create-Update-Delete
 export const fetchCreateFavoriteCode = async (code_id: number, client: SupabaseClient) => {
     const { data: { user }, error: userError } = await client.auth.getUser();
 

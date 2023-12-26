@@ -6,13 +6,15 @@ import { cn } from "@/src/libs/utils";
 interface Props {
   onClick: () => void;
   className?: string;
+  count?: number;
 }
 
-export const UnlikeButton = ({ onClick, className }: Props) => {
+export const UnlikeButton = ({ onClick, className, count }: Props) => {
   return (
     <Button variant="secondary" onClick={onClick} className={cn(className)}>
       <MdOutlineStar className="h-6 w-6 text-yellow-500 cursor-pointer" />
-      お気に入り
+      <span>お気に入り</span>
+      <span className="ml-1 text-sm text-gray-600">{count}</span>
     </Button>
   );
 };

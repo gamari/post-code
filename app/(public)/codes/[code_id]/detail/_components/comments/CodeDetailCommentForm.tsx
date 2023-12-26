@@ -28,6 +28,8 @@ export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
 
     try {
       const retComment = await saveComment(codeId);
+      // TODO その前にコメントを取得して新しいものを追加する
+      // TODO 最終時刻以降のものを選択する
       addCommentListToList?.([retComment]);
       setComment("");
       infoAlert("コメントを投稿しました");

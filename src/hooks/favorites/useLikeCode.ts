@@ -1,8 +1,11 @@
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchDeleteFavoriteCode, fetchCreateFavoriteCode } from "@/src/libs/externals/supabase/queries/favorites";
-import { useState } from "react";
 
 export const useLikeCode = (initIsFavorite: boolean) => {
+    const router = useRouter();
     const { client } = useSupabase();
 
     const [isFavorite, setIsFavorite] = useState(initIsFavorite);
@@ -16,6 +19,7 @@ export const useLikeCode = (initIsFavorite: boolean) => {
             } else {
                 await fetchCreateFavoriteCode(codeId, client);
             }
+            router.refresh();
             setIsFavorite((prev) => !prev);
         } catch (e) {
             console.error(e);
