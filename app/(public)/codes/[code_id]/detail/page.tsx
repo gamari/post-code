@@ -29,7 +29,7 @@ const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
             <Suspense fallback={<Skeleton className="w-[700px]" />}>
               <div className="flex-1 flex flex-col gap-6 w-[700px] pb-32 border-b">
                 <CodeDetailInfo id={code_id} />
-                <CodeDetailFileViewer className="mb-12" />
+                <CodeDetailFileViewer className="mb-10" />
                 <CodeDetailCommentList codeId={code_id} />
               </div>
 
