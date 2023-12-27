@@ -113,6 +113,30 @@ export interface Database {
           }
         ]
       }
+      contacts: {
+        Row: {
+          content: string | null
+          created_at: string
+          email: string | null
+          id: number
+          type: string | null
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string
+          email?: string | null
+          id?: number
+          type?: string | null
+        }
+        Update: {
+          content?: string | null
+          created_at?: string
+          email?: string | null
+          id?: number
+          type?: string | null
+        }
+        Relationships: []
+      }
       favorites: {
         Row: {
           code_id: number

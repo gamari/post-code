@@ -12,6 +12,9 @@ export const TopFooter = () => {
           </div>
           <div className="flex flex-row gap-4">
             <div>
+              <LinkText url="/contact" label="お問い合わせ" />
+            </div>
+            <div>
               <LinkText url="" label="利用規約" />
             </div>
             <div>

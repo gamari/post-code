@@ -9,6 +9,7 @@ export type File = Database["public"]["Tables"]["files"]["Row"];
 export type Favorite = Database["public"]["Tables"]["favorites"]["Row"];
 export type Comment = Database["public"]["Tables"]["comments"]["Row"];
 export type Language = Database["public"]["Tables"]["languages"]["Row"];
+export type Contact = Database["public"]["Tables"]["contacts"]["Row"];
 
 // Code
 export interface CodeFormType {

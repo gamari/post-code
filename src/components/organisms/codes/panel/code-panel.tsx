@@ -21,14 +21,14 @@ export const CodePanel: FunctionComponent<Props> = ({ code, className }) => {
   return (
     <div
       className={cn(
-        "p-4 py-8 rounded-lg flex flex-row items-center gap-4 bg-white ",
+        "px-6 py-8 rounded-lg flex flex-row items-center gap-5 bg-white ",
         className
       )}
     >
       <CodeIcon fileType={code?.language?.name as FileType} size="lg" />
 
       <div className="flex flex-col justify-between gap-2 h-full w-full">
-        <div className="text-lg font-bold text-gray-700">{code.title}</div>
+        <Typo text={code.title} size="lg" isBold />
         <CodePanelFooter code={code} />
       </div>
     </div>
@@ -41,7 +41,7 @@ const CodePanelFooter = ({ code }: { code: CodeDetail }) => {
       <div className="flex flex-row gap-2">
         <div className="flex flex-row items-center gap-2">
           <AccountIcon size="sm" />
-          <Typo text={code?.user?.username} size="xs" />
+          <Typo text={code?.user?.username} size="xs" className="text-gray-700" />
         </div>
 
         <div className="flex flex-row items-center gap-2">
