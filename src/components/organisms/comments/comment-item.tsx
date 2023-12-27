@@ -32,53 +32,51 @@ export const CommentItem = ({
 }: Props) => {
   return (
     <div className={`px-8 py-6 ${className}`}>
-      <SlideIn from="left">
-        <div className="flex flex-row items-center justify-between">
-          <div className="flex flex-row items-center gap-2">
-            <Avatar />
-            <Username value={comment?.user?.username || ""} />
+      <div className="flex flex-row items-center justify-between">
+        <div className="flex flex-row items-center gap-2">
+          <Avatar />
+          <Username value={comment?.user?.username || ""} />
+        </div>
+
+        {isAuthor && (
+          <div className="flex flex-row gap-2 items-center">
+            <DateString
+              value={comment?.created_at}
+              type="datetime"
+              className="text-sm text-gray-700"
+            />
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost">
+                  <HDotIcon className="hover rounded-full hover:bg-gray-100 h-6 w-6 p-1 cursor-pointer" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-24">
+                <DropdownMenuGroup>
+                  <DropdownMenuItem
+                    onClick={() => {
+                      comment && onDelete(comment);
+                    }}
+                    className="cursor-pointer"
+                  >
+                    <DeleteIcon className="mr-2 h-4 w-4" />
+                    <span>削除</span>
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
+        )}
+      </div>
 
-          {isAuthor && (
-            <div className="flex flex-row gap-2 items-center">
-              <DateString
-                value={comment?.created_at}
-                type="datetime"
-                className="text-sm text-gray-700"
-              />
+      <div className="mt-3">
+        <MarkdownPreviewer content={comment?.comment || ""} />
+      </div>
 
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost">
-                    <HDotIcon className="hover rounded-full hover:bg-gray-100 h-6 w-6 p-1 cursor-pointer" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-24">
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem
-                      onClick={() => {
-                        comment && onDelete(comment);
-                      }}
-                      className="cursor-pointer"
-                    >
-                      <DeleteIcon className="mr-2 h-4 w-4" />
-                      <span>削除</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-          )}
-        </div>
-
-        <div className="mt-3">
-          <MarkdownPreviewer content={comment?.comment || ""} />
-        </div>
-
-        <div>
-          <div>{/* TODO いいねとか */}</div>
-        </div>
-      </SlideIn>
+      <div>
+        <div>{/* TODO いいねとか */}</div>
+      </div>
     </div>
   );
 };

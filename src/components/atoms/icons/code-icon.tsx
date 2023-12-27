@@ -8,7 +8,7 @@ import { cn } from "@/src/libs/utils";
 import { TbFileTypeSql } from "react-icons/tb";
 
 interface Props {
-  fileType: FileType | null;
+  fileType: FileType | null | string;
   size?: "sm" | "md" | "lg";
 }
 

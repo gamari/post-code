@@ -8,14 +8,15 @@ import { useInitCommentList } from "@/src/hooks/comments/useInitCommentList";
 import { Skeleton } from "@/src/components/molecules/displays/skeleton";
 import { CodeDetailCommentItemList } from "@/app/(public)/codes/[code_id]/detail/_components/comments/CodeDetailCommentItemList";
 import { CommentIcon } from "@/src/components/atoms/icons/comment-icon";
+import { CodeDetail } from "@/src/types";
 
 interface Props {
   className?: string;
-  codeId: number;
+  code: CodeDetail;
 }
 
-export const CodeDetailCommentList = ({ className, codeId }: Props) => {
-  const { loading } = useInitCommentList(codeId);
+export const CodeDetailCommentList = ({ className, code }: Props) => {
+  const { loading } = useInitCommentList(code);
 
   return (
     <div className={cn("rounded-md bg-white", className)}>

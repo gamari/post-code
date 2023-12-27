@@ -1,36 +1,31 @@
 import React, { FunctionComponent } from "react";
 
-import { actionGetBadCodeById } from "@/src/actions/codes";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { Description } from "@/src/components/atoms/texts/description";
 import { Badge } from "@/src/components/atoms/badges/badge";
 import { CodeIcon } from "@/src/components/atoms/icons/code-icon";
+import { CodeDetail } from "@/src/types";
 
 interface Props {
-  id: number;
+  code: CodeDetail;
 }
 
-
-export const CodeDetailInfo: FunctionComponent<Props> = async ({ id }) => {
-  const badCode = await actionGetBadCodeById(id);
-
-  if (!badCode) throw new Error("コードが見つかりません");
-
+export const CodeDetailInfo: FunctionComponent<Props> = async ({ code }) => {
   return (
     <div>
       <div className="p-4 flex flex-col gap-2 bg-white rounded-md">
         <div className="flex flex-row items-center gap-2">
-          {!badCode?.is_public ? (
+          {!code?.is_public ? (
             <Badge className="bg-gray-600 text-white">非公開</Badge>
           ) : (
-            <CodeIcon size="lg" fileType={badCode?.language?.name} />
+            <CodeIcon size="lg" fileType={code?.language?.name || ""} />
           )}
-          <Heading type="h3">{badCode?.title}</Heading>
+          <Heading type="h3">{code?.title}</Heading>
         </div>
 
-        {badCode?.description && (
+        {code?.description && (
           <Description className="p-2 border-t pt-4">
-            {badCode?.description || "(説明がありません)"}
+            {code?.description || "(説明がありません)"}
           </Description>
         )}
       </div>

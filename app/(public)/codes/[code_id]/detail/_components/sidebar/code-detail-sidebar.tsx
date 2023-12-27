@@ -1,33 +1,29 @@
 import React from "react";
-import { unstable_noStore } from "next/cache";
 
-import { actionGetBadCodeById } from "@/src/actions/codes";
 import { UserInfoCard } from "../../../../../../../src/components/organisms/users/user-info-card";
 import { CodeDetailSidebarToolsCard } from "./code-detail-sidebar-tools-card";
-import { actionGetFiles } from "@/src/actions/files";
 import { CodeDetailFileListCard } from "./CodeDetailFileListCard";
+import { CodeDetail } from "@/src/types";
 import { actionGetAuthUser } from "@/src/actions/users";
+import { actionGetFiles } from "@/src/actions/files";
 
 interface Props {
-  codeId: number;
+  code: CodeDetail;
 }
 
-export const CodeDetailSidebar = async ({ codeId }: Props) => {
-  const badCode = await actionGetBadCodeById(codeId);
-  const files = await actionGetFiles(codeId);
+export const CodeDetailSidebar = async ({ code }: Props) => {
   const authUser = await actionGetAuthUser();
-
-  if (!badCode) throw new Error("コードが見つかりません");
+  const files = await actionGetFiles(code.id);
 
   return (
     <div className="sticky top-20 h-fit flex flex-col gap-6 w-[250px] z-[200]">
-      <UserInfoCard user={badCode.user} />
+      <UserInfoCard user={code.user} />
       <CodeDetailFileListCard
         files={files}
-        isAuthor={badCode?.user_id === authUser?.id}
-        codeId={badCode.id}
+        isAuthor={code?.user_id === authUser?.id}
+        codeId={code.id}
       />
-      <CodeDetailSidebarToolsCard badCode={badCode} isLogin={!!authUser} />
+      <CodeDetailSidebarToolsCard badCode={code} isLogin={!!authUser} />
     </div>
   );
 };
