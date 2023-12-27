@@ -19,7 +19,7 @@ export const applyQueryOptions = (query: PostgrestFilterBuilder<any, any, any[],
         });
     }
 
-    query = query.limit(options?.limit || 6);
+    query = query.limit(options?.limit || 4);
 
     return query;
 }

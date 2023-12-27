@@ -9,9 +9,6 @@ interface Props {
 }
 
 export const TopLatestCodePanelList = async ({ className }: Props) => {
-  // const { codeList, fetchMoreCodeList, loading } = useFetchLatestCodeList(
-  //   codes || []
-  // );
   const codes = await actionGetLatestBadCodeList();
 
   return <CodePanelList codes={codes} className={cn(className)} />;

@@ -43,9 +43,7 @@ export const actionGetLatestBadCodeList = async () => {
         ],
         order: [
             createOrderCondition("updated_at", false)
-        ],
-        // TODO 直す
-        limit: 1
+        ]
     });
     return codes;
 }
