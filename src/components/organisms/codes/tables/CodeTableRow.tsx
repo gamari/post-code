@@ -7,10 +7,10 @@ import { DeleteButton } from "@/src/components/molecules/buttons/delete-button";
 import { EditButton } from "@/src/components/molecules/buttons/edit-button";
 import { LinkText } from "@/src/components/molecules/displays/link-text";
 import { ToggleBudge } from "@/src/components/molecules/displays/toggle-budge";
-import { TableRow, TableCell } from "@/src/components/ui/table";
 import { CodeDetail } from "@/src/types";
 import { TimeAgo } from "@/src/components/molecules/time-ago";
 import { FavoriteCount } from "../../favorite-count";
+import { Center } from "@/src/components/atoms/containers/Center";
 
 interface Props {
   code: CodeDetail;
@@ -21,35 +21,36 @@ export const CodeTableRow = ({ code, onDelete }: Props) => {
   const router = useRouter();
 
   return (
-    <TableRow key={code.id}>
-      <TableCell className="w-[100px]">
+    <div className="grid grid-cols-10 border-b py-2">
+      <Center>
         <ToggleBudge
           is_public={code.is_public || false}
           trueText="公開"
           falseText="非公開"
         />
-      </TableCell>
-      <TableCell>
-        <div className=" flex flex-row items-center">
-          <LinkText
-            url={`/codes/${code.id}/detail`}
-            className="flex-1"
-            label={code.title}
-          />
+      </Center>
+      <div className="col-span-4 p-2">
+        <LinkText
+          url={`/codes/${code.id}/detail`}
+          label={code.title}
+          className="w-full"
+        />
+      </div>
 
-          <FavoriteCount count={code?.favorites_count || 0} />
-        </div>
-      </TableCell>
-      <TableCell className="hidden lg:block w-[100px]">
-        {code?.language?.display}
-      </TableCell>
-      <TableCell className="w-[100px]">
+      <Center>
+        <FavoriteCount count={code?.favorites_count || 0} />
+      </Center>
+
+      <div className="hidden lg:block py-3 text-xs">{code?.language?.display}</div>
+
+      <div className="col-span-2 lg:col-span-1 py-2">
         <TimeAgo
           date={code.updated_at || ""}
-          className="text-xs text-gray-700"
+          className="text-xs text-gray-700 w-[100px]"
         />
-      </TableCell>
-      <TableCell className="w-[100px]">
+      </div>
+
+      <div className="col-span-2">
         <div className="flex flex-row items-center gap-3">
           <EditButton
             onClick={() => {
@@ -62,7 +63,7 @@ export const CodeTableRow = ({ code, onDelete }: Props) => {
             }}
           />
         </div>
-      </TableCell>
-    </TableRow>
+      </div>
+    </div>
   );
 };

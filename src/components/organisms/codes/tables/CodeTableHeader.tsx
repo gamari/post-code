@@ -1,16 +1,16 @@
-import { TableHeader, TableRow, TableHead } from "@/src/components/ui/table";
 import React from "react";
 
 export const CodeTableHeader = () => {
   return (
-    <TableHeader className="bg-gray-100">
-      <TableRow>
-        <TableHead></TableHead>
-        <TableHead>タイトル</TableHead>
-        <TableHead className="hidden lg:block">言語</TableHead>
-        <TableHead>更新</TableHead>
-        <TableHead></TableHead>
-      </TableRow>
-    </TableHeader>
+    <div className="bg-gray-100 w-full grid grid-cols-10">
+      <div></div>
+      <div className="col-span-4 flex flex-row p-2 font-bold text-gray-700">
+        タイトル
+      </div>
+      <div className=""></div>
+      <div className="hidden lg:block p-2 font-bold text-gray-700">言語</div>
+      <div className="p-2 font-bold text-gray-700">更新</div>
+      <div className="col-span-2"></div>
+    </div>
   );
 };

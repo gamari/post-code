@@ -31,14 +31,14 @@ export const CodeTable = ({ codes: initCodes, className }: CodeTableProps) => {
   };
 
   return (
-    <Table className={cn("border-y", className)}>
+    <div className={cn("border-y", className)}>
       <CodeTableHeader />
 
-      <TableBody className="bg-white">
+      <div className="bg-white w-full border-t">
         {codes?.map((code) => (
           <CodeTableRow key={code.id} code={code} onDelete={handleDelete} />
         ))}
-      </TableBody>
-    </Table>
+      </div>
+    </div>
   );
 };
