@@ -15,7 +15,7 @@ interface Props {
 
 // TODO Code Detailにする
 const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
-  unstable_noStore();
+  // unstable_noStore();
 
   return (
     <DetailCodeCommentListProvider comments={[]}>

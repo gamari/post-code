@@ -15,8 +15,8 @@ export const CreateButton = ({
   type = "button",
 }: Props) => {
   return (
-    <Button onClick={onClick} asChild className="cursor-pointer" type={type}>
-      <div>
+    <Button onClick={onClick} className="cursor-pointer" type={type}>
+      <div className="flex flex-row gap-1 items-center">
         {loading ? (
           <Loader2 className="mr-1 h-4 w-4 animate-spin" />
         ) : (

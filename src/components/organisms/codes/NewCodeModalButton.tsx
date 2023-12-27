@@ -1,20 +1,17 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 
-import { Button } from "@/src/components/atoms/buttons/button";
-import { fetchCreateCode } from "@/src/libs/externals/supabase/queries/codes";
-import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { Input } from "@/src/components/atoms/forms/input";
-import { useToast } from "@/src/components/ui/use-toast";
 import { Modal } from "../../molecules/displays/Modal";
 import { useModal } from "@/src/hooks/useModal";
 import { CreateButton } from "../../molecules/buttons/create-button";
-import { useLoading } from "@/src/hooks/useLoading";
 import { Heading } from "../../atoms/texts/heading";
 import { useFormCode } from "@/src/hooks/codes/useFormCode";
 import { ErrorText } from "../../atoms/texts/error-text";
+import { Button } from "../../atoms/buttons/button";
+import { Loader2 } from "lucide-react";
+import { PlusIcon } from "../../atoms/icons/PlusIcon";
 
 // TODO SSRで書く
 export const NewCodeModalButton = () => {
@@ -37,6 +34,7 @@ export const NewCodeModalButton = () => {
             />
             <ErrorText text={errors.title?.message} />
           </div>
+
           <CreateButton type="submit" label="コードの追加" loading={loading} />
         </form>
       </Modal>

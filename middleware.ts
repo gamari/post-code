@@ -9,6 +9,7 @@ export async function middleware(request: NextRequest) {
 
     return response
   } catch (e) {
+    console.error(e)
     return NextResponse.next({
       request: {
         headers: request.headers,

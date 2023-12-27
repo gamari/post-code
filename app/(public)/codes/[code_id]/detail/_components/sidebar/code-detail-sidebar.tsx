@@ -6,12 +6,15 @@ import { CodeDetailFileListCard } from "./CodeDetailFileListCard";
 import { CodeDetail } from "@/src/types";
 import { actionGetAuthUser } from "@/src/actions/users";
 import { actionGetFiles } from "@/src/actions/files";
+import { unstable_noStore } from "next/cache";
 
 interface Props {
   code: CodeDetail;
 }
 
 export const CodeDetailSidebar = async ({ code }: Props) => {
+  unstable_noStore();
+
   const authUser = await actionGetAuthUser();
   const files = await actionGetFiles(code.id);
 
