@@ -3,13 +3,13 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-import { DateString } from "@/src/components/atoms/texts/date-string";
 import { DeleteButton } from "@/src/components/molecules/buttons/delete-button";
 import { EditButton } from "@/src/components/molecules/buttons/edit-button";
 import { LinkText } from "@/src/components/molecules/displays/link-text";
 import { ToggleBudge } from "@/src/components/molecules/displays/toggle-budge";
 import { TableRow, TableCell } from "@/src/components/ui/table";
 import { CodeDetail } from "@/src/types";
+import { TimeAgo } from "@/src/components/molecules/time-ago";
 
 interface Props {
   code: CodeDetail;
@@ -37,7 +37,7 @@ export const CodeTableRow = ({ code, onDelete }: Props) => {
       </TableCell>
       <TableCell className="w-fit">{code?.language?.display}</TableCell>
       <TableCell className="w-[200px]">
-        <DateString value={code.updated_at} type="datetime" />
+        <TimeAgo date={code.updated_at || ""} />
       </TableCell>
       <TableCell className="w-fit">
         <div className="flex flex-row items-center gap-3">

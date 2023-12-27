@@ -15,6 +15,7 @@ import { DateIcon } from "../../atoms/icons/date-icon";
 import { useGetLanguage } from "@/src/hooks/languages/useGetLanguage";
 import { CodeIcon } from "../../atoms/icons/code-icon";
 import { MarkdownPreviewer } from "../../molecules/displays/markdown-previewer";
+import { TimeAgo } from "../../molecules/time-ago";
 
 interface Props extends BaseProps {
   comment: CommentDetail;
@@ -30,9 +31,15 @@ export const CommentPanel = ({ comment }: Props) => {
       url={CODES_DETAIL_URL(comment?.code_id)}
     >
       <div className="flex flex-row items-center justify-between text-sm text-gray-500 border-b pb-2 mt-2">
-        <div className="flex flex-row items-center gap-2">
-          <CommentIcon />
-          <Heading type="h4">【{comment?.code?.title}】へのコメント</Heading>
+        <div className="flex flex-row items-center gap-3">
+          <CodeIcon
+            size="sm"
+            fileType={getLanguage(comment?.code?.language_id)}
+          />
+          <Heading type="h4" className="flex-1">
+            【{comment?.code?.title}】
+          </Heading>
+          <Typo text={"へのコメント"} size="sm" />
         </div>
       </div>
 
@@ -41,19 +48,12 @@ export const CommentPanel = ({ comment }: Props) => {
         <Avatar size="sm" />
         <div className="flex items-center flex-row gap-2">
           <DateIcon size="sm" />
-          <DateString value={comment.created_at || ""} />
+          <TimeAgo date={comment.created_at || ""} />
         </div>
       </div>
 
       <div className=" flex flex-row gap-4 pt-2 items-center">
-        <CodeIcon
-          size="md"
-          fileType={getLanguage(comment?.code?.language_id)}
-        />
-
-        <div className="border-l-2 pl-2">
-          <MarkdownPreviewer content={comment.comment} />
-        </div>
+        <MarkdownPreviewer content={comment.comment} />
       </div>
     </LinkCard>
   );

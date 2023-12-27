@@ -3,14 +3,13 @@ import React, { FunctionComponent } from "react";
 import { CodeDetail } from "@/src/types";
 import { cn } from "@/src/libs/utils";
 
-import { DateString } from "@/src/components/atoms/texts/date-string";
 import { DateIcon } from "@/src/components/atoms/icons/date-icon";
 import { CodeIcon } from "@/src/components/atoms/icons/code-icon";
 import { FileType } from "@/src/libs/editors";
 import { AccountIcon } from "@/src/components/atoms/icons/account-icon";
-import { HeartIcon } from "@/src/components/atoms/icons/heart-icon";
 import { FavoriteIcon } from "@/src/components/atoms/icons/favorite-icon";
 import { Typo } from "@/src/components/atoms/texts/typo";
+import { TimeAgo } from "@/src/components/molecules/time-ago";
 
 interface Props {
   code: CodeDetail;
@@ -41,7 +40,11 @@ const CodePanelFooter = ({ code }: { code: CodeDetail }) => {
       <div className="flex flex-row gap-2">
         <div className="flex flex-row items-center gap-2">
           <AccountIcon size="sm" />
-          <Typo text={code?.user?.username} size="xs" className="text-gray-700" />
+          <Typo
+            text={code?.user?.username}
+            size="md"
+            className="text-gray-700"
+          />
         </div>
 
         <div className="flex flex-row items-center gap-2">
@@ -52,7 +55,7 @@ const CodePanelFooter = ({ code }: { code: CodeDetail }) => {
 
       <div className="flex flex-row items-center gap-2">
         <DateIcon size="sm" />
-        <DateString value={code?.created_at} className="pr-2" />
+        <TimeAgo date={code?.updated_at} className="pr-2" />
       </div>
     </div>
   );
