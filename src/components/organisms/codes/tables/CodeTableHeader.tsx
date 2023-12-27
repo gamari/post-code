@@ -8,7 +8,7 @@ export const CodeTableHeader = () => {
         <TableHead></TableHead>
         <TableHead>タイトル</TableHead>
         <TableHead className="hidden lg:block">言語</TableHead>
-        <TableHead>更新日</TableHead>
+        <TableHead>更新</TableHead>
         <TableHead></TableHead>
       </TableRow>
     </TableHeader>
