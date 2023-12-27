@@ -8,12 +8,14 @@ import { CodeDetailCommentList } from "./comments/CodeDetailCommentList";
 import { CodeDetailSidebar } from "./sidebar/code-detail-sidebar";
 import { actionGetBadCodeById } from "@/src/actions/codes";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
+import { unstable_noStore } from "next/cache";
 
 interface Props {
   codeId: number;
 }
 
 export const CodeDetail = async ({ codeId }: Props) => {
+  unstable_noStore();
   const code = await actionGetBadCodeById(codeId);
 
   if (!code) return <NoContent text="コードが見つかりませんでした" />;

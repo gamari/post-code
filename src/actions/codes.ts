@@ -57,6 +57,5 @@ export const actionGetFavoriteCodeList = async () => {
         ],
         limit: 20
     });
-    console.log(codes);
     return codes;
 }
