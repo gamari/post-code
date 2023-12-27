@@ -27,6 +27,7 @@ export const LanguageListProvider = ({ children }: ProviderProps) => {
     async function init() {
       if (!client) return;
       if (languageList?.length > 0) return;
+      console.log("fetch language list");
       const languages = await fetchLanguageList(client);
       setLanguageList(languages);
     }

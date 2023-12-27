@@ -1,5 +1,5 @@
 import { TopAboutSection } from "@/app/_components/top-about-section";
-import { TopLatestCodesSection } from "@/app/_components/top-latest-codes-section";
+import { TopLatestCodesSection } from "@/app/_components/codes/top-latest-codes-section";
 import { TopFooter } from "@/app/_components/top-footer";
 import { Suspense } from "react";
 import { Skeleton } from "@/src/components/molecules/displays/skeleton";
