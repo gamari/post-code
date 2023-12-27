@@ -10,6 +10,8 @@
 [GitHub](https://github.com/search?q=django&type=repositories)
 [CodeCanYou](https://codecanyon.net/category/mobile)
 
+[Icon](https://icon-icons.com/ja/%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3/%E3%82%B3%E3%83%BC%E3%83%89/73620)
+
 ## デザイン
 
 - z-index
@@ -23,7 +25,11 @@
 ### Next
 
 - [ ] CodeEditorのキャッシュを禁止する
-- [ ] 
+- [ ] CommentPanelを一つだけアニメーションする
+- [ ] エディターの文字数制限をかける
+- [ ] 言語別検索
+- [ ] 画面半分の表示だけ修正する
+
 - [wip] お気に入り登録時の挙動を直す
 - [ ] お気に入りコードの「言語」を紐づける
 - [ ] Google 認証の導入

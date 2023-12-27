@@ -1,10 +1,15 @@
+"use client";
+
 import React from "react";
+
 import { NextPage } from "next";
 import { unstable_noStore } from "next/cache";
 
 import { actionGetBadCodeById } from "@/src/actions/codes";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 import { CodeEditor } from "./_components/CodeEditor";
+import { useFetchCodeById } from "@/src/hooks/codes/useFetchCodeById";
+import { Skeleton } from "@/src/components/molecules/displays/skeleton";
 
 interface Props {
   params: {
@@ -12,12 +17,11 @@ interface Props {
   };
 }
 
-const CodeEditPage: NextPage<Props> = async ({ params }) => {
-  unstable_noStore();
-
+const CodeEditPage: NextPage<Props> = ({ params }) => {
   const { code_id } = params;
-  const code = await actionGetBadCodeById(code_id);
+  const { code, loading } = useFetchCodeById(code_id);
 
+  if (loading) return <Skeleton className="w-[600px] h-[300px]" />;
   if (!code_id || !code)
     return <NoContent text="コードが見つかりませんでした" />;
 
