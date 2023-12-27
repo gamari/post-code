@@ -14,6 +14,8 @@ interface Props {
   codeId: number;
 }
 
+export const revalidate = 0;
+
 export const CodeDetail = async ({ codeId }: Props) => {
   unstable_noStore();
   const code = await actionGetBadCodeById(codeId);

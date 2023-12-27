@@ -13,9 +13,11 @@ interface Props {
   };
 }
 
-// TODO Code Detailにする
+export const revalidate = 0;
+
 const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
-  // unstable_noStore();
+  console.log("CodeDetailPage");
+  unstable_noStore();
 
   return (
     <DetailCodeCommentListProvider comments={[]}>

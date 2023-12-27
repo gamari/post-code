@@ -4,48 +4,51 @@ import { applyQueryOptions } from ".";
 import { LANGUAGE_TABLE, PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
 
 export interface FetchCommentsOptions {
-    eq?: { field: string; value: any }[];
-    order?: { field: string; ascending?: boolean }[];
-    limit?: number;
+  eq?: { field: string; value: any }[];
+  order?: { field: string; ascending?: boolean }[];
+  limit?: number;
 }
 
 /** Comment取得Fetcher */
 export const fetchCommentList = async (client: SupabaseClient, options?: FetchCommentsOptions) => {
-    let query = client
-        .from("comments")
-        .select("*");
+  let query = client
+    .from("comments")
+    .select("*");
 
-    query = applyQueryOptions(query, options);
+  query = applyQueryOptions(query, options);
 
-    const { data, error } = await query;
+  const { data, error } = await query;
 
-    if (error) throw error;
+  if (error) throw error;
 
-    return data as Comment[];
+  return data as Comment[];
 }
 
 export const fetchCommentListWithUser = async (client: SupabaseClient, options?: FetchCommentsOptions) => {
-    let query = client
-        .from("comments")
-        .select(`
+  let query = client
+    .from("comments")
+    .select(`
           *,
-          user: users (
+          ${PUBLIC_USER_TABLE}!user_id(
             username
           )
         `);
-    query = applyQueryOptions(query, options);
+  query = applyQueryOptions(query, options);
 
-    const { data, error } = await query;
+  const { data, error } = await query;
 
-    if (error) throw error;
+  if (error) throw error;
 
-    return data as CommentDetail[];
+  return data.map(item => ({
+    ...item,
+    user: item?.public_users,
+  })) as CommentDetail[];
 }
 
 export const fetchCommentListWithCode = async (client: SupabaseClient, options?: FetchCommentsOptions) => {
-    let query = client
-        .from("comments")
-        .select(`
+  let query = client
+    .from("comments")
+    .select(`
           *,
           code: codes (
             *
@@ -54,54 +57,54 @@ export const fetchCommentListWithCode = async (client: SupabaseClient, options?:
             username
           )
         `);
-    query = applyQueryOptions(query, options);
+  query = applyQueryOptions(query, options);
 
-    const { data, error } = await query;
+  const { data, error } = await query;
 
-    if (error) throw error;
+  if (error) throw error;
 
-    return data.map(item => ({
-        ...item,
-        user: item?.public_users,
-    })) as CommentDetail[];
+  return data.map(item => ({
+    ...item,
+    user: item?.public_users,
+  })) as CommentDetail[];
 }
 
 // Create-Update-Delete
 export const fetchCreateComment = async (codeId: number, comment: string, client: SupabaseClient) => {
-    const { data: { user }, error: userError } = await client.auth.getUser();
+  const { data: { user }, error: userError } = await client.auth.getUser();
 
-    if (userError) throw userError;
-    if (!user?.id) throw new Error("user not found");
+  if (userError) throw userError;
+  if (!user?.id) throw new Error("user not found");
 
-    const { data, error } = await client
-        .from("comments")
-        .insert({
-            code_id: codeId,
-            comment,
-            user_id: user.id,
-        })
-        .select(`
+  const { data, error } = await client
+    .from("comments")
+    .insert({
+      code_id: codeId,
+      comment,
+      user_id: user.id,
+    })
+    .select(`
           *,
           ${PUBLIC_USER_TABLE}!user_id(
             username
           )
         `)
-        .maybeSingle();
+    .maybeSingle();
 
-    if (error) throw error;
+  if (error) throw error;
 
-    return {
-        ...data,
-        user: data?.public_users
-    };
+  return {
+    ...data,
+    user: data?.public_users
+  };
 }
 
 export const fetchDeleteComment = async (id: number, client: SupabaseClient) => {
-    const { error } = await client
-        .from("comments")
-        .delete()
-        .eq("id", id);
+  const { error } = await client
+    .from("comments")
+    .delete()
+    .eq("id", id);
 
-    if (error) throw error;
+  if (error) throw error;
 }
 

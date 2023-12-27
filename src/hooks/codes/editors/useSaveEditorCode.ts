@@ -2,7 +2,7 @@ import { useCodeEditor } from "@/src/contexts/CodeEditorProvider"
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchUpdateCode } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchUpsertFiles } from "@/src/libs/externals/supabase/queries/files";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useLoading } from "../../useLoading";
 import { useGetEditorCode } from "./getter/useGetEditorCode";
 import { useGetEditorSelectedFile } from "./getter/useGetEditorSelectedFile";
@@ -47,6 +47,7 @@ export const useSaveEditorCode = () => {
             startLoading();
             await fetchUpsertFiles(newFiles, client);
             await fetchUpdateCode(code, client);
+            
             router.refresh()
             router.push(`/codes/${code.id}/detail`);
         } catch (e) {

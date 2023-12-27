@@ -12,6 +12,8 @@ interface Props {
   code: CodeDetail;
 }
 
+export const revalidate = 0;
+
 export const CodeDetailSidebar = async ({ code }: Props) => {
   unstable_noStore();
 
