@@ -26,7 +26,6 @@ export const applyQueryOptions = (query: PostgrestFilterBuilder<any, any, any[],
 
 export const applyOrderBy = (query: PostgrestFilterBuilder<any, any, any[], unknown, unknown>, options?: QueryOptions) => {
     if (options?.order) {
-        console.log(options.order);
         options.order.forEach(condition => {
             query = query.order(condition.field, { ascending: condition.ascending ?? true });
         });

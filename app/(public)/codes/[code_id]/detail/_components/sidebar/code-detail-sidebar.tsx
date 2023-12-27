@@ -13,7 +13,6 @@ interface Props {
 }
 
 export const CodeDetailSidebar = async ({ codeId }: Props) => {
-  unstable_noStore();
   const badCode = await actionGetBadCodeById(codeId);
   const files = await actionGetFiles(codeId);
   const authUser = await actionGetAuthUser();

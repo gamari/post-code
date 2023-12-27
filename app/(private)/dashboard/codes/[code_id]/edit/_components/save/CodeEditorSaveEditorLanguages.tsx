@@ -52,7 +52,6 @@ export const CodeEditorSaveEditorLanguages = () => {
   };
 
   const selectLanguage = (language: Language) => {
-    console.log(language);
     setEditorLanguage(language);
     setSuggestedLanguages([]);
     setLanguage("");

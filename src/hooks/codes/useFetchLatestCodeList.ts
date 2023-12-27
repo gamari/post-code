@@ -33,7 +33,6 @@ export const useFetchLatestCodeList = () => {
 
         try {
             setLoading(true);
-            console.log(codeList[codeList.length - 1]);
             const result = await fetchCodeListBeforeDate(codeList[codeList.length - 1]?.created_at || "", client, {
                 order: [
                     {

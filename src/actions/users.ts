@@ -41,7 +41,6 @@ export async function actionSignUp(formData: FormData) {
     })
 
     if (error) {
-        console.log(error)
         return redirect('/register?error_status=9')
     }
 
@@ -56,7 +55,6 @@ export const actionGetAuthUser = async () => {
         return authUser;
     } catch (error) {
         console.log("actionGetAuthUser error");
-        console.log(error);
         return null;
     }
 }

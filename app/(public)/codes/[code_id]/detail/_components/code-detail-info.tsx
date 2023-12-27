@@ -10,6 +10,7 @@ interface Props {
   id: number;
 }
 
+
 export const CodeDetailInfo: FunctionComponent<Props> = async ({ id }) => {
   const badCode = await actionGetBadCodeById(id);
 
