@@ -8,7 +8,7 @@ const Page = () => {
 
   return (
     <div className="p-10">
-      <Heading>コメント一覧</Heading>
+      <Heading className="mb-6">あなたがしたコメント</Heading>
 
       <LatestCommentList />
     </div>

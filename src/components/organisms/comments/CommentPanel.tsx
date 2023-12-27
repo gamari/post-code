@@ -34,16 +34,15 @@ export const CommentPanel = ({ comment }: Props) => {
           <CommentIcon />
           <Heading type="h4">【{comment?.code?.title}】へのコメント</Heading>
         </div>
+      </div>
 
+      <div className="flex flex-row-reverse items-center gap-2 text-gray-600 mt-4 px-2">
+        <Typo text={comment?.user?.username} size="md" />
+        <Avatar size="sm" />
         <div className="flex items-center flex-row gap-2">
           <DateIcon size="sm" />
           <DateString value={comment.created_at || ""} />
         </div>
-      </div>
-
-      <div className="flex flex-row items-center gap-2 text-gray-600 mt-4 px-2">
-        <Avatar size="sm" />
-        <Typo text={comment?.user?.username} size="md" />
       </div>
 
       <div className=" flex flex-row gap-4 pt-2 items-center">

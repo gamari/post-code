@@ -36,7 +36,7 @@ export const CodeTableRow = ({ code, onDelete }: Props) => {
         />
       </TableCell>
       <TableCell className="w-fit">{code?.language?.display}</TableCell>
-      <TableCell className="w-fit">
+      <TableCell className="w-[200px]">
         <DateString value={code.updated_at} type="datetime" />
       </TableCell>
       <TableCell className="w-fit">

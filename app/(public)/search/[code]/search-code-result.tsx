@@ -17,6 +17,7 @@ export const SearchCodeResult = async ({ code }: Props) => {
     <div>
       <Heading className="mb-6">検索: {code}</Heading>
 
+      {codeList.length === 0 && <div className="bg-white p-6 rounded-md">見つかりませんでした</div>}
       <SearchCodeResultList codes={codeList} query={code} />
     </div>
   );

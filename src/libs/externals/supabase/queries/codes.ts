@@ -15,7 +15,6 @@ export const fetchCodeById = async (id: number, client: SupabaseClient) => {
         `)
         .eq("id", id)
         .single();
-    console.log(code);
 
     if (error) return null;
 
@@ -74,7 +73,6 @@ export const fetchCodeListWithUser = async (client: SupabaseClient, options?: Qu
     query = applyQueryOptions(query, options);
 
     const { data, error } = await query;
-    console.log(data);
 
     if (error) throw error;
 
@@ -134,7 +132,6 @@ export const fetchFavoriteCodeList = async (client: SupabaseClient, options?: Qu
     const { data, error } = await query;
 
     if (error) throw error;
-    console.log(data);
 
     // TODO fix Types
     return data.map((favorite) => {
@@ -227,7 +224,6 @@ export const fetchUpdateCode = async (newBadCodes: CodeDetail, client: SupabaseC
         })
         .eq("id", newBadCodes.id);
 
-    console.log(data);
 
     if (error) throw error;
 
