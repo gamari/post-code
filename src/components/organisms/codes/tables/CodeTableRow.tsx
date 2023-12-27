@@ -10,6 +10,7 @@ import { ToggleBudge } from "@/src/components/molecules/displays/toggle-budge";
 import { TableRow, TableCell } from "@/src/components/ui/table";
 import { CodeDetail } from "@/src/types";
 import { TimeAgo } from "@/src/components/molecules/time-ago";
+import { FavoriteCount } from "../../favorite-count";
 
 interface Props {
   code: CodeDetail;
@@ -29,17 +30,26 @@ export const CodeTableRow = ({ code, onDelete }: Props) => {
         />
       </TableCell>
       <TableCell>
-        <LinkText
-          url={`/codes/${code.id}/detail`}
-          className="w-full h-full"
-          label={code.title}
+        <div className=" flex flex-row items-center">
+          <LinkText
+            url={`/codes/${code.id}/detail`}
+            className="flex-1"
+            label={code.title}
+          />
+
+          <FavoriteCount count={code?.favorites_count || 0} />
+        </div>
+      </TableCell>
+      <TableCell className="hidden lg:block w-[100px]">
+        {code?.language?.display}
+      </TableCell>
+      <TableCell className="w-[100px]">
+        <TimeAgo
+          date={code.updated_at || ""}
+          className="text-xs text-gray-700"
         />
       </TableCell>
-      <TableCell className="w-fit">{code?.language?.display}</TableCell>
-      <TableCell className="w-[200px]">
-        <TimeAgo date={code.updated_at || ""} />
-      </TableCell>
-      <TableCell className="w-fit">
+      <TableCell className="w-[100px]">
         <div className="flex flex-row items-center gap-3">
           <EditButton
             onClick={() => {

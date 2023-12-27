@@ -20,6 +20,7 @@ export const useLikeCode = (initIsFavorite: boolean) => {
                 await fetchCreateFavoriteCode(codeId, client);
             }
             setIsFavorite((prev) => !prev);
+            router.refresh();
         } catch (e) {
             console.error(e);
         }

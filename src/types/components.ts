@@ -3,7 +3,7 @@ export interface BaseProps {
 }
 
 export interface IconProps {
-    size?: "sm" | "md" | "lg" | "xl";
+    size?: "xs" | "sm" | "md" | "lg" | "xl";
     className?: string;
     onClick?: () => void;
 }

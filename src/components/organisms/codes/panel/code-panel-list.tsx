@@ -16,7 +16,7 @@ export const CodePanelList = ({ codes, className }: Props) => {
 
   return (
     <div
-      className={cn("w-full grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-6", className)}
+      className={cn("w-full grid grid-cols-1 lg:grid-cols-2 gap-y-12 gap-x-6", className)}
     >
       {codes.map((code, index) => (
         <SlideIn delay={index * 0.1} from="bottom" key={code.id}>

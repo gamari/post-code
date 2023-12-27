@@ -16,7 +16,8 @@ export const TopLatestCommentSection = async () => {
         <Heading type="h2">最新のコメント</Heading>
       </div>
 
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10">
+      {/* TODO コンポーネント化する */}
+      <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-10">
         {commentList.map((comment) => (
           <CommentPanel key={comment.id} comment={comment} />
         ))}

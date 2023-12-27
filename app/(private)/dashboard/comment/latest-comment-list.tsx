@@ -11,11 +11,9 @@ export const LatestCommentList = async () => {
   const commentList = await actionGetMyselfCommentList();
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
       {commentList.map((comment) => {
-        return (
-          <CommentPanel key={comment.id} comment={comment} />
-        );
+        return <CommentPanel key={comment.id} comment={comment} />;
       })}
       ;
     </div>

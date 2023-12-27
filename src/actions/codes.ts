@@ -29,7 +29,8 @@ export const actionGetOwnBadCodeList = async () => {
         ],
         order: [
             createOrderCondition("updated_at", false)
-        ]
+        ],
+        limit: 40
     });
     return codes;
 }
