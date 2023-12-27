@@ -11,9 +11,11 @@ import { Modal } from "@/src/components/molecules/displays/Modal";
 import { CodeDetailInfoEditor } from "./CodeEditorSaveEditor";
 import { Button } from "@/src/components/atoms/buttons/button";
 import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";
+import { useRouter } from "next/navigation";
 
 // TODO save buttonを抜き出す
 export const CodeEditorSaveModalButton = () => {
+  const router = useRouter();
   const { code } = useGetEditorCode();
   const { isOpen, toggleModal } = useModal();
   const { loading, saveEditor } = useSaveEditorCode();
@@ -26,8 +28,15 @@ export const CodeEditorSaveModalButton = () => {
         return;
       }
 
-      await saveEditor();
-      toggleModal();
+      const retCode = await saveEditor();
+
+      if (retCode?.id) {
+        toggleModal();
+        router.refresh();
+
+        // FIX 上手く効かないので仕方なくlocationを使う
+        window.location.href = `/codes/${retCode?.id}/detail`;
+      }
     } catch (error) {
       errorAlert("保存に失敗しました", error);
     }

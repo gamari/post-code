@@ -254,8 +254,9 @@ export const fetchUpdateCode = async (newBadCodes: CodeDetail, client: SupabaseC
             user: undefined,
             public_users: undefined,
         })
-        .eq("id", newBadCodes.id);
-
+        .eq("id", newBadCodes.id)
+        .select("*")
+        .maybeSingle();
 
     if (error) throw error;
 
