@@ -15,7 +15,7 @@ export const Avatar = ({ src, size = "md", className = "" }: Props) => {
     return (
       <AccountIcon
         className={cn(
-          "text-gray-700",
+          "text-gray-600",
           size == "sm" && "h-5 w-5",
           size == "md" && "h-8 w-8",
           size == "lg" && "h-12 w-12",

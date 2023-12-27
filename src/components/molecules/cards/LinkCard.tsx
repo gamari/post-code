@@ -16,7 +16,7 @@ export const LinkCard = ({ children, className, url }: Props) => {
 
   return (
     <div
-      className={cn("p-4 bg-white border rounded-lg cursor-pointer hover:opacity-80", className)}
+      className={cn("px-8 py-6 bg-white border rounded-lg cursor-pointer hover:opacity-80", className)}
       onClick={() => {
         router.push(url);
       }}
