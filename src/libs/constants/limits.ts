@@ -1,0 +1,1 @@
+export const FILE_TEXT_LIMIT = 14;

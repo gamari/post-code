@@ -18,15 +18,15 @@ import { sortAscByName } from "@/src/libs/sortes";
 import { useGetEditorFiles } from "@/src/hooks/codes/editors/getter/useGetEditorFiles";
 import { useModal } from "@/src/hooks/useModal";
 import { RenameFileModal } from "./RenameFileModal";
+import { limitString } from "@/src/libs/strings";
+import { FILE_TEXT_LIMIT } from "@/src/libs/constants/limits";
 
 interface Props {
   className?: string;
 }
 
 // TODO リファクタリングする
-export const CodeEditorFileList = ({
-  className
-}: Props) => {
+export const CodeEditorFileList = ({ className }: Props) => {
   const { isOpen, toggleModal } = useModal();
 
   const { files } = useGetEditorFiles();
@@ -65,7 +65,7 @@ export const CodeEditorFileList = ({
               onClick={() => handleClickFile(file)}
             >
               <FileIcon fileType={getFileExtensionType(file.name)} />
-              {file.name}
+              {limitString(file.name, FILE_TEXT_LIMIT)}
             </div>
           </ContextMenuTrigger>
           <ContextMenuContent>

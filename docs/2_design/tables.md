@@ -12,6 +12,18 @@
 
 ## DB 詳細
 
+**codes テーブル**
+
+| カラム名    | データ型  | NULLABLE | 制限               |
+| ----------- | --------- | -------- | ------------------ |
+| id          | INT       | FLASE    |                    |
+| title       | TEXT      | FALSE    | 1 < title < 61     |
+| language    | TEXT      | TRUE     |                    |
+| user_id     | INT       | FALSE    |                    |
+| description | TEXT      | TRUE     | description < 2001 |
+| created_at  | TIMESTAMP | 作成日時 |                    |
+| updated_at  | TIMESTAMP | 更新日時 |                    |
+
 **users テーブル**
 
 | カラム名    | データ型 | NULLABLE | 制限              |
@@ -22,6 +34,19 @@
 | email       | TEXT     | FALSE    | 3 < email < 256   |
 | description | TEXT     | TRUE     | description < 256 |
 
+**files テーブル**
+
+| カラム名    | データ型     | NULLABLE     | 制限            |
+| ----------- | ------------ | ------------ | --------------- |
+| id          | INT          | FALSE        |                 |
+| name        | VARCHAR(255) | FALSE        | 1 < name < 80   |
+| user_id     | INT          | FALSE        |                 |
+| content     | TEXT         | TRUE         | content < 10001 |
+| description | TEXT         | ファイル内容 |
+| code_id     | INT          | コード ID    |
+| created_at  | TIMESTAMP    | 作成日時     |
+| updated_at  | TIMESTAMP    | 更新日時     |
+
 **favorites テーブル**
 
 | カラム名 | データ型  | 制限 |
@@ -29,27 +54,3 @@
 | id       | INT       |      |
 | user_id  | FK(users) |      |
 | language | FK(codes) |      |
-
-**codes テーブル**
-
-| カラム名   | データ型     | 制限                 |
-| ---------- | ------------ | -------------------- |
-| id         | INT          |                      |
-| title      | VARCHAR(255) | 悪いコードのタイトル |
-| language   | VARCHAR(255) | 言語                 |
-| user_id    | INT          | 登録者 ID            |
-| created_at | TIMESTAMP    | 作成日時             |
-| updated_at | TIMESTAMP    | 更新日時             |
-
-**files テーブル**
-
-| カラム名    | データ型     | 制限         |
-| ----------- | ------------ | ------------ |
-| id          | INT          | ファイル ID  |
-| name        | VARCHAR(255) | ファイル名   |
-| user_id     | INT          | 登録者 ID    |
-| content     | TEXT         | ファイル内容 |
-| description | TEXT         | ファイル内容 |
-| code_id     | INT          | コード ID    |
-| created_at  | TIMESTAMP    | 作成日時     |
-| updated_at  | TIMESTAMP    | 更新日時     |

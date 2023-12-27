@@ -24,7 +24,7 @@ export const FileItem = ({ file, className, onClick }: Props) => {
       onClick={() => onClick && onClick(file)}
     >
       <FileIcon fileType={getFileExtensionType(file?.name)} />
-      <Typo text={file.name} />
+      <Typo text={file.name} className="flex-1 whitespace-break-spaces break-words overflow-hidden" />
     </div>
   );
 };

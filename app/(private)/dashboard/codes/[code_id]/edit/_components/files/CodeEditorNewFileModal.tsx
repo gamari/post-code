@@ -72,6 +72,7 @@ export const CodeEditorNewFileModal = ({ isOpen, onClose }: Props) => {
                 handleAddFile();
               }
             }}
+            maxLength={80}
           />
         </div>
 

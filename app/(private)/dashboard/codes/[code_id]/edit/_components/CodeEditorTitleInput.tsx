@@ -19,6 +19,7 @@ export const CodeEditorTitleInput = () => {
         onChange={(e) => setTitle(e.target.value)}
         placeholder="タイトル..."
         className="flex-1"
+        maxLength={60}
       />
     </div>
   );

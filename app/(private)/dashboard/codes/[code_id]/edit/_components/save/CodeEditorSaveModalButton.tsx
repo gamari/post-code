@@ -2,6 +2,7 @@
 
 import React from "react";
 
+import { length } from "@/src/libs/strings";
 import { useSaveEditorCode } from "@/src/hooks/codes/editors/useSaveEditorCode";
 import { useAlert } from "@/src/hooks/useAlert";
 import { SaveButton } from "../../../../../../../../src/components/molecules/buttons/save-button";
@@ -20,6 +21,11 @@ export const CodeEditorSaveModalButton = () => {
 
   const handleOnSave = async () => {
     try {
+      if (length(code?.description) > 2000) {
+        errorAlert("説明文は2000文字以内で入力してください");
+        return;
+      }
+
       await saveEditor();
       toggleModal();
     } catch (error) {
@@ -27,19 +33,23 @@ export const CodeEditorSaveModalButton = () => {
     }
   };
 
+  const onClick = () => {
+    if (!code?.title) {
+      errorAlert("タイトルを入力してください");
+      return;
+    }
+
+    if (code?.title.length > 60) {
+      errorAlert("タイトルは60文字以内で入力してください");
+      return;
+    }
+
+    toggleModal();
+  };
+
   return (
     <>
-      <SaveButton
-        label="保存"
-        onClick={() => {
-          if (!code?.title) {
-            errorAlert("タイトルを入力してください");
-            return;
-          }
-          toggleModal();
-        }}
-        loading={loading}
-      />
+      <SaveButton label="保存" onClick={onClick} loading={loading} />
 
       <Modal isOpen={isOpen} onClose={toggleModal} className="w-[500px]">
         <CodeDetailInfoEditor />

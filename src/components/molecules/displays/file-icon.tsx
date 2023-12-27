@@ -1,31 +1,33 @@
 import React from "react";
 
 import { MdOutlineInsertDriveFile } from "react-icons/md";
-import { DiPython, DiGo } from "react-icons/di";
+import { DiPython } from "react-icons/di";
 import { FileType } from "@/src/libs/editors";
 import { SiJavascript, SiTypescript } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 import { SiGoland } from "react-icons/si";
 import { TbFileTypeSql } from "react-icons/tb";
+
 interface Props {
   fileType: FileType;
+  className?: string;
 }
 
-export const FileIcon = ({ fileType }: Props) => {
-  const className = "h-5 w-5";
+export const FileIcon = ({ fileType, className }: Props) => {
+  const addClassName = `h-5 w-5 ${className}`;
   if (fileType === "python") {
-    return <DiPython className={className} />;
+    return <DiPython className={addClassName} />;
   } else if (fileType === "javascript" || fileType === "jsx") {
-    return <SiJavascript className={className} />;
+    return <SiJavascript className={addClassName} />;
   } else if (fileType === "tsx" || fileType === "typescript") {
-    return <SiTypescript className={className} />;
+    return <SiTypescript className={addClassName} />;
   } else if (fileType === "java") {
-    return <FaJava className={className} />;
+    return <FaJava className={addClassName} />;
   } else if (fileType === "go") {
-    return <SiGoland className={className} />;
+    return <SiGoland className={addClassName} />;
   } else if (fileType === "sql") {
-    return <TbFileTypeSql className={className} />;
+    return <TbFileTypeSql className={addClassName} />;
   }
 
-  return <MdOutlineInsertDriveFile className="h-5 w-5" />;
+  return <MdOutlineInsertDriveFile className={addClassName} />;
 };
