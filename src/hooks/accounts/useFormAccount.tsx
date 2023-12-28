@@ -11,10 +11,7 @@ import { User } from "@/src/types";
 
 const userSchema = z.object({
   id: z.string().optional(),
-  username: z
-    .string()
-    .min(1, "ユーザー名を入力してください")
-    .max(16, "16文字以内で入力してください"),
+  username: z.string().min(1, "ユーザー名を入力してください").max(16, "16文字以内で入力してください"),
   description: z.string().max(160, "160文字以内で入力してください").optional(),
   x_url: z.string().max(60, "長すぎます").optional(),
 });
@@ -30,13 +27,11 @@ export const useFormAccount = (initUser: User) => {
   const router = useRouter();
   const { client } = useSupabase();
 
-  const [iconType, setIconType] = useState<string | null>(
-    initUser?.icon_type || null
-  );
+  const [iconType, setIconType] = useState<string | null>(initUser?.icon_type || null);
   const selectIcon = (type: string | null) => {
     setIconType(type);
   };
-
+  
   const {
     register,
     handleSubmit,
@@ -61,11 +56,7 @@ export const useFormAccount = (initUser: User) => {
   const saveUser: SubmitHandler<AccountFormValues> = async (data) => {
     if (!client) return;
 
-    const updatedData = {
-      ...data,
-      name: data.username,
-      icon_type: iconType,
-    } as any;
+    const updatedData = { ...data, icon_type: iconType } as any;
 
     await fetchUpdateUser(updatedData, client);
     router.refresh();
@@ -77,6 +68,6 @@ export const useFormAccount = (initUser: User) => {
     errors,
     saveUser,
     iconType,
-    selectIcon,
+    selectIcon
   };
 };

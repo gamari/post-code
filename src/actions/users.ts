@@ -59,7 +59,9 @@ export async function actionSignUp(formData: FormData) {
         email,
         password,
         options: {
-            data: { username },
+            data: { 
+                name: username
+             },
             emailRedirectTo: `${origin}/auth/callback`,
         },
     })
