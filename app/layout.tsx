@@ -7,6 +7,7 @@ import { GeistSans } from "geist/font/sans";
 import { SupabaseProvider } from "@/src/contexts/SupabaseProvider";
 import { Toaster } from "@/src/components/ui/toaster";
 import { LanguageListProvider } from "@/src/contexts/LanguageListProvider";
+import { Analytics } from '@vercel/analytics/react';
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -33,6 +34,7 @@ export default function RootLayout({
               <div className="flex-1 grid">{children}</div>
               <Toaster />
               <SpeedInsights />
+              <Analytics />
             </main>
           </LanguageListProvider>
         </SupabaseProvider>
