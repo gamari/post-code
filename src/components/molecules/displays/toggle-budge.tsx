@@ -10,5 +10,5 @@ interface Props {
 export const ToggleBudge = ({ is_public, trueText, falseText }: Props) => {
   if (is_public) return <Badge variant="default">{trueText}</Badge>;
 
-  return <Badge variant="outline">{falseText}</Badge>;
+  return <Badge variant="outline" className="text-xs">{falseText}</Badge>;
 };

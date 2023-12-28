@@ -21,7 +21,7 @@ export const CodeTableRow = ({ code, onDelete }: Props) => {
   const router = useRouter();
 
   return (
-    <div className="grid grid-cols-10 border-b py-2">
+    <div className="grid grid-cols-9 lg:grid-cols-10  border-b py-2">
       <Center>
         <ToggleBudge
           is_public={code.is_public || false}
@@ -37,7 +37,7 @@ export const CodeTableRow = ({ code, onDelete }: Props) => {
         />
       </div>
 
-      <Center>
+      <Center className="hidden lg:flex h-full">
         <FavoriteCount count={code?.favorites_count || 0} />
       </Center>
 

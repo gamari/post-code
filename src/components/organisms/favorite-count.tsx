@@ -8,9 +8,9 @@ interface Props {
 
 export const FavoriteCount = ({ count }: Props) => {
   return (
-    <div className="flex flex-row items-center relative w-fit border rounded-full p-1 pr-8">
+    <div className="text-xs  flex flex-row items-center relative w-fit border rounded-full p-1 pr-6">
       <FavoriteIcon size="xs" />
-      <Typo text={count} className="top-[2px] right-3 absolute" />
+      <Typo text={count} className="top-[4px] right-3 absolute" />
     </div>
   );
 };

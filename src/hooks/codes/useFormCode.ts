@@ -36,10 +36,11 @@ export const useFormCode = () => {
         try {
             startLoading();
             const retBadCode = await fetchCreateCode(newBadCode, client);
-    
+
             if (retBadCode) {
-                await router.refresh();
-                router.push(`/dashboard/codes/${retBadCode.id}/edit`);
+                router.refresh();
+                // router.push(`/dashboard/codes/${retBadCode.id}/edit`);
+                window.location.href = `/dashboard/codes/${retBadCode.id}/edit`
             }
         } catch (e) {
             console.error(e);
