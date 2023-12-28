@@ -5,6 +5,30 @@ import { fetchAuthUser, fetchUserById } from "@/src/libs/externals/supabase/quer
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 
+export async function actionLoginWithGoogle() {
+    console.log("actionLoginWithGoogle");
+    const supabase = getServerClient()
+
+    const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+            queryParams: {
+              access_type: 'offline',
+              prompt: 'consent',
+            },
+          },
+    })
+
+    console.log("actionLoginWithGoogle error", error);
+
+    if (error) {
+        return redirect('/login?error_status=9')
+    }
+
+    return redirect('/dashboard')
+
+}
+
 export async function actionLogin(formData: FormData) {
     const supabase = getServerClient()
 

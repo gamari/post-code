@@ -1,15 +1,17 @@
+"use client";
+
 import Link from "next/link";
 
 import { Button } from "@/src/components/atoms/buttons/button";
 import { actionGetAuthUser } from "@/src/actions/users";
-import { Logo } from "../src/components/molecules/logo";
 import { SearchBox } from "../src/components/organisms/search/SearchBox";
 import { cn } from "@/src/libs/utils";
 import { TextLinkLogo } from "@/src/components/molecules/text-link-logo";
 import { APP_TITLE } from "@/src/libs/constants";
+import { useSupabase } from "@/src/contexts/SupabaseProvider";
 
-export default async function Header() {
-  const authUser = await actionGetAuthUser();
+export default function Header() {
+  const { authUser } = useSupabase();
 
   return (
     <nav

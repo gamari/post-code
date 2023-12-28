@@ -7,6 +7,7 @@ import React from "react";
 import { LabelInput } from "@/src/components/molecules/forms/LabelInput";
 import { LoginFormErrorMessage } from "./login-form-error-message";
 import { Heading } from "@/src/components/atoms/texts/heading";
+import { GoogleLoginButton } from "../GoogleLoginButton";
 
 interface Props {
   errorStatus: string;
@@ -42,6 +43,8 @@ export const LoginForm = ({ errorStatus }: Props) => {
         <LinkButton url="/register" label="ユーザー登録画面へ" />
         <LoginFormErrorMessage status={errorStatus} />
       </form>
+
+      <GoogleLoginButton />
     </div>
   );
 };
