@@ -258,6 +258,7 @@ export interface Database {
           avatar_url: string | null
           description: string | null
           email: string | null
+          icon_type: string | null
           id: string
           username: string
           x_url: string | null
@@ -266,6 +267,7 @@ export interface Database {
           avatar_url?: string | null
           description?: string | null
           email?: string | null
+          icon_type?: string | null
           id: string
           username: string
           x_url?: string | null
@@ -274,6 +276,7 @@ export interface Database {
           avatar_url?: string | null
           description?: string | null
           email?: string | null
+          icon_type?: string | null
           id?: string
           username?: string
           x_url?: string | null

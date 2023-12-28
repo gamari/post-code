@@ -10,6 +10,7 @@ import { AccountIcon } from "@/src/components/atoms/icons/account-icon";
 import { FavoriteIcon } from "@/src/components/atoms/icons/favorite-icon";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { TimeAgo } from "@/src/components/molecules/time-ago";
+import { Avatar } from "@/src/components/molecules/avatar";
 
 interface Props {
   code: CodeDetail;
@@ -39,7 +40,7 @@ const CodePanelFooter = ({ code }: { code: CodeDetail }) => {
     <div className="flex flex-row justify-between w-full items-center text-gray-600">
       <div className="flex flex-row gap-2">
         <div className="flex flex-row items-center gap-2">
-          <AccountIcon size="sm" />
+          <Avatar size="sm" iconType={code?.user?.icon_type} />
           <Typo
             text={code?.user?.username}
             size="md"

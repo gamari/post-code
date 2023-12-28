@@ -17,6 +17,7 @@ import { Input } from "../../atoms/forms/input";
 import { SubmitHandler } from "react-hook-form";
 import { ErrorText } from "../../atoms/texts/error-text";
 import { Textarea } from "../../atoms/forms/textarea";
+import { Avatar } from "../../molecules/avatar";
 
 interface Props {
   user: User;
@@ -26,7 +27,8 @@ interface Props {
 // TODO fix types
 export const AccountForm = ({ user: initUser, className = "" }: Props) => {
   const { infoAlert, errorAlert } = useAlert();
-  const { register, handleSubmit, errors, saveUser } = useFormAccount(initUser);
+  const { register, handleSubmit, errors, saveUser, iconType, selectIcon } =
+    useFormAccount(initUser);
 
   const handleUpdate: SubmitHandler<AccountFormValues> = async (data) => {
     try {
@@ -51,9 +53,7 @@ export const AccountForm = ({ user: initUser, className = "" }: Props) => {
           </div>
           <div>
             <Heading type="h4">自己紹介</Heading>
-            <Textarea {...register("description")} 
-            rows={8}
-            />
+            <Textarea {...register("description")} rows={8} />
             <ErrorText text={errors.description?.message} />
           </div>
 
@@ -66,6 +66,49 @@ export const AccountForm = ({ user: initUser, className = "" }: Props) => {
               </div>
             </div>
             <ErrorText text={errors.x_url?.message} />
+          </div>
+
+          <div>
+            <Heading type="h4">アイコン</Heading>
+
+            <div className="flex flex-row items-center gap-6">
+              <div
+                onClick={() => selectIcon(null)}
+                className={cn(
+                  "border-2 border-gray-200 rounded-full cursor-pointer",
+                  iconType == null && "border-blue-500"
+                )}
+              >
+                <Avatar />
+              </div>
+              <div
+                onClick={() => selectIcon("panda")}
+                className={cn(
+                  "border-2 border-gray-200 rounded-full cursor-pointer",
+                  iconType == "panda" && "border-blue-500"
+                )}
+              >
+                <Avatar iconType="panda" />
+              </div>
+              <div
+                onClick={() => selectIcon("rabbit")}
+                className={cn(
+                  "border-2 border-gray-200 rounded-full cursor-pointer",
+                  iconType == "rabbit" && "border-blue-500"
+                )}
+              >
+                <Avatar iconType="rabbit" />
+              </div>
+              <div
+                onClick={() => selectIcon("cat")}
+                className={cn(
+                  "border-2 border-gray-200 rounded-full cursor-pointer",
+                  iconType == "cat" && "border-blue-500"
+                )}
+              >
+                <Avatar iconType="cat" />
+              </div>
+            </div>
           </div>
 
           <Button type="submit" className="mt-3">

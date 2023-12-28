@@ -6,6 +6,7 @@ import { Logo } from "../src/components/molecules/logo";
 import { SearchBox } from "../src/components/organisms/search/SearchBox";
 import { cn } from "@/src/libs/utils";
 import { TextLinkLogo } from "@/src/components/molecules/text-link-logo";
+import { APP_TITLE } from "@/src/libs/constants";
 
 export default async function Header() {
   const authUser = await actionGetAuthUser();
@@ -18,7 +19,7 @@ export default async function Header() {
       )}
     >
       <div className="w-full max-w-6xl flex justify-between items-center p-3 text-sm px-10">
-        <TextLinkLogo url="/" label="BadCodes" />
+        <TextLinkLogo url="/" label={APP_TITLE} />
 
         <div className="flex items-center gap-4">
           <SearchBox />

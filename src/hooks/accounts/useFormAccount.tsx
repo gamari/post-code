@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -26,6 +26,11 @@ export interface AccountFormValues {
 export const useFormAccount = (initUser: User) => {
   const router = useRouter();
   const { client } = useSupabase();
+
+  const [iconType, setIconType] = useState<string | null>(initUser?.icon_type || null);
+  const selectIcon = (type: string | null) => {
+    setIconType(type);
+  };
   
   const {
     register,
@@ -51,7 +56,9 @@ export const useFormAccount = (initUser: User) => {
   const saveUser: SubmitHandler<AccountFormValues> = async (data) => {
     if (!client) return;
 
-    await fetchUpdateUser(data as User, client);
+    const updatedData = { ...data, icon_type: iconType } as any;
+
+    await fetchUpdateUser(updatedData, client);
     router.refresh();
   };
 
@@ -60,5 +67,7 @@ export const useFormAccount = (initUser: User) => {
     handleSubmit,
     errors,
     saveUser,
+    iconType,
+    selectIcon
   };
 };

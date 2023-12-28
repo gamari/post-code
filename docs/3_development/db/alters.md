@@ -12,7 +12,7 @@ ALTER VIEW public.user_public_info RENAME TO public_users;
 **Viewの作成**
 
 CREATE OR REPLACE VIEW public_users AS
-SELECT u.id, u.username,  u.avatar_url, u.description, u.x_url
+SELECT u.id, u.username,  u.avatar_url, u.description, u.x_url, u.icon_type
 FROM users u;
 
 **列変更**

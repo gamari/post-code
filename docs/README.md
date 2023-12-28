@@ -11,6 +11,7 @@
 [CodeCanYou](https://codecanyon.net/category/mobile)
 
 [Icon](https://icon-icons.com/ja/%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3/%E3%82%B3%E3%83%BC%E3%83%89/73620)
+[FLATICON](https://www.flaticon.com/free-icons/animal-avatar)
 
 ## デザイン
 
@@ -25,11 +26,12 @@
 ### Next
 
 
-- [ ] ダッシュボードの取得を無限にする
+- [ ] ユーザーアイコンを動物にする
+- [ ] 言語を色々入れる
+
 - [ ] 言語別検索
 - [ ] 画面半分の表示だけ修正する
 - [ ] コメント数を入れる
-- [ ] 言語を色々入れる
 
 - [wip] お気に入り登録時の挙動を直す
 - [ ] お気に入りコードの「言語」を紐づける
@@ -100,3 +102,4 @@
 - [x] CommentPanelを一つだけアニメーションする
 - [x] エディターの文字数制限をかける
 - [x] Timeagoを導入
+- [x] ダッシュボードの取得を無限にする
