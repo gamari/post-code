@@ -8,12 +8,6 @@ interface Props {
 }
 
 const DashboardLayout: FunctionComponent<Props> = async ({ children }) => {
-  const user = await actionGetMySelf();
-
-  if (!user) {
-    return <div>ログインしてください</div>;
-  }
-
   return (
     <div className="max-w-7xl mx-auto flex flex-row pt-4 gap-6 w-full">
       <div className="pl-8 pt-6">

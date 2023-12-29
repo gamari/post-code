@@ -1,8 +1,11 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 
 import { LeftIcon } from "../../atoms/icons/left-icon";
 import { Typo } from "../../atoms/texts/typo";
+import { useRouter } from "next/navigation";
 
 interface Props {
   url: string;
@@ -11,6 +14,16 @@ interface Props {
 }
 
 export const BackButton = ({ url, label, className }: Props) => {
+  const router = useRouter();
+  if (!url)
+    return (
+      <LeftIcon
+        onClick={() => {
+          router.back();
+        }}
+      />
+    );
+
   return (
     <Link
       href={url}
