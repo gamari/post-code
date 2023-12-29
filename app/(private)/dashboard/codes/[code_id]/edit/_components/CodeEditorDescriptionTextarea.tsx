@@ -22,7 +22,7 @@ export const CodeEditorDescriptionTextarea = () => {
         onChange={(e) => {
           setDescription(e.target.value);
         }}
-        rows={10}
+        rows={8}
         placeholder="上記コードの説明を書いてください（マークダウン形式）"
       />
     </div>

@@ -13,15 +13,14 @@ interface Props {
 }
 
 export const UserInfoCard = ({ user }: Props) => {
-  console.log(user);
   return (
     <div className="rounded-md bg-white px-5 py-6 whitespace-pre-wrap">
       <div className="flex flex-row gap-2 items-center">
-        <Avatar src={user?.avatar_url} size="md" iconType="" />
-        <Typo text={user?.username} size="xs" />
+        <Avatar size="md" iconType={user?.icon_type} />
+        <Typo text={user?.username} size="md" className="text-gray-700" />
       </div>
 
-      {user?.description && <Description size="sm" className="mt-3 pt-2 border-t">{user.description}</Description>}
+      {user?.description && <Description size="md" className="p-2 mt-3 pt-2 border-t">{user.description}</Description>}
 
       {user.x_url && (
         <div>

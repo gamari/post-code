@@ -20,7 +20,7 @@ export const CodeEditor: FunctionComponent<Props> = ({ code }: Props) => {
       <div className="flex flex-row gap-4">
         <div className="w-[600px]">
           <CodeEditorTitleInput />
-          <CodeFileEditor className="mt-12 h-[300px]" />
+          <CodeFileEditor className="mt-12 h-[400px]" />
           <CodeEditorDescriptionTextarea />
         </div>
 
