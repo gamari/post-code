@@ -17,7 +17,7 @@ export const DashboardCodeListTab = async () => {
           <NewCodeModalButton />
         </div>
 
-        <NoContent />
+        <NoContent>作成したコードがありません</NoContent>
       </div>
     );
 

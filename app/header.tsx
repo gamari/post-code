@@ -1,15 +1,13 @@
-"use client";
-
 import { SearchBox } from "../src/components/organisms/search/SearchBox";
 import { cn } from "@/src/libs/utils";
 import { TextLinkLogo } from "@/src/components/molecules/text-link-logo";
 import { APP_TITLE } from "@/src/libs/constants";
-import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { LoginButton } from "@/src/components/molecules/buttons/login-button";
 import { DashboardButton } from "@/src/components/molecules/buttons/dashboard-button";
+import { actionGetAuthUser } from "@/src/actions/users";
 
-export default function Header() {
-  const { authUser, loading } = useSupabase();
+export default async function Header() {
+  const authUser = await actionGetAuthUser();
 
   return (
     <nav
@@ -22,13 +20,9 @@ export default function Header() {
         <TextLinkLogo url="/" label={APP_TITLE} />
 
         <div className="flex items-center gap-4">
-          {!loading && (
-            <>
-              <SearchBox />
+          <SearchBox />
 
-              {authUser ? <DashboardButton /> : <LoginButton />}
-            </>
-          )}
+          {authUser ? <DashboardButton /> : <LoginButton />}
         </div>
       </div>
     </nav>

@@ -12,13 +12,12 @@ export const GoogleLoginButton = () => {
   const handleLogin = async () => {
     await client?.auth.signInWithOAuth({
       provider: "google",
+      options: {
+        // TODO 環境変数に移す
+        redirectTo: `http://localhost:3000/auth/callback`,
+      },
     });
   };
 
-  return (
-    <GoogleButton
-      onClick={handleLogin}
-      label="Googleでログイン"
-    />
-  );
+  return <GoogleButton onClick={handleLogin} label="Googleでログイン" />;
 };
