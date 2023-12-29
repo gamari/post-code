@@ -2,8 +2,6 @@
 
 import React from "react";
 
-import { Table, TableBody } from "@/src/components/ui/table";
-
 import { CodeDetail } from "@/src/types";
 import { useBadCodeList } from "@/src/hooks/codes/useCodeList";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
@@ -16,6 +14,8 @@ interface CodeTableProps {
   codes: CodeDetail[];
   className?: string;
 }
+
+export const TABLE_GRID_CSS = "grid-cols-[80px_1fr_50px_80px_80px_100px]";
 
 export const CodeTable = ({ codes: initCodes, className }: CodeTableProps) => {
   const { codes, removeBadCode } = useBadCodeList(initCodes);
@@ -32,11 +32,16 @@ export const CodeTable = ({ codes: initCodes, className }: CodeTableProps) => {
 
   return (
     <div className={cn("border-y", className)}>
-      <CodeTableHeader />
+      <CodeTableHeader className={TABLE_GRID_CSS} />
 
       <div className="bg-white w-full border-t">
         {codes?.map((code) => (
-          <CodeTableRow key={code.id} code={code} onDelete={handleDelete} />
+          <CodeTableRow
+            key={code.id}
+            code={code}
+            onDelete={handleDelete}
+            className={TABLE_GRID_CSS}
+          />
         ))}
       </div>
     </div>
