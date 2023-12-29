@@ -10,7 +10,7 @@ interface Props {
 
 export const TopSection = ({ className, children }: Props) => {
   return (
-    <Section className={cn("px-10 lg:px-0 py-16", className)}>
+    <Section className={cn("px-10 lg:px-0 py-24 lg:py-16", className)}>
       <div className="max-w-7xl w-full mx-auto">{children}</div>
     </Section>
   );

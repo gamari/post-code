@@ -10,9 +10,9 @@ interface Props {
 
 export const FavoriteCount = ({ count }: Props) => {
   return (
-    <Flex alignItems="center" className="text-xs relative w-fit p-1 pr-6">
+    <Flex alignItems="center" className="text-xs" gap={4}>
       <FavoriteIcon size="xs" />
-      <Typo text={count} className="top-[4px] right-3 absolute" />
+      <Typo text={count} className="" />
     </Flex>
   );
 };

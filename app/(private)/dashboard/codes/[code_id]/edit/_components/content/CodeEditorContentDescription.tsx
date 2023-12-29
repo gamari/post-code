@@ -7,7 +7,7 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
 import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/setter/useSetEditorSelectedFile";
 
-export const CodeEditorDescriptionTextarea = () => {
+export const CodeEditorContentDescription = () => {
   const { selectedFile } = useGetEditorSelectedFile();
   const { setDescription } = useSetEditorSelectedFile();
 

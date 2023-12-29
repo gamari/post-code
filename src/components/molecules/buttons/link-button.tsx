@@ -25,7 +25,7 @@ export const LinkButton = ({
     <Button
       asChild
       variant={isActive ? "secondary" : "outline"}
-      className={cn("w-full flex items-center gap-2 text-gray-600", isActive && "font-bold text-gray-700", className)}
+      className={cn("w-full flex items-center gap-2 text-gray-600", isActive && "font-bold text-gray-900", className)}
     >
       <Link href={url} target={target}>
         {Icon && Icon}
