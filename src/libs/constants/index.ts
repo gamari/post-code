@@ -1,1 +1,1 @@
-export const APP_TITLE = "CodePost";
+export const APP_TITLE = "PostCode";

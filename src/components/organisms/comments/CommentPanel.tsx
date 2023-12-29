@@ -45,7 +45,7 @@ export const CommentPanel = ({ comment }: Props) => {
 
       <div className="flex flex-row-reverse items-center gap-2 text-gray-600 mt-4 px-2">
         <Typo text={comment?.user?.username} size="md" />
-        <Avatar size="sm" />
+        <Avatar size="sm" iconType={comment?.user?.icon_type} />
         <div className="flex items-center flex-row gap-2">
           <DateIcon size="sm" />
           <TimeAgo date={comment.created_at || ""} />
