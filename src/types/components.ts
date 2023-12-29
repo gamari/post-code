@@ -1,5 +1,10 @@
 export interface BaseProps {
     className?: string;
+    onClick?: () => void;
+}
+
+export interface ContainerProps extends BaseProps {
+    children?: React.ReactNode;
 }
 
 export interface IconProps {

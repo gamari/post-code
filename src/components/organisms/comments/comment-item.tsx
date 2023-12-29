@@ -1,8 +1,7 @@
 import React from "react";
 
-import { SlideIn } from "../../molecules/animation/SlideIn";
 import { Comment, CommentDetail } from "@/src/types";
-import { HDotIcon } from "../../atoms/icons/HDotIcon";
+import { HDotIcon } from "../../atoms/icons/h-dot-icon";
 import { Avatar } from "../../molecules/avatar";
 import { Username } from "../../atoms/texts/username";
 import { DateString } from "../../atoms/texts/date-string";
