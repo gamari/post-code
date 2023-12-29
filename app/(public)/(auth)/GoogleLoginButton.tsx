@@ -4,6 +4,7 @@ import React from "react";
 
 import { Button } from "@/src/components/atoms/buttons/button";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
+import { GoogleButton } from "@/src/components/molecules/buttons/google-button";
 
 export const GoogleLoginButton = () => {
   const { client } = useSupabase();
@@ -15,8 +16,9 @@ export const GoogleLoginButton = () => {
   };
 
   return (
-    <Button type="button" onClick={handleLogin}>
-      GoogleLogin
-    </Button>
+    <GoogleButton
+      onClick={handleLogin}
+      label="Googleでログイン"
+    />
   );
 };
