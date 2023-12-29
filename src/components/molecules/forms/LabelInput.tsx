@@ -25,7 +25,7 @@ export const LabelInput = ({
   type
 }: Props) => {
   return (
-    <div>
+    <div className="w-full">
       <Heading type="h4">{label}</Heading>
       <Input
         id={id}
