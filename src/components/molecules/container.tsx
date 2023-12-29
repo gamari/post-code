@@ -7,5 +7,5 @@ interface Props {
 }
 
 export const Container = ({ className = "", children }: Props) => {
-  return <div className={cn("mx-auto max-w-5xl", className)}>{children}</div>;
+  return <div className={cn("mx-auto max-w-7xl", className)}>{children}</div>;
 };

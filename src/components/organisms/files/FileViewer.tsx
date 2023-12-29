@@ -31,7 +31,7 @@ export const FileViewer = ({ file, className }: Props) => {
       <SyntaxHighlighter
         language={getFileExtensionType(file?.name)}
         style={style}
-        className="p-4 flex-1 "
+        className="p-4 flex-1"
         showLineNumbers
       >
         {file.content || ""}

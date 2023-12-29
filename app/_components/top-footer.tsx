@@ -5,7 +5,7 @@ import { LinkText } from "@/src/components/molecules/displays/link-text";
 export const TopFooter = () => {
   return (
     <footer className="border-t py-12 w-full bg-white">
-      <Container>
+      <Container className="px-6">
         <div className="flex flex-row items-center justify-between">
           <div>
             <p>© 2023 BadCode</p>

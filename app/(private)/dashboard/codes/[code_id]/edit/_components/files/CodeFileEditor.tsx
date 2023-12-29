@@ -63,7 +63,7 @@ export const CodeFileEditor = ({ className }: Props) => {
         editorProps={{ $blockScrolling: true }}
         height="100%"
         width="100%"
-        fontSize={16}
+        fontSize={14}
       />
     </div>
   );
