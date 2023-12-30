@@ -2,7 +2,6 @@
 
 import React from "react";
 
-import { Button } from "@/src/components/atoms/buttons/button";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { GoogleButton } from "@/src/components/molecules/buttons/google-button";
 
@@ -13,8 +12,7 @@ export const GoogleLoginButton = () => {
     await client?.auth.signInWithOAuth({
       provider: "google",
       options: {
-        // TODO 環境変数に移す
-        redirectTo: `http://localhost:3000/auth/callback`,
+        redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/callback`,
       },
     });
   };

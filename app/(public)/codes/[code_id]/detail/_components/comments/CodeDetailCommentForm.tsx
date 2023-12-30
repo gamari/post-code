@@ -47,6 +47,7 @@ export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
         onChange={(e) => setComment(e.target.value)}
         placeholder="コメントを入力"
         rows={8}
+        onSubmit={handleCreateComment}
       />
 
       <div className="flex flex-row-reverse mt-3">

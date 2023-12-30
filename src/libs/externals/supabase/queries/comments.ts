@@ -30,7 +30,8 @@ export const fetchCommentListWithUser = async (client: SupabaseClient, options?:
     .select(`
           *,
           ${PUBLIC_USER_TABLE}!user_id(
-            username
+            username,
+            icon_type
           )
         `);
   query = applyQueryOptions(query, options);

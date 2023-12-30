@@ -1,39 +1,19 @@
 # 概要
 
-タスクやリンクをまとめます。
-
-## Color
-
-## 参考リンク
-
-[Qiita](https://qiita.com/)
-[GitHub](https://github.com/search?q=django&type=repositories)
-[CodeCanYou](https://codecanyon.net/category/mobile)
-
-[Icon](https://icon-icons.com/ja/%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3/%E3%82%B3%E3%83%BC%E3%83%89/73620)
-[FLATICON](https://www.flaticon.com/free-icons/animal-avatar)
-
-## デザイン
-
-- z-index
-  - Header
-    - 100
-  - Sidebar
-    - 200
+タスクやデザインをまとめます
 
 ## タスク一覧
 
 ### Next
 
-- [ ] ログイン・登録のオートコンプリートを直す
+
 - [ ] コメント数を入れる
-- [ ] リファクタリング
-- [ ] コメントのアイコンを表示する
-- [ ] 登録時のauthの更新されない処理を直す
+- [ ] 登録時の auth の更新されない処理を直す
 - [wip] お気に入り登録時の挙動を直す
 
+- [ ] ログイン・登録のオートコンプリートを直す
 - [ ] 利用規約を作成
-  -  利用規約の同意を作成
+  - 利用規約の同意を作成
 - [ ] タイトル検索の実装
 
 - [ ] 言語別検索
@@ -46,15 +26,16 @@
   - [ ] useDeleteEditorFile の部分が名前被りしてる
 - [ ] ユーザーページの作成
 
-- [ ] refresh問題を直す
+- [ ] refresh 問題を直す
   - [ ] お気に入り登録時
   - [ ] 新規作成時
   - [ ] ファイル編集時
 
+- [ ] コメント時に「新しいコメントを取得」してから追加する
 
 ## デプロイ前
 
-- [ ] username のuniqueをかける
+- [ ] username の unique をかける
 - [ ] テーブルの制限をかける
 
 ## Hold
@@ -110,14 +91,16 @@
 - [x] コメントパネルのデザインを変更する
 - [x] お問い合わせページ
 - [x] もっと見る機能を追加
-- [x] CodeEditorのキャッシュを禁止する
-- [x] CommentPanelを一つだけアニメーションする
+- [x] CodeEditor のキャッシュを禁止する
+- [x] CommentPanel を一つだけアニメーションする
 - [x] エディターの文字数制限をかける
-- [x] Timeagoを導入
+- [x] Timeago を導入
 - [x] ダッシュボードの取得を無限にする
 - [x] Google 認証の導入
 - [x] ユーザーアイコンを動物にする
 - [x] 画面半分の表示だけ修正する
 - [x] ブランチ切って、開発する
   - [x] 反映されないことを確認する
-
+- [x] リファクタリング
+- [x] Ctrl + エンターでコメントを送信
+- [x] コメントのアイコンを表示する
