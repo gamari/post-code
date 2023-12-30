@@ -42,7 +42,7 @@ export const LanguageListProvider = ({ children }: ProviderProps) => {
   );
 };
 
-export const useLanguageList = () => {
+export const useLanguageListContext = () => {
   const context = useContext(LanguageListContext);
   if (context === undefined) {
     throw new Error("LanguageListProvider内で利用してください");

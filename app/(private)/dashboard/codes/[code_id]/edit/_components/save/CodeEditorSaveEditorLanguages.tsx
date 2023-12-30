@@ -3,17 +3,16 @@ import React, { useRef, useState } from "react";
 import { CloseIcon } from "@/src/components/atoms/icons/close-icon";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { Typo } from "@/src/components/atoms/texts/typo";
-import { useGetLanguageList } from "@/src/hooks/codes/languages/useGetLanguageList";
-import { useSuggestLanguageList } from "@/src/hooks/codes/languages/useSuggestLanguageList";
-import { useFormLanguage } from "@/src/hooks/codes/languages/useFormLanguage";
+import { useSuggestLanguageList } from "@/src/hooks/languages/useSuggestLanguageList";
+import { useFormLanguage } from "@/src/hooks/languages/useFormLanguage";
 import { Language } from "@/src/types";
 import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
+import { useLanguageList } from "@/src/hooks/languages/useLanguageList";
 
 export const CodeEditorSaveEditorLanguages = () => {
   const { code, setLanguage: setEditorLanguage } = useCodeEditor();
+  const { languageList, getLanguage } = useLanguageList();
 
-  // TODO getterを消去する
-  const { languageList, getLanguageName } = useGetLanguageList();
   const { language, setLanguage } = useFormLanguage();
   const { suggestedLanguages, setSuggestedLanguages } =
     useSuggestLanguageList();
@@ -89,7 +88,7 @@ export const CodeEditorSaveEditorLanguages = () => {
               {code?.language ? (
                 <>
                   <Typo
-                    text={getLanguageName(code?.language?.id) || ""}
+                    text={getLanguage(code?.language?.id) || ""}
                     className="text-gray-700 font-semibold text-sm ml-2"
                   />
                   <CloseIcon
