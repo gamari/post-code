@@ -16,7 +16,7 @@ export const CodeIcon = ({ fileType, size = "md" }: Props) => {
   const className = cn(
     size === "sm" && "h-5 w-5",
     size === "md" && "h-8 w-8",
-    size == "lg" && "h-12 w-12"
+    size == "lg" && "h-10 w-10"
   );
   
   if (!fileType) return <Logo className={className} />;

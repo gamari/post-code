@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import AceEditor from "react-ace";
 
@@ -34,6 +34,7 @@ interface Props {
 
 export const CodeEditorContentFile = ({ className }: Props) => {
   const { selectedFile, setSelectedFile } = useCodeEditorSelectedFile();
+  const editorRef = useRef<AceEditor>(null);
 
   if (!selectedFile)
     return (
@@ -50,6 +51,7 @@ export const CodeEditorContentFile = ({ className }: Props) => {
       </div>
 
       <AceEditor
+        ref={editorRef}
         mode={getFileExtensionType(selectedFile.name)}
         theme="monokai"
         value={selectedFile?.content || ""}

@@ -19,7 +19,7 @@ export const CodeDetailSidebarToolsCard = async ({
   const isFavorite = await actionCheckFavoriteCode(badCode?.id);
 
   return (
-    <div className="rounded-md bg-white w-full p-5">
+    <div className="rounded-md bg-white w-full p-5 py-7">
       <div className="flex flex-col gap-2">
         {isLogin && (
           <>
@@ -28,11 +28,6 @@ export const CodeDetailSidebarToolsCard = async ({
           </>
         )}
         <CodeDetailShareButton code={badCode} />
-      </div>
-
-      <div className="mt-4 text-gray-600 text-sm">
-        <span>更新日:</span>
-        <DateString value={badCode?.created_at} />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
-import { cn } from "@/src/libs/utils";
-import { BaseProps, ContainerProps } from "@/src/types/components";
 import React from "react";
+import { cn } from "@/src/libs/utils";
+import { ContainerProps } from "@/src/types/components";
 
 interface Props extends ContainerProps {
   direction?: "row" | "column";

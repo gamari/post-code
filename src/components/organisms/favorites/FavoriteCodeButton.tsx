@@ -31,5 +31,5 @@ export const FavoriteCodeButton: FunctionComponent<Props> = ({
 
   if (isFavorite) return <UnlikeButton onClick={handleClick} count={count} />;
 
-  return <LikeButton onClick={handleClick} />;
+  return <LikeButton onClick={handleClick} count={count} />;
 };

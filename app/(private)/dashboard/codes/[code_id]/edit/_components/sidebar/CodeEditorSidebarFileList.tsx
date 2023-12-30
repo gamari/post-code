@@ -29,7 +29,7 @@ interface Props {
 export const CodeEditorSidebarFileList = ({ className }: Props) => {
   const { isOpen, toggleModal } = useModal();
 
-  const { files } = useCodeEditorFiles();
+  const { files, updateFile } = useCodeEditorFiles();
   const { selectedFile, setSelectedFile } = useCodeEditorSelectedFile();
   const { targetRenameFile, setTargetRenameFile } =
     useCodeEditorTargetRenameFile();
@@ -37,6 +37,8 @@ export const CodeEditorSidebarFileList = ({ className }: Props) => {
   const { onDeleteFile } = useDeleteFileInSidebar();
 
   const handleClickFile = (file: File) => {
+    if (selectedFile?.id === file.id) return;
+    if (selectedFile) updateFile(selectedFile);
     setSelectedFile(file);
   };
 
