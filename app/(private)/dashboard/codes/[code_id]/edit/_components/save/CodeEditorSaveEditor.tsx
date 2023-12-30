@@ -9,20 +9,17 @@ import { Switch } from "@/src/components/ui/switch";
 import { CodeEditorSaveEditorDescription } from "./CodeEditorSaveEditorDescription";
 import { CodeEditorSaveEditorLanguages } from "./CodeEditorSaveEditorLanguages";
 import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
-import { useCodeEditorIsPublic } from "@/src/hooks/codes/editors/useCodeEditorIsPublic";
 
 interface Props {
   className?: string;
 }
 
 export const CodeEditorSaveEditor = ({ className }: Props) => {
-  const { code } = useCodeEditor();
-  const { setIsPublic } = useCodeEditorIsPublic();
+  const { code, setIsPublic } = useCodeEditor();
 
   return (
     <div className={cn("", className)}>
       <CodeEditorSaveEditorDescription />
-
       <CodeEditorSaveEditorLanguages />
 
       <div className="my-6 flex items-center gap-2">

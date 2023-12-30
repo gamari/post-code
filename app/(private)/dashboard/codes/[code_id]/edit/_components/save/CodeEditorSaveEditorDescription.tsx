@@ -7,13 +7,11 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 import { MarkdownPreviewer } from "@/src/components/molecules/displays/markdown-previewer";
 import { Toggle } from "@/src/components/ui/toggle";
 import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
-import { useCodeEditorDescription } from "@/src/hooks/codes/editors/useCodeEditorDescription";
 
 export const CodeEditorSaveEditorDescription = () => {
   const [isPreview, setIsPreview] = React.useState(false);
 
-  const { code } = useCodeEditor();
-  const { setDescription } = useCodeEditorDescription();
+  const { code, setDescription } = useCodeEditor();
 
   return (
     <div>

@@ -5,7 +5,6 @@ import React from "react";
 import { Textarea } from "@/src/components/atoms/forms/textarea";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
-import { useCodeEditorDescription } from "@/src/hooks/codes/editors/useCodeEditorDescription";
 
 export const CodeEditorContentDescription = () => {
   const { selectedFile, setDescription } = useCodeEditorSelectedFile();

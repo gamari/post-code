@@ -3,17 +3,14 @@ import React, { useRef, useState } from "react";
 import { CloseIcon } from "@/src/components/atoms/icons/close-icon";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { Typo } from "@/src/components/atoms/texts/typo";
-import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";
 import { useGetLanguageList } from "@/src/hooks/codes/languages/useGetLanguageList";
 import { useSuggestLanguageList } from "@/src/hooks/codes/languages/useSuggestLanguageList";
 import { useFormLanguage } from "@/src/hooks/codes/languages/useFormLanguage";
 import { Language } from "@/src/types";
-import { useCodeEditorLanguage } from "@/src/hooks/codes/editors/useCodeEditorLanguage";
+import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
 
 export const CodeEditorSaveEditorLanguages = () => {
-  const { code } = useGetEditorCode();
-
-  const { setLanguage: setEditorLanguage } = useCodeEditorLanguage();
+  const { code, setLanguage: setEditorLanguage } = useCodeEditor();
 
   // TODO getterを消去する
   const { languageList, getLanguageName } = useGetLanguageList();
