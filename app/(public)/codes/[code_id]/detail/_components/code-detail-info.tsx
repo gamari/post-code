@@ -25,7 +25,7 @@ export const CodeDetailInfo: FunctionComponent<Props> = async ({ code }) => {
         </div>
 
         {code?.description && (
-          <div className="border-t pt-6 pb-6">
+          <div className="border-t pt-6 pb-6 px-2">
             <MarkdownPreviewer content={code?.description} />
           </div>
         )}

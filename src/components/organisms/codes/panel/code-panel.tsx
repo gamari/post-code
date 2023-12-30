@@ -10,6 +10,9 @@ import { FavoriteIcon } from "@/src/components/atoms/icons/favorite-icon";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { TimeAgo } from "@/src/components/molecules/time-ago";
 import { Avatar } from "@/src/components/molecules/avatar";
+import { Flex } from "@/src/components/atoms/containers/Flex";
+import { CommentCount } from "../../comments/comment-count";
+import { FavoriteCount } from "../../favorites/favorite-count";
 
 interface Props {
   code: CodeDetail;
@@ -47,10 +50,8 @@ const CodePanelFooter = ({ code }: { code: CodeDetail }) => {
           />
         </div>
 
-        <div className="flex flex-row items-center gap-2">
-          <FavoriteIcon size="sm" />
-          <Typo text={code?.favorites_count || 0} />
-        </div>
+        <FavoriteCount count={code?.favorites_count} />
+        <CommentCount count={code?.comments_count} />
       </div>
 
       <div className="flex flex-row items-center gap-2">

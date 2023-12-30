@@ -4,7 +4,7 @@ import { Code } from "@/src/types";
 import { CodeDetailShareButton } from "./CodeDetailShareButton";
 import { DateString } from "../../../../../../../src/components/atoms/texts/date-string";
 import { actionCheckFavoriteCode } from "@/src/actions/favorites";
-import { FavoriteCodeButton } from "@/src/components/organisms/codes/FavoriteCodeButton";
+import { FavoriteCodeButton } from "@/src/components/organisms/favorites/FavoriteCodeButton";
 import { CodeDetailCommentModalButton } from "../comments/CodeDetailCommentModalButton";
 
 interface Props {

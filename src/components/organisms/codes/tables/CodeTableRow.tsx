@@ -9,9 +9,10 @@ import { LinkText } from "@/src/components/molecules/displays/link-text";
 import { ToggleBudge } from "@/src/components/molecules/displays/toggle-budge";
 import { CodeDetail } from "@/src/types";
 import { TimeAgo } from "@/src/components/molecules/time-ago";
-import { FavoriteCount } from "../../favorite-count";
+import { FavoriteCount } from "../../favorites/favorite-count";
 import { Center } from "@/src/components/atoms/containers/Center";
 import { cn } from "@/src/libs/utils";
+import { CommentCount } from "../../comments/comment-count";
 
 interface Props {
   code: CodeDetail;
@@ -31,7 +32,7 @@ export const CodeTableRow = ({ code, onDelete, className }: Props) => {
           falseText="非公開"
         />
       </Center>
-      
+
       <div className="p-2">
         <LinkText
           url={`/codes/${code.id}/detail`}
@@ -40,8 +41,9 @@ export const CodeTableRow = ({ code, onDelete, className }: Props) => {
         />
       </div>
 
-      <Center className="h-full ">
+      <Center className="h-full flex-col gap-1">
         <FavoriteCount count={code?.favorites_count || 0} />
+        <CommentCount count={code?.comments_count || 0} />
       </Center>
 
       <Center className="text-xs text-gray-500">

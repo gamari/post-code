@@ -5,30 +5,23 @@ import { Title } from "../../../../src/components/atoms/texts/title";
 import { CodeTable } from "../../../../src/components/organisms/codes/tables/CodeTable";
 import { actionGetOwnBadCodeList } from "@/src/actions/codes";
 import { NoContent } from "../../../../src/components/molecules/displays/no-content";
+import { Flex } from "@/src/components/atoms/containers/Flex";
 
 export const DashboardCodeListTab = async () => {
   const codes = await actionGetOwnBadCodeList();
 
-  if (!codes?.length)
-    return (
-      <div>
-        <div className="flex flex-row justify-between items-center gap-2 mb-6">
-          <Title label="コード一覧" />
-          <NewCodeModalButton />
-        </div>
-
-        <NoContent>作成したコードがありません</NoContent>
-      </div>
-    );
-
   return (
     <div>
-      <div className="flex flex-row justify-between items-center gap-2 mb-6">
+      <Flex justifyContent="between" alignItems="center" gap={16} className="mb-6">
         <Title label="コード一覧" />
         <NewCodeModalButton />
-      </div>
+      </Flex>
 
-      <CodeTable codes={codes} className="max-w-5xl" />
+      {codes?.length ? (
+        <CodeTable codes={codes} className="max-w-5xl" />
+      ) : (
+        <NoContent>作成したコードがありません</NoContent>
+      )}
     </div>
   );
 };
