@@ -169,7 +169,8 @@ export const fetchFavoriteCodeList = async (client: SupabaseClient, options?: Qu
                 favorites_count: favorites (count),
                 ${LANGUAGE_TABLE}!language_id(
                     *
-                )
+                ),
+                comments_count: comments (count)
             )
         `);
 
@@ -185,7 +186,8 @@ export const fetchFavoriteCodeList = async (client: SupabaseClient, options?: Qu
             ...favorite.codes,
             user: (favorite.codes as any).public_users as User,
             favorites_count: (favorite.codes as any).favorites_count[0]?.count || 0,
-            language: (favorite.codes as any).languages
+            comments_count: (favorite.codes as any).comments_count[0]?.count || 0,
+            language: (favorite.codes as any).languages,
         } as unknown as CodeDetail
     });
 }

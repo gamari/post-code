@@ -9,10 +9,10 @@ import { LinkText } from "@/src/components/molecules/displays/link-text";
 import { ToggleBudge } from "@/src/components/molecules/displays/toggle-budge";
 import { CodeDetail } from "@/src/types";
 import { TimeAgo } from "@/src/components/molecules/time-ago";
-import { FavoriteCount } from "../../favorites/favorite-count";
 import { Center } from "@/src/components/atoms/containers/Center";
 import { cn } from "@/src/libs/utils";
 import { CommentCount } from "../../comments/comment-count";
+import { FavoriteCount } from "../../favorites/favorite-count";
 
 interface Props {
   code: CodeDetail;
@@ -25,12 +25,9 @@ export const CodeTableRow = ({ code, onDelete, className }: Props) => {
 
   return (
     <div className={cn("grid border-b py-2", className)}>
-      <Center>
-        <ToggleBudge
-          is_public={code.is_public || false}
-          trueText="公開"
-          falseText="非公開"
-        />
+      <Center className="h-full flex-col gap-1">
+        <FavoriteCount count={code?.favorites_count || 0} />
+        <CommentCount count={code?.comments_count || 0} />
       </Center>
 
       <div className="p-2">
@@ -41,9 +38,12 @@ export const CodeTableRow = ({ code, onDelete, className }: Props) => {
         />
       </div>
 
-      <Center className="h-full flex-col gap-1">
-        <FavoriteCount count={code?.favorites_count || 0} />
-        <CommentCount count={code?.comments_count || 0} />
+      <Center>
+        <ToggleBudge
+          is_public={code.is_public || false}
+          trueText="公開"
+          falseText="非公開"
+        />
       </Center>
 
       <Center className="text-xs text-gray-500">

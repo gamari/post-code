@@ -15,7 +15,7 @@ interface CodeTableProps {
   className?: string;
 }
 
-export const TABLE_GRID_CSS = "grid-cols-[80px_1fr_50px_80px_80px_100px]";
+export const TABLE_GRID_CSS = "grid-cols-[70px_1fr_80px_80px_80px_100px]";
 
 export const CodeTable = ({ codes: initCodes, className }: CodeTableProps) => {
   const { codes, removeBadCode } = useBadCodeList(initCodes);

@@ -1,5 +1,18 @@
+import { PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
 import { User } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
+
+export const fetchUserByUsername = async (username: string, client: SupabaseClient) => {
+    const { data: user, error } = await client
+        .from(PUBLIC_USER_TABLE)
+        .select("*")
+        .eq("username", username)
+        .maybeSingle();
+
+    if (error) throw new Error("ユーザーの取得に失敗しました。");
+
+    return user;
+}
 
 export const fetchAuthUser = async (client: SupabaseClient) => {
     const { data: { user }, error } = await client.auth.getUser();
@@ -8,7 +21,6 @@ export const fetchAuthUser = async (client: SupabaseClient) => {
 
     return user;
 }
-
 
 
 export const fetchUserById = async (id: string, client: SupabaseClient) => {
@@ -35,3 +47,4 @@ export const fetchUpdateUser = async (newUser: User, client: SupabaseClient) => 
 
     return user;
 }
+
