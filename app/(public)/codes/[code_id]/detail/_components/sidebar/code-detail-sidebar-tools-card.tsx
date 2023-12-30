@@ -16,7 +16,10 @@ export const CodeDetailSidebarToolsCard = async ({
   badCode,
   isLogin,
 }: Props) => {
+  const { is_public } = badCode;
   const isFavorite = await actionCheckFavoriteCode(badCode?.id);
+
+  if (!is_public) return null;
 
   return (
     <div className="rounded-md bg-white w-full p-5 py-7">

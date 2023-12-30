@@ -44,12 +44,12 @@ export const AccountForm = ({ user: initUser, className = "" }: Props) => {
       <CardHeader>
         <form
           onSubmit={handleSubmit(handleUpdate)}
-          className="flex flex-col gap-10 mb-6"
+          className="flex flex-col gap-8 mb-6"
         >
           <div>
             <Heading type="h4">ユーザー名</Heading>
-            <Input {...register("username")} placeholder="ユーザー名を入力" />
-            <ErrorText text={errors.username?.message} />
+            <Input {...register("username")} placeholder="ユーザー名を入力" className="w-[180px]" />
+            <ErrorText text={errors.username?.message} className="inline-block mt-2" />
           </div>
           <div>
             <Heading type="h4">自己紹介</Heading>
@@ -58,7 +58,7 @@ export const AccountForm = ({ user: initUser, className = "" }: Props) => {
               rows={4}
               placeholder="自己紹介を入力"
             />
-            <ErrorText text={errors.description?.message} />
+            <ErrorText text={errors?.description?.message} />
           </div>
 
           <div>
