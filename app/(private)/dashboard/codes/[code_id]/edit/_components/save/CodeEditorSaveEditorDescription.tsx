@@ -22,7 +22,7 @@ export const CodeEditorSaveEditorDescription = () => {
       <div className="mt-6">
         <div className="">
           {isPreview ? (
-            <div className="border p-2 max-h-[300px] overflow-scroll scroll-auto">
+            <div className="border p-2 h-[280px] overflow-scroll scroll-auto">
               <MarkdownPreviewer content={code?.description || ""} />
             </div>
           ) : (

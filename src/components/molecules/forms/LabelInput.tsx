@@ -13,6 +13,7 @@ interface Props {
   placeholder?: string;
   setValue?: (value: string) => void;
   type?: "text" | "password" | "email";
+  autocomplete?: string;
 }
 
 export const LabelInput = ({
@@ -23,6 +24,7 @@ export const LabelInput = ({
   value,
   setValue,
   type = "text",
+  autocomplete,
 }: Props) => {
   return (
     <div className="w-full">
@@ -34,6 +36,7 @@ export const LabelInput = ({
         type={type}
         onChange={(e) => setValue?.(e.target.value)}
         placeholder={placeholder}
+        autoComplete={autocomplete}
       />
     </div>
   );

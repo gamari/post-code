@@ -11,6 +11,7 @@ import { RegisterFormErrorMessage } from "./register-form-error-message";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { GoogleSignupButton } from "../GoogleSignupButton";
 import { Flex } from "@/src/components/atoms/containers/Flex";
+import { useLoading } from "@/src/hooks/useLoading";
 
 interface Props {
   errorStatus?: string;
@@ -18,6 +19,8 @@ interface Props {
 
 // TODO 作成中を判定できるようにしたい
 export const RegisterForm = ({ errorStatus }: Props) => {
+  const { loading, startLoading, stopLoading } = useLoading();
+
   return (
     <Flex
       direction="column"
@@ -31,6 +34,12 @@ export const RegisterForm = ({ errorStatus }: Props) => {
       <form
         className="max-w-md bg-white border px-8 py-12 rounded-md flex flex-col items-center w-full justify-center gap-2 text-foreground"
         action={actionSignUp}
+        onSubmit={() => {
+          startLoading();
+          setTimeout(() => {
+            stopLoading();
+          }, 2000);
+        }}
       >
         <Heading>ユーザー登録画面</Heading>
         <LabelInput
@@ -38,21 +47,24 @@ export const RegisterForm = ({ errorStatus }: Props) => {
           name="email"
           label="メールアドレス"
           placeholder="taro@example.com"
+          autocomplete="email"
         />
         <LabelInput
           type="text"
           name="username"
           label="ユーザー名"
-          placeholder="yamada"
+          placeholder="username"
+          autocomplete="username"
         />
         <LabelInput
           type="password"
           name="password"
           label="パスワード"
           placeholder="pasword"
+          autocomplete="password"
         />
 
-        <Button type="submit" className="mt-3 w-full">
+        <Button type="submit" className="mt-3 w-full" disabled={loading}>
           ユーザー登録
         </Button>
         <LinkButton url="/login" label="ログイン画面へ" />

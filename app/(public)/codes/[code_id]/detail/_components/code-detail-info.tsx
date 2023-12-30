@@ -39,7 +39,7 @@ export const CodeDetailInfo: FunctionComponent<Props> = async ({ code }) => {
             )}
             <Flex gap={4}>
               <DateIcon size={"xs"} />
-              <div>更新</div>
+              <div>更新日</div>
               <div>
                 <DateString value={code?.created_at || ""} />
               </div>

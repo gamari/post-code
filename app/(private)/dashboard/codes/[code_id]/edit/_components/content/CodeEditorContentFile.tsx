@@ -61,6 +61,7 @@ export const CodeEditorContentFile = ({ className }: Props) => {
         }}
         name="codeEditor"
         editorProps={{ $blockScrolling: true }}
+        wrapEnabled={true}
         height="100%"
         width="100%"
         fontSize={14}

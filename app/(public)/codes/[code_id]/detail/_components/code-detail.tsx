@@ -8,7 +8,6 @@ import { CodeDetailCommentList } from "./comments/CodeDetailCommentList";
 import { CodeDetailSidebar } from "./sidebar/code-detail-sidebar";
 import { actionGetBadCodeById } from "@/src/actions/codes";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
-import { unstable_noStore } from "next/cache";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 
 interface Props {
