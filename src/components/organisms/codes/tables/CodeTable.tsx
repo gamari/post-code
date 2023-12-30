@@ -18,7 +18,7 @@ interface CodeTableProps {
 export const TABLE_GRID_CSS = "grid-cols-[70px_1fr_80px_80px_80px_100px]";
 
 export const CodeTable = ({ codes: initCodes, className }: CodeTableProps) => {
-  const { codes, removeBadCode } = useCodeList(initCodes);
+  const { codes, deleteCode } = useCodeList(initCodes);
   const { client } = useSupabase();
 
   const handleDelete = async (id: number) => {
@@ -27,7 +27,7 @@ export const CodeTable = ({ codes: initCodes, className }: CodeTableProps) => {
     if (!confirm("削除しますか？")) return;
 
     await fetchDeleteBadCode(id, client);
-    removeBadCode(id);
+    deleteCode(id);
   };
 
   return (
