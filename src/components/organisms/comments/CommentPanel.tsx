@@ -10,18 +10,18 @@ import { Typo } from "../../atoms/texts/typo";
 import { Avatar } from "../../molecules/avatar";
 import { Heading } from "../../atoms/texts/heading";
 import { DateIcon } from "../../atoms/icons/date-icon";
-import { useGetLanguage } from "@/src/hooks/languages/useGetLanguage";
 import { CodeIcon } from "../../atoms/icons/code-icon";
 import { MarkdownPreviewer } from "../../molecules/displays/markdown-previewer";
 import { TimeAgo } from "../../molecules/time-ago";
 import { Flex } from "../../atoms/containers/Flex";
+import { useLanguageList } from "@/src/hooks/languages/useLanguageList";
 
 interface Props extends BaseProps {
   comment: CommentDetail;
 }
 
 export const CommentPanel = ({ comment }: Props) => {
-  const { getLanguage } = useGetLanguage();
+  const { getLanguage } = useLanguageList();
 
   return (
     <LinkCard
@@ -33,7 +33,7 @@ export const CommentPanel = ({ comment }: Props) => {
         <Flex alignItems="center" gap={12}>
           <CodeIcon
             size="sm"
-            fileType={getLanguage(comment?.code?.language_id)}
+            fileType={getLanguage(comment?.code?.language_id)?.name || ""}
           />
           <Heading type="h4" className="flex-1">
             【{comment?.code?.title}】

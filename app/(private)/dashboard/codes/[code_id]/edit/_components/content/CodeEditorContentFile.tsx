@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import AceEditor from "react-ace";
 
@@ -24,18 +24,17 @@ import "ace-builds/src-noconflict/mode-sql";
 import { cn } from "@/src/libs/utils";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 import { getFileExtensionType } from "@/src/libs/editors";
-import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
-import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/setter/useSetEditorSelectedFile";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { CodeEditorNewFileModalButton } from "../modal/CodeEditorNewFileModalButton";
+import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
 
 interface Props {
   className?: string;
 }
 
 export const CodeEditorContentFile = ({ className }: Props) => {
-  const { selectedFile } = useGetEditorSelectedFile();
-  const { setSelectedFile } = useSetEditorSelectedFile();
+  const { selectedFile, setSelectedFile } = useCodeEditorSelectedFile();
+  const editorRef = useRef<AceEditor>(null);
 
   if (!selectedFile)
     return (
@@ -52,6 +51,7 @@ export const CodeEditorContentFile = ({ className }: Props) => {
       </div>
 
       <AceEditor
+        ref={editorRef}
         mode={getFileExtensionType(selectedFile.name)}
         theme="monokai"
         value={selectedFile?.content || ""}
@@ -61,6 +61,7 @@ export const CodeEditorContentFile = ({ className }: Props) => {
         }}
         name="codeEditor"
         editorProps={{ $blockScrolling: true }}
+        wrapEnabled={true}
         height="100%"
         width="100%"
         fontSize={14}

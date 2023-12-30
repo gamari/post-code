@@ -4,12 +4,10 @@ import React from "react";
 
 import { Textarea } from "@/src/components/atoms/forms/textarea";
 import { Heading } from "@/src/components/atoms/texts/heading";
-import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
-import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/setter/useSetEditorSelectedFile";
+import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
 
 export const CodeEditorContentDescription = () => {
-  const { selectedFile } = useGetEditorSelectedFile();
-  const { setDescription } = useSetEditorSelectedFile();
+  const { selectedFile, setDescription } = useCodeEditorSelectedFile();
 
   if (!selectedFile) return;
 

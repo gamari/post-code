@@ -12,7 +12,7 @@ export const TextLinkLogo = ({ url, label }: Props) => {
   return (
     <Link href={url} className="flex flex-row gap-2 items-center">
       <Logo />
-      <span className="text-xl text-gray-800 font-bold">{label}</span>
+      <span className="text-2xl text-gray-700 font-bold">{label}</span>
     </Link>
   );
 };

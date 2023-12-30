@@ -12,7 +12,7 @@ export const MoreButton = ({ className, url }: Props) => {
   return (
     <Link
       className={cn(
-        "inline-block px-10 py-3 text-lg font-bold border-2 rounded-lg border-gray-500 cursor-pointer hover:bg-sky-50",
+        "inline-block px-10 py-3 text-lg font-semibold border-2 rounded-lg border-gray-500 cursor-pointer hover:bg-sky-50",
         className
       )}
       href={url}

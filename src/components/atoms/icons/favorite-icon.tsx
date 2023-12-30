@@ -7,5 +7,5 @@ import React from "react";
 interface Props extends IconProps {}
 
 export const FavoriteIcon = ({ className, onClick, size = "md" }: Props) => {
-  return <StarIcon className={cn(getIconSizeClassName(size), className)} />;
+  return <StarIcon className={cn("text-gray-700", getIconSizeClassName(size), className)} />;
 };

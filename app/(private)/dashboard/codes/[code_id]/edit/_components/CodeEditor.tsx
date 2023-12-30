@@ -3,12 +3,14 @@
 import React, { FunctionComponent } from "react";
 
 import { CodeEditorSidebar } from "./sidebar/CodeEditorSidebar";
-import { CodeEditorProvider } from "@/src/contexts/CodeEditorProvider";
+import { CodeEditorProvider } from "@/src/contexts/editors/CodeEditorProvider";
 import { CodeDetail } from "@/src/types";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { CodeEditorContent } from "./content/CodeEditorContent";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
+import { CodeEditorSelectedFileProvider } from "@/src/contexts/editors/CodeEditorSelectedFileProvider";
+import { CodeEditorFilesProvider } from "@/src/contexts/editors/CodeEditorFilesProvider";
 
 interface Props {
   code: CodeDetail;
@@ -23,10 +25,14 @@ export const CodeEditor: FunctionComponent<Props> = ({ code }: Props) => {
 
   return (
     <CodeEditorProvider code={code}>
-      <Flex gap={16}>
-        <CodeEditorContent className="w-[600px]" />
-        <CodeEditorSidebar className="w-[250px]" />
-      </Flex>
+      <CodeEditorSelectedFileProvider>
+        <CodeEditorFilesProvider code={code}>
+          <Flex gap={16}>
+            <CodeEditorContent className="w-[600px]" />
+            <CodeEditorSidebar className="w-[250px]" />
+          </Flex>
+        </CodeEditorFilesProvider>
+      </CodeEditorSelectedFileProvider>
     </CodeEditorProvider>
   );
 };

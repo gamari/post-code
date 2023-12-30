@@ -16,6 +16,7 @@ export interface Database {
           id: number
           is_public: boolean | null
           language_id: number | null
+          published_date: string | null
           title: string
           updated_at: string | null
           user_id: string
@@ -26,6 +27,7 @@ export interface Database {
           id?: number
           is_public?: boolean | null
           language_id?: number | null
+          published_date?: string | null
           title: string
           updated_at?: string | null
           user_id: string
@@ -36,6 +38,7 @@ export interface Database {
           id?: number
           is_public?: boolean | null
           language_id?: number | null
+          published_date?: string | null
           title?: string
           updated_at?: string | null
           user_id?: string
@@ -297,6 +300,7 @@ export interface Database {
         Row: {
           avatar_url: string | null
           description: string | null
+          icon_type: string | null
           id: string | null
           username: string | null
           x_url: string | null
@@ -304,6 +308,7 @@ export interface Database {
         Insert: {
           avatar_url?: string | null
           description?: string | null
+          icon_type?: string | null
           id?: string | null
           username?: string | null
           x_url?: string | null
@@ -311,6 +316,7 @@ export interface Database {
         Update: {
           avatar_url?: string | null
           description?: string | null
+          icon_type?: string | null
           id?: string | null
           username?: string | null
           x_url?: string | null

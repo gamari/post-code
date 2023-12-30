@@ -17,7 +17,7 @@ export const UserInfoCard = ({ user }: Props) => {
     <div className="rounded-md bg-white px-5 py-6 whitespace-pre-wrap">
       <div className="flex flex-row gap-2 items-center">
         <Avatar size="md" iconType={user?.icon_type} />
-        <Typo text={user?.username} size="md" className="text-gray-700" />
+        <Typo text={user?.username} size="md" className="text-gray-700" isBold />
       </div>
 
       {user?.description && <Description size="md" className="p-2 mt-3 pt-2 border-t">{user.description}</Description>}

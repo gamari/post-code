@@ -4,6 +4,7 @@ import { getServerClient } from "@/src/libs/externals/supabase/admin-client";
 import { fetchCodeById, fetchCodeList, fetchCodeListByFileCode, fetchCodeListWithUser, fetchFavoriteCodeList } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchAuthUser } from "@/src/libs/externals/supabase/queries/users";
 import { createEqCondition, createOrderCondition } from "../libs/externals/supabase/queries";
+import { SEARCH_LIMIT } from "../libs/constants/limits";
 
 // One
 export const actionGetBadCodeById = async (id: number) => {
@@ -15,9 +16,13 @@ export const actionGetBadCodeById = async (id: number) => {
 // List
 export const actionGetCodeListByFileCode = async (fileCode: string) => {
     const client = getServerClient();
-    const codes = await fetchCodeListByFileCode(fileCode, client);
+    const codes = await fetchCodeListByFileCode(fileCode, client, 1, {
+        order: [
+            createOrderCondition("updated_at", false)
+        ],
+        limit: SEARCH_LIMIT
+    });
     return codes;
-
 }
 
 export const actionGetOwnBadCodeList = async () => {
@@ -43,7 +48,7 @@ export const actionGetLatestBadCodeList = async () => {
             createEqCondition("is_public", true)
         ],
         order: [
-            createOrderCondition("updated_at", false)
+            createOrderCondition("published_date", false)
         ]
     });
     return codes;

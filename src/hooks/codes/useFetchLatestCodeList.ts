@@ -7,6 +7,7 @@ export const useFetchLatestCodeList = () => {
     const { client } = useSupabase();
     const [codeList, setCodeList] = useState<CodeDetail[]>([]);
     const [loading, setLoading] = useState(false);
+    const [isDone, setIsDone] = useState(false);
 
     useEffect(() => {
         async function init() {
@@ -14,7 +15,7 @@ export const useFetchLatestCodeList = () => {
             const result = await fetchCodeList(client, {
                 order: [
                     {
-                        field: "created_at",
+                        field: "published_date",
                         ascending: false
                     }
                 ]
@@ -42,8 +43,11 @@ export const useFetchLatestCodeList = () => {
                 ]
 
             })
+            if (result?.length === 0) {
+                setIsDone(true);
+                return;
+            }
             setCodeList([...codeList, ...result]);
-
         } catch (e) {
             // TODO
         } finally {
@@ -51,6 +55,6 @@ export const useFetchLatestCodeList = () => {
         }
     }
 
-    return { codeList, loading, fetchMoreCodeList };
+    return { codeList, loading, fetchMoreCodeList, isDone };
 
 }

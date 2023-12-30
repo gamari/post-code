@@ -16,7 +16,6 @@ interface Props {
 export const revalidate = 0;
 
 const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
-  console.log("CodeDetailPage");
   unstable_noStore();
 
   return (

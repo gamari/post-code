@@ -4,16 +4,14 @@ import React from "react";
 
 import { Textarea } from "@/src/components/atoms/forms/textarea";
 import { Heading } from "@/src/components/atoms/texts/heading";
-import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";
-import { useSetEditorCode } from "@/src/hooks/codes/editors/setter/useSetEditorCode";
 import { MarkdownPreviewer } from "@/src/components/molecules/displays/markdown-previewer";
 import { Toggle } from "@/src/components/ui/toggle";
+import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
 
 export const CodeEditorSaveEditorDescription = () => {
   const [isPreview, setIsPreview] = React.useState(false);
 
-  const { code } = useGetEditorCode();
-  const { setDescription } = useSetEditorCode();
+  const { code, setDescription } = useCodeEditor();
 
   return (
     <div>
@@ -24,7 +22,7 @@ export const CodeEditorSaveEditorDescription = () => {
       <div className="mt-6">
         <div className="">
           {isPreview ? (
-            <div className="border p-2 max-h-[300px] overflow-scroll scroll-auto">
+            <div className="border p-2 h-[280px] overflow-scroll scroll-auto">
               <MarkdownPreviewer content={code?.description || ""} />
             </div>
           ) : (

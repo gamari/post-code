@@ -1,34 +1,25 @@
+import { getFileExtensionType } from "@/src/libs/editors";
+import { File } from "@/src/types";
 import React from "react";
 
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { okaidia as style } from "react-syntax-highlighter/dist/esm/styles/prism";
+
 interface Props {
-  code: string;
+  // code: string;
+  file: File;
   query: string;
 }
 
-export const HilightCodeViewer = ({ code, query }: Props) => {
-  const renderHighlightedCodeWithLineNumbers = () => {
-    if (!query)
-      return code.split("\n").map((line, index) => (
-        <div key={index}>
-          {index + 1}: {line}
-        </div>
-      ));
-
-    const lines = code.split("\n");
-    const matchIndex = lines.findIndex((line) => line.includes(query));
-
-    return lines.map((line, index) => {
-      const isHighlighted = index === matchIndex;
-      const style = isHighlighted ? { color: "orange" } : {};
-
-      return (
-        <div key={index} className="flex flex-row gap-2 whitespace-pre">
-          <span style={{ width: "30px", textAlign: "right" }} className="border-r pr-2">{index + 1}</span>
-          <span style={style}>{line}</span>
-        </div>
-      );
-    });
-  };
-
-  return <div>{renderHighlightedCodeWithLineNumbers()}</div>;
+export const HilightCodeViewer = ({ file, query }: Props) => {
+  return (
+    <SyntaxHighlighter
+      language={getFileExtensionType(file?.name)}
+      style={style}
+      className="p-4 flex-1"
+      showLineNumbers
+    >
+      {file.content || ""}
+    </SyntaxHighlighter>
+  );
 };

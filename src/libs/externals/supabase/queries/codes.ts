@@ -1,5 +1,5 @@
 import { CODE_TABLE, FILE_TABLE, LANGUAGE_TABLE, PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
-import { Code, CodeDetail, CodeFormType, SearchResultCode, User } from "@/src/types";
+import { CodeDetail, CodeFormType, SearchResultCode, User } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { QueryOptions, applyOrderBy, applyQueryOptions } from ".";
 
@@ -36,7 +36,8 @@ export const fetchCodeList = async (client: SupabaseClient, options?: QueryOptio
             ${LANGUAGE_TABLE}!language_id(
                 *
             ),
-            favorites_count: favorites (count)
+            favorites_count: favorites (count),
+            comments_count: comments (count)
         `);
 
     query = applyQueryOptions(query, options);
@@ -51,7 +52,8 @@ export const fetchCodeList = async (client: SupabaseClient, options?: QueryOptio
             ...code,
             user: code.public_users,
             favorites_count: code.favorites_count[0]?.count || 0,
-            language: code.languages
+            comments_count: code.comments_count[0]?.count || 0,
+            language: code.languages,
         }
     }) as CodeDetail[];
 }
@@ -67,13 +69,16 @@ export const fetchCodeListBeforeDate = async (date: string, client: SupabaseClie
             ${LANGUAGE_TABLE}!language_id(
                 *
             ),
-            favorites_count: favorites (count)
+            favorites_count: favorites (count),
+            comments_count: comments (count)
         `)
         .lt("created_at", date);
 
     query = applyQueryOptions(query, options);
+    query = applyOrderBy(query, options);
 
     const { data, error } = await query;
+    console.log(data);
 
     if (error) throw error;
 
@@ -82,7 +87,8 @@ export const fetchCodeListBeforeDate = async (date: string, client: SupabaseClie
             ...code,
             user: code.public_users,
             favorites_count: code.favorites_count[0]?.count || 0,
-            language: code.languages
+            comments_count: code.comments_count[0]?.count || 0,
+            language: code.languages,
         }
     }) as CodeDetail[];
 }
@@ -99,10 +105,12 @@ export const fetchCodeListWithUser = async (client: SupabaseClient, options?: Qu
             ${LANGUAGE_TABLE}!language_id(
                 *
             ),
+            comments_count: comments (count),
             favorites_count: favorites (count)
         `);
 
     query = applyQueryOptions(query, options);
+    query = applyOrderBy(query, options);
 
     const { data, error } = await query;
 
@@ -113,12 +121,16 @@ export const fetchCodeListWithUser = async (client: SupabaseClient, options?: Qu
             ...code,
             user: code.public_users,
             favorites_count: code.favorites_count[0]?.count || 0,
+            comments_count: code.comments_count[0]?.count || 0,
             language: code.languages
         }
     }) as CodeDetail[];
 }
 
-export const fetchCodeListByFileCode = async (fileCode: string, client: SupabaseClient, options?: QueryOptions) => {
+export const fetchCodeListByFileCode = async (fileCode: string, client: SupabaseClient, page = 1, options?: QueryOptions) => {
+    const pageLimit = 1;
+    const start = (page - 1) * pageLimit;
+    const end = page * pageLimit;
     let query = client
         .from(FILE_TABLE)
         .select(`
@@ -128,8 +140,10 @@ export const fetchCodeListByFileCode = async (fileCode: string, client: Supabase
             )
         `)
         .like("content", `%${fileCode}%`)
+        .range(start, end)
 
     query = applyQueryOptions(query, options);
+    query = applyOrderBy(query, options);
 
     const { data, error } = await query;
 
@@ -155,7 +169,11 @@ export const fetchFavoriteCodeList = async (client: SupabaseClient, options?: Qu
                 created_at,
                 updated_at,
                 ${PUBLIC_USER_TABLE}!user_id (*),
-                favorites_count: favorites (count)
+                favorites_count: favorites (count),
+                ${LANGUAGE_TABLE}!language_id(
+                    *
+                ),
+                comments_count: comments (count)
             )
         `);
 
@@ -170,7 +188,9 @@ export const fetchFavoriteCodeList = async (client: SupabaseClient, options?: Qu
         return {
             ...favorite.codes,
             user: (favorite.codes as any).public_users as User,
-            favorites_count: (favorite.codes as any).favorites_count[0]?.count || 0
+            favorites_count: (favorite.codes as any).favorites_count[0]?.count || 0,
+            comments_count: (favorite.codes as any).comments_count[0]?.count || 0,
+            language: (favorite.codes as any).languages,
         } as unknown as CodeDetail
     });
 }
