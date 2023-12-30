@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { CodeDetail } from "@/src/types";
 
-export const useBadCodeList = (initBadCodes: CodeDetail[]) => {
+export const useCodeList = (initBadCodes: CodeDetail[]) => {
     const [codes, setCodes] = useState<CodeDetail[]>(initBadCodes);
 
     const removeBadCode = (id: number) => {

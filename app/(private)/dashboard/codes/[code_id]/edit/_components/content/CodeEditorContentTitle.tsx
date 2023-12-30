@@ -1,15 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 
 import { Input } from "@/src/components/atoms/forms/input";
-import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";
-import { useSetEditorCode } from "@/src/hooks/codes/editors/setter/useSetEditorCode";
 import { Heading } from "@/src/components/atoms/texts/heading";
+import { useCodeEditorTitle } from "@/src/hooks/codes/editors/useCodeEditorTitle";
 
-export const CodeEditorContentTitle = () => {
-  const { title } = useGetEditorCode();
-  const { setTitle } = useSetEditorCode();
+export const CodeEditorContentTitle = memo(() => {
+  const { title, setTitle } = useCodeEditorTitle();
 
   return (
     <div className="flex flex-row items-center gap-2">
@@ -23,4 +21,4 @@ export const CodeEditorContentTitle = () => {
       />
     </div>
   );
-};
+});

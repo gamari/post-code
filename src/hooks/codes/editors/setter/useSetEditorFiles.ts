@@ -1,6 +1,6 @@
-import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
+import { useCodeEditorContext } from "@/src/contexts/editors/CodeEditorProvider";
 
 export const useSetEditorFiles = () => {
-    const { setFiles } = useCodeEditor();
+    const { setFiles } = useCodeEditorContext();
     return { setFiles }
 }

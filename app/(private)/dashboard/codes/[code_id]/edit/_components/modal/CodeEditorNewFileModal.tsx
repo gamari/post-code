@@ -8,13 +8,10 @@ import { useFormFileOfEditor } from "@/src/hooks/codes/editors/useFormFileOfEdit
 import { useAlert } from "@/src/hooks/useAlert";
 import { useLoading } from "@/src/hooks/useLoading";
 import { CreateButton } from "@/src/components/molecules/buttons/create-button";
-import { useGetEditorFiles } from "@/src/hooks/codes/editors/getter/useGetEditorFiles";
-import { useAddFileToEditorFiles } from "@/src/hooks/codes/editors/useAddFileToEditorFiles";
-import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/setter/useSetEditorSelectedFile";
-import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";
-import { useSetEditorFile } from "@/src/hooks/codes/editors/setter/useSetEditorFile";
-import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
 import { Heading } from "@/src/components/atoms/texts/heading";
+import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
+import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
+import { useCodeEditorFiles } from "@/src/hooks/codes/editors/useCodeEditorFiles";
 
 interface Props {
   isOpen: boolean;
@@ -25,12 +22,9 @@ export const CodeEditorNewFileModal = ({ isOpen, onClose }: Props) => {
   const { loading, startLoading, stopLoading } = useLoading();
   const { errorAlert } = useAlert();
 
-  const { code } = useGetEditorCode();
-  const { files } = useGetEditorFiles();
-  const { addFile } = useAddFileToEditorFiles();
-  const { selectedFile } = useGetEditorSelectedFile();
-  const { setSelectedFile } = useSetEditorSelectedFile();
-  const { setFile } = useSetEditorFile();
+  const { code } = useCodeEditor();
+  const { selectedFile, setSelectedFile } = useCodeEditorSelectedFile();
+  const { files, addFile, updateFile } = useCodeEditorFiles();
 
   const { name, setName, saveFile } = useFormFileOfEditor();
 
@@ -43,7 +37,9 @@ export const CodeEditorNewFileModal = ({ isOpen, onClose }: Props) => {
     try {
       startLoading();
       const retFile = await saveFile(code?.id);
-      setFile(selectedFile);
+
+      if (selectedFile) updateFile(selectedFile);
+
       setSelectedFile(retFile);
       addFile(retFile);
       setName("");

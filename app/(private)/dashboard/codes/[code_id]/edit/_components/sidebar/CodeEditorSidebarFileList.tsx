@@ -11,16 +11,15 @@ import {
   ContextMenuTrigger,
 } from "@/src/components/ui/context-menu";
 import { Typo } from "@/src/components/atoms/texts/typo";
-import { useSelectEditorFile } from "@/src/hooks/codes/editors/useSelectEditorFile";
-import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
 import { sortAscByName } from "@/src/libs/sortes";
-import { useGetEditorFiles } from "@/src/hooks/codes/editors/getter/useGetEditorFiles";
 import { useModal } from "@/src/hooks/useModal";
 import { CodeEditorRenameFileModal } from "../modal/CodeEditorRenameFileModal";
 import { limitString } from "@/src/libs/strings";
 import { FILE_TEXT_LIMIT } from "@/src/libs/constants/limits";
 import { useDeleteFileInSidebar } from "../../../../../../../../src/hooks/codes/editors/sidebar/useDeleteFileInSidebar";
-import { useSelectFile } from "@/src/hooks/useSelectFile";
+import { useCodeEditorFiles } from "@/src/hooks/codes/editors/useCodeEditorFiles";
+import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
+import { useCodeEditorTargetRenameFile } from "@/src/hooks/codes/editors/useCodeEditorTargetRenameFile";
 
 interface Props {
   className?: string;
@@ -30,19 +29,19 @@ interface Props {
 export const CodeEditorSidebarFileList = ({ className }: Props) => {
   const { isOpen, toggleModal } = useModal();
 
-  const { files } = useGetEditorFiles();
-  const { selectedFile } = useGetEditorSelectedFile();
-  const { selectFile } = useSelectEditorFile();
-  const { targetFile, selectFile: selectRenameFile } = useSelectFile();
+  const { files } = useCodeEditorFiles();
+  const { selectedFile, setSelectedFile } = useCodeEditorSelectedFile();
+  const { targetRenameFile, setTargetRenameFile } =
+    useCodeEditorTargetRenameFile();
 
   const { onDeleteFile } = useDeleteFileInSidebar();
 
   const handleClickFile = (file: File) => {
-    selectFile(file);
+    setSelectedFile(file);
   };
 
   const handleRename = (file: File) => {
-    selectRenameFile(file);
+    setTargetRenameFile(file);
     toggleModal();
   };
 
@@ -88,7 +87,7 @@ export const CodeEditorSidebarFileList = ({ className }: Props) => {
       ))}
 
       <CodeEditorRenameFileModal
-        targetFile={targetFile}
+        targetFile={targetRenameFile}
         isOpen={isOpen}
         onClose={toggleModal}
       />

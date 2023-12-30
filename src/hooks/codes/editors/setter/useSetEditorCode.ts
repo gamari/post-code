@@ -1,8 +1,8 @@
-import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
+import { useCodeEditorContext } from "@/src/contexts/editors/CodeEditorProvider";
 import { Language } from "@/src/types";
 
 export const useSetEditorCode = () => {
-    const { code, setCode } = useCodeEditor();
+    const { code, setCode } = useCodeEditorContext();
 
     function setTitle(title: string) {
         if (!code) return;

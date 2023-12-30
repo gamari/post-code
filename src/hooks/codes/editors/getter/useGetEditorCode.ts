@@ -1,7 +1,7 @@
-import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
+import { useCodeEditorContext } from "@/src/contexts/editors/CodeEditorProvider";
 
 export const useGetEditorCode = () => {
-    const { code } = useCodeEditor();
+    const { code } = useCodeEditorContext();
     return { 
         code,
         title: code?.title,

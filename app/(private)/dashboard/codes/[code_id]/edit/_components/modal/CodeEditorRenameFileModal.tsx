@@ -4,11 +4,10 @@ import { Button } from "@/src/components/atoms/buttons/button";
 import { Input } from "@/src/components/atoms/forms/input";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { Modal } from "@/src/components/molecules/displays/Modal";
-import { useUpdateEditorFile } from "@/src/hooks/codes/editors/useUpdateEditorFile";
 import { useAlert } from "@/src/hooks/useAlert";
 import { File } from "@/src/types";
-import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
-import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/setter/useSetEditorSelectedFile";
+import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
+import { useCodeEditorFiles } from "@/src/hooks/codes/editors/useCodeEditorFiles";
 
 interface Props {
   targetFile: File | null;
@@ -16,13 +15,16 @@ interface Props {
   onClose: () => void;
 }
 
-export const CodeEditorRenameFileModal = ({ targetFile, isOpen, onClose }: Props) => {
+export const CodeEditorRenameFileModal = ({
+  targetFile,
+  isOpen,
+  onClose,
+}: Props) => {
   const [editingName, setEditingName] = useState("");
 
   const { errorAlert } = useAlert();
-  const { updateFile } = useUpdateEditorFile();
-  const { selectedFile } = useGetEditorSelectedFile();
-  const { setSelectedFile } = useSetEditorSelectedFile();
+  const { selectedFile, setSelectedFile } = useCodeEditorSelectedFile();
+  const { updateFile } = useCodeEditorFiles();
 
   useEffect(() => {
     setEditingName(targetFile?.name || "");

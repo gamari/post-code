@@ -1,10 +1,10 @@
-import { useCodeEditor } from "@/src/contexts/CodeEditorProvider";
+import { useCodeEditorContext } from "@/src/contexts/editors/CodeEditorProvider";
 import { useGetEditorSelectedFile } from "../getter/useGetEditorSelectedFile";
 
 // TODO useSelectEditorFileで十分じゃない？
 export const useSetEditorSelectedFile = () => {
     const { selectedFile } = useGetEditorSelectedFile();
-    const { setSelectedFile } = useCodeEditor();
+    const { setSelectedFile } = useCodeEditorContext();
 
     const setDescription = (description: string) => {
         if (!selectedFile) return;

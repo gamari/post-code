@@ -3,22 +3,25 @@
 import React from "react";
 
 import { length } from "@/src/libs/strings";
-import { useSaveEditorCode } from "@/src/hooks/codes/editors/useSaveEditorCode";
+import { useSaveCodeEditor } from "@/src/hooks/codes/editors/useSaveCodeEditor";
 import { useAlert } from "@/src/hooks/useAlert";
 import { SaveButton } from "../../../../../../../../src/components/molecules/buttons/save-button";
 import { useModal } from "@/src/hooks/useModal";
 import { Modal } from "@/src/components/molecules/displays/Modal";
 import { CodeEditorSaveEditor } from "./CodeEditorSaveEditor";
 import { Button } from "@/src/components/atoms/buttons/button";
-import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";
 import { useRouter } from "next/navigation";
+import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
 
 // TODO save buttonを抜き出す
 export const CodeEditorSaveModalButton = () => {
   const router = useRouter();
-  const { code } = useGetEditorCode();
+
+  const { code } = useCodeEditor();
+
   const { isOpen, toggleModal } = useModal();
-  const { loading, saveEditor } = useSaveEditorCode();
+
+  const { loading, saveEditor } = useSaveCodeEditor();
   const { errorAlert } = useAlert();
 
   const handleOnSave = async () => {

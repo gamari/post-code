@@ -1,10 +1,11 @@
 import React from "react";
+
 import { CodeEditorSaveModalButton } from "../save/CodeEditorSaveModalButton";
-import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";
 import { LinkButton } from "@/src/components/molecules/buttons/link-button";
+import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
 
 export const CodeEditorSidebarTools = () => {
-  const { code } = useGetEditorCode();
+  const { code } = useCodeEditor();
 
   return (
     <div className="flex flex-col gap-2">

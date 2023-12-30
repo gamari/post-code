@@ -1,24 +1,18 @@
-import { useCodeEditor } from "@/src/contexts/CodeEditorProvider"
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchUpdateCode } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchUpsertFiles } from "@/src/libs/externals/supabase/queries/files";
-import { redirect, useRouter } from "next/navigation";
 import { useLoading } from "../../useLoading";
-import { useGetEditorCode } from "./getter/useGetEditorCode";
-import { useGetEditorSelectedFile } from "./getter/useGetEditorSelectedFile";
-import { useGetEditorFiles } from "./getter/useGetEditorFiles";
-import { useUpdateEditorFile } from "./useUpdateEditorFile";
+import { useCodeEditor } from "./useCodeEditor";
+import { useCodeEditorSelectedFile } from "./useCodeEditorSelectedFile";
+import { useCodeEditorFiles } from "./useCodeEditorFiles";
 
-export const useSaveEditorCode = () => {
-    const router = useRouter();
+export const useSaveCodeEditor = () => {
     const { loading, startLoading, stopLoading } = useLoading();
     const { client, getAuthUser } = useSupabase();
 
-    const { code } = useGetEditorCode();
-    const { selectedFile } = useGetEditorSelectedFile();
-    const { files } = useGetEditorFiles();
-    const { updateFile } = useUpdateEditorFile();
-
+    const { code } = useCodeEditor();
+    const { selectedFile } = useCodeEditorSelectedFile();
+    const { files, updateFile } = useCodeEditorFiles();
 
     async function saveEditor() {
         if (!client) throw new Error("通信に失敗しました。");
