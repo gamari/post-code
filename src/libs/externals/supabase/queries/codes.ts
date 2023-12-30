@@ -125,7 +125,10 @@ export const fetchCodeListWithUser = async (client: SupabaseClient, options?: Qu
     }) as CodeDetail[];
 }
 
-export const fetchCodeListByFileCode = async (fileCode: string, client: SupabaseClient, options?: QueryOptions) => {
+export const fetchCodeListByFileCode = async (fileCode: string, client: SupabaseClient, page = 1, options?: QueryOptions) => {
+    const pageLimit = 1;
+    const start = (page - 1) * pageLimit;
+    const end = page * pageLimit;
     let query = client
         .from(FILE_TABLE)
         .select(`
@@ -135,6 +138,7 @@ export const fetchCodeListByFileCode = async (fileCode: string, client: Supabase
             )
         `)
         .like("content", `%${fileCode}%`)
+        .range(start, end)
 
     query = applyQueryOptions(query, options);
 

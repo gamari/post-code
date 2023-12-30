@@ -1,5 +1,4 @@
 import React from "react";
-import { unstable_noStore } from "next/cache";
 
 import { actionGetCodeListByFileCode } from "@/src/actions/codes";
 import { SearchCodeResultList } from "./SearchCodeResultList";
@@ -10,14 +9,16 @@ interface Props {
 }
 
 export const SearchCodeResult = async ({ code }: Props) => {
-  unstable_noStore();
   const codeList = await actionGetCodeListByFileCode(code);
 
   return (
     <div>
-      <Heading className="mb-6">検索: {code}</Heading>
+      <Heading className="mb-6">コード検索: {code}</Heading>
 
-      {codeList.length === 0 && <div className="bg-white p-6 rounded-md">見つかりませんでした</div>}
+      {codeList.length === 0 && (
+        <div className="bg-white p-6 rounded-md">見つかりませんでした</div>
+      )}
+
       <SearchCodeResultList codes={codeList} query={code} />
     </div>
   );

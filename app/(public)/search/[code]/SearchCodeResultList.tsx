@@ -1,3 +1,7 @@
+"use client";
+
+import React from "react";
+
 import { FileIcon } from "@/src/components/molecules/displays/file-icon";
 import { LinkText } from "@/src/components/molecules/displays/link-text";
 import { Logo } from "@/src/components/molecules/logo";
@@ -5,23 +9,30 @@ import { HilightCodeViewer } from "@/src/components/organisms/codes/HilightCodeV
 import { CODES_DETAIL_URL } from "@/src/libs/constants/urls";
 import { getFileExtensionType } from "@/src/libs/editors";
 import { SearchResultCode } from "@/src/types";
-import React from "react";
+import { Flex } from "@/src/components/atoms/containers/Flex";
+import { useSearchCodeList } from "@/src/hooks/codes/search/useSearchCodeList";
+import { Center } from "@/src/components/atoms/containers/Center";
+import { DownIcon } from "@/src/components/atoms/icons/down-icon";
+import { Loader } from "@/src/components/molecules/displays/Loader";
 
 interface Props {
   query: string;
   codes: SearchResultCode[];
 }
 
-export const SearchCodeResultList = ({ codes, query }: Props) => {
+export const SearchCodeResultList = ({ codes: initCodes, query }: Props) => {
+  const { codes, next, loading, isDone } = useSearchCodeList(initCodes);
+
   return (
-    <div className=" flex flex-col gap-10">
+    <Flex direction="column" gap={40}>
+      {/* TODO Component化 */}
       {codes.map((code) => {
         return (
           <div
-            key={code.id}
-            className="flex flex-col bg-white rounded-md shadow-md"
+            key={`${code.id}-${code.file.id}`}
+            className="flex flex-col bg-white rounded-md shadow-md w-full"
           >
-            <div className="border-b p-2 flex items-center gap-2">
+            <div className="border-b p-2 flex items-center gap-2 py-2">
               <Logo size="sm" />
               <LinkText
                 url={CODES_DETAIL_URL(code.id)}
@@ -35,11 +46,29 @@ export const SearchCodeResultList = ({ codes, query }: Props) => {
                 <FileIcon fileType={getFileExtensionType(code.file.name)} />
                 <span className="text-sm text-gray-600">{code.file.name}</span>
               </div>
-              <HilightCodeViewer code={code.file.content || ""} query={query} />
+              <HilightCodeViewer file={code.file} query={query} />
             </div>
           </div>
         );
       })}
-    </div>
+
+      {/* TODO Component化 */}
+      <Center className="w-full mt-6 mb-20">
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            {!isDone && (
+              <DownIcon
+                onClick={() => {
+                  next(query);
+                }}
+                className="border-2 border-gray-500 rounded-full cursor-pointer hover:text-sky-500"
+              />
+            )}
+          </>
+        )}
+      </Center>
+    </Flex>
   );
 };
