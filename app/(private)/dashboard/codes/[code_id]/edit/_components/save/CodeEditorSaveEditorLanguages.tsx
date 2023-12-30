@@ -8,15 +8,17 @@ import { useFormLanguage } from "@/src/hooks/languages/useFormLanguage";
 import { Language } from "@/src/types";
 import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
 import { useLanguageList } from "@/src/hooks/languages/useLanguageList";
+import { Flex } from "@/src/components/atoms/containers/Flex";
 
 export const CodeEditorSaveEditorLanguages = () => {
   const { code, setLanguage: setEditorLanguage } = useCodeEditor();
   const { languageList, getLanguage } = useLanguageList();
 
   const { language, setLanguage } = useFormLanguage();
+
+  // TODO 言語選択処理をHook化する
   const { suggestedLanguages, setSuggestedLanguages } =
     useSuggestLanguageList();
-
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -84,11 +86,15 @@ export const CodeEditorSaveEditorLanguages = () => {
               onBlur={onBlug}
             />
 
-            <div className="flex items-center gap-2 border p-1  text-sm text-gray-600">
+            <Flex
+              alignItems="center"
+              gap={8}
+              className="border p-1  text-sm text-gray-600"
+            >
               {code?.language ? (
                 <>
                   <Typo
-                    text={getLanguage(code?.language?.id) || ""}
+                    text={getLanguage(code?.language?.id)?.display || ""}
                     className="text-gray-700 font-semibold text-sm ml-2"
                   />
                   <CloseIcon
@@ -99,7 +105,7 @@ export const CodeEditorSaveEditorLanguages = () => {
               ) : (
                 <div className="px-2">未選択</div>
               )}
-            </div>
+            </Flex>
           </div>
 
           {suggestedLanguages.length > 0 && (

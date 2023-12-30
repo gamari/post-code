@@ -7,7 +7,7 @@ export const useLanguageList = () => {
         if (!languageId) return null;
         const language = languageList.find((language) => language.id === languageId);
         if (!language) return null;
-        return language.name;
+        return language;
     }
 
     return { languageList, getLanguage };

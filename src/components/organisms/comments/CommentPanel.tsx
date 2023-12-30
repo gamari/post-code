@@ -33,7 +33,7 @@ export const CommentPanel = ({ comment }: Props) => {
         <Flex alignItems="center" gap={12}>
           <CodeIcon
             size="sm"
-            fileType={getLanguage(comment?.code?.language_id)}
+            fileType={getLanguage(comment?.code?.language_id)?.name || ""}
           />
           <Heading type="h4" className="flex-1">
             【{comment?.code?.title}】

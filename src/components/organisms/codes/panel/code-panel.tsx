@@ -6,13 +6,12 @@ import { cn } from "@/src/libs/utils";
 import { DateIcon } from "@/src/components/atoms/icons/date-icon";
 import { CodeIcon } from "@/src/components/atoms/icons/code-icon";
 import { FileType } from "@/src/libs/editors";
-import { FavoriteIcon } from "@/src/components/atoms/icons/favorite-icon";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { TimeAgo } from "@/src/components/molecules/time-ago";
 import { Avatar } from "@/src/components/molecules/avatar";
-import { Flex } from "@/src/components/atoms/containers/Flex";
 import { CommentCount } from "../../comments/comment-count";
 import { FavoriteCount } from "../../favorites/favorite-count";
+import { Flex } from "@/src/components/atoms/containers/Flex";
 
 interface Props {
   code: CodeDetail;
@@ -21,11 +20,10 @@ interface Props {
 
 export const CodePanel: FunctionComponent<Props> = ({ code, className }) => {
   return (
-    <div
-      className={cn(
-        "px-6 py-8 rounded-lg flex flex-row items-center gap-5 bg-white ",
-        className
-      )}
+    <Flex
+      alignItems="center"
+      gap={20}
+      className={cn("px-6 py-8 rounded-lg bg-white ", className)}
     >
       <CodeIcon fileType={code?.language?.name as FileType} size="lg" />
 
@@ -33,7 +31,7 @@ export const CodePanel: FunctionComponent<Props> = ({ code, className }) => {
         <Typo text={code.title} size="lg" isBold />
         <CodePanelFooter code={code} />
       </div>
-    </div>
+    </Flex>
   );
 };
 

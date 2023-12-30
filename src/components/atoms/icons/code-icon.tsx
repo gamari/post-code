@@ -13,13 +13,13 @@ interface Props {
 }
 
 export const CodeIcon = ({ fileType, size = "md" }: Props) => {
-  if (!fileType) return <Logo className="h-8 w-8" />;
-
   const className = cn(
     size === "sm" && "h-5 w-5",
     size === "md" && "h-8 w-8",
     size == "lg" && "h-12 w-12"
   );
+  
+  if (!fileType) return <Logo className={className} />;
 
   if (fileType === "python") {
     return <DiPython className={className} />;
