@@ -1,8 +1,7 @@
 import React from "react";
 
-import { SlideIn } from "../../molecules/animation/SlideIn";
 import { Comment, CommentDetail } from "@/src/types";
-import { HDotIcon } from "../../atoms/icons/HDotIcon";
+import { HDotIcon } from "../../atoms/icons/h-dot-icon";
 import { Avatar } from "../../molecules/avatar";
 import { Username } from "../../atoms/texts/username";
 import { DateString } from "../../atoms/texts/date-string";
@@ -30,12 +29,14 @@ export const CommentItem = ({
   onDelete,
   isAuthor = false,
 }: Props) => {
+  const { user } = comment || {};
+
   return (
     <div className={`px-8 py-6 ${className}`}>
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-row items-center gap-2">
-          <Avatar />
-          <Username value={comment?.user?.username || ""} />
+          <Avatar iconType={user?.icon_type} />
+          <Username value={user?.username || ""} />
         </div>
 
         {isAuthor && (

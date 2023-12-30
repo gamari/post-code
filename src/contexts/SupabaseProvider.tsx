@@ -5,6 +5,7 @@ import { createBrowserClient } from "@supabase/ssr";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useLoading } from "../hooks/useLoading";
+import { useRouter } from "next/navigation";
 
 interface SupabaseProviderContextProps {
   client: SupabaseClient | null;

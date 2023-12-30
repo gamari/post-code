@@ -8,7 +8,7 @@ import { useAlert } from "@/src/hooks/useAlert";
 import { SaveButton } from "../../../../../../../../src/components/molecules/buttons/save-button";
 import { useModal } from "@/src/hooks/useModal";
 import { Modal } from "@/src/components/molecules/displays/Modal";
-import { CodeDetailInfoEditor } from "./CodeEditorSaveEditor";
+import { CodeEditorSaveEditor } from "./CodeEditorSaveEditor";
 import { Button } from "@/src/components/atoms/buttons/button";
 import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";
 import { useRouter } from "next/navigation";
@@ -60,8 +60,8 @@ export const CodeEditorSaveModalButton = () => {
     <>
       <SaveButton label="保存" onClick={onClick} loading={loading} />
 
-      <Modal isOpen={isOpen} onClose={toggleModal} className="w-[500px]">
-        <CodeDetailInfoEditor />
+      <Modal isOpen={isOpen} onClose={toggleModal} className="w-[580px]">
+        <CodeEditorSaveEditor />
 
         <div className="flex flex-row items-center mt-3 gap-2">
           <SaveButton

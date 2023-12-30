@@ -5,7 +5,9 @@ import React from "react";
 import { useFetchLatestCodeList } from "@/src/hooks/codes/useFetchLatestCodeList";
 import { CodePanelList } from "@/src/components/organisms/codes/panel/code-panel-list";
 import { Heading } from "@/src/components/atoms/texts/heading";
-import { Loader } from "@/src/components/molecules/displays/Loader";
+import { DownIcon } from "@/src/components/atoms/icons/down-icon";
+import { Center } from "@/src/components/atoms/containers/Center";
+import { LoadingContainer } from "@/src/components/molecules/loding-container";
 
 export const MorePage = () => {
   const { codeList, fetchMoreCodeList, loading } = useFetchLatestCodeList();
@@ -18,16 +20,15 @@ export const MorePage = () => {
 
       <CodePanelList codes={codeList} />
 
-      {loading && <Loader />}
-
-      <div className="mt-10 p-4  flex items-center justify-center">
-        <div
-          className="hover:text-sky-500 cursor-pointer"
-          onClick={fetchMoreCodeList}
-        >
-          もっと見る
-        </div>
-      </div>
+      <LoadingContainer isLoading={loading} className="mt-20">
+        <Center>
+          <DownIcon
+            onClick={fetchMoreCodeList}
+            size="lg"
+            className="rounded-full border-2 border-gray-500 cursor-pointer hover:text-sky-500"
+          />
+        </Center>
+      </LoadingContainer>
     </div>
   );
 };

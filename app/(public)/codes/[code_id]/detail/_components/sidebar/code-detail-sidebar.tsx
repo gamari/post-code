@@ -15,8 +15,6 @@ interface Props {
 export const revalidate = 0;
 
 export const CodeDetailSidebar = async ({ code }: Props) => {
-  unstable_noStore();
-
   const authUser = await actionGetAuthUser();
   const files = await actionGetFiles(code.id);
 

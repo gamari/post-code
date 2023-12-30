@@ -3,7 +3,7 @@ export const GoogleIcon = () => {
         <svg className="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg"
             viewBox="-0.5 0 48 48" version="1.1">
 
-            <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Icons" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                 <g id="Color-" transform="translate(-401.000000, -860.000000)">
                     <g id="Google" transform="translate(401.000000, 860.000000)">
                         <path

@@ -18,6 +18,7 @@ export const revalidate = 0;
 
 export const CodeDetail = async ({ codeId }: Props) => {
   unstable_noStore();
+  
   const code = await actionGetBadCodeById(codeId);
 
   if (!code) return <NoContent text="コードが見つかりませんでした" />;
@@ -37,8 +38,6 @@ export const CodeDetail = async ({ codeId }: Props) => {
           </div>
         </Suspense>
       </div>
-
-      {/* TODO */}
     </Center>
   );
 };

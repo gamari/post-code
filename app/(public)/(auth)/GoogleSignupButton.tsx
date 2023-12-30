@@ -2,20 +2,17 @@
 
 import React from "react";
 
-import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { GoogleButton } from "@/src/components/molecules/buttons/google-button";
+import { useSupabase } from "@/src/contexts/SupabaseProvider";
 
-export const GoogleLoginButton = () => {
+export const GoogleSignupButton = () => {
   const { client } = useSupabase();
 
   const handleLogin = async () => {
     await client?.auth.signInWithOAuth({
       provider: "google",
-      options: {
-        redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/callback`,
-      },
     });
   };
 
-  return <GoogleButton onClick={handleLogin} label="Googleでログイン" />;
+  return <GoogleButton onClick={handleLogin} label="Googleで登録" />;
 };

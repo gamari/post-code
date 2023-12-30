@@ -27,13 +27,13 @@ import { getFileExtensionType } from "@/src/libs/editors";
 import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
 import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/setter/useSetEditorSelectedFile";
 import { Typo } from "@/src/components/atoms/texts/typo";
-import { CodeEditorNewFileModalButton } from "./CodeEditorNewFileModalButton";
+import { CodeEditorNewFileModalButton } from "../modal/CodeEditorNewFileModalButton";
 
 interface Props {
   className?: string;
 }
 
-export const CodeFileEditor = ({ className }: Props) => {
+export const CodeEditorContentFile = ({ className }: Props) => {
   const { selectedFile } = useGetEditorSelectedFile();
   const { setSelectedFile } = useSetEditorSelectedFile();
 

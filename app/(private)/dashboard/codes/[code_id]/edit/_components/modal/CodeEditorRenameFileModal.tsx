@@ -8,7 +8,6 @@ import { useUpdateEditorFile } from "@/src/hooks/codes/editors/useUpdateEditorFi
 import { useAlert } from "@/src/hooks/useAlert";
 import { File } from "@/src/types";
 import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
-import { useUpdateEditorSelectedFile } from "@/src/hooks/codes/editors/useUpdateEditorSelectedFile";
 import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/setter/useSetEditorSelectedFile";
 
 interface Props {
@@ -17,7 +16,7 @@ interface Props {
   onClose: () => void;
 }
 
-export const RenameFileModal = ({ targetFile, isOpen, onClose }: Props) => {
+export const CodeEditorRenameFileModal = ({ targetFile, isOpen, onClose }: Props) => {
   const [editingName, setEditingName] = useState("");
 
   const { errorAlert } = useAlert();

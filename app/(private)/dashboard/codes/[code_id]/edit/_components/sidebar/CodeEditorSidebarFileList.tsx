@@ -11,42 +11,38 @@ import {
   ContextMenuTrigger,
 } from "@/src/components/ui/context-menu";
 import { Typo } from "@/src/components/atoms/texts/typo";
-import { useDeleteFileInEditor } from "@/src/hooks/codes/editors/useDeleteFileInEditor";
 import { useSelectEditorFile } from "@/src/hooks/codes/editors/useSelectEditorFile";
 import { useGetEditorSelectedFile } from "@/src/hooks/codes/editors/getter/useGetEditorSelectedFile";
 import { sortAscByName } from "@/src/libs/sortes";
 import { useGetEditorFiles } from "@/src/hooks/codes/editors/getter/useGetEditorFiles";
 import { useModal } from "@/src/hooks/useModal";
-import { RenameFileModal } from "./RenameFileModal";
+import { CodeEditorRenameFileModal } from "../modal/CodeEditorRenameFileModal";
 import { limitString } from "@/src/libs/strings";
 import { FILE_TEXT_LIMIT } from "@/src/libs/constants/limits";
+import { useDeleteFileInSidebar } from "../../../../../../../../src/hooks/codes/editors/sidebar/useDeleteFileInSidebar";
+import { useSelectFile } from "@/src/hooks/useSelectFile";
 
 interface Props {
   className?: string;
 }
 
 // TODO リファクタリングする
-export const CodeEditorFileList = ({ className }: Props) => {
+export const CodeEditorSidebarFileList = ({ className }: Props) => {
   const { isOpen, toggleModal } = useModal();
 
   const { files } = useGetEditorFiles();
   const { selectedFile } = useGetEditorSelectedFile();
-  const { deleteFileInEditor } = useDeleteFileInEditor();
   const { selectFile } = useSelectEditorFile();
+  const { targetFile, selectFile: selectRenameFile } = useSelectFile();
 
-  const [targetFile, setTargetFile] = useState<File | null>(null);
-
-  const handleDeleteFile = async (file: File) => {
-    if (!confirm("本当に削除しますか？")) return;
-    deleteFileInEditor(file);
-  };
+  const { onDeleteFile } = useDeleteFileInSidebar();
 
   const handleClickFile = (file: File) => {
     selectFile(file);
   };
 
   const handleRename = (file: File) => {
-    setTargetFile(file);
+    selectRenameFile(file);
     toggleModal();
   };
 
@@ -81,7 +77,7 @@ export const CodeEditorFileList = ({ className }: Props) => {
             <ContextMenuItem
               onClick={(e) => {
                 e.stopPropagation();
-                handleDeleteFile?.(file);
+                onDeleteFile?.(file);
               }}
               className="mt-3 cursor-pointer"
             >
@@ -91,7 +87,7 @@ export const CodeEditorFileList = ({ className }: Props) => {
         </ContextMenu>
       ))}
 
-      <RenameFileModal
+      <CodeEditorRenameFileModal
         targetFile={targetFile}
         isOpen={isOpen}
         onClose={toggleModal}

@@ -15,7 +15,7 @@ interface Props {
   className?: string;
 }
 
-export const CodeDetailInfoEditor = ({ className }: Props) => {
+export const CodeEditorSaveEditor = ({ className }: Props) => {
   const { code } = useGetEditorCode();
   const { setIsPublic } = useSetEditorCode();
 

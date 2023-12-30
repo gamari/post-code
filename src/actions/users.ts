@@ -2,7 +2,7 @@
 
 import { getServerClient } from "@/src/libs/externals/supabase/admin-client";
 import { fetchAuthUser, fetchUserById } from "@/src/libs/externals/supabase/queries/users";
-import { cookies, headers } from "next/headers";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function actionLoginWithGoogle() {
@@ -13,10 +13,10 @@ export async function actionLoginWithGoogle() {
         provider: 'google',
         options: {
             queryParams: {
-              access_type: 'offline',
-              prompt: 'consent',
+                access_type: 'offline',
+                prompt: 'consent',
             },
-          },
+        },
     })
 
     console.log("actionLoginWithGoogle error", error);
@@ -59,9 +59,9 @@ export async function actionSignUp(formData: FormData) {
         email,
         password,
         options: {
-            data: { 
+            data: {
                 name: username
-             },
+            },
             emailRedirectTo: `${origin}/auth/callback`,
         },
     })

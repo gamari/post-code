@@ -3,10 +3,17 @@ import * as React from "react";
 import { cn } from "@/src/libs/utils";
 
 export interface TextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+    onSubmit?: () => void;
+  }
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, ...props }, ref) => {
+  ({ className, onSubmit, ...props }, ref) => {
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+      if (e.ctrlKey && e.key === 'Enter') {
+        onSubmit?.();
+      }
+    };
     return (
       <textarea
         className={cn(
@@ -14,6 +21,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           "focus:outline-none focus:border-blue-500 bg-white shadow",
           className
         )}
+        onKeyDown={handleKeyDown}
         ref={ref}
         {...props}
       />

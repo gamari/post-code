@@ -46,15 +46,18 @@ export const AccountForm = ({ user: initUser, className = "" }: Props) => {
           onSubmit={handleSubmit(handleUpdate)}
           className="flex flex-col gap-10 mb-6"
         >
-          {/* nameにする */}
           <div>
             <Heading type="h4">ユーザー名</Heading>
-            <Input {...register("username")} />
+            <Input {...register("username")} placeholder="ユーザー名を入力" />
             <ErrorText text={errors.username?.message} />
           </div>
           <div>
             <Heading type="h4">自己紹介</Heading>
-            <Textarea {...register("description")} rows={8} />
+            <Textarea
+              {...register("description")}
+              rows={4}
+              placeholder="自己紹介を入力"
+            />
             <ErrorText text={errors.description?.message} />
           </div>
 

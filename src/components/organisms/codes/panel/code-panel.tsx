@@ -6,7 +6,6 @@ import { cn } from "@/src/libs/utils";
 import { DateIcon } from "@/src/components/atoms/icons/date-icon";
 import { CodeIcon } from "@/src/components/atoms/icons/code-icon";
 import { FileType } from "@/src/libs/editors";
-import { AccountIcon } from "@/src/components/atoms/icons/account-icon";
 import { FavoriteIcon } from "@/src/components/atoms/icons/favorite-icon";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { TimeAgo } from "@/src/components/molecules/time-ago";

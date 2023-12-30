@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-
-import { SearchIcon } from "lucide-react";
+import { SearchIcon } from "../../atoms/icons/search-icon";
 
 export const SearchBox = () => {
   const [code, setCode] = React.useState("");
@@ -16,7 +15,7 @@ export const SearchBox = () => {
 
   return (
     <div className="border flex items-center p-2 gap-3">
-      <SearchIcon />
+      <SearchIcon className="text-gray-400" />
       <input
         type="text"
         className="bg-transparent outline-none w-[180px]"
@@ -24,7 +23,7 @@ export const SearchBox = () => {
         onChange={(e) => {
           setCode(e.target.value);
         }}
-        placeholder="コード検索"
+        placeholder="コード検索..."
       />
     </div>
   );

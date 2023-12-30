@@ -22,7 +22,7 @@ export const LabelInput = ({
   placeholder,
   value,
   setValue,
-  type
+  type = "text",
 }: Props) => {
   return (
     <div className="w-full">

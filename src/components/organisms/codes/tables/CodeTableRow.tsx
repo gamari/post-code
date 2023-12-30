@@ -11,17 +11,19 @@ import { CodeDetail } from "@/src/types";
 import { TimeAgo } from "@/src/components/molecules/time-ago";
 import { FavoriteCount } from "../../favorite-count";
 import { Center } from "@/src/components/atoms/containers/Center";
+import { cn } from "@/src/libs/utils";
 
 interface Props {
   code: CodeDetail;
   onDelete: (id: number) => void;
+  className?: string;
 }
 
-export const CodeTableRow = ({ code, onDelete }: Props) => {
+export const CodeTableRow = ({ code, onDelete, className }: Props) => {
   const router = useRouter();
 
   return (
-    <div className="grid grid-cols-9 lg:grid-cols-10  border-b py-2">
+    <div className={cn("grid border-b py-2", className)}>
       <Center>
         <ToggleBudge
           is_public={code.is_public || false}
@@ -29,7 +31,8 @@ export const CodeTableRow = ({ code, onDelete }: Props) => {
           falseText="非公開"
         />
       </Center>
-      <div className="col-span-4 p-2">
+      
+      <div className="p-2">
         <LinkText
           url={`/codes/${code.id}/detail`}
           label={code.title}
@@ -37,20 +40,22 @@ export const CodeTableRow = ({ code, onDelete }: Props) => {
         />
       </div>
 
-      <Center className="hidden lg:flex h-full">
+      <Center className="h-full ">
         <FavoriteCount count={code?.favorites_count || 0} />
       </Center>
 
-      <div className="hidden lg:block py-3 text-xs">{code?.language?.display}</div>
+      <Center className="text-xs text-gray-500">
+        {code?.language?.display}
+      </Center>
 
-      <div className="col-span-2 lg:col-span-1 py-2">
+      <Center>
         <TimeAgo
           date={code.updated_at || ""}
-          className="text-xs text-gray-700 w-[100px]"
+          className="text-xs text-gray-700"
         />
-      </div>
+      </Center>
 
-      <div className="col-span-2">
+      <Center>
         <div className="flex flex-row items-center gap-3">
           <EditButton
             onClick={() => {
@@ -63,7 +68,7 @@ export const CodeTableRow = ({ code, onDelete }: Props) => {
             }}
           />
         </div>
-      </div>
+      </Center>
     </div>
   );
 };

@@ -11,7 +11,7 @@ export default async function Index() {
 
   return (
     <div className="flex flex-col items-center">
-      <Suspense fallback={<Skeleton rows={5} className="w-[600px]" />}>
+      <Suspense fallback={<Skeleton rows={5} className="w-[600px] pt-10" />}>
         <TopLatestCodesSection />
         <TopAboutSection />
         <TopLatestCommentSection />

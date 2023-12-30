@@ -8,7 +8,6 @@ import { LabelInput } from "@/src/components/molecules/forms/LabelInput";
 import { LoginFormErrorMessage } from "./login-form-error-message";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { GoogleLoginButton } from "../GoogleLoginButton";
-import { GoogleButton } from "@/src/components/molecules/buttons/google-button";
 
 interface Props {
   errorStatus: string;
@@ -19,36 +18,35 @@ export const LoginForm = ({ errorStatus }: Props) => {
     <div className="relative flex flex-col w-full h-full justify-center items-center gap-3">
       <BackButton url="/" className="absolute left-8 top-8 " label="ホームへ" />
 
+      <div className="max-w-md bg-white border px-8 py-12 rounded-md flex flex-col items-center w-full justify-center gap-2 text-foreground">
+        <form className="w-full" action={actionLogin}>
+          <Heading>ログイン画面</Heading>
+          <LabelInput
+            type="email"
+            id="email"
+            name="email"
+            label="メールアドレス"
+            placeholder="taro@example.com"
+          />
+          <LabelInput
+            type="password"
+            id="password"
+            name="password"
+            label="パスワード"
+            placeholder="pasword"
+          />
 
-      <form
-        className="max-w-md bg-white border px-8 py-12 rounded-md flex flex-col items-center w-full justify-center gap-2 text-foreground"
-        action={actionLogin}
-      >
-        <Heading>ログイン画面</Heading>
-        <LabelInput
-          type="email"
-          id="email"
-          name="email"
-          label="メールアドレス"
-          placeholder="taro@example.com"
-        />
-        <LabelInput
-          type="password"
-          id="password"
-          name="password"
-          label="パスワード"
-          placeholder="pasword"
-        />
-
-        <Button type="submit">ログイン</Button>
-        <LinkButton url="/register" label="ユーザー登録画面へ" />
-        <LoginFormErrorMessage status={errorStatus} />
-
-        <div className="border-t w-full mt-3 pt-2">
+          <Button type="submit" className="w-full mt-4">
+            ログイン
+          </Button>
+          <LinkButton url="/register" label="ユーザー登録画面へ" />
+          <LoginFormErrorMessage status={errorStatus} />
+        </form>
+        <div className="w-full mt-3 pt-2">
+          <Heading type="h4">ソーシャルログイン</Heading>
           <GoogleLoginButton />
         </div>
-      </form>
-
+      </div>
     </div>
   );
 };
