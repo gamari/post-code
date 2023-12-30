@@ -1,14 +1,14 @@
 import { File } from "@/src/types";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchDeleteFile } from "@/src/libs/externals/supabase/queries/files";
-import { useSetEditorSelectedFile } from "@/src/hooks/codes/editors/setter/useSetEditorSelectedFile";
-import { useDeleteFileFromEditorFiles } from "@/src/hooks/codes/editors/useDeleteFileFromEditorFiles";
+import { useCodeEditorFiles } from "../useCodeEditorFiles";
+import { useCodeEditorSelectedFile } from "../useCodeEditorSelectedFile";
 
 export const useDeleteFileInSidebar = () => {
     const { client } = useSupabase();
 
-    const { setSelectedFile } = useSetEditorSelectedFile();
-    const { deleteFile } = useDeleteFileFromEditorFiles();
+    const { setSelectedFile } = useCodeEditorSelectedFile();
+    const { deleteFile } = useCodeEditorFiles();
 
 
     const onDeleteFile = async (file: File) => {

@@ -3,21 +3,21 @@
 import React from "react";
 
 import { cn } from "@/src/libs/utils";
-import { useGetEditorCode } from "@/src/hooks/codes/editors/getter/useGetEditorCode";
-import { useSetEditorCode } from "@/src/hooks/codes/editors/setter/useSetEditorCode";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { Switch } from "@/src/components/ui/switch";
 
 import { CodeEditorSaveEditorDescription } from "./CodeEditorSaveEditorDescription";
 import { CodeEditorSaveEditorLanguages } from "./CodeEditorSaveEditorLanguages";
+import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
+import { useCodeEditorIsPublic } from "@/src/hooks/codes/editors/useCodeEditorIsPublic";
 
 interface Props {
   className?: string;
 }
 
 export const CodeEditorSaveEditor = ({ className }: Props) => {
-  const { code } = useGetEditorCode();
-  const { setIsPublic } = useSetEditorCode();
+  const { code } = useCodeEditor();
+  const { setIsPublic } = useCodeEditorIsPublic();
 
   return (
     <div className={cn("", className)}>

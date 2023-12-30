@@ -20,9 +20,15 @@ export const useCodeEditorFiles = () => {
         });
     }
 
+    const deleteFile = (target: File) => {
+        setFiles(files.filter((file) => file.id !== target.id));
+    }
+
+
     return {
         files,
         addFile,
-        updateFile
+        updateFile,
+        deleteFile
     }
 }
