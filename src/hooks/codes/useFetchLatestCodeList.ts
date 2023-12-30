@@ -14,7 +14,7 @@ export const useFetchLatestCodeList = () => {
             const result = await fetchCodeList(client, {
                 order: [
                     {
-                        field: "created_at",
+                        field: "published_date",
                         ascending: false
                     }
                 ]

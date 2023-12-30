@@ -15,7 +15,6 @@ export default async function Index() {
         <TopLatestCodesSection />
         <TopAboutSection />
         <TopLatestCommentSection />
-        {/* <TopFavoriteCodesSection /> */}
         <TopFooter />
       </Suspense>
     </div>

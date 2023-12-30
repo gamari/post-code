@@ -48,7 +48,7 @@ export const actionGetLatestBadCodeList = async () => {
             createEqCondition("is_public", true)
         ],
         order: [
-            createOrderCondition("updated_at", false)
+            createOrderCondition("published_date", false)
         ]
     });
     return codes;

@@ -75,6 +75,7 @@ export const fetchCodeListBeforeDate = async (date: string, client: SupabaseClie
         .lt("created_at", date);
 
     query = applyQueryOptions(query, options);
+    query = applyOrderBy(query, options);
 
     const { data, error } = await query;
     console.log(data);
@@ -109,6 +110,7 @@ export const fetchCodeListWithUser = async (client: SupabaseClient, options?: Qu
         `);
 
     query = applyQueryOptions(query, options);
+    query = applyOrderBy(query, options);
 
     const { data, error } = await query;
 
@@ -141,6 +143,7 @@ export const fetchCodeListByFileCode = async (fileCode: string, client: Supabase
         .range(start, end)
 
     query = applyQueryOptions(query, options);
+    query = applyOrderBy(query, options);
 
     const { data, error } = await query;
 
