@@ -82,7 +82,7 @@ export const CodeEditorSaveEditorLanguages = () => {
               onChange={onChange}
               onKeyDown={handleKeyDown}
               placeholder="言語を入力（空欄可）"
-              className="border p-2 w-[200px] outline-none focus:border focus:border-sky-500"
+              className="rounded-lg border p-2 w-[200px] outline-none focus:border focus:border-sky-500"
               onBlur={onBlug}
             />
 
@@ -105,7 +105,7 @@ export const CodeEditorSaveEditorLanguages = () => {
           </div>
 
           {suggestedLanguages.length > 0 && (
-            <ul className="border absolute top-10 bg-white z-[400]">
+            <ul className="border border-gray-sky rounded-md absolute top-10 bg-white z-[400] shadow-lg">
               {suggestedLanguages.map((language, index) => (
                 <li
                   key={language.id}

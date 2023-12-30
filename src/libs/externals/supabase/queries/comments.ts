@@ -55,7 +55,8 @@ export const fetchCommentListWithCode = async (client: SupabaseClient, options?:
             *
           ),
           ${PUBLIC_USER_TABLE}!user_id(
-            username
+            username,
+            icon_type
           )
         `);
   query = applyQueryOptions(query, options);

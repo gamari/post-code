@@ -30,7 +30,7 @@ export const CommentPanel = ({ comment }: Props) => {
       url={CODES_DETAIL_URL(comment?.code_id)}
     >
       <Flex className="flex flex-row items-center justify-between text-sm text-gray-500 border-b pb-2 mt-2">
-        <Flex alignItems="start" gap={12}>
+        <Flex alignItems="center" gap={12}>
           <CodeIcon
             size="sm"
             fileType={getLanguage(comment?.code?.language_id)}

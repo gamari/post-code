@@ -60,7 +60,7 @@ export const CodeEditorSaveModalButton = () => {
     <>
       <SaveButton label="保存" onClick={onClick} loading={loading} />
 
-      <Modal isOpen={isOpen} onClose={toggleModal} className="w-[500px]">
+      <Modal isOpen={isOpen} onClose={toggleModal} className="w-[580px]">
         <CodeEditorSaveEditor />
 
         <div className="flex flex-row items-center mt-3 gap-2">

@@ -5,6 +5,7 @@ import { Description } from "@/src/components/atoms/texts/description";
 import { Badge } from "@/src/components/atoms/badges/badge";
 import { CodeIcon } from "@/src/components/atoms/icons/code-icon";
 import { CodeDetail } from "@/src/types";
+import { MarkdownPreviewer } from "@/src/components/molecules/displays/markdown-previewer";
 
 interface Props {
   code: CodeDetail;
@@ -24,9 +25,9 @@ export const CodeDetailInfo: FunctionComponent<Props> = async ({ code }) => {
         </div>
 
         {code?.description && (
-          <Description className="p-2 border-t pt-4">
-            {code?.description || "(説明がありません)"}
-          </Description>
+          <div className="border-t pt-6 pb-6">
+            <MarkdownPreviewer content={code?.description} />
+          </div>
         )}
       </div>
     </div>

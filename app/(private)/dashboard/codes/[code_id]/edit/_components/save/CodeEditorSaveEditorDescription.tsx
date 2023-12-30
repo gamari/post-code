@@ -19,7 +19,7 @@ export const CodeEditorSaveEditorDescription = () => {
           value={code?.description || ""}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="全体を通したコード解説（空欄可）"
-          rows={8}
+          rows={12}
         />
       </div>
     </div>
