@@ -8,6 +8,7 @@ import { MarkdownPreviewer } from "@/src/components/molecules/displays/markdown-
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { DateString } from "@/src/components/atoms/texts/date-string";
 import { DateIcon } from "@/src/components/atoms/icons/date-icon";
+import { UpdateIcon } from "@/src/components/atoms/icons/update-icon";
 
 interface Props {
   code: CodeDetail;
@@ -38,7 +39,7 @@ export const CodeDetailInfo: FunctionComponent<Props> = async ({ code }) => {
               </Flex>
             )}
             <Flex gap={4}>
-              <DateIcon size={"xs"} />
+              <UpdateIcon size={"xs"} />
               <div>更新日</div>
               <div>
                 <DateString value={code?.created_at || ""} />
