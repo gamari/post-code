@@ -8,7 +8,7 @@ import { CiFileOn } from "react-icons/ci";
 
 import { File } from "@/src/types";
 import { cn } from "@/src/libs/utils";
-import { getFileExtensionType } from "@/src/libs/editors";
+import { convertFilenameToExtension, convertFilenameToFiletype } from "@/src/libs/editors";
 
 interface Props {
   file: File;
@@ -29,7 +29,7 @@ export const FileViewer = ({ file, className }: Props) => {
       </div>
 
       <SyntaxHighlighter
-        language={getFileExtensionType(file?.name)}
+        language={convertFilenameToExtension(file?.name)}
         style={style}
         className="p-4 flex-1"
         showLineNumbers

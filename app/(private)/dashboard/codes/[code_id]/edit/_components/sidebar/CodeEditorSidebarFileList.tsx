@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { File } from "@/src/types";
 import { cn } from "@/src/libs/utils";
 import { FileIcon } from "../../../../../../../../src/components/molecules/displays/file-icon";
-import { getFileExtensionType } from "@/src/libs/editors";
+import { convertFilenameToFiletype } from "@/src/libs/editors";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -50,7 +50,7 @@ export const CodeEditorSidebarFileList = ({ className }: Props) => {
   if (!files?.length) return <NoFiles />;
 
   return (
-    <div className={cn("flex flex-col gap-1", className)}>
+    <div className={cn("flex flex-col gap-1 max-h-[200px] scroll-auto overflow-scroll", className)}>
       {files?.sort(sortAscByName).map((file) => (
         <ContextMenu key={file.id}>
           <ContextMenuTrigger>
@@ -61,7 +61,7 @@ export const CodeEditorSidebarFileList = ({ className }: Props) => {
               )}
               onClick={() => handleClickFile(file)}
             >
-              <FileIcon fileType={getFileExtensionType(file.name)} />
+              <FileIcon fileType={convertFilenameToFiletype(file.name)} />
               {limitString(file.name, FILE_TEXT_LIMIT)}
             </div>
           </ContextMenuTrigger>

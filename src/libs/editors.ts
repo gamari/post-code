@@ -1,42 +1,75 @@
+// 拡張子側
 export type Extension =
-    "js" | "ts" | "jsx" | "tsx" |
+    "js" | "ts" |
     "py" |
-    "java" |
+    "java" | "kt" | "scala" |
     "go" |
+    "rs" |
+    "hs" |
     "c" | "cpp" |
-    "php" | "rb" | "html" | "css" | "md" | "sql"
+    "php" | "rb" | "html" | "css" | "md" | "sql" |
+    "jsx" | "tsx" |
+    "go" | "pl" |
+    ""
     ;
 
+// ファイルの種類
 export type FileType =
-    "javascript" | "typescript" | "tsx" | "jsx" |
+    "javascript" | "typescript" |
     "python" |
-    "java" | "c_cpp" | "c" | "php" | "ruby" |
-    "go" |
+    "java" | "kotlin" | "scala" |
+    "rust" |
+    "haskell" |
+
+    "c_cpp" | "c" | "php" | "ruby" |
+    "ruby" |
+    "golang" |
+    "tsx" | "jsx" |
     "html" | "css" |
-    "text" | "markdown" | "sql"
+    "text" | "markdown" | "sql" | "perl"
     ;
 
 
-export const getFileExtensionType: (filename: string) => FileType = (filename?: string) => {
+export const convertFilenameToExtension: (filename: string) => Extension = (filename?: string) => {
+    if (!filename) return '';
+    return filename.split('.').pop() as Extension;
+}
+
+//　拡張子からファイルの種類を判定する
+export const convertFilenameToFiletype: (filename: string) => FileType = (filename?: string) => {
     if (!filename) return 'text';
-    const extension = filename.split('.').pop() as Extension;
+    const extension = convertFilenameToExtension(filename);
 
     switch (extension) {
         case 'js':
             return 'javascript';
+        case 'ts':
+            return 'typescript';
         case 'java':
             return 'java';
+        case 'kt':
+            return 'kotlin';
+        case 'py':
+            return 'python';
         case 'cpp':
         case 'c':
             return 'c_cpp';
-        case 'php':
-            return 'php';
         case 'rb':
             return 'ruby';
-        case 'ts':
-            return 'typescript';
+        case "go":
+            return "golang";
+        case 'php':
+            return 'php';
+        case "pl":
+            return "perl";
+        case 'rs':
+            return 'rust';
+        case 'hs':
+            return 'haskell';
         case 'html':
             return 'html';
+
+
         case 'css':
             return 'css';
         case 'md':
@@ -47,10 +80,8 @@ export const getFileExtensionType: (filename: string) => FileType = (filename?: 
             return 'tsx';
         case 'sql':
             return 'sql';
-        case 'py':
-            return 'python';
-        case "go":
-            return "go";
+
+
         default:
             return 'text';
     }

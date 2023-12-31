@@ -6,7 +6,7 @@ import { cn } from "@/src/libs/utils";
 import { Typo } from "../../atoms/texts/typo";
 import { File } from "@/src/types";
 import { FileIcon } from "../../molecules/displays/file-icon";
-import { getFileExtensionType } from "@/src/libs/editors";
+import { convertFilenameToFiletype } from "@/src/libs/editors";
 
 interface Props {
   className?: string;
@@ -23,7 +23,7 @@ export const FileItem = ({ file, className, onClick }: Props) => {
       )}
       onClick={() => onClick && onClick(file)}
     >
-      <FileIcon fileType={getFileExtensionType(file?.name)} />
+      <FileIcon fileType={convertFilenameToFiletype(file?.name)} />
       <Typo text={file.name} className="flex-1 whitespace-break-spaces break-words overflow-hidden" />
     </div>
   );
