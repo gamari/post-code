@@ -55,6 +55,7 @@ export const CodeEditorSaveEditorSelectTags = () => {
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           className="w-full outline-none"
+          disabled={(code?.tags?.length || 0) >= 3}
         />
       </div>
     </div>

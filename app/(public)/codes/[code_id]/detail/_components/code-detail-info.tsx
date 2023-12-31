@@ -28,6 +28,14 @@ export const CodeDetailInfo: FunctionComponent<Props> = async ({ code }) => {
             <Heading type="h3">{code?.title}</Heading>
           </Flex>
 
+          <Flex className="py-2">
+            {code?.tags?.map((tag) => (
+              <Badge className="bg-gray-200 text-gray-700" key={tag.id}>
+                {tag.name}
+              </Badge>
+            ))}
+          </Flex>
+
           <Flex gap={12} className="text-xs text-gray-500 mt-2">
             {code?.published_date && (
               <Flex gap={4}>

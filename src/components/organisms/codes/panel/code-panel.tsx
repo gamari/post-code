@@ -12,6 +12,7 @@ import { Avatar } from "@/src/components/molecules/avatar";
 import { CommentCount } from "../../comments/comment-count";
 import { FavoriteCount } from "../../favorites/favorite-count";
 import { Flex } from "@/src/components/atoms/containers/Flex";
+import { TagBadge } from "@/src/components/molecules/tag-badge";
 
 interface Props {
   code: CodeDetail;
@@ -29,6 +30,11 @@ export const CodePanel: FunctionComponent<Props> = ({ code, className }) => {
 
       <div className="flex flex-col justify-between gap-2 h-full w-full">
         <Typo text={code.title} size="lg" isBold />
+        <div className="py-1">
+          {code?.tags?.map((tag) => (
+            <TagBadge tag={tag} key={`${code.id}-${tag.id}`} />
+          ))}
+        </div>
         <CodePanelFooter code={code} />
       </div>
     </Flex>

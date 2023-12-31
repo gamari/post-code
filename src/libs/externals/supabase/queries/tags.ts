@@ -27,7 +27,7 @@ export const fetchOrCreateTag = async (name: string, client: SupabaseClient) => 
 }
 
 export const fetchTagListOfCode = async (codeId: number, client: SupabaseClient) => {
-    const { data: tags, error } = await client
+    const { data, error } = await client
         .from(CODE_TAGS_TABLE)
         .select(`
             *,
@@ -39,7 +39,7 @@ export const fetchTagListOfCode = async (codeId: number, client: SupabaseClient)
 
     if (error) throw new Error("Tagの取得中にエラーが発生しました。");
 
-    return tags as Tag[];
+    return data.map((d) => d.tag) as Tag[];
 }
 
 export const fetchAttachTagToCode = async (codeId: number, tagId: number, client: SupabaseClient) => {

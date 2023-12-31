@@ -1,5 +1,6 @@
 ## 公開日のトリガー
 
+
 ```sql
 ALTER TABLE public.codes
 ADD COLUMN published_date timestamp with time zone null;
@@ -18,6 +19,15 @@ CREATE TRIGGER trigger_set_published_date
 BEFORE UPDATE ON public.codes
 FOR EACH ROW
 EXECUTE FUNCTION set_published_date();
+```
 
 
+## タグ数リミット
+
+check_code_tags_limit
+
+```sql
+CREATE TRIGGER check_code_tags_limit
+BEFORE INSERT ON code_tags
+FOR EACH ROW EXECUTE FUNCTION enforce_tag_limit();
 ```

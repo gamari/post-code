@@ -1,4 +1,4 @@
-import { CODE_TABLE, FILE_TABLE, LANGUAGE_TABLE, PUBLIC_USER_TABLE, TAG_TABLE } from "@/src/libs/constants/tables";
+import { CODE_TABLE, CODE_TAGS_TABLE, FILE_TABLE, LANGUAGE_TABLE, PUBLIC_USER_TABLE, TAG_TABLE } from "@/src/libs/constants/tables";
 import { CodeDetail, CodeFormType, SearchResultCode, User } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { QueryOptions, applyOrderBy, applyQueryOptions } from ".";
@@ -38,6 +38,7 @@ export const fetchCodeList = async (client: SupabaseClient, options?: QueryOptio
             ${LANGUAGE_TABLE}!language_id(
                 *
             ),
+            ${CODE_TAGS_TABLE}:tags(*),
             favorites_count: favorites (count),
             comments_count: comments (count)
         `);
@@ -56,6 +57,7 @@ export const fetchCodeList = async (client: SupabaseClient, options?: QueryOptio
             favorites_count: code.favorites_count[0]?.count || 0,
             comments_count: code.comments_count[0]?.count || 0,
             language: code.languages,
+            tags: code.code_tags,
         }
     }) as CodeDetail[];
 }
@@ -91,40 +93,6 @@ export const fetchCodeListBeforeDate = async (date: string, client: SupabaseClie
             favorites_count: code.favorites_count[0]?.count || 0,
             comments_count: code.comments_count[0]?.count || 0,
             language: code.languages,
-        }
-    }) as CodeDetail[];
-}
-
-
-export const fetchCodeListWithUser = async (client: SupabaseClient, options?: QueryOptions) => {
-    let query = client
-        .from(CODE_TABLE)
-        .select(`
-            *,
-            ${PUBLIC_USER_TABLE}!user_id (
-                *
-            ),
-            ${LANGUAGE_TABLE}!language_id(
-                *
-            ),
-            comments_count: comments (count),
-            favorites_count: favorites (count)
-        `);
-
-    query = applyQueryOptions(query, options);
-    query = applyOrderBy(query, options);
-
-    const { data, error } = await query;
-
-    if (error) throw error;
-
-    return data.map((code) => {
-        return {
-            ...code,
-            user: code.public_users,
-            favorites_count: code.favorites_count[0]?.count || 0,
-            comments_count: code.comments_count[0]?.count || 0,
-            language: code.languages
         }
     }) as CodeDetail[];
 }

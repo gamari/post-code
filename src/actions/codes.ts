@@ -1,7 +1,7 @@
 "use server";
 
 import { getServerClient } from "@/src/libs/externals/supabase/admin-client";
-import { fetchCodeById, fetchCodeList, fetchCodeListByFileCode, fetchCodeListWithUser, fetchFavoriteCodeList } from "@/src/libs/externals/supabase/queries/codes";
+import { fetchCodeById, fetchCodeList, fetchCodeListByFileCode, fetchFavoriteCodeList } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchAuthUser } from "@/src/libs/externals/supabase/queries/users";
 import { createEqCondition, createOrderCondition } from "../libs/externals/supabase/queries";
 import { SEARCH_LIMIT } from "../libs/constants/limits";
@@ -43,7 +43,7 @@ export const actionGetOwnBadCodeList = async () => {
 /** 最新のコード一覧を取得。 */
 export const actionGetLatestBadCodeList = async () => {
     const client = getServerClient();
-    const codes = await fetchCodeListWithUser(client, {
+    const codes = await fetchCodeList(client, {
         eq: [
             createEqCondition("is_public", true)
         ],

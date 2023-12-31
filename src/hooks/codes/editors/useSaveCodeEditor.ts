@@ -50,6 +50,8 @@ export const useSaveCodeEditor = () => {
             const removeTags = existingTags.filter((existingTag) => {
                 return !code?.tags?.find((tag) => tag.name === existingTag.name);
             }) || [];
+            console.log("newTags", newTags);
+            console.log("removeTags", removeTags);
 
             for (const tag of newTags) {
                 await fetchAttachTagToCode(code.id, tag.id, client);
