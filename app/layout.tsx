@@ -2,7 +2,7 @@ import "./globals.css";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import Header from "@/app/header";
+import Header from "@/app/_components/header/header";
 import { GeistSans } from "geist/font/sans";
 import { SupabaseProvider } from "@/src/contexts/SupabaseProvider";
 import { Toaster } from "@/src/components/ui/toaster";
