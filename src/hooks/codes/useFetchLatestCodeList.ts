@@ -13,6 +13,12 @@ export const useFetchLatestCodeList = () => {
         async function init() {
             if (!client) return;
             const result = await fetchCodeList(client, {
+                eq: [
+                    {
+                        field: "is_public",
+                        value: true
+                    }
+                ],
                 order: [
                     {
                         field: "published_date",

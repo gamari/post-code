@@ -1,4 +1,5 @@
 import React from "react";
+import { unstable_noStore } from "next/cache";
 
 import { TopLatestCodePanelList } from "./TopLatestCodePanelList";
 import { Heading } from "@/src/components/atoms/texts/heading";
@@ -9,6 +10,8 @@ import { MoreButton } from "@/src/components/molecules/buttons/more-button";
 import { Center } from "@/src/components/atoms/containers/Center";
 
 export const TopLatestCodesSection = async () => {
+  unstable_noStore();
+
   return (
     <TopSection>
       <Heading type="h2" className="flex flex-row items-center gap-2">

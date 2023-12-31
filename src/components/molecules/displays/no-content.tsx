@@ -11,7 +11,7 @@ export const NoContent = ({ text, className, children }: Props) => {
   return (
     <div
       className={cn(
-        "p-6 bg-white border rounded-md flex items-center justify-center text-gray-600",
+        "p-6 bg-white rounded-md flex items-center justify-center text-gray-600",
         className
       )}
     >
