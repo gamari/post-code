@@ -12,7 +12,6 @@ import { Avatar } from "@/src/components/molecules/avatar";
 import { CommentCount } from "../../comments/comment-count";
 import { FavoriteCount } from "../../favorites/favorite-count";
 import { Flex } from "@/src/components/atoms/containers/Flex";
-import { TagBadge } from "@/src/components/molecules/tag-badge";
 import { CodeTagList } from "../../tags/code-tag-list";
 
 interface Props {

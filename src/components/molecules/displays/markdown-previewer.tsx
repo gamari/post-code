@@ -35,6 +35,12 @@ export const MarkdownPreviewer = ({ content }: { content: string }) => {
           <ol className="list-decimal list-inside" {...props} />
         ),
         li: ({ node, ...props }) => <li className="ml-4" {...props} />,
+        a: ({ node, ...props }) => (
+          <a
+            className="text-blue-500 hover:underline"
+            {...props}
+          />
+        ),
         img: ({ node, ...props }) => {
           const { src, alt } = props;
           return (

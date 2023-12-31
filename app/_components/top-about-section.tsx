@@ -32,6 +32,12 @@ export const TopAboutSection = () => {
               <Link href="/about">詳しく見る</Link>
             </Button>
           </div>
+
+          <div>
+            <Description>
+              (※現在、PCのみ対応)
+            </Description>
+          </div>
         </div>
       </div>
     </TopSection>
