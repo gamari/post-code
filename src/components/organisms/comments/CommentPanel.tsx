@@ -57,7 +57,7 @@ export const CommentPanel = ({ comment }: Props) => {
         </Flex>
       </Flex>
 
-      <Flex gap={4} alignItems="center" className="pt-2">
+      <Flex gap={4} alignItems="center" className="pt-2 w-full">
         <MarkdownPreviewer content={comment.comment} />
       </Flex>
     </LinkCard>

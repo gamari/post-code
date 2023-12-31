@@ -5,6 +5,7 @@ import { okaidia as style } from "react-syntax-highlighter/dist/esm/styles/prism
 
 import { FileType } from "@/src/libs/editors";
 import { BaseProps } from "@/src/types/components";
+import { cn } from "@/src/libs/utils";
 
 interface Props extends BaseProps {
   language: FileType;
@@ -20,7 +21,7 @@ export const CodeViewer = ({
     <SyntaxHighlighter
       language={language}
       style={style}
-      className={className}
+      className={cn("w-full", className)}
       showLineNumbers
     >
       {content || ""}

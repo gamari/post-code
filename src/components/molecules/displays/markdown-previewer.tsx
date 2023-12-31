@@ -16,7 +16,7 @@ export const MarkdownPreviewer = ({ content }: { content: string }) => {
 
   return (
     <ReactMarkdown
-      className="space-y-4"
+      className="space-y-4 w-full"
       // rehypePlugins={[rehypeHighlight]}
       components={{
         h1: ({ node, ...props }) => (
@@ -59,7 +59,7 @@ export const MarkdownPreviewer = ({ content }: { content: string }) => {
             <CodeViewer
               language={language}
               content={children as string}
-              className="p-4 flex-1"
+              className="p-4 flex-1 w-full"
             />
           );
         },

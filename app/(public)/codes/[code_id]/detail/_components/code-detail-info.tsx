@@ -9,6 +9,7 @@ import { Flex } from "@/src/components/atoms/containers/Flex";
 import { DateString } from "@/src/components/atoms/texts/date-string";
 import { DateIcon } from "@/src/components/atoms/icons/date-icon";
 import { UpdateIcon } from "@/src/components/atoms/icons/update-icon";
+import { CodeTagList } from "@/src/components/organisms/tags/code-tag-list";
 
 interface Props {
   code: CodeDetail;
@@ -28,13 +29,7 @@ export const CodeDetailInfo: FunctionComponent<Props> = async ({ code }) => {
             <Heading type="h3">{code?.title}</Heading>
           </Flex>
 
-          <Flex className="py-2">
-            {code?.tags?.map((tag) => (
-              <Badge className="bg-gray-200 text-gray-700" key={tag.id}>
-                {tag.name}
-              </Badge>
-            ))}
-          </Flex>
+          <CodeTagList tags={code?.tags || []} className="mt-2" />
 
           <Flex gap={12} className="text-xs text-gray-500 mt-2">
             {code?.published_date && (
