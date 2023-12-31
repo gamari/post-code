@@ -3,6 +3,7 @@ import { PostgrestFilterBuilder } from '@supabase/postgrest-js';
 export interface QueryOptions {
     eq?: Array<{ field: string, value: any }>;
     order?: Array<{ field: string, ascending?: boolean }>;
+    like?: Array<{ field: string, value: string }>;
     limit?: number;
 }
 
@@ -10,6 +11,12 @@ export const applyQueryOptions = (query: PostgrestFilterBuilder<any, any, any[],
     if (options?.eq) {
         options.eq.forEach(condition => {
             query = query.eq(condition.field, condition.value);
+        });
+    }
+
+    if (options?.like) {
+        options.like.forEach(condition => {
+            query = query.like(condition.field, `%${condition.value}%`);
         });
     }
 

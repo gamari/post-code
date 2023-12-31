@@ -48,6 +48,8 @@
 
 ## デプロイ前
 
+- [ ] Firebaseを入れる
+- [ ] console.logが無いかを確認する
 - [ ] username の unique をかける
 - [ ] テーブルの制限をかける
 

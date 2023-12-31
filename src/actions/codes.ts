@@ -14,9 +14,29 @@ export const actionGetBadCodeById = async (id: number) => {
 }
 
 // List
+export const actionGetCodeListByTitle = async (title: string) => {
+    const client = getServerClient();
+    const codes = await fetchCodeList(client, {
+        like: [
+            createEqCondition("title", title)
+        ],
+        eq: [
+            createEqCondition("is_public", true)
+        ],
+        order: [
+            createOrderCondition("updated_at", false)
+        ],
+        limit: SEARCH_LIMIT
+    });
+    return codes;
+}
+
 export const actionGetCodeListByFileCode = async (fileCode: string) => {
     const client = getServerClient();
     const codes = await fetchCodeListByFileCode(fileCode, client, 1, {
+        eq: [
+            createEqCondition("is_public", true)
+        ],
         order: [
             createOrderCondition("updated_at", false)
         ],

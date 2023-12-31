@@ -1,7 +1,7 @@
 import React from "react";
 import { unstable_noStore } from "next/cache";
 
-import { SearchSection } from "./search-section";
+import { SearchSection } from "../../search-section";
 import { SearchCodeResult } from "./search-code-result";
 
 interface Props {

@@ -1,4 +1,3 @@
-import { SearchBox } from "../../../src/components/organisms/search/SearchBox";
 import { cn } from "@/src/libs/utils";
 import { TextLinkLogo } from "@/src/components/molecules/text-link-logo";
 import { APP_TITLE } from "@/src/libs/constants";
