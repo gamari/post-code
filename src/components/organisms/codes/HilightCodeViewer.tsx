@@ -2,8 +2,7 @@ import { convertFilenameToFiletype } from "@/src/libs/editors";
 import { File } from "@/src/types";
 import React from "react";
 
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { okaidia as style } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { CodeViewer } from "./CodeViewer";
 
 interface Props {
   // code: string;
@@ -13,13 +12,10 @@ interface Props {
 
 export const HilightCodeViewer = ({ file, query }: Props) => {
   return (
-    <SyntaxHighlighter
+    <CodeViewer
       language={convertFilenameToFiletype(file?.name)}
-      style={style}
-      className="p-4 flex-1"
-      showLineNumbers
-    >
-      {file.content || ""}
-    </SyntaxHighlighter>
+      content={file.content || ""}
+      className="p-4"
+    />
   );
 };

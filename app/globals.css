@@ -9,10 +9,6 @@ html,
   width: 100%;
 }
 
-li {
-  list-style: none;
-}
-
 /* Ace Editorの設定 */
 body .ace_scrollbar-v {
   overflow-y: hidden;
