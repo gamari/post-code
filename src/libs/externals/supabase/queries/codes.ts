@@ -1,4 +1,4 @@
-import { CODE_TABLE, FILE_TABLE, LANGUAGE_TABLE, PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
+import { CODE_TABLE, FILE_TABLE, LANGUAGE_TABLE, PUBLIC_USER_TABLE, TAG_TABLE } from "@/src/libs/constants/tables";
 import { CodeDetail, CodeFormType, SearchResultCode, User } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { QueryOptions, applyOrderBy, applyQueryOptions } from ".";
@@ -11,7 +11,8 @@ export const fetchCodeById = async (id: number, client: SupabaseClient) => {
             *, 
             ${PUBLIC_USER_TABLE}!user_id (*),
             ${FILE_TABLE}: files(*),
-            ${LANGUAGE_TABLE}!language_id(*)
+            ${LANGUAGE_TABLE}!language_id(*),
+            ${TAG_TABLE}: tags(*)
         `)
         .eq("id", id)
         .single();
@@ -21,7 +22,8 @@ export const fetchCodeById = async (id: number, client: SupabaseClient) => {
     return {
         ...code,
         user: code.public_users,
-        language: code.languages
+        language: code.languages,
+        tags: code.tags,
     };
 };
 
@@ -273,6 +275,7 @@ export const fetchUpdateCode = async (newBadCodes: CodeDetail, client: SupabaseC
             users: undefined,
             user: undefined,
             public_users: undefined,
+            tags: undefined,
         })
         .eq("id", newBadCodes.id)
         .select("*")

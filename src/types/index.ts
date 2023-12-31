@@ -10,6 +10,7 @@ export type Favorite = Database["public"]["Tables"]["favorites"]["Row"];
 export type Comment = Database["public"]["Tables"]["comments"]["Row"];
 export type Language = Database["public"]["Tables"]["languages"]["Row"];
 export type Contact = Database["public"]["Tables"]["contacts"]["Row"];
+export type Tag = Database["public"]["Tables"]["tags"]["Row"];
 
 // Code
 export interface CodeFormType {
@@ -30,12 +31,15 @@ export interface CodeDetail extends Code {
     favorites_count?: number;
     comments_count?: number;
     language?: Language;
+    tags?: Tag[];
 }
 
 // Comment
 export interface CommentDetail extends Comment {
     user: User;
 }
+
+// Tag
 
 
 // deprecated

@@ -1,4 +1,6 @@
-export type Json =
+Need to install the following packages:
+supabase@1.127.4
+Ok to proceed? (y) export type Json =
   | string
   | number
   | boolean
@@ -9,6 +11,36 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      code_tags: {
+        Row: {
+          code_id: number
+          tag_id: number
+        }
+        Insert: {
+          code_id: number
+          tag_id: number
+        }
+        Update: {
+          code_id?: number
+          tag_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "code_tags_code_id_fkey"
+            columns: ["code_id"]
+            isOneToOne: false
+            referencedRelation: "codes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "code_tags_tag_id_fkey"
+            columns: ["tag_id"]
+            isOneToOne: false
+            referencedRelation: "tags"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       codes: {
         Row: {
           created_at: string | null
@@ -252,6 +284,24 @@ export interface Database {
         Update: {
           display?: string
           id?: number
+          name?: string
+        }
+        Relationships: []
+      }
+      tags: {
+        Row: {
+          id: number
+          logo_type: string | null
+          name: string
+        }
+        Insert: {
+          id?: number
+          logo_type?: string | null
+          name: string
+        }
+        Update: {
+          id?: number
+          logo_type?: string | null
           name?: string
         }
         Relationships: []

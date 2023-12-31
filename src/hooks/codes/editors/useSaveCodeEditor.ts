@@ -5,6 +5,7 @@ import { useLoading } from "../../useLoading";
 import { useCodeEditor } from "./useCodeEditor";
 import { useCodeEditorSelectedFile } from "./useCodeEditorSelectedFile";
 import { useCodeEditorFiles } from "./useCodeEditorFiles";
+import { fetchAttachTagToCode, fetchRemoveTagFromCode, fetchTagListOfCode } from "@/src/libs/externals/supabase/queries/tags";
 
 export const useSaveCodeEditor = () => {
     const { loading, startLoading, stopLoading } = useLoading();
@@ -39,6 +40,25 @@ export const useSaveCodeEditor = () => {
 
         try {
             startLoading();
+
+            // TODO 別のHookに管理させたい
+            // タグの更新
+            const existingTags = await fetchTagListOfCode(code.id, client);
+            const newTags = code?.tags?.filter((tag) => {
+                return !existingTags.find((existingTag) => existingTag.name === tag.name);
+            }) || [];
+            const removeTags = existingTags.filter((existingTag) => {
+                return !code?.tags?.find((tag) => tag.name === existingTag.name);
+            }) || [];
+
+            for (const tag of newTags) {
+                await fetchAttachTagToCode(code.id, tag.id, client);
+            }
+
+            for (const tag of removeTags) {
+                await fetchRemoveTagFromCode(code.id, tag.id, client);
+            }
+
             await fetchUpsertFiles(newFiles, client);
             const retData = await fetchUpdateCode(code, client);
             return retData;

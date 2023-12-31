@@ -28,7 +28,6 @@ export const CodeEditorProvider = ({
   code: initCode,
   children,
 }: ProviderProps) => {
-  const { client } = useSupabase();
   const [code, setCode] = useState<CodeDetail | undefined>(initCode);
   const [files, setFiles] = useState<File[]>(initCode?.files || []);
 
