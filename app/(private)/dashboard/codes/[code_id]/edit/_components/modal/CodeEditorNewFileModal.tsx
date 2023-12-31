@@ -12,6 +12,7 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
 import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
 import { useCodeEditorFiles } from "@/src/hooks/codes/editors/useCodeEditorFiles";
+import { NEW_FILE_LIMIT } from "@/src/libs/constants/limits";
 
 interface Props {
   isOpen: boolean;
@@ -29,8 +30,8 @@ export const CodeEditorNewFileModal = ({ isOpen, onClose }: Props) => {
   const { name, setName, saveFile } = useFormFileOfEditor();
 
   const handleAddFile = async () => {
-    if (files?.length >= 3) {
-      errorAlert("ファイルは3つしか作成できません。");
+    if (files?.length >= NEW_FILE_LIMIT) {
+      errorAlert(`ファイルは${NEW_FILE_LIMIT}個までしか作成できません。`);
       return;
     }
 

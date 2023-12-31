@@ -1,4 +1,4 @@
-import { getFileExtensionType } from "@/src/libs/editors";
+import { convertFilenameToFiletype } from "@/src/libs/editors";
 import { File } from "@/src/types";
 import React from "react";
 
@@ -14,7 +14,7 @@ interface Props {
 export const HilightCodeViewer = ({ file, query }: Props) => {
   return (
     <SyntaxHighlighter
-      language={getFileExtensionType(file?.name)}
+      language={convertFilenameToFiletype(file?.name)}
       style={style}
       className="p-4 flex-1"
       showLineNumbers

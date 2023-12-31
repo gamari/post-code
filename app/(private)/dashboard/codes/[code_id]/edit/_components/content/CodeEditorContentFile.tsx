@@ -1,20 +1,26 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 
 import AceEditor from "react-ace";
 
 import "ace-builds/src-noconflict/theme-monokai";
 
-import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/mode-java";
+import "ace-builds/src-noconflict/mode-c_cpp";
+import "ace-builds/src-noconflict/mode-ruby";
+import "ace-builds/src-noconflict/mode-golang";
+import "ace-builds/src-noconflict/mode-php";
+import "ace-builds/src-noconflict/mode-python";
+import "ace-builds/src-noconflict/mode-perl";
+import "ace-builds/src-noconflict/mode-kotlin";
+import "ace-builds/src-noconflict/mode-scala";
+import "ace-builds/src-noconflict/mode-rust";
+
 import "ace-builds/src-noconflict/mode-typescript";
 import "ace-builds/src-noconflict/mode-jsx";
 import "ace-builds/src-noconflict/mode-tsx";
-import "ace-builds/src-noconflict/mode-java";
-import "ace-builds/src-noconflict/mode-c_cpp";
-import "ace-builds/src-noconflict/mode-php";
-import "ace-builds/src-noconflict/mode-ruby";
 
 import "ace-builds/src-noconflict/mode-markdown";
 import "ace-builds/src-noconflict/mode-html";
@@ -23,7 +29,7 @@ import "ace-builds/src-noconflict/mode-sql";
 
 import { cn } from "@/src/libs/utils";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
-import { getFileExtensionType } from "@/src/libs/editors";
+import { convertFilenameToFiletype } from "@/src/libs/editors";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { CodeEditorNewFileModalButton } from "../modal/CodeEditorNewFileModalButton";
 import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
@@ -52,7 +58,7 @@ export const CodeEditorContentFile = ({ className }: Props) => {
 
       <AceEditor
         ref={editorRef}
-        mode={getFileExtensionType(selectedFile.name)}
+        mode={convertFilenameToFiletype(selectedFile.name)}
         theme="monokai"
         value={selectedFile?.content || ""}
         onChange={(newValue) => {

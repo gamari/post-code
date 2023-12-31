@@ -14,7 +14,7 @@ export const SearchBox = () => {
   };
 
   return (
-    <div className="border flex items-center p-2 gap-3">
+    <div className="border flex items-center p-2 gap-3 rounded-md">
       <SearchIcon className="text-gray-400" />
       <input
         type="text"

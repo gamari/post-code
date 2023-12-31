@@ -22,7 +22,7 @@ export const FileItemList = ({
   const sortedFiles = files.sort(sortAscByName);
 
   return (
-    <div className={cn("flex flex-col gap-1", className)}>
+    <div className={cn("flex flex-col gap-1  max-h-[200px] scroll-auto overflow-y-scroll overflow-x-hidden", className)}>
       {sortedFiles.map((file, index) => (
         <SlideIn delay={index * 0.1} from="right" key={file.name}>
           <FileItem

@@ -3,6 +3,7 @@ import Image from "next/image";
 import PandaImage from "@/app/_images/panda.png";
 import RabbitImage from "@/app/_images/rabbit.png";
 import CatImage from "@/app/_images/cat.png";
+import WolfImage from "@/app/_images/wolf.png";
 
 import { AccountIcon } from "../atoms/icons/account-icon";
 import { IconProps } from "@/src/types/components";
@@ -11,7 +12,7 @@ import { cn } from "@/src/libs/utils";
 interface Props extends IconProps {
   src?: string | null;
   className?: string;
-  iconType?: string | "panda" | "rabbit" | "cat" | null | "";
+  iconType?: string | "panda" | "rabbit" | "cat" | "walf" | null | "";
 }
 
 export const Avatar = ({
@@ -37,6 +38,9 @@ export const Avatar = ({
       );
     if (iconType == "cat")
       return <Image src={CatImage} width={width} height={width} alt="image" />;
+
+    if (iconType == "wolf")
+      return <Image src={WolfImage} width={width} height={width} alt="image" />;
   }
 
   if (!src)
