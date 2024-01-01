@@ -1,6 +1,4 @@
-import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
-import { type CookieOptions, createServerClient } from '@supabase/ssr'
 import { createClient } from '@supabase/supabase-js'
 import { getServerClient } from '@/src/libs/externals/supabase/admin-client'
 import { actionGetAuthUser } from '@/src/actions/users'

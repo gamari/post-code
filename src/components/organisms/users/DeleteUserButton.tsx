@@ -11,6 +11,10 @@ export const DeleteUserButton = () => {
   const { infoAlert, errorAlert } = useAlert();
   const handleDelete = async () => {
     if (!client) return;
+
+    const isOk = confirm("このユーザーに紐づくデータが全て削除されます。本当に削除しますか？");
+    if (!isOk) return;
+
     const res = await fetch("/api/delete-user", {
       method: "POST",
     });
@@ -27,7 +31,7 @@ export const DeleteUserButton = () => {
 
   return (
     <div
-      className="text-red-500 text-sm cursor-pointer hover:bg-gray-100 p-2 rounded-lg"
+      className="bg-white border-2 border-gray-200 px-4 text-red-500 text-sm cursor-pointer hover:bg-gray-100 p-2 rounded-lg"
       onClick={handleDelete}
     >
       ユーザー削除
