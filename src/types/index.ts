@@ -39,11 +39,8 @@ export interface CommentDetail extends Comment {
     user: User;
 }
 
-// Tag
-
 
 // deprecated
-
 export interface CodeWithUser extends Code {
     user: User;
 }
