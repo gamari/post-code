@@ -5,8 +5,10 @@ import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { Tag } from "@/src/types";
 import { fetchOrCreateTag } from "@/src/libs/externals/supabase/queries/tags";
+import { useAlert } from "@/src/hooks/useAlert";
 
 export const CodeEditorSaveEditorSelectTags = () => {
+  const { errorAlert } = useAlert();
   const { code, addTag, removeTag } = useCodeEditor();
 
   const { client } = useSupabase();
@@ -20,12 +22,19 @@ export const CodeEditorSaveEditorSelectTags = () => {
   const handleKeyDown = async (e: any) => {
     if (e.key === "Enter" && input) {
       if (!client) return;
-      const newTag = input.trim();
-      const tag = await fetchOrCreateTag(newTag, client);
-      if (tag && !code?.tags?.some((tag) => tag.name === newTag)) {
-        addTag(tag);
+
+      try {
+        const newTag = input.trim();
+        if (!newTag) throw new Error("タグを入力してください");
+        if (newTag.length > 20) throw new Error("タグは20文字以内で入力してください");
+        const tag = await fetchOrCreateTag(newTag, client);
+        if (tag && !code?.tags?.some((tag) => tag.name === newTag)) {
+          addTag(tag);
+        }
+        setInput("");
+      } catch (e) {
+        errorAlert("タグの追加に失敗しました", e);
       }
-      setInput("");
     }
   };
 
@@ -56,6 +65,7 @@ export const CodeEditorSaveEditorSelectTags = () => {
           onKeyDown={handleKeyDown}
           className="w-full outline-none"
           disabled={(code?.tags?.length || 0) >= 3}
+          maxLength={20}
         />
       </div>
     </div>
