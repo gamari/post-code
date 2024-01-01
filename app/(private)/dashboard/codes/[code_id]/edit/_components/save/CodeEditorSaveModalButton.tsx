@@ -68,7 +68,7 @@ export const CodeEditorSaveModalButton = () => {
 
         <div className="flex flex-row items-center mt-3 gap-2">
           <SaveButton
-            label="保存する"
+            label="詳細を書く"
             onClick={handleOnSave}
             loading={loading}
           />
