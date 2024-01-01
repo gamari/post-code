@@ -5,6 +5,42 @@ import { fetchAuthUser, fetchUserById } from "@/src/libs/externals/supabase/quer
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
+// Get
+export const actionGetUserById = async (id: string) => {
+    try {
+        const supabase = getServerClient();
+        const user = await fetchUserById(id, supabase);
+
+        return user;
+    } catch (error) {
+        return null;
+    }
+}
+
+export const actionGetAuthUser = async () => {
+    try {
+        const supabase = getServerClient();
+        const authUser = await fetchAuthUser(supabase);
+
+        return authUser;
+    } catch (error) {
+        console.log("actionGetAuthUser error");
+        return null;
+    }
+}
+
+export const actionGetMySelf = async () => {
+    const supabase = getServerClient();
+    const authUser = await fetchAuthUser(supabase);
+
+    if (!authUser) throw new Error("ログインしてください。");
+
+    const user = await fetchUserById(authUser.id, supabase);
+
+    return user;
+}
+
+// Login関係
 export async function actionLoginWithGoogle() {
     console.log("actionLoginWithGoogle");
     const supabase = getServerClient()
@@ -71,27 +107,4 @@ export async function actionSignUp(formData: FormData) {
     }
 
     return redirect('/dashboard')
-}
-
-export const actionGetAuthUser = async () => {
-    try {
-        const supabase = getServerClient();
-        const authUser = await fetchAuthUser(supabase);
-
-        return authUser;
-    } catch (error) {
-        console.log("actionGetAuthUser error");
-        return null;
-    }
-}
-
-export const actionGetMySelf = async () => {
-    const supabase = getServerClient();
-    const authUser = await fetchAuthUser(supabase);
-
-    if (!authUser) throw new Error("ログインしてください。");
-
-    const user = await fetchUserById(authUser.id, supabase);
-
-    return user;
 }

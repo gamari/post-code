@@ -26,7 +26,7 @@ export const NewCodeModalButton = () => {
             toggleModal();
           }}
         >
-          <Heading className="mb-3">コード作成</Heading>
+          <Heading className="mb-3">記事作成</Heading>
           <div className="mb-2">
             <Input
               {...register("title")}
