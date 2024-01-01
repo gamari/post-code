@@ -11,14 +11,14 @@ export async function POST(request: Request) {
     const authUser = await actionGetAuthUser();
 
     if (!authUser) {
-        return Response.json({ message: "error" }, { status: 500 })
+        return NextResponse.json({ message: "error" }, { status: 500 })
     }
 
     const { error: dbError } = await serverClient.from("users").delete().match({ id: authUser?.id });
 
     if (dbError) {
         console.log(dbError);
-        return Response.json({ message: "error" }, { status: 500 })
+        return NextResponse.json({ message: "error" }, { status: 500 })
     }
 
     const adminClient = createClient(
@@ -29,8 +29,8 @@ export async function POST(request: Request) {
 
     if (error) {
         console.log(error);
-        return Response.json({ message: "error" }, { status: 500 })
+        return NextResponse.json({ message: "error" }, { status: 500 })
     }
 
-    return Response.json({ message: "success" })
+    return NextResponse.json({ message: "success" })
 }

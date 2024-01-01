@@ -248,6 +248,8 @@ export const fetchUpdateCode = async (newBadCodes: CodeDetail, client: SupabaseC
             user: undefined,
             public_users: undefined,
             tags: undefined,
+            favorites_count: undefined,
+            comments_count: undefined,
         })
         .eq("id", newBadCodes.id)
         .select("*")

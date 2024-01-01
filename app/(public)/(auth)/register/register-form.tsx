@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 
 import { actionSignUp } from "@/src/actions/users";
 import { Button } from "@/src/components/atoms/buttons/button";
@@ -12,7 +13,6 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 import { GoogleSignupButton } from "../GoogleSignupButton";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { useLoading } from "@/src/hooks/useLoading";
-import Link from "next/link";
 
 interface Props {
   errorStatus?: string;

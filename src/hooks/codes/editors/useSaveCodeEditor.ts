@@ -15,6 +15,7 @@ export const useSaveCodeEditor = () => {
     const { selectedFile } = useCodeEditorSelectedFile();
     const { files, updateFile } = useCodeEditorFiles();
 
+    // TODO getCodeByIdでカラム増やすと、影響でるの直す必要がある
     async function saveEditor() {
         if (!client) throw new Error("通信に失敗しました。");
 
@@ -50,8 +51,6 @@ export const useSaveCodeEditor = () => {
             const removeTags = existingTags.filter((existingTag) => {
                 return !code?.tags?.find((tag) => tag.name === existingTag.name);
             }) || [];
-            console.log("newTags", newTags);
-            console.log("removeTags", removeTags);
 
             for (const tag of newTags) {
                 await fetchAttachTagToCode(code.id, tag.id, client);
