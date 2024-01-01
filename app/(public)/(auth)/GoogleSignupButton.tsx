@@ -11,6 +11,9 @@ export const GoogleSignupButton = () => {
   const handleLogin = async () => {
     await client?.auth.signInWithOAuth({
       provider: "google",
+      options: {
+        redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/callback`,
+      },
     });
   };
 
