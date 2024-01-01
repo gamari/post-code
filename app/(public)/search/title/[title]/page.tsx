@@ -8,6 +8,7 @@ import {
   actionGetCodeListByFileCode,
   actionGetCodeListByTitle,
 } from "@/src/actions/codes";
+import { SearchTitleResultList } from "./SearchTitleResultList";
 
 interface Props {
   params: {
@@ -23,7 +24,12 @@ const Page = async ({ params: { title } }: Props) => {
   return (
     <SearchSection className="max-w-4xl">
       <Heading className="mb-6">タイトル検索: {decodedTitle}</Heading>
-      <CodePanelList codes={codeList} />
+
+      {codeList.length === 0 && (
+        <div className="bg-white p-6 rounded-md">見つかりませんでした</div>
+      )}
+
+      <SearchTitleResultList title={decodedTitle} codes={codeList} />
     </SearchSection>
   );
 };

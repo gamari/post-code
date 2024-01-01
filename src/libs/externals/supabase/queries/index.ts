@@ -4,6 +4,7 @@ export interface QueryOptions {
     eq?: Array<{ field: string, value: any }>;
     order?: Array<{ field: string, ascending?: boolean }>;
     like?: Array<{ field: string, value: string }>;
+    range?: { start: number, end: number }
     limit?: number;
 }
 
@@ -24,6 +25,10 @@ export const applyQueryOptions = (query: PostgrestFilterBuilder<any, any, any[],
         options.order.forEach(condition => {
             query = query.order(condition.field, { ascending: condition.ascending ?? true });
         });
+    }
+
+    if (options?.range) {
+        query = query.range(options.range.start, options.range.end);
     }
 
     query = query.limit(options?.limit || 8);

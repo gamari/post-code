@@ -14,11 +14,9 @@ const Page = ({ params: { code } }: Props) => {
   unstable_noStore();
 
   return (
-    <div>
-      <SearchSection className="max-w-4xl">
-        <SearchCodeResult code={code} />
-      </SearchSection>
-    </div>
+    <SearchSection className="max-w-4xl">
+      <SearchCodeResult code={code} />
+    </SearchSection>
   );
 };
 

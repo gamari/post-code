@@ -5,6 +5,7 @@ import { fetchCodeById, fetchCodeList, fetchCodeListByFileCode, fetchFavoriteCod
 import { fetchAuthUser } from "@/src/libs/externals/supabase/queries/users";
 import { createEqCondition, createOrderCondition } from "../libs/externals/supabase/queries";
 import { SEARCH_LIMIT } from "../libs/constants/limits";
+import { buildCodesByTitleOption } from "../libs/externals/supabase/build-options";
 
 // One
 export const actionGetBadCodeById = async (id: number) => {
@@ -16,18 +17,7 @@ export const actionGetBadCodeById = async (id: number) => {
 // List
 export const actionGetCodeListByTitle = async (title: string) => {
     const client = getServerClient();
-    const codes = await fetchCodeList(client, {
-        like: [
-            createEqCondition("title", title)
-        ],
-        eq: [
-            createEqCondition("is_public", true)
-        ],
-        order: [
-            createOrderCondition("updated_at", false)
-        ],
-        limit: SEARCH_LIMIT
-    });
+    const codes = await fetchCodeList(client, buildCodesByTitleOption(title, 1));
     return codes;
 }
 
