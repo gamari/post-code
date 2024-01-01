@@ -17,20 +17,22 @@ import {
 } from "@/src/components/ui/dialog";
 import { Code } from "@/src/types";
 import { FaRegShareFromSquare, FaXTwitter } from "react-icons/fa6";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface Props {
   code: Code;
 }
 
 export const CodeDetailShareButton = ({ code }: Props) => {
+  const router = useRouter();
   const pathname = usePathname();
 
   const createShareUrl = () => {
     // TODO 文言を修正
     const text = code.title + " | " + code.description;
     // TODO リンクを環境変数にする
-    const url = "http://localhost:8000" + pathname;
+    const baseUrl = window.location.origin;
+    const url = baseUrl + pathname;
     const xUrl =
       "https://twitter.com/intent/tweet?text=" +
       encodeURIComponent(text) +
