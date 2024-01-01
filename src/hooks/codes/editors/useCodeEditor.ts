@@ -1,5 +1,5 @@
 import { useCodeEditorContext } from "@/src/contexts/editors/CodeEditorProvider"
-import { Language } from "@/src/types";
+import { Language, Tag } from "@/src/types";
 
 export const useCodeEditor = () => {
     const { code, setCode } = useCodeEditorContext();
@@ -36,11 +36,31 @@ export const useCodeEditor = () => {
         });
     }
 
+    function addTag(tag: Tag) {
+        if (!code) return;
+        if (!code?.tags) return;
+        setCode({
+            ...code,
+            tags: [...code?.tags, tag]
+        });
+    }
+
+    function removeTag(tag: Tag) {
+        if (!code) return;
+        if (!code?.tags) return;
+        setCode({
+            ...code,
+            tags: code?.tags.filter(t => t.id !== tag.id)
+        });
+    }
+
     return {
         code,
         setDescription,
         setIsPublic,
         setLanguage,
-        setTitle
+        setTitle,
+        addTag,
+        removeTag
     }
 }

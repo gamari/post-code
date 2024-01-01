@@ -6,6 +6,8 @@ import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github.css";
+import { CodeViewer } from "../../organisms/codes/CodeViewer";
+import { FileType } from "@/src/libs/editors";
 
 export const MarkdownPreviewer = ({ content }: { content: string }) => {
   const openImageInNewTab = (src: string) => {
@@ -14,8 +16,8 @@ export const MarkdownPreviewer = ({ content }: { content: string }) => {
 
   return (
     <ReactMarkdown
-      className="space-y-4"
-      rehypePlugins={[rehypeHighlight]}
+      className="space-y-4 w-full"
+      // rehypePlugins={[rehypeHighlight]}
       components={{
         h1: ({ node, ...props }) => (
           <h1 className="text-3xl font-bold mb-3" {...props} />
@@ -33,6 +35,12 @@ export const MarkdownPreviewer = ({ content }: { content: string }) => {
           <ol className="list-decimal list-inside" {...props} />
         ),
         li: ({ node, ...props }) => <li className="ml-4" {...props} />,
+        a: ({ node, ...props }) => (
+          <a
+            className="text-blue-500 hover:underline"
+            {...props}
+          />
+        ),
         img: ({ node, ...props }) => {
           const { src, alt } = props;
           return (
@@ -50,21 +58,15 @@ export const MarkdownPreviewer = ({ content }: { content: string }) => {
             />
           );
         },
-        code: ({ node, ...props }) => {
-          const { className } = props;
-          const language = className
-            ?.replace("language-", "")
-            .replace("hljs ", "");
-
+        code: ({ ...props }) => {
+          const { className, children } = props;
+          const language = className?.replace("language-", "") as FileType;
           return (
-            <div className="border rounded-md overflow-hidden">
-              {language && (
-                <div className={`border-b p-2 bg-slate-100 font-bold text-sm`}>
-                  {language}
-                </div>
-              )}
-              <code className="text-sm bg-gray-100 p-1 rounded-md" {...props} />
-            </div>
+            <CodeViewer
+              language={language}
+              content={children as string}
+              className="p-4 flex-1 w-full"
+            />
           );
         },
       }}

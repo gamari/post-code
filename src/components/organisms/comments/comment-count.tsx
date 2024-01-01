@@ -10,7 +10,7 @@ interface Props {
 
 export const CommentCount = ({ count, size = "md" }: Props) => {
   return (
-    <Flex alignItems="center" className="text-xs" gap={4}>
+    <Flex alignItems="center" className="text-xs text-gray-500 " gap={4}>
       <CommentIcon size="xs" />
       <Typo text={count} className="" />
     </Flex>

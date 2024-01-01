@@ -7,6 +7,8 @@ import { Description } from "@/src/components/atoms/texts/description";
 import { TopSection } from "./top-section";
 import { Center } from "@/src/components/atoms/containers/Center";
 import { APP_TITLE } from "@/src/libs/constants";
+import { Button } from "@/src/components/atoms/buttons/button";
+import Link from "next/link";
 
 export const TopAboutSection = () => {
   return (
@@ -24,6 +26,18 @@ export const TopAboutSection = () => {
           <Description>
             コードを元に記事を書き、そのコードをベースに意見交換を行ったり、発信をしたりすることが目的のサイトです。
           </Description>
+
+          <div className="mt-2">
+            <Button className="w-[250px]" asChild>
+              <Link href="/about">詳しく見る</Link>
+            </Button>
+          </div>
+
+          <div>
+            <Description>
+              (※現在、PCのみ対応)
+            </Description>
+          </div>
         </div>
       </div>
     </TopSection>

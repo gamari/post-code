@@ -1,10 +1,10 @@
-import { SearchBox } from "../src/components/organisms/search/SearchBox";
 import { cn } from "@/src/libs/utils";
 import { TextLinkLogo } from "@/src/components/molecules/text-link-logo";
 import { APP_TITLE } from "@/src/libs/constants";
 import { LoginButton } from "@/src/components/molecules/buttons/login-button";
 import { DashboardButton } from "@/src/components/molecules/buttons/dashboard-button";
 import { actionGetAuthUser } from "@/src/actions/users";
+import { HeaderSearch } from "./HeaderSearch";
 
 export default async function Header() {
   const authUser = await actionGetAuthUser();
@@ -20,7 +20,7 @@ export default async function Header() {
         <TextLinkLogo url="/" label={APP_TITLE} />
 
         <div className="flex items-center gap-4">
-          <SearchBox />
+          <HeaderSearch />
 
           {authUser ? <DashboardButton /> : <LoginButton />}
         </div>

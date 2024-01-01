@@ -2,7 +2,10 @@ import { PostgrestFilterBuilder } from '@supabase/postgrest-js';
 
 export interface QueryOptions {
     eq?: Array<{ field: string, value: any }>;
+    lt?: Array<{ field: string, value: any }>;
     order?: Array<{ field: string, ascending?: boolean }>;
+    like?: Array<{ field: string, value: string }>;
+    range?: { start: number, end: number }
     limit?: number;
 }
 
@@ -13,10 +16,26 @@ export const applyQueryOptions = (query: PostgrestFilterBuilder<any, any, any[],
         });
     }
 
+    if (options?.lt) {
+        options.lt.forEach(condition => {
+            query = query.lt(condition.field, condition.value);
+        });
+    }
+
+    if (options?.like) {
+        options.like.forEach(condition => {
+            query = query.like(condition.field, `%${condition.value}%`);
+        });
+    }
+
     if (options?.order) {
         options.order.forEach(condition => {
             query = query.order(condition.field, { ascending: condition.ascending ?? true });
         });
+    }
+
+    if (options?.range) {
+        query = query.range(options.range.start, options.range.end);
     }
 
     query = query.limit(options?.limit || 8);

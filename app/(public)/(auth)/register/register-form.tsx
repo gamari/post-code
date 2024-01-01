@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 
 import { actionSignUp } from "@/src/actions/users";
 import { Button } from "@/src/components/atoms/buttons/button";
@@ -63,6 +64,13 @@ export const RegisterForm = ({ errorStatus }: Props) => {
           placeholder="pasword"
           autocomplete="password"
         />
+
+        <div className="text-gray-600 text-sm py-2">
+          <Link href="/terms" className="text-blue-500 hover:underline">
+            利用規約
+          </Link>
+          に同意の上、登録を行ってください。
+        </div>
 
         <Button type="submit" className="mt-3 w-full" disabled={loading}>
           ユーザー登録

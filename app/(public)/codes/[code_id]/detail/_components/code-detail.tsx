@@ -6,7 +6,7 @@ import { CodeDetailFileViewer } from "./CodeDetailFileViewer";
 import { CodeDetailInfo } from "./code-detail-info";
 import { CodeDetailCommentList } from "./comments/CodeDetailCommentList";
 import { CodeDetailSidebar } from "./sidebar/code-detail-sidebar";
-import { actionGetBadCodeById } from "@/src/actions/codes";
+import { actionGetCodeById } from "@/src/actions/codes";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 
@@ -17,9 +17,14 @@ interface Props {
 export const revalidate = 0;
 
 export const CodeDetail = async ({ codeId }: Props) => {
-  const code = await actionGetBadCodeById(codeId);
+  const code = await actionGetCodeById(codeId);
 
-  if (!code) return <NoContent text="コードが見つかりませんでした" />;
+  if (!code)
+    return (
+      <div className="max-w-5xl mx-auto py-20">
+        <NoContent text="コードが見つかりませんでした" />
+      </div>
+    );
 
   return (
     <Center>

@@ -6,9 +6,10 @@ import { CodeIcon } from "@/src/components/atoms/icons/code-icon";
 import { CodeDetail } from "@/src/types";
 import { MarkdownPreviewer } from "@/src/components/molecules/displays/markdown-previewer";
 import { Flex } from "@/src/components/atoms/containers/Flex";
-import { DateString } from "@/src/components/atoms/texts/date-string";
-import { DateIcon } from "@/src/components/atoms/icons/date-icon";
-import { UpdateIcon } from "@/src/components/atoms/icons/update-icon";
+import { CodeTagList } from "@/src/components/organisms/tags/code-tag-list";
+import { DateInfo } from "@/src/components/organisms/date-info";
+import { FavoriteCount } from "@/src/components/organisms/favorites/favorite-count";
+import { CommentCount } from "@/src/components/organisms/comments/comment-count";
 
 interface Props {
   code: CodeDetail;
@@ -28,23 +29,15 @@ export const CodeDetailInfo: FunctionComponent<Props> = async ({ code }) => {
             <Heading type="h3">{code?.title}</Heading>
           </Flex>
 
-          <Flex gap={12} className="text-xs text-gray-500 mt-2">
-            {code?.published_date && (
-              <Flex gap={4}>
-                <DateIcon size={"xs"} />
-                <div>公開日</div>
-                <div>
-                  <DateString value={code?.published_date || ""} />
-                </div>
-              </Flex>
-            )}
-            <Flex gap={4}>
-              <UpdateIcon size={"xs"} />
-              <div>更新日</div>
-              <div>
-                <DateString value={code?.created_at || ""} />
-              </div>
-            </Flex>
+          <CodeTagList tags={code?.tags || []} className="mt-2" />
+
+          <Flex alignItems="center" gap={4}>
+            <DateInfo
+              publishedDate={code?.published_date}
+              updatedDate={code?.updated_at}
+            />
+            <FavoriteCount count={code?.favorites_count || 0} />
+            <CommentCount count={code?.comments_count || 0} />
           </Flex>
         </div>
 

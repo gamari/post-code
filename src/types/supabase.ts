@@ -9,6 +9,53 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      code_tags: {
+        Row: {
+          code_id: number
+          tag_id: number
+          user_id: string | null
+        }
+        Insert: {
+          code_id: number
+          tag_id: number
+          user_id?: string | null
+        }
+        Update: {
+          code_id?: number
+          tag_id?: number
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "code_tags_code_id_fkey"
+            columns: ["code_id"]
+            isOneToOne: false
+            referencedRelation: "codes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "code_tags_tag_id_fkey"
+            columns: ["tag_id"]
+            isOneToOne: false
+            referencedRelation: "tags"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "code_tags_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "public_users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "code_tags_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       codes: {
         Row: {
           created_at: string | null
@@ -252,6 +299,24 @@ export interface Database {
         Update: {
           display?: string
           id?: number
+          name?: string
+        }
+        Relationships: []
+      }
+      tags: {
+        Row: {
+          id: number
+          logo_type: string | null
+          name: string
+        }
+        Insert: {
+          id?: number
+          logo_type?: string | null
+          name: string
+        }
+        Update: {
+          id?: number
+          logo_type?: string | null
           name?: string
         }
         Relationships: []

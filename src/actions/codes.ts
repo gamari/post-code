@@ -1,22 +1,32 @@
 "use server";
 
 import { getServerClient } from "@/src/libs/externals/supabase/admin-client";
-import { fetchCodeById, fetchCodeList, fetchCodeListByFileCode, fetchCodeListWithUser, fetchFavoriteCodeList } from "@/src/libs/externals/supabase/queries/codes";
+import { fetchCodeById, fetchCodeList, fetchCodeListByFileCode, fetchFavoriteCodeList } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchAuthUser } from "@/src/libs/externals/supabase/queries/users";
-import { createEqCondition, createOrderCondition } from "../libs/externals/supabase/queries";
+import { createEqCondition, createOrderCondition } from "../libs/externals/supabase/options";
 import { SEARCH_LIMIT } from "../libs/constants/limits";
+import { buildCodesByTitleOption, buildLatestCodesOption } from "../libs/externals/supabase/options/codes";
 
 // One
-export const actionGetBadCodeById = async (id: number) => {
+export const actionGetCodeById = async (id: number) => {
     const client = getServerClient();
     const codes = await fetchCodeById(id, client);
     return codes;
 }
 
 // List
+export const actionGetCodeListByTitle = async (title: string) => {
+    const client = getServerClient();
+    const codes = await fetchCodeList(client, buildCodesByTitleOption(title, 1));
+    return codes;
+}
+
 export const actionGetCodeListByFileCode = async (fileCode: string) => {
     const client = getServerClient();
     const codes = await fetchCodeListByFileCode(fileCode, client, 1, {
+        eq: [
+            createEqCondition("is_public", true)
+        ],
         order: [
             createOrderCondition("updated_at", false)
         ],
@@ -43,14 +53,7 @@ export const actionGetOwnBadCodeList = async () => {
 /** 最新のコード一覧を取得。 */
 export const actionGetLatestBadCodeList = async () => {
     const client = getServerClient();
-    const codes = await fetchCodeListWithUser(client, {
-        eq: [
-            createEqCondition("is_public", true)
-        ],
-        order: [
-            createOrderCondition("published_date", false)
-        ]
-    });
+    const codes = await fetchCodeList(client, buildLatestCodesOption());
     return codes;
 }
 

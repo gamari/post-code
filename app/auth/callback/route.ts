@@ -7,7 +7,6 @@ export async function GET(request: Request) {
     const code = searchParams.get('code')
     const next = searchParams.get('next') ?? '/dashboard'
 
-    // TODO リファクタリング
     if (code) {
         const cookieStore = cookies()
         const supabase = createServerClient(

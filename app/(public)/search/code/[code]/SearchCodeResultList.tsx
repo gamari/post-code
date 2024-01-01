@@ -14,6 +14,7 @@ import { useSearchCodeList } from "@/src/hooks/codes/search/useSearchCodeList";
 import { Center } from "@/src/components/atoms/containers/Center";
 import { DownIcon } from "@/src/components/atoms/icons/down-icon";
 import { Loader } from "@/src/components/molecules/displays/Loader";
+import { MoreSearchButton } from "../../more-search-button";
 
 interface Props {
   query: string;
@@ -43,7 +44,9 @@ export const SearchCodeResultList = ({ codes: initCodes, query }: Props) => {
 
             <div className="p-4">
               <div className="flex flex-row items-center gap-2 mb-2">
-                <FileIcon fileType={convertFilenameToFiletype(code.file.name)} />
+                <FileIcon
+                  fileType={convertFilenameToFiletype(code.file.name)}
+                />
                 <span className="text-sm text-gray-600">{code.file.name}</span>
               </div>
               <HilightCodeViewer file={code.file} query={query} />
@@ -53,22 +56,13 @@ export const SearchCodeResultList = ({ codes: initCodes, query }: Props) => {
       })}
 
       {/* TODO Component化 */}
-      <Center className="w-full mt-6 mb-20">
-        {loading ? (
-          <Loader />
-        ) : (
-          <>
-            {!isDone && (
-              <DownIcon
-                onClick={() => {
-                  next(query);
-                }}
-                className="border-2 border-gray-500 rounded-full cursor-pointer hover:text-sky-500"
-              />
-            )}
-          </>
-        )}
-      </Center>
+      <MoreSearchButton
+        loading={loading}
+        isDone={isDone}
+        onClick={() => {
+          next(query);
+        }}
+      />
     </Flex>
   );
 };
