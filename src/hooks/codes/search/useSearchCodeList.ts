@@ -1,5 +1,5 @@
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
-import { createOrderCondition } from "@/src/libs/externals/supabase/queries";
+import { createOrderCondition } from "@/src/libs/externals/supabase/options";
 import { fetchCodeListByFileCode } from "@/src/libs/externals/supabase/queries/codes";
 import { SearchResultCode } from "@/src/types";
 import { useState } from "react";

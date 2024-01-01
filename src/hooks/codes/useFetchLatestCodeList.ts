@@ -1,6 +1,7 @@
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
+import { buildCodesBeforeDate, buildLatestCodesOption } from "@/src/libs/externals/supabase/options/codes";
 import { fetchCodeList, fetchCodeListBeforeDate } from "@/src/libs/externals/supabase/queries/codes";
-import { Code, CodeDetail } from "@/src/types";
+import { CodeDetail } from "@/src/types";
 import { useEffect, useState } from "react";
 
 export const useFetchLatestCodeList = () => {
@@ -12,20 +13,7 @@ export const useFetchLatestCodeList = () => {
     useEffect(() => {
         async function init() {
             if (!client) return;
-            const result = await fetchCodeList(client, {
-                eq: [
-                    {
-                        field: "is_public",
-                        value: true
-                    }
-                ],
-                order: [
-                    {
-                        field: "published_date",
-                        ascending: false
-                    }
-                ]
-            })
+            const result = await fetchCodeList(client, buildLatestCodesOption())
             setCodeList(result);
         }
 
@@ -40,15 +28,9 @@ export const useFetchLatestCodeList = () => {
 
         try {
             setLoading(true);
-            const result = await fetchCodeListBeforeDate(codeList[codeList.length - 1]?.created_at || "", client, {
-                order: [
-                    {
-                        field: "created_at",
-                        ascending: false
-                    }
-                ]
-
-            })
+            const targetDate = codeList[codeList.length - 1]?.created_at;
+            if (!targetDate) return;
+            const result = await fetchCodeList(client, buildCodesBeforeDate(targetDate))
             if (result?.length === 0) {
                 setIsDone(true);
                 return;

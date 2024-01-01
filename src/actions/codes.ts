@@ -3,9 +3,9 @@
 import { getServerClient } from "@/src/libs/externals/supabase/admin-client";
 import { fetchCodeById, fetchCodeList, fetchCodeListByFileCode, fetchFavoriteCodeList } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchAuthUser } from "@/src/libs/externals/supabase/queries/users";
-import { createEqCondition, createOrderCondition } from "../libs/externals/supabase/queries";
+import { createEqCondition, createOrderCondition } from "../libs/externals/supabase/options";
 import { SEARCH_LIMIT } from "../libs/constants/limits";
-import { buildCodesByTitleOption } from "../libs/externals/supabase/build-options";
+import { buildCodesByTitleOption, buildLatestCodesOption } from "../libs/externals/supabase/options/codes";
 
 // One
 export const actionGetBadCodeById = async (id: number) => {
@@ -53,14 +53,7 @@ export const actionGetOwnBadCodeList = async () => {
 /** 最新のコード一覧を取得。 */
 export const actionGetLatestBadCodeList = async () => {
     const client = getServerClient();
-    const codes = await fetchCodeList(client, {
-        eq: [
-            createEqCondition("is_public", true)
-        ],
-        order: [
-            createOrderCondition("published_date", false)
-        ]
-    });
+    const codes = await fetchCodeList(client, buildLatestCodesOption());
     return codes;
 }
 

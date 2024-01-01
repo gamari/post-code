@@ -3,7 +3,7 @@ import { useLoading } from "../../useLoading";
 import { useState } from "react";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchCodeList } from "@/src/libs/externals/supabase/queries/codes";
-import { buildCodesByTitleOption } from "@/src/libs/externals/supabase/build-options";
+import { buildCodesByTitleOption } from "@/src/libs/externals/supabase/options/codes";
 
 export const useSearchCodeListByTitle = (title: string, initCodes: CodeDetail[]) => {
     const { client } = useSupabase();

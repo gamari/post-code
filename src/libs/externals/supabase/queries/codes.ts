@@ -1,7 +1,7 @@
 import { CODE_TABLE, CODE_TAGS_TABLE, FILE_TABLE, LANGUAGE_TABLE, PUBLIC_USER_TABLE, TAG_TABLE } from "@/src/libs/constants/tables";
 import { CodeDetail, CodeFormType, SearchResultCode, User } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { QueryOptions, applyOrderBy, applyQueryOptions } from ".";
+import { QueryOptions, applyOrderBy, applyQueryOptions } from "../options";
 
 
 export const fetchCodeById = async (id: number, client: SupabaseClient) => {

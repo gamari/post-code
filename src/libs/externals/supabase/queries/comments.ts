@@ -1,6 +1,6 @@
 import { Comment, CommentDetail } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { applyQueryOptions } from ".";
+import { applyQueryOptions } from "../options";
 import { LANGUAGE_TABLE, PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
 
 export interface FetchCommentsOptions {
