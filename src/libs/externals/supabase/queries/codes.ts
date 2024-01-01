@@ -12,7 +12,9 @@ export const fetchCodeById = async (id: number, client: SupabaseClient) => {
             ${PUBLIC_USER_TABLE}!user_id (*),
             ${FILE_TABLE}: files(*),
             ${LANGUAGE_TABLE}!language_id(*),
-            ${TAG_TABLE}: tags(*)
+            ${TAG_TABLE}: tags(*),
+            favorites_count: favorites (count),
+            comments_count: comments (count)
         `)
         .eq("id", id)
         .single();
@@ -24,6 +26,8 @@ export const fetchCodeById = async (id: number, client: SupabaseClient) => {
         user: code.public_users,
         language: code.languages,
         tags: code.tags,
+        favorites_count: code.favorites_count[0]?.count || 0,
+        comments_count: code.comments_count[0]?.count || 0,
     };
 };
 

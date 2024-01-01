@@ -8,7 +8,7 @@ import { SEARCH_LIMIT } from "../libs/constants/limits";
 import { buildCodesByTitleOption, buildLatestCodesOption } from "../libs/externals/supabase/options/codes";
 
 // One
-export const actionGetBadCodeById = async (id: number) => {
+export const actionGetCodeById = async (id: number) => {
     const client = getServerClient();
     const codes = await fetchCodeById(id, client);
     return codes;

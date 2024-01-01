@@ -10,9 +10,9 @@ interface Props {
 export const TagBadge = ({ size = "md", tag }: Props) => {
   return (
     <span className={cn(
-        "rounded-full bg-gray-200 text-gray-700",
+        "rounded-full bg-gray-200 text-gray-700 font-semibold",
         size == "sm" && "text-xs px-2 py-1",
-        size == "md" && "text-sm px-2 py-1",
+        size == "md" && "text-sm px-3 py-1",
         size == "lg" && "text-base px-3 py-1",
     )}>
       {tag?.name}
