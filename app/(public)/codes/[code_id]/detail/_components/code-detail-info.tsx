@@ -18,7 +18,7 @@ interface Props {
 export const CodeDetailInfo: FunctionComponent<Props> = async ({ code }) => {
   return (
     <div className="w-full">
-      <div className="p-4 flex flex-col gap-2 bg-white rounded-md w-full">
+      <div className="p-8 flex flex-col gap-2 bg-white rounded-md w-full">
         <div>
           <Flex alignItems="center" gap={8}>
             {!code?.is_public ? (

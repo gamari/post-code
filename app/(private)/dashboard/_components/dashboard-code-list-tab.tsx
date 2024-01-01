@@ -15,7 +15,7 @@ export const DashboardCodeListTab = async () => {
   return (
     <div>
       <Flex justifyContent="between" alignItems="center" gap={16} className="mb-6">
-        <Title label="コード一覧" />
+        <Title label="記事一覧" />
         <NewCodeModalButton />
       </Flex>
 

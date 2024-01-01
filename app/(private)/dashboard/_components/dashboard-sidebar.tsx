@@ -16,7 +16,7 @@ export const DashboardSidebar = () => {
             <div className="flex flex-col space-y-3 py-3">
               <SideLink
                 url="/dashboard"
-                label="コード"
+                label="記事"
                 Icon={<Logo size="sm" />}
               />
               <SideLink

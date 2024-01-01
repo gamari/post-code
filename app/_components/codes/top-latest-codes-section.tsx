@@ -16,7 +16,7 @@ export const TopLatestCodesSection = async () => {
     <TopSection>
       <Heading type="h2" className="flex flex-row items-center gap-2">
         <Logo />
-        <Typo text="最新のコード" />
+        <Typo text="最新の記事" />
       </Heading>
 
       <TopLatestCodePanelList className="mt-6" />

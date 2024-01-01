@@ -15,6 +15,20 @@ export const actionGetCodeById = async (id: number) => {
 }
 
 // List
+export const actionGetcodeListByUser = async (userId: string) => {
+    const client = getServerClient();
+    const codes = await fetchCodeList(client, {
+        eq: [
+            createEqCondition("user_id", userId)
+        ],
+        order: [
+            createOrderCondition("updated_at", false)
+        ],
+        limit: SEARCH_LIMIT
+    });
+    return codes;
+}
+
 export const actionGetCodeListByTitle = async (title: string) => {
     const client = getServerClient();
     const codes = await fetchCodeList(client, buildCodesByTitleOption(title, 1));
