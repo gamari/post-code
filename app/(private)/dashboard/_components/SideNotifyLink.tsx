@@ -4,28 +4,10 @@ import React, { useEffect } from "react";
 
 import { SideLink } from "./SideLink";
 import { BellIcon } from "lucide-react";
-import { useSupabase } from "@/src/contexts/SupabaseProvider";
-import { fetchCheckOwnNotification } from "@/src/libs/externals/supabase/queries/notifications";
+import { useNotificationsContext } from "@/src/contexts/NotificationsProvider";
 
 export const SideNotifyLink = () => {
-  const { client } = useSupabase();
-  const [isNotify, setIsNotify] = React.useState(false);
-
-  const checkNotifications = async () => {
-    if (!client) return;
-    console.log("checkNotifications");
-    const checked = await fetchCheckOwnNotification(client);
-    setIsNotify(checked);
-  };
-
-  useEffect(() => {
-    checkNotifications();
-
-    const time = 1000 * 60 * 5;
-    const intervalId = setInterval(checkNotifications, time);
-
-    return () => clearInterval(intervalId);
-  }, []);
+  const { isNotify } = useNotificationsContext();
 
   return (
     <div className="relative">

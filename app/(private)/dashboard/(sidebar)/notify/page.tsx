@@ -7,6 +7,7 @@ import {
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { NotificationCard } from "@/src/components/organisms/notifications/NotificationCard";
+import { NotifyDone } from "./NotifyDone";
 
 const Page = async () => {
   const notifications = await actionGetOwnNotifications();
@@ -21,6 +22,8 @@ const Page = async () => {
           <NotificationCard notification={notification} />
         ))}
       </Flex>
+
+      <NotifyDone />
     </div>
   );
 };
