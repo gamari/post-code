@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
 
@@ -24,14 +24,16 @@ interface Props {
 }
 
 export const CodeDetailShareButton = ({ code }: Props) => {
-  const router = useRouter();
   const pathname = usePathname();
+  const [baseUrl, setBaseUrl] = useState("");
+
+  useEffect(() => {
+    setBaseUrl(window.location.origin);
+  }, []);
 
   const createShareUrl = () => {
     const text = code.title + " | " + code.description;
-    // const baseUrl = window.location.origin;
-    // const url = baseUrl + pathname
-    const url = "http://localhost:3000" + pathname;
+    const url = baseUrl + pathname;
     const xUrl =
       "https://twitter.com/intent/tweet?text=" +
       encodeURIComponent(text) +
