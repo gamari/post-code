@@ -23,7 +23,6 @@ export const CodeCommentForm = ({ codeId, userId, onSubmit }: Props) => {
   const { comment, setComment, saveComment } = useFormComment();
 
   const { addCommentListToList } = useAddCommentToList();
-  const { fetchCreateCommentNotification } = useCreateNotification();
   const { errorAlert, infoAlert } = useAlert();
 
   const handleCreateComment = async () => {
@@ -31,7 +30,6 @@ export const CodeCommentForm = ({ codeId, userId, onSubmit }: Props) => {
 
     try {
       const retComment = await saveComment(codeId);
-      await fetchCreateCommentNotification(retComment.id, userId);
       // TODO その前にコメントを取得して新しいものを追加する
       // TODO 最終時刻以降のものを選択する
       // TODO Notificationを追加
