@@ -303,6 +303,62 @@ export interface Database {
         }
         Relationships: []
       }
+      notifications: {
+        Row: {
+          comment_id: number | null
+          created_at: string
+          favorite_id: number | null
+          id: number
+          is_checked: boolean
+          user_id: string
+        }
+        Insert: {
+          comment_id?: number | null
+          created_at?: string
+          favorite_id?: number | null
+          id?: number
+          is_checked?: boolean
+          user_id: string
+        }
+        Update: {
+          comment_id?: number | null
+          created_at?: string
+          favorite_id?: number | null
+          id?: number
+          is_checked?: boolean
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_comment_id_fkey"
+            columns: ["comment_id"]
+            isOneToOne: false
+            referencedRelation: "comments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notifications_favorite_id_fkey"
+            columns: ["favorite_id"]
+            isOneToOne: false
+            referencedRelation: "favorites"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notifications_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "public_users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notifications_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       tags: {
         Row: {
           id: number

@@ -11,6 +11,7 @@ export type Comment = Database["public"]["Tables"]["comments"]["Row"];
 export type Language = Database["public"]["Tables"]["languages"]["Row"];
 export type Contact = Database["public"]["Tables"]["contacts"]["Row"];
 export type Tag = Database["public"]["Tables"]["tags"]["Row"];
+export type Notification = Database["public"]["Tables"]["notifications"]["Row"];
 
 // Code
 export interface CodeFormType {
@@ -37,16 +38,11 @@ export interface CodeDetail extends Code {
 // Comment
 export interface CommentDetail extends Comment {
     user: User;
+    code: CodeDetail;
 }
 
-
-// deprecated
-export interface CodeWithUser extends Code {
-    user: User;
+// Notification
+export interface NotificationDetail extends Notification {
+    comment: CommentDetail;
 }
 
-
-export interface CommentDetail extends Comment {
-    user: User;
-    code: Code;
-}

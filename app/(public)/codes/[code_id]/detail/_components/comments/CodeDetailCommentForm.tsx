@@ -9,18 +9,21 @@ import { useAlert } from "@/src/hooks/useAlert";
 import { useFormComment } from "@/src/hooks/comments/useFormComment";
 import { useAddCommentToList } from "@/src/hooks/comments/useAddCommentToList";
 import { Heading } from "@/src/components/atoms/texts/heading";
+import { useCreateNotification } from "@/src/hooks/notifications/useCreateNotification";
 
 interface Props {
   codeId: number;
+  userId: string;
   onSubmit: () => void;
 }
 
-export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
+export const CodeCommentForm = ({ codeId, userId, onSubmit }: Props) => {
   const { client } = useSupabase();
 
   const { comment, setComment, saveComment } = useFormComment();
 
   const { addCommentListToList } = useAddCommentToList();
+  const { fetchCreateCommentNotification } = useCreateNotification();
   const { errorAlert, infoAlert } = useAlert();
 
   const handleCreateComment = async () => {
@@ -28,8 +31,10 @@ export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
 
     try {
       const retComment = await saveComment(codeId);
+      await fetchCreateCommentNotification(retComment.id, userId);
       // TODO その前にコメントを取得して新しいものを追加する
       // TODO 最終時刻以降のものを選択する
+      // TODO Notificationを追加
       addCommentListToList?.([retComment]);
       setComment("");
       infoAlert("コメントを投稿しました");

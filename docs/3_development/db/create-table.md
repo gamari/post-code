@@ -1,4 +1,20 @@
 
+## Notifications
+
+```sql
+CREATE TABLE public.notifications (
+    id serial PRIMARY KEY,
+    user_id uuid NOT NULL,
+    comment_id integer,
+    like_id integer,
+    is_checked boolean NOT NULL DEFAULT false,
+    created_at timestamp with time zone NOT NULL DEFAULT current_timestamp,
+    CONSTRAINT notifications_user_id_fkey FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+    CONSTRAINT notifications_comment_id_fkey FOREIGN KEY (comment_id) REFERENCES comments (id) ON DELETE SET NULL,
+    CONSTRAINT notifications_like_id_fkey FOREIGN KEY (like_id) REFERENCES likes (id) ON DELETE SET NULL
+);
+```
+
 
 
 ## Userテーブル

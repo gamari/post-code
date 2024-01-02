@@ -14,13 +14,7 @@ import { cn } from "@/src/libs/utils";
 import { CommentCount } from "../../../../src/components/organisms/comments/comment-count";
 import { FavoriteCount } from "../../../../src/components/organisms/favorites/favorite-count";
 import { Flex } from "@/src/components/atoms/containers/Flex";
-import { FileIcon } from "@/src/components/molecules/displays/file-icon";
 import { CodeIcon } from "@/src/components/atoms/icons/code-icon";
-import {
-  convertFilenameToExtension,
-  convertFilenameToFiletype,
-} from "@/src/libs/editors";
-import language from "react-syntax-highlighter/dist/esm/languages/hljs/1c";
 
 interface Props {
   code: CodeDetail;
@@ -35,14 +29,6 @@ export const DashboardCodeListRow = ({ code, onDelete, className }: Props) => {
     <Flex alignItems="center" className={cn("p-4", className)}>
       <Flex direction="column" className="flex-1" gap={8}>
         <Flex direction="column">
-          <div>
-            <LinkText
-              url={`/codes/${code.id}/detail`}
-              label={code.title}
-              className="w-full text-lg font-bold"
-            />
-          </div>
-
           {code?.language && (
             <Flex alignItems="center" gap={12} className="my-1">
               <Flex alignItems="center" gap={8} className="text-xs">
@@ -52,6 +38,13 @@ export const DashboardCodeListRow = ({ code, onDelete, className }: Props) => {
               {/* TODO タグを追加する */}
             </Flex>
           )}
+          <div>
+            <LinkText
+              url={`/codes/${code.id}/detail`}
+              label={code.title}
+              className="w-full text-lg font-bold"
+            />
+          </div>
         </Flex>
 
         <Flex alignItems="center" gap={12}>
