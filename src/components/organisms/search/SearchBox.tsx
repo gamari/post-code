@@ -24,6 +24,7 @@ export const SearchBox = () => {
           setCode(e.target.value);
         }}
         placeholder="コード検索..."
+        maxLength={24}
       />
     </div>
   );
