@@ -1,6 +1,7 @@
 import { getServerClient } from "../libs/externals/supabase/admin-client";
 import { createEqCondition } from "../libs/externals/supabase/options";
-import { fetchNotificationList } from "../libs/externals/supabase/queries/notifications";
+import { fetchNotificationList, fetchUpdateNotification } from "../libs/externals/supabase/queries/notifications";
+import { NotificationDetail } from "../types";
 import { actionGetAuthUser } from "./users";
 
 export const actionGetOwnNotifications = async () => {
@@ -13,4 +14,19 @@ export const actionGetOwnNotifications = async () => {
     });
 
     return notifications;
+}
+
+export const actionUpdateNotificationDone = async (notifications: NotificationDetail[]) => {
+    const client = getServerClient();
+    const updatedNotifications = notifications.filter(notification => !notification.is_checked).map((notification) => {
+        return {
+            ...notification,
+            is_checked: true,
+            comment: undefined
+        }
+    });
+
+    for (const notification of updatedNotifications) {
+        await fetchUpdateNotification(notification, client);
+    }
 }

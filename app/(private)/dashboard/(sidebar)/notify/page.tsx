@@ -1,12 +1,16 @@
 import React from "react";
 
-import { actionGetOwnNotifications } from "@/src/actions/notifications";
+import {
+  actionGetOwnNotifications,
+  actionUpdateNotificationDone,
+} from "@/src/actions/notifications";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { NotificationCard } from "@/src/components/organisms/notifications/NotificationCard";
 
 const Page = async () => {
   const notifications = await actionGetOwnNotifications();
+  await actionUpdateNotificationDone(notifications);
 
   return (
     <div className="p-10">

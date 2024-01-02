@@ -1,3 +1,4 @@
+import { Notification } from "@/src/types";
 import { NOTIFICATION_TABLE } from "@/src/libs/constants/tables";
 import { NotificationDetail } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
@@ -51,6 +52,17 @@ export const fetchCreateNotification = async (notification: Notification, client
     const { data, error } = await client
         .from(NOTIFICATION_TABLE)
         .insert([notification]);
+
+    if (error) throw error;
+
+    return data;
+}
+
+export const fetchUpdateNotification = async (notification: Notification, client: SupabaseClient) => {
+    const { data, error } = await client
+        .from(NOTIFICATION_TABLE)
+        .update(notification)
+        .eq("id", notification.id);
 
     if (error) throw error;
 
