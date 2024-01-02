@@ -7,8 +7,7 @@ import { useCodeList } from "@/src/hooks/codes/useCodeList";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchDeleteBadCode } from "@/src/libs/externals/supabase/queries/codes";
 import { cn } from "@/src/libs/utils";
-import { CodeTableHeader } from "./CodeTableHeader";
-import { CodeTableRow } from "./CodeTableRow";
+import { DashboardCodeListRow } from "./DashboardCodeListRow";
 
 interface CodeTableProps {
   codes: CodeDetail[];
@@ -17,13 +16,12 @@ interface CodeTableProps {
 
 export const TABLE_GRID_CSS = "grid-cols-[70px_1fr_80px_80px_80px_100px]";
 
-export const CodeTable = ({ codes: initCodes, className }: CodeTableProps) => {
+export const DashboardCodeList = ({ codes: initCodes, className }: CodeTableProps) => {
   const { codes, deleteCode } = useCodeList(initCodes);
   const { client } = useSupabase();
 
   const handleDelete = async (id: number) => {
     if (!client) return;
-
     if (!confirm("削除しますか？")) return;
 
     await fetchDeleteBadCode(id, client);
@@ -32,15 +30,13 @@ export const CodeTable = ({ codes: initCodes, className }: CodeTableProps) => {
 
   return (
     <div className={cn("border-y", className)}>
-      <CodeTableHeader className={TABLE_GRID_CSS} />
-
       <div className="bg-white w-full border-t">
         {codes?.map((code) => (
-          <CodeTableRow
+          <DashboardCodeListRow
             key={code.id}
             code={code}
             onDelete={handleDelete}
-            className={TABLE_GRID_CSS}
+            className="border-b"
           />
         ))}
       </div>
