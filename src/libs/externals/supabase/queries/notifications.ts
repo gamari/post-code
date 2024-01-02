@@ -2,7 +2,9 @@ import { NOTIFICATION_TABLE } from "@/src/libs/constants/tables";
 import { NotificationDetail } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { QueryOptions, applyOrderBy, applyQueryOptions } from "../options";
+import { fetchAuthUser } from "./users";
 
+// Select
 export const fetchNotificationList = async (client: SupabaseClient, options?: QueryOptions) => {
     let query = client
         .from(NOTIFICATION_TABLE)
@@ -25,6 +27,26 @@ export const fetchNotificationList = async (client: SupabaseClient, options?: Qu
     return data as NotificationDetail[];
 }
 
+// Check
+export const fetchCheckOwnNotification = async (client: SupabaseClient) => {
+    const authUser = await fetchAuthUser(client);
+
+    if (!authUser) return false;
+
+    const { data, error } = await client
+        .from(NOTIFICATION_TABLE)
+        .select("*")
+        .eq("is_checked", false)
+        .eq("user_id", authUser.id)
+        .limit(1);
+
+    if (error) return false;
+
+    return !!data?.length;
+}
+
+
+// Create
 export const fetchCreateNotification = async (notification: Notification, client: SupabaseClient) => {
     const { data, error } = await client
         .from(NOTIFICATION_TABLE)

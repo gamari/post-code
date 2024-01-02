@@ -9,15 +9,13 @@ import { useAlert } from "@/src/hooks/useAlert";
 import { useFormComment } from "@/src/hooks/comments/useFormComment";
 import { useAddCommentToList } from "@/src/hooks/comments/useAddCommentToList";
 import { Heading } from "@/src/components/atoms/texts/heading";
-import { useCreateNotification } from "@/src/hooks/notifications/useCreateNotification";
 
 interface Props {
   codeId: number;
-  userId: string;
   onSubmit: () => void;
 }
 
-export const CodeCommentForm = ({ codeId, userId, onSubmit }: Props) => {
+export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
   const { client } = useSupabase();
 
   const { comment, setComment, saveComment } = useFormComment();
