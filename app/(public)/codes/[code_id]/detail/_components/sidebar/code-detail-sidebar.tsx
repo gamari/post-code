@@ -20,7 +20,7 @@ export const CodeDetailSidebar = async ({ code }: Props) => {
   const files = await actionGetFiles(code.id);
 
   return (
-    <div className="sticky top-20 h-fit flex flex-col gap-6 w-[250px]">
+    <div className="sticky top-20 h-fit flex flex-col gap-6 w-[250px] z-[102]">
       <UserInfoCard user={code.user} />
       <CodeDetailFileListCard
         files={files}
