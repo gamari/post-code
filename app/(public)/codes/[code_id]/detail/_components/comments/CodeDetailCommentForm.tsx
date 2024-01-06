@@ -4,7 +4,6 @@ import React from "react";
 
 import { Button } from "@/src/components/atoms/buttons/button";
 import { Textarea } from "@/src/components/atoms/forms/textarea";
-import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { useAlert } from "@/src/hooks/useAlert";
 import { useFormComment } from "@/src/hooks/comments/useFormComment";
 import { Heading } from "@/src/components/atoms/texts/heading";
@@ -17,7 +16,6 @@ interface Props {
 }
 
 export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
-  const { client } = useSupabase();
   const { errorAlert, infoAlert } = useAlert();
 
   const { comment, setComment, saveComment } = useFormComment();
@@ -25,14 +23,8 @@ export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
   const { fetchCodeListAfterDate } = useFetchCommentList();
 
   const handleCreateComment = async () => {
-    if (!client) return;
-
     try {
       const retComment = await saveComment(codeId);
-      // TODO その前にコメントを取得して新しいものを追加する
-      // TODO 最終時刻以降のものを選択する
-
-      // TODO
       const latestComment = getLatestComment();
       const newComments = await fetchCodeListAfterDate(
         latestComment?.created_at || ""
@@ -54,7 +46,7 @@ export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
         value={comment}
         onChange={(e) => setComment(e.target.value)}
         placeholder="コメントを入力"
-        rows={8}
+        rows={16}
         onSubmit={handleCreateComment}
       />
 

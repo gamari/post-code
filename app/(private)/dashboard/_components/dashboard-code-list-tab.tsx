@@ -14,16 +14,17 @@ export const DashboardCodeListTab = async () => {
 
   return (
     <div>
-      <Flex justifyContent="between" alignItems="center" gap={16} className="mb-6 max-w-3xl">
+      <Flex
+        justifyContent="between"
+        alignItems="center"
+        gap={16}
+        className="mb-6 max-w-3xl"
+      >
         <Title label="作成記事" />
         <NewCodeModalButton />
       </Flex>
 
-      {codes?.length ? (
-        <DashboardCodeList codes={codes} className="max-w-3xl" />
-      ) : (
-        <NoContent>作成したコードがありません</NoContent>
-      )}
+      <DashboardCodeList codes={codes} className="max-w-3xl" />
     </div>
   );
 };

@@ -18,7 +18,11 @@ interface Props {
 export const CodeDetailInfo: FunctionComponent<Props> = async ({ code }) => {
   return (
     <div className="w-full">
-      <div className="p-8 flex flex-col gap-2 bg-white rounded-md w-full">
+      <Flex
+        direction="column"
+        gap={8}
+        className="p-8 bg-white rounded-md w-full"
+      >
         <div>
           <Flex alignItems="center" gap={8}>
             {!code?.is_public ? (
@@ -31,7 +35,7 @@ export const CodeDetailInfo: FunctionComponent<Props> = async ({ code }) => {
 
           <CodeTagList tags={code?.tags || []} className="mt-2" />
 
-          <Flex alignItems="center" gap={4}>
+          <Flex alignItems="center" gap={8} className="mt-2">
             <DateInfo
               publishedDate={code?.published_date}
               updatedDate={code?.updated_at}
@@ -46,7 +50,7 @@ export const CodeDetailInfo: FunctionComponent<Props> = async ({ code }) => {
             <MarkdownPreviewer content={code?.description} />
           </div>
         )}
-      </div>
+      </Flex>
     </div>
   );
 };

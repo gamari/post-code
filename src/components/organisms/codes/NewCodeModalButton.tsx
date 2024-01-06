@@ -10,7 +10,6 @@ import { Heading } from "../../atoms/texts/heading";
 import { useFormCode } from "@/src/hooks/codes/useFormCode";
 import { ErrorText } from "../../atoms/texts/error-text";
 
-// TODO SSRで書く
 export const NewCodeModalButton = () => {
   const { isOpen, toggleModal } = useModal();
 
