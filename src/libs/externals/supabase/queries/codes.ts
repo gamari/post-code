@@ -4,6 +4,7 @@ import { SupabaseClient } from "@supabase/supabase-js";
 import { QueryOptions, applyOrderBy, applyQueryOptions } from "../options";
 
 
+/** 単発(ID)の取得 */
 export const fetchCodeById = async (id: number, client: SupabaseClient) => {
     const { data: code, error } = await client
         .from(CODE_TABLE)
@@ -31,6 +32,7 @@ export const fetchCodeById = async (id: number, client: SupabaseClient) => {
     };
 };
 
+/** 複数の取得 */
 export const fetchCodeList = async (client: SupabaseClient, options?: QueryOptions) => {
     let query = client
         .from(CODE_TABLE)
@@ -62,6 +64,42 @@ export const fetchCodeList = async (client: SupabaseClient, options?: QueryOptio
             comments_count: code.comments_count[0]?.count || 0,
             language: code.languages,
             tags: code.code_tags,
+        }
+    }) as CodeDetail[];
+}
+
+/** TODO ランダムに取得 => 使えない */
+export const fetchRandomCodeList = async (client: SupabaseClient, options?: QueryOptions) => {
+    let query = client
+        .from(CODE_TABLE)
+        .select(`
+            *,
+            ${PUBLIC_USER_TABLE}!user_id (
+                *
+            ),
+            ${LANGUAGE_TABLE}!language_id(
+                *
+            ),
+            favorites_count: favorites (count),
+            comments_count: comments (count)
+        `)
+        .order('random', { ascending: false })
+        .limit(1);
+
+    // query = applyQueryOptions(query, options);
+    // query = applyOrderBy(query, options);
+
+    const { data, error } = await query;
+
+    if (error) throw error;
+
+    return data.map((code) => {
+        return {
+            ...code,
+            user: code.public_users,
+            favorites_count: code.favorites_count[0]?.count || 0,
+            comments_count: code.comments_count[0]?.count || 0,
+            language: code.languages,
         }
     }) as CodeDetail[];
 }

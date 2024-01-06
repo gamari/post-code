@@ -1,6 +1,6 @@
 "use client";
 
-import { Comment, CommentDetail } from "@/src/types";
+import { CommentDetail } from "@/src/types";
 import { ReactNode, createContext, useContext, useState } from "react";
 
 interface ContextProps {
@@ -31,6 +31,6 @@ export const DetailCodeCommentListProvider = ({
   );
 };
 
-export const useDetailCodeCommentList = () => {
+export const useDetailCodeCommentListContext = () => {
   return useContext(CodeCommentListContext);
 };

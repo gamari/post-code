@@ -12,7 +12,7 @@ interface Props {
 
 export const DateInfo = ({ publishedDate, updatedDate }: Props) => {
   return (
-    <Flex gap={12} className="text-xs text-gray-500 mt-2">
+    <Flex gap={12} className="text-xs text-gray-500">
       {publishedDate && (
         <Flex gap={4}>
           <DateIcon size={"xs"} />

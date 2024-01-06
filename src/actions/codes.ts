@@ -1,7 +1,7 @@
 "use server";
 
 import { getServerClient } from "@/src/libs/externals/supabase/admin-client";
-import { fetchCodeById, fetchCodeList, fetchCodeListByFileCode, fetchFavoriteCodeList } from "@/src/libs/externals/supabase/queries/codes";
+import { fetchCodeById, fetchCodeList, fetchCodeListByFileCode, fetchFavoriteCodeList, fetchRandomCodeList } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchAuthUser } from "@/src/libs/externals/supabase/queries/users";
 import { createEqCondition, createOrderCondition } from "../libs/externals/supabase/options";
 import { SEARCH_LIMIT } from "../libs/constants/limits";
@@ -15,7 +15,7 @@ export const actionGetCodeById = async (id: number) => {
 }
 
 // List
-export const actionGetcodeListByUser = async (userId: string) => {
+export const actionGetCodeListByUser = async (userId: string) => {
     const client = getServerClient();
     const codes = await fetchCodeList(client, {
         eq: [
@@ -49,7 +49,7 @@ export const actionGetCodeListByFileCode = async (fileCode: string) => {
     return codes;
 }
 
-export const actionGetOwnBadCodeList = async () => {
+export const actionGetOwnCodeList = async () => {
     const client = getServerClient();
     const authUser = await fetchAuthUser(client);
     const codes = await fetchCodeList(client, {
@@ -78,6 +78,16 @@ export const actionGetFavoriteCodeList = async () => {
         eq: [
             createEqCondition("user_id", authUser?.id)
         ],
+        limit: 20
+    });
+    return codes;
+}
+
+
+/** TODO オススメの記事を取得 -> 使えない */
+export const actionGetRecommendedCodeList = async () => {
+    const client = getServerClient();
+    const codes = await fetchRandomCodeList(client, {
         limit: 20
     });
     return codes;

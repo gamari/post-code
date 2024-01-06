@@ -1,5 +1,5 @@
-import { useDetailCodeCommentList } from "@/src/contexts/CodeCommentListProvider"
+import { useDetailCodeCommentListContext } from "@/src/contexts/CodeCommentListProvider"
 
 export const useDeleteCodeDetailComment = () => {
-    const { comments } = useDetailCodeCommentList();
+    const { comments } = useDetailCodeCommentListContext();
 }

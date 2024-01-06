@@ -1,19 +1,22 @@
 import { Comment, CommentDetail } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { applyQueryOptions } from "../options";
-import { LANGUAGE_TABLE, PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
-
-export interface FetchCommentsOptions {
-  eq?: { field: string; value: any }[];
-  order?: { field: string; ascending?: boolean }[];
-  limit?: number;
-}
+import { QueryOptions, applyQueryOptions } from "../options";
+import { PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
 
 /** Comment取得Fetcher */
-export const fetchCommentList = async (client: SupabaseClient, options?: FetchCommentsOptions) => {
+export const fetchCommentList = async (client: SupabaseClient, options?: QueryOptions) => {
   let query = client
     .from("comments")
-    .select("*");
+    .select(`
+          *,
+          code: codes (
+            *
+          ),
+          ${PUBLIC_USER_TABLE}!user_id(
+            username,
+            icon_type
+          )
+    `);
 
   query = applyQueryOptions(query, options);
 
@@ -24,7 +27,7 @@ export const fetchCommentList = async (client: SupabaseClient, options?: FetchCo
   return data as Comment[];
 }
 
-export const fetchCommentListWithUser = async (client: SupabaseClient, options?: FetchCommentsOptions) => {
+export const fetchCommentListWithUser = async (client: SupabaseClient, options?: QueryOptions) => {
   let query = client
     .from("comments")
     .select(`
@@ -46,7 +49,7 @@ export const fetchCommentListWithUser = async (client: SupabaseClient, options?:
   })) as CommentDetail[];
 }
 
-export const fetchCommentListWithCode = async (client: SupabaseClient, options?: FetchCommentsOptions) => {
+export const fetchCommentListWithCode = async (client: SupabaseClient, options?: QueryOptions) => {
   let query = client
     .from("comments")
     .select(`

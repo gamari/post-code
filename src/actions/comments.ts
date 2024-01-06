@@ -15,13 +15,12 @@ export const actionGetLatestCommentList = async () => {
     return comments;
 }
 
-/** コード別コメントリスト。 */
-export const actionGetCommentListByCodeId = async (codeId: number) => {
+export const actionGetCommentListAfterDate = async (targetDate: string) => {
     const client = await getServerClient();
 
-    const comments = await fetchCommentList(client, {
-        eq: [
-            { field: "code_id", value: codeId },
+    const comments = await fetchCommentListWithCode(client, {
+        gt: [
+            { field: "created_at", value: targetDate },
         ],
         order: [
             { field: "created_at", ascending: true },
@@ -30,6 +29,7 @@ export const actionGetCommentListByCodeId = async (codeId: number) => {
 
     return comments;
 }
+
 
 export const actionGetMyselfCommentList = async () => {
     const client = await getServerClient();

@@ -26,7 +26,7 @@ export const DashboardCodeListRow = ({ code, onDelete, className }: Props) => {
   const router = useRouter();
 
   return (
-    <Flex alignItems="center" className={cn("p-4", className)}>
+    <Flex alignItems="center" className={cn("px-6 py-8", className)}>
       <Flex direction="column" className="flex-1" gap={8}>
         <Flex direction="column">
           {code?.language && (

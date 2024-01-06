@@ -1,7 +1,7 @@
-import { useDetailCodeCommentList } from "@/src/contexts/CodeCommentListProvider";
+import { useDetailCodeCommentListContext } from "@/src/contexts/CodeCommentListProvider";
 
 export const useGetCommentList = () => {
-    const { comments } = useDetailCodeCommentList();
+    const { comments } = useDetailCodeCommentListContext();
 
     return {
         commentList: comments
