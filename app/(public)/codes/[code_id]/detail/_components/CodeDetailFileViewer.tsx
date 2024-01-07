@@ -18,7 +18,7 @@ export const CodeDetailFileViewer = ({ className }: Props) => {
     return (
       <div
         className={cn(
-          "h-[400px] flex items-center justify-center bg-white rounded-md",
+          "h-[300px] flex items-center justify-center bg-white rounded-md",
           className
         )}
       >
@@ -30,7 +30,7 @@ export const CodeDetailFileViewer = ({ className }: Props) => {
 
   return (
     <div className={cn(className)}>
-      <FileViewer file={selectedFile} className={cn("h-[400px]", className)} />
+      <FileViewer file={selectedFile} className={cn("h-[300px]", className)} />
       <CodeDetailFileDescription />
     </div>
   );

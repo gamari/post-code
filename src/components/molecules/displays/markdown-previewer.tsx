@@ -35,10 +35,7 @@ export const MarkdownPreviewer = ({ content }: { content: string }) => {
         ),
         li: ({ node, ...props }) => <li className="ml-4" {...props} />,
         a: ({ node, ...props }) => (
-          <a
-            className="text-blue-500 hover:underline"
-            {...props}
-          />
+          <a className="text-blue-500 hover:underline" {...props} />
         ),
         img: ({ node, ...props }) => {
           const { src, alt } = props;
@@ -60,10 +57,11 @@ export const MarkdownPreviewer = ({ content }: { content: string }) => {
         code: ({ ...props }) => {
           const { className, children } = props;
           const language = className?.replace("language-", "") as FileType;
+          console.log(children);
           return (
             <CodeViewer
               language={language}
-              content={children as string}
+              content={(children as string)?.trim() || ""}
               className="p-4 flex-1 w-full"
             />
           );

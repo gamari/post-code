@@ -23,8 +23,6 @@ export const CodeViewer = ({
       style={style}
       className={cn("w-full", className)}
       showLineNumbers
-    >
-      {content || ""}
-    </SyntaxHighlighter>
+    >{content || ""}</SyntaxHighlighter>
   );
 };
