@@ -13,7 +13,7 @@ import "github-markdown-css"
 
 export const MarkdownPreviewer = ({ content }: { content: string }) => {
   return (
-    <div className="markdown-body">
+    <div className="markdown-body w-full">
       <ReactMarkdown
         children={content}
         remarkPlugins={[remarkGfm]}

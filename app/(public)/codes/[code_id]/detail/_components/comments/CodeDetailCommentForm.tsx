@@ -9,6 +9,7 @@ import { useFormComment } from "@/src/hooks/comments/useFormComment";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { useCommentList } from "@/src/hooks/comments/useCommentList";
 import { useFetchCommentList } from "@/src/hooks/comments/useFetchCommentList";
+import { CommentDetail } from "@/src/types";
 
 interface Props {
   codeId: number;
@@ -19,16 +20,20 @@ export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
   const { errorAlert, infoAlert } = useAlert();
 
   const { comment, setComment, saveComment } = useFormComment();
-  const { addCommentList, getLatestComment } = useCommentList();
+  const { addCommentList, getLatestComment, isNotEmpty } = useCommentList();
   const { fetchCodeListAfterDate } = useFetchCommentList();
 
   const handleCreateComment = async () => {
     try {
       const retComment = await saveComment(codeId);
-      const latestComment = getLatestComment();
-      const newComments = await fetchCodeListAfterDate(
-        latestComment?.created_at || ""
-      );
+      let newComments: CommentDetail[] = [];
+      if (isNotEmpty()) {
+        const latestComment = getLatestComment();
+        const retComments = await fetchCodeListAfterDate(
+          latestComment?.created_at || ""
+        );
+        newComments = [...retComments];
+      }
 
       addCommentList?.([...newComments, retComment]);
       setComment("");

@@ -4,6 +4,14 @@ import { CommentDetail } from "@/src/types";
 export const useCommentList = () => {
     const { comments, setComments } = useDetailCodeCommentListContext();
 
+    const isEmpty = () => {
+        return !comments?.length;
+    }
+
+    const isNotEmpty = () => {
+        return !isEmpty();
+    }
+
     const addComment = (comment: CommentDetail) => {
         setComments(prev => [...prev, comment]);
     }
@@ -28,6 +36,8 @@ export const useCommentList = () => {
         comments,
         addCommentList,
         addComment,
-        getLatestComment
+        getLatestComment,
+        isEmpty,
+        isNotEmpty
     }
 }
