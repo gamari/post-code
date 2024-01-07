@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { File } from "@/src/types";
 import { cn } from "@/src/libs/utils";
-import { FileIcon } from "../../../../../../../../src/components/molecules/displays/file-icon";
+import { FileIcon } from "../../../../../../../../../src/components/molecules/displays/file-icon";
 import { convertFilenameToFiletype } from "@/src/libs/editors";
 import {
   ContextMenu,
@@ -16,7 +16,7 @@ import { useModal } from "@/src/hooks/useModal";
 import { CodeEditorRenameFileModal } from "../modal/CodeEditorRenameFileModal";
 import { limitString } from "@/src/libs/strings";
 import { FILE_TEXT_LIMIT } from "@/src/libs/constants/limits";
-import { useDeleteFileInSidebar } from "../../../../../../../../src/hooks/codes/editors/sidebar/useDeleteFileInSidebar";
+import { useDeleteFileInSidebar } from "../../../../../../../../../src/hooks/codes/editors/sidebar/useDeleteFileInSidebar";
 import { useCodeEditorFiles } from "@/src/hooks/codes/editors/useCodeEditorFiles";
 import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
 import { useCodeEditorTargetRenameFile } from "@/src/hooks/codes/editors/useCodeEditorTargetRenameFile";
