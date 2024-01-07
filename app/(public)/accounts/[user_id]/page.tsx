@@ -6,7 +6,7 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 import { Toggle } from "@/src/components/ui/toggle";
 import { actionGetUserById } from "@/src/actions/users";
 import { UserInfoCard } from "@/src/components/organisms/users/user-info-card";
-import { actionGetcodeListByUser } from "@/src/actions/codes";
+import { actionGetCodeListByUser } from "@/src/actions/codes";
 import { CodePanelList } from "@/src/components/organisms/codes/panel/code-panel-list";
 
 interface Props {
@@ -19,7 +19,7 @@ export const revalidate = 0;
 
 const Page = async ({ params: { user_id } }: Props) => {
   const user = await actionGetUserById(user_id);
-  const codes = await actionGetcodeListByUser(user_id);
+  const codes = await actionGetCodeListByUser(user_id);
 
   return (
     <Container>

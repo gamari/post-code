@@ -24,7 +24,7 @@ export const TopAboutSection = () => {
             {APP_TITLE}とは、「コード」をベースとした記事投稿サイトになります。
           </Description>
           <Description>
-            コードを元に記事を書き、そのコードをベースに意見交換を行ったり、発信をしたりすることが目的のサイトです。
+            コードを元に記事を書き、そのコードの改善案を議論することを目標にしています。
           </Description>
 
           <div className="mt-2">
@@ -35,7 +35,7 @@ export const TopAboutSection = () => {
 
           <div>
             <Description>
-              (※現在、PCのみ対応)
+              (※PCのみ対応)
             </Description>
           </div>
         </div>

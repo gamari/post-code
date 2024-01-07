@@ -4,11 +4,11 @@ import React from "react";
 
 import { Button } from "@/src/components/atoms/buttons/button";
 import { Textarea } from "@/src/components/atoms/forms/textarea";
-import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { useAlert } from "@/src/hooks/useAlert";
 import { useFormComment } from "@/src/hooks/comments/useFormComment";
-import { useAddCommentToList } from "@/src/hooks/comments/useAddCommentToList";
 import { Heading } from "@/src/components/atoms/texts/heading";
+import { useCommentList } from "@/src/hooks/comments/useCommentList";
+import { useFetchCommentList } from "@/src/hooks/comments/useFetchCommentList";
 
 interface Props {
   codeId: number;
@@ -16,21 +16,21 @@ interface Props {
 }
 
 export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
-  const { client } = useSupabase();
-
-  const { comment, setComment, saveComment } = useFormComment();
-
-  const { addCommentListToList } = useAddCommentToList();
   const { errorAlert, infoAlert } = useAlert();
 
-  const handleCreateComment = async () => {
-    if (!client) return;
+  const { comment, setComment, saveComment } = useFormComment();
+  const { addCommentList, getLatestComment } = useCommentList();
+  const { fetchCodeListAfterDate } = useFetchCommentList();
 
+  const handleCreateComment = async () => {
     try {
       const retComment = await saveComment(codeId);
-      // TODO その前にコメントを取得して新しいものを追加する
-      // TODO 最終時刻以降のものを選択する
-      addCommentListToList?.([retComment]);
+      const latestComment = getLatestComment();
+      const newComments = await fetchCodeListAfterDate(
+        latestComment?.created_at || ""
+      );
+
+      addCommentList?.([...newComments, retComment]);
       setComment("");
       infoAlert("コメントを投稿しました");
       onSubmit();
@@ -46,7 +46,7 @@ export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
         value={comment}
         onChange={(e) => setComment(e.target.value)}
         placeholder="コメントを入力"
-        rows={8}
+        rows={16}
         onSubmit={handleCreateComment}
       />
 

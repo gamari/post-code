@@ -10,7 +10,6 @@ import { Heading } from "../../atoms/texts/heading";
 import { useFormCode } from "@/src/hooks/codes/useFormCode";
 import { ErrorText } from "../../atoms/texts/error-text";
 
-// TODO SSRで書く
 export const NewCodeModalButton = () => {
   const { isOpen, toggleModal } = useModal();
 
@@ -18,7 +17,7 @@ export const NewCodeModalButton = () => {
 
   return (
     <>
-      <CreateButton onClick={toggleModal} label="新規作成" />
+      <CreateButton onClick={toggleModal} label="作成" />
       <Modal isOpen={isOpen} onClose={toggleModal} className="w-[400px]">
         <form
           onSubmit={async (data) => {

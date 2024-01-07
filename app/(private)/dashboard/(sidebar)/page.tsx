@@ -17,7 +17,7 @@ const Page = async () => {
   return (
     <Tabs defaultValue="codes" className="p-10">
       <TabsList className="mb-6">
-        <TabsTrigger value="codes">コード</TabsTrigger>
+        <TabsTrigger value="codes">作成</TabsTrigger>
         <TabsTrigger value="favorites">お気に入り</TabsTrigger>
       </TabsList>
       <TabsContent value="codes">

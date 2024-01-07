@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
-import { fetchCommentListWithUser } from "@/src/libs/externals/supabase/queries/comments";
+import { fetchCommentList } from "@/src/libs/externals/supabase/queries/comments";
 import { useSetCommentList } from "./useSetCommentList";
 import { createEqCondition } from "@/src/libs/externals/supabase/options";
 import { Code } from "@/src/types";
@@ -20,7 +20,7 @@ export const useInitCommentList = (code: Code) => {
         if (!code?.id) return
         if (!client) return;
 
-        const comments = await fetchCommentListWithUser(client, {
+        const comments = await fetchCommentList(client, {
             eq: [
                 createEqCondition("code_id", code.id)
             ],

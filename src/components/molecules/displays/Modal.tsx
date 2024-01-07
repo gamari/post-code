@@ -25,9 +25,10 @@ export const Modal = ({ children, isOpen, onClose, className }: Props) => {
       />
 
       <SlideIn from="bottom" className="z-[302]">
+        {/* Closeボタンのためにrelative */}
         <div
           className={cn(
-            "relative bg-white rounded-lg shadow-xl p-8 pt-12 z-[303]",
+            "max-h-[90vh] relative overflow-auto bg-white rounded-lg shadow-xl p-8 pt-12 z-[303]",
             className
           )}
         >

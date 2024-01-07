@@ -4,6 +4,8 @@ import { SideLink } from "./SideLink";
 import { Logo } from "@/src/components/molecules/logo";
 import { CommentIcon } from "@/src/components/atoms/icons/comment-icon";
 import { AccountIcon } from "@/src/components/atoms/icons/account-icon";
+import { BellIcon } from "@radix-ui/react-icons";
+import { SideNotifyLink } from "./SideNotifyLink";
 
 export const DashboardSidebar = () => {
   return (
@@ -24,6 +26,7 @@ export const DashboardSidebar = () => {
                 label="コメント"
                 Icon={<CommentIcon size="sm" />}
               />
+              <SideNotifyLink />
               <SideLink
                 url="/dashboard/account"
                 label="アカウント設定"

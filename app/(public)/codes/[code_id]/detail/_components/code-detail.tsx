@@ -9,6 +9,8 @@ import { CodeDetailSidebar } from "./sidebar/code-detail-sidebar";
 import { actionGetCodeById } from "@/src/actions/codes";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 import { Flex } from "@/src/components/atoms/containers/Flex";
+import { RecommendCodeList } from "@/src/components/organisms/codes/RecommendCodeList";
+import { Heading } from "@/src/components/atoms/texts/heading";
 
 interface Props {
   codeId: number;
@@ -37,7 +39,7 @@ export const CodeDetail = async ({ codeId }: Props) => {
           >
             <CodeDetailInfo code={code} />
             <CodeDetailFileViewer className="mb-10 w-full" />
-            <CodeDetailCommentList code={code} className="w-full" />
+            <CodeDetailCommentList code={code} className="w-full mb-6" />
           </Flex>
 
           <CodeDetailSidebar code={code} />

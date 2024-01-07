@@ -3,9 +3,9 @@ import { cn } from "@/src/libs/utils";
 import { ContainerProps } from "@/src/types/components";
 
 interface Props extends ContainerProps {
-  direction?: "row" | "column";
+  direction?: "row" | "column" | "row-reverse" | "column-reverse";
   gap?: number;
-  alignItems?: "center" | "start" | "end";
+  alignItems?: "center" | "start" | "end" | "stretch";
   justifyContent?: "center" | "start" | "end" | "between";
 }
 
@@ -22,9 +22,13 @@ export const Flex = ({
       className={cn(
         "flex",
         direction == "column" && "flex-col",
+        direction == "row" && "flex-row",
+        direction == "row-reverse" && "flex-row-reverse",
+        direction == "column-reverse" && "flex-col-reverse",
         alignItems == "center" && "items-center",
         alignItems == "start" && "items-start",
         alignItems == "end" && "items-end",
+        alignItems == "stretch" && "items-stretch",
         justifyContent == "center" && "justify-center",
         justifyContent == "start" && "justify-start",
         justifyContent == "end" && "justify-end",

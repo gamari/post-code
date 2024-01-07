@@ -11,7 +11,7 @@ export const DashboardFavoriteCodeListTab = async () => {
 
   return (
     <div>
-      <Heading className="mb-4">お気に入りコード</Heading>
+      <Heading className="mb-4">お気に入り記事</Heading>
       <CodePanelList codes={codes} />
     </div>
   );

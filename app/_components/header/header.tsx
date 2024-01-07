@@ -5,6 +5,8 @@ import { LoginButton } from "@/src/components/molecules/buttons/login-button";
 import { DashboardButton } from "@/src/components/molecules/buttons/dashboard-button";
 import { actionGetAuthUser } from "@/src/actions/users";
 import { HeaderSearch } from "./HeaderSearch";
+import { Flex } from "@/src/components/atoms/containers/Flex";
+import { RegisterButton } from "@/src/components/molecules/buttons/register-button";
 
 export default async function Header() {
   const authUser = await actionGetAuthUser();
@@ -12,7 +14,7 @@ export default async function Header() {
   return (
     <nav
       className={cn(
-        "z-[100] sticky top-0 w-full flex justify-center h-16 bg-white",
+        "z-[100] sticky top-0 w-full flex justify-center py-2 bg-white",
         "border-b border-b-foreground/10"
       )}
     >
@@ -22,7 +24,14 @@ export default async function Header() {
         <div className="flex items-center gap-4">
           <HeaderSearch />
 
-          {authUser ? <DashboardButton /> : <LoginButton />}
+          {authUser ? (
+            <DashboardButton />
+          ) : (
+            <Flex alignItems="center" gap={8}>
+              <LoginButton />
+              <RegisterButton />
+            </Flex>
+          )}
         </div>
       </div>
     </nav>

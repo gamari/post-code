@@ -11,7 +11,7 @@ interface Props {
 
 export const LinkText = ({ url, label, className }: Props) => {
   return (
-    <Link href={url} className={cn("hover:text-sky-500", className)}>
+    <Link href={url} className={cn("text-gray-700 hover:text-sky-500", className)}>
       <Typo text={label} />
     </Link>
   );

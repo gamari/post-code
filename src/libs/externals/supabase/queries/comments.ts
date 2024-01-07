@@ -1,52 +1,9 @@
-import { Comment, CommentDetail } from "@/src/types";
+import { CommentDetail } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { applyQueryOptions } from "../options";
-import { LANGUAGE_TABLE, PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
+import { QueryOptions, applyQueryOptions } from "../options";
+import { PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
 
-export interface FetchCommentsOptions {
-  eq?: { field: string; value: any }[];
-  order?: { field: string; ascending?: boolean }[];
-  limit?: number;
-}
-
-/** Comment取得Fetcher */
-export const fetchCommentList = async (client: SupabaseClient, options?: FetchCommentsOptions) => {
-  let query = client
-    .from("comments")
-    .select("*");
-
-  query = applyQueryOptions(query, options);
-
-  const { data, error } = await query;
-
-  if (error) throw error;
-
-  return data as Comment[];
-}
-
-export const fetchCommentListWithUser = async (client: SupabaseClient, options?: FetchCommentsOptions) => {
-  let query = client
-    .from("comments")
-    .select(`
-          *,
-          ${PUBLIC_USER_TABLE}!user_id(
-            username,
-            icon_type
-          )
-        `);
-  query = applyQueryOptions(query, options);
-
-  const { data, error } = await query;
-
-  if (error) throw error;
-
-  return data.map(item => ({
-    ...item,
-    user: item?.public_users,
-  })) as CommentDetail[];
-}
-
-export const fetchCommentListWithCode = async (client: SupabaseClient, options?: FetchCommentsOptions) => {
+export const fetchCommentList = async (client: SupabaseClient, options?: QueryOptions) => {
   let query = client
     .from("comments")
     .select(`
@@ -58,7 +15,8 @@ export const fetchCommentListWithCode = async (client: SupabaseClient, options?:
             username,
             icon_type
           )
-        `);
+    `);
+
   query = applyQueryOptions(query, options);
 
   const { data, error } = await query;
@@ -70,6 +28,8 @@ export const fetchCommentListWithCode = async (client: SupabaseClient, options?:
     user: item?.public_users,
   })) as CommentDetail[];
 }
+
+
 
 // Create-Update-Delete
 export const fetchCreateComment = async (codeId: number, comment: string, client: SupabaseClient) => {

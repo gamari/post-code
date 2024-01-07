@@ -1,3 +1,17 @@
+## コメント通知作成Function
+
+```sql
+CREATE OR REPLACE FUNCTION notify_new_comment() RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.user_id <> (SELECT user_id FROM codes WHERE id = NEW.code_id) THEN
+        INSERT INTO notifications(user_id, comment_id)
+        VALUES ((SELECT user_id FROM codes WHERE id = NEW.code_id), NEW.id);
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+```
+
 ## ユーザー作成
 
 ```sql
@@ -18,7 +32,6 @@ create trigger on_auth_user_created
     execute procedure public.handle_new_user();
 ```
 
-
 ## ファイル数のリミット
 
 ```sql
@@ -30,7 +43,7 @@ BEGIN
 END;
 ```
 
-## Tagのリミット
+## Tag のリミット
 
 ```sql
 BEGIN
@@ -40,4 +53,3 @@ BEGIN
   RETURN NEW;
 END;
 ```
-

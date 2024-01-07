@@ -8,15 +8,16 @@ import { cn } from "@/src/libs/utils";
 import { TbFileTypeSql } from "react-icons/tb";
 
 interface Props {
-  fileType: FileType | null | string;
-  size?: "sm" | "md" | "lg";
+  fileType?: FileType | null | string;
+  size?: "sm" | "md" | "lg" | "xl";
 }
 
 export const CodeIcon = ({ fileType, size = "md" }: Props) => {
   const className = cn(
     size === "sm" && "h-5 w-5",
     size === "md" && "h-8 w-8",
-    size == "lg" && "h-10 w-10"
+    size == "lg" && "h-10 w-10",
+    size === "xl" && "h-12 w-12"
   );
   
   if (!fileType) return <Logo className={className} />;

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
 
@@ -24,14 +24,15 @@ interface Props {
 }
 
 export const CodeDetailShareButton = ({ code }: Props) => {
-  const router = useRouter();
   const pathname = usePathname();
+  const [baseUrl, setBaseUrl] = useState("");
+
+  useEffect(() => {
+    setBaseUrl(window.location.origin);
+  }, []);
 
   const createShareUrl = () => {
-    // TODO 文言を修正
-    const text = code.title + " | " + code.description;
-    // TODO リンクを環境変数にする
-    const baseUrl = window.location.origin;
+    const text = code.title + " ";
     const url = baseUrl + pathname;
     const xUrl =
       "https://twitter.com/intent/tweet?text=" +
@@ -57,7 +58,7 @@ export const CodeDetailShareButton = ({ code }: Props) => {
             <div className="w-[200px] mx-auto flex flex-col gap-2">
               <Button variant="outline" asChild>
                 <Link
-                  href={createShareUrl()}
+                  href={createShareUrl() || ""}
                   target="_blank"
                   className="flex flex-row gap-2 items-center"
                 >
@@ -71,11 +72,7 @@ export const CodeDetailShareButton = ({ code }: Props) => {
 
         <DialogFooter>
           <DialogClose asChild>
-            <Button
-              variant="outline"
-            >
-              閉じる
-            </Button>
+            <Button variant="outline">閉じる</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

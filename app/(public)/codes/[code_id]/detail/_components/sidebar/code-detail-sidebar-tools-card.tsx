@@ -19,7 +19,10 @@ export const CodeDetailSidebarToolsCard = async ({
   const { is_public } = badCode;
   const isFavorite = await actionCheckFavoriteCode(badCode?.id);
 
-  if (!is_public) return null;
+  if (!is_public)
+    return (
+      <div className="rounded-md bg-white w-full p-5 py-7 font-bold">非公開設定です</div>
+    );
 
   return (
     <div className="rounded-md bg-white w-full p-5 py-7">
