@@ -16,13 +16,11 @@ import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
 // TODO save buttonを抜き出す
 export const CodeEditorSaveModalButton = () => {
   const router = useRouter();
+  const { errorAlert } = useAlert();
 
   const { code } = useCodeEditor();
-
   const { isOpen, toggleModal } = useModal();
-
   const { loading, saveEditor } = useSaveCodeEditor();
-  const { errorAlert } = useAlert();
 
   const handleOnSave = async () => {
     try {
