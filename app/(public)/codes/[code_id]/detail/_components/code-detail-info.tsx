@@ -20,6 +20,7 @@ export const CodeDetailInfo: FunctionComponent<Props> = async ({ code }) => {
     <div className="w-full">
       <Flex
         direction="column"
+        alignItems="stretch"
         gap={8}
         className="p-8 bg-white rounded-md w-full"
       >
