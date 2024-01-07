@@ -20,7 +20,7 @@ export const CodeEditorContentDescription = () => {
       <Heading className="mb-3">コード説明(空欄可)</Heading>
 
       {isPreview ? (
-        <div className="h-[250px] bg-white p-6 border overflow-y-scroll">
+        <div className="h-[250px] bg-white px-8 py-12 border overflow-y-scroll">
           <MarkdownPreviewer content={selectedFile?.description || ""} />
         </div>
       ) : (
