@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useContext, useEffect, useState } from "react";
 import { useSupabase } from "./SupabaseProvider";
 import { fetchCheckOwnNotification } from "../libs/externals/supabase/queries/notifications";
