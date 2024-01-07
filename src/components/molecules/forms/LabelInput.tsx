@@ -28,7 +28,7 @@ export const LabelInput = ({
 }: Props) => {
   return (
     <div className="w-full">
-      <Heading type="h4">{label}</Heading>
+      <Heading type="h4" className="mb-1">{label}</Heading>
       <Input
         id={id}
         name={name}
@@ -37,6 +37,7 @@ export const LabelInput = ({
         onChange={(e) => setValue?.(e.target.value)}
         placeholder={placeholder}
         autoComplete={autocomplete}
+        className="shadow-none"
       />
     </div>
   );

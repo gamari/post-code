@@ -6,13 +6,12 @@ import { useRouter } from "next/navigation";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 
 export const DeleteUserButton = () => {
-  const router = useRouter();
   const { client } = useSupabase();
   const { infoAlert, errorAlert } = useAlert();
   const handleDelete = async () => {
     if (!client) return;
 
-    const isOk = confirm("このユーザーに紐づくデータが全て削除されます。本当に削除しますか？");
+    const isOk = confirm("このユーザーに紐づくデータが全て削除され、二度と復元できません。本当に削除してもよろしいですか？");
     if (!isOk) return;
 
     const res = await fetch("/api/delete-user", {

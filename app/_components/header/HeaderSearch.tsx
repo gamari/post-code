@@ -36,7 +36,7 @@ export const HeaderSearch = () => {
   return (
     <>
       <SearchIcon
-        className="text-gray-400 p-1 rounded-full cursor-pointer hover:bg-slate-100"
+        className="text-gray-600 p-1 rounded-full cursor-pointer hover:bg-slate-100"
         size={"lg"}
         onClick={toggleModal}
       />

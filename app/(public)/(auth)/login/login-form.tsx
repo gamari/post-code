@@ -22,7 +22,7 @@ export const LoginForm = ({ errorStatus }: Props) => {
   const { loading, startLoading, stopLoading } = useLoading();
 
   return (
-    <div className="relative flex flex-col w-full h-full justify-center items-center gap-3">
+    <div className="relative flex flex-col w-full h-full justify-center items-center gap-4">
       <BackButton url="/" className="absolute left-8 top-8 " label="ホームへ" />
 
       <Flex
@@ -30,7 +30,7 @@ export const LoginForm = ({ errorStatus }: Props) => {
         alignItems="center"
         justifyContent="center"
         gap={8}
-        className="max-w-md bg-white border px-8 py-12 rounded-md w-full  text-foreground"
+        className="max-w-md bg-white border px-10 py-12 rounded-md w-full  text-foreground"
       >
         <form
           className="w-full"

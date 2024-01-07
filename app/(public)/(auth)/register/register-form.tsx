@@ -33,7 +33,7 @@ export const RegisterForm = ({ errorStatus }: Props) => {
       <BackButton url="/" className="absolute left-8 top-8 " label="ホームへ" />
 
       <form
-        className="max-w-md bg-white border px-8 py-12 rounded-md flex flex-col items-center w-full justify-center gap-2 text-foreground"
+        className="max-w-md bg-white border px-10 py-12 rounded-md flex flex-col items-center w-full justify-center gap-4 text-foreground"
         action={actionSignUp}
         onSubmit={() => {
           startLoading();
