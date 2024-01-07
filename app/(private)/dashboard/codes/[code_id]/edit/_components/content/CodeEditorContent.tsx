@@ -12,7 +12,7 @@ export const CodeEditorContent = ({ className }: Props) => {
   return (
     <div className={cn(className)}>
       <CodeEditorContentTitle />
-      <CodeEditorContentFile className="mt-12 h-[500px]" />
+      <CodeEditorContentFile className="mt-12 h-[300px]" />
       <CodeEditorContentDescription />
     </div>
   );

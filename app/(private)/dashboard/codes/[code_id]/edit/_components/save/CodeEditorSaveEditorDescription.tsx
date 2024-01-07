@@ -7,6 +7,7 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 import { MarkdownPreviewer } from "@/src/components/molecules/displays/markdown-previewer";
 import { Toggle } from "@/src/components/ui/toggle";
 import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
+import { PreviewButton } from "@/src/components/molecules/preview-button";
 
 export const CodeEditorSaveEditorDescription = () => {
   const [isPreview, setIsPreview] = React.useState(false);
@@ -36,12 +37,7 @@ export const CodeEditorSaveEditorDescription = () => {
         </div>
 
         <div className="flex flex-row-reverse pt-2">
-          <Toggle
-            aria-label="Toggle italic"
-            onClick={() => setIsPreview(!isPreview)}
-          >
-            <span>プレビュー</span>
-          </Toggle>
+          <PreviewButton isPreview={isPreview} setIsPreview={setIsPreview} />
         </div>
       </div>
     </div>

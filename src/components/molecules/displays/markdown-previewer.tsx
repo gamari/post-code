@@ -4,8 +4,8 @@ import React from "react";
 import Image from "next/image";
 
 import ReactMarkdown from "react-markdown";
-import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github.css";
+
 import { CodeViewer } from "../../organisms/codes/CodeViewer";
 import { FileType } from "@/src/libs/editors";
 
@@ -17,7 +17,6 @@ export const MarkdownPreviewer = ({ content }: { content: string }) => {
   return (
     <ReactMarkdown
       className="space-y-4 w-full"
-      // rehypePlugins={[rehypeHighlight]}
       components={{
         h1: ({ node, ...props }) => (
           <h1 className="text-3xl font-bold mb-3" {...props} />
