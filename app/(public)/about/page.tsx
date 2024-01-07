@@ -10,12 +10,12 @@ import { TopFooter } from "@/app/_components/top-footer";
 const Page = () => {
   return (
     <div className="pt-20">
-      <Section className="max-w-7xl mx-auto bg-white rounded-lg p-12  mb-32">
+      <Section className="max-w-7xl mx-auto bg-white rounded-lg p-12 py-24  mb-32">
         <Flex
           direction="column"
-          alignItems="center"
+          alignItems="stretch"
           className="w-full"
-          gap={128}
+          gap={96}
         >
           <AboutHeader />
           <AboutConcept />

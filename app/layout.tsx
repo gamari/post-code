@@ -7,7 +7,15 @@ import { GeistSans } from "geist/font/sans";
 import { SupabaseProvider } from "@/src/contexts/SupabaseProvider";
 import { Toaster } from "@/src/components/ui/toaster";
 import { LanguageListProvider } from "@/src/contexts/LanguageListProvider";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
+
+import { Noto_Sans_JP } from "next/font/google";
+
+const notojp = Noto_Sans_JP({
+  weight: ["400", "500"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -16,7 +24,7 @@ const defaultUrl = process.env.VERCEL_URL
 export const metadata = {
   metadataBase: new URL(defaultUrl),
   title: "PostCode",
-  description: "悪いコードを集めたサイトです。",
+  description: "コードをメインにできる記事投稿サイトです。",
 };
 
 export default function RootLayout({
@@ -25,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja" className={GeistSans.className}>
+    <html lang="ja" className={notojp.className}>
       <body className="bg-background text-foreground w-screen overflow-x-hidden">
         <SupabaseProvider>
           <LanguageListProvider>

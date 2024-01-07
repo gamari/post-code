@@ -4,9 +4,9 @@ import React from "react";
 export const AboutHeader = () => {
   return (
     <Flex direction="column" alignItems="center" gap={12}>
-      <div className="text-3xl text-gray-600">PostCodeとは</div>
-      <div>
-        <div>コードをベースに投稿するエンジニア向けノウハウサイトです。</div>
+      <div className="text-3xl text-gray-600 font-bold">PostCodeとは</div>
+      <div className="mt-3 text-lg">
+        <div>コードベースのエンジニア向け記事投稿サイトです。</div>
       </div>
     </Flex>
   );
