@@ -12,6 +12,9 @@ import { CodeEditorSaveEditor } from "./CodeEditorSaveEditor";
 import { Button } from "@/src/components/atoms/buttons/button";
 import { useRouter } from "next/navigation";
 import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
+import { Flex } from "@/src/components/atoms/containers/Flex";
+import Link from "next/link";
+import { CODES_DETAIL_URL } from "@/src/libs/constants/urls";
 
 // TODO save buttonを抜き出す
 export const CodeEditorSaveModalButton = () => {
@@ -65,16 +68,18 @@ export const CodeEditorSaveModalButton = () => {
       <Modal isOpen={isOpen} onClose={toggleModal} className="w-[700px]">
         <CodeEditorSaveEditor />
 
-        <div className="flex flex-row items-center mt-3 gap-2">
-          <SaveButton
-            label="保存"
-            onClick={handleOnSave}
-            loading={loading}
-          />
+        <Flex justifyContent="between" gap={8} className="mt-3">
+          <Flex gap={8}>
+            <SaveButton label="保存" onClick={handleOnSave} loading={loading} />
+            <Button variant="outline" onClick={toggleModal}>
+              コードに戻る
+            </Button>
+          </Flex>
+
           <Button variant="outline" onClick={toggleModal}>
-            コードに戻る
+            <Link href={CODES_DETAIL_URL(code?.id)} target={"_blank"}>詳細画面へ</Link>
           </Button>
-        </div>
+        </Flex>
       </Modal>
     </>
   );
