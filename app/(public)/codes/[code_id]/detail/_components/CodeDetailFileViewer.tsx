@@ -19,7 +19,7 @@ export const CodeDetailFileViewer = ({ className }: Props) => {
     return (
       <div
         className={cn(
-          "h-[300px] flex items-center justify-center bg-white rounded-md",
+          "h-[380px] flex items-center justify-center bg-white rounded-md",
           className
         )}
       >
@@ -31,8 +31,7 @@ export const CodeDetailFileViewer = ({ className }: Props) => {
 
   return (
     <Flex direction="column" alignItems="stretch" className={cn("", className)}>
-      <FileViewer file={selectedFile} className={cn("h-[300px]", className)} />
-      <CodeDetailFileDescription />
+      <FileViewer file={selectedFile} className={cn("h-[380px]", className)} />
     </Flex>
   );
 };

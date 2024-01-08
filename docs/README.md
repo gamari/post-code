@@ -4,9 +4,6 @@
 
 ## TODO
 
-- Login
-  - [ ] GithubAuthを入れる
-  - [ ] GoogleAuthを除外する
 
 - [ ] Detail
   - [ ] Bottomを6xlぐらいにする
@@ -91,3 +88,10 @@
 
 
 - [x] 今作っている記事投稿サイトが競技プログラミングの考え方をシェアするのに最適なサービスかも知れない
+
+- Login
+  - [x] GithubAuthを入れる
+  - [x] GoogleAuthを除外する
+- Register
+  - [x] GithubAuthを入れる
+  - [x] GoogleAuthを除外する

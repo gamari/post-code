@@ -5,7 +5,6 @@ import { NewCodeModalButton } from "../../../../src/components/organisms/codes/N
 import { Title } from "../../../../src/components/atoms/texts/title";
 import { DashboardCodeList } from "./DashboardCodeList";
 import { actionGetOwnCodeList } from "@/src/actions/codes";
-import { NoContent } from "../../../../src/components/molecules/displays/no-content";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 
 export const DashboardCodeListTab = async () => {

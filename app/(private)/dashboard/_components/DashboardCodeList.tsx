@@ -33,7 +33,7 @@ export const DashboardCodeList = ({
   };
 
   if (!codes?.length) {
-    return <NoContent>作成したコードがありません</NoContent>;
+    return <NoContent className={className}>作成したコードがありません</NoContent>;
   }
 
   return (

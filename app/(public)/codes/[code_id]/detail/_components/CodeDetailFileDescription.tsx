@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 
 import { MarkdownPreviewer } from "@/src/components/molecules/displays/markdown-previewer";
@@ -27,7 +29,7 @@ export const CodeDetailFileDescription = ({ className = "" }: Props) => {
   };
 
   return (
-    <div className={cn("fixed z-[103]  bottom-6 w-full max-w-3xl", className)}>
+    <div className={cn("fixed z-[103]  bottom-6 w-full max-w-4xl", className)}>
       <motion.div
         initial="hidden"
         animate={isShow ? "visible" : "hidden"}
