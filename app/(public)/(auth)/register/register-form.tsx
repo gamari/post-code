@@ -13,6 +13,7 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 import { GoogleSignupButton } from "../GoogleSignupButton";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { useLoading } from "@/src/hooks/useLoading";
+import { GithubSignupButton } from "../GithubSignupButton";
 
 interface Props {
   errorStatus?: string;
@@ -79,10 +80,10 @@ export const RegisterForm = ({ errorStatus }: Props) => {
 
         {errorStatus && <RegisterFormErrorMessage status={errorStatus} />}
 
-        <div className="w-full mt-3 pt-2">
+        <Flex direction="column" gap={8} className="w-full mt-3 pt-2">
           <Heading type="h4">ソーシャルログイン</Heading>
-          <GoogleSignupButton />
-        </div>
+          <GithubSignupButton />
+        </Flex>
       </form>
     </Flex>
   );
