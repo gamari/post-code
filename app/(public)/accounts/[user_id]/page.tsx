@@ -20,6 +20,7 @@ export const revalidate = 0;
 const Page = async ({ params: { user_id } }: Props) => {
   const user = await actionGetUserById(user_id);
   const codes = await actionGetCodeListByUser(user_id);
+  console.log(user);
 
   return (
     <Container>

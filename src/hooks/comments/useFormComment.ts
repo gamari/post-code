@@ -1,10 +1,8 @@
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchCreateComment } from "@/src/libs/externals/supabase/queries/comments";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export const useFormComment = () => {
-    const router = useRouter();
     const { client } = useSupabase();
     const [comment, setComment] = useState("");
 
@@ -13,7 +11,6 @@ export const useFormComment = () => {
         if (!comment) throw new Error("コメントを入力してください。");
         const retComment = await fetchCreateComment(codeId, comment, client);
 
-        router.refresh();
         return retComment;
     }
 

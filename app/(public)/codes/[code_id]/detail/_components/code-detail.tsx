@@ -1,4 +1,5 @@
 import React, { Suspense } from "react";
+import { unstable_noStore } from "next/cache";
 
 import { Center } from "@/src/components/atoms/containers/Center";
 import { Skeleton } from "@/src/components/molecules/displays/skeleton";
@@ -18,6 +19,7 @@ interface Props {
 export const revalidate = 0;
 
 export const CodeDetail = async ({ codeId }: Props) => {
+  unstable_noStore();
   const code = await actionGetCodeById(codeId);
 
   if (!code)

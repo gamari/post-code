@@ -1,8 +1,8 @@
 import React from "react";
+import { unstable_noStore } from "next/cache";
 
 import { Code } from "@/src/types";
 import { CodeDetailShareButton } from "./CodeDetailShareButton";
-import { DateString } from "../../../../../../../src/components/atoms/texts/date-string";
 import { actionCheckFavoriteCode } from "@/src/actions/favorites";
 import { FavoriteCodeButton } from "@/src/components/organisms/favorites/FavoriteCodeButton";
 import { CodeDetailCommentModalButton } from "../comments/CodeDetailCommentModalButton";
@@ -16,6 +16,7 @@ export const CodeDetailSidebarToolsCard = async ({
   badCode,
   isLogin,
 }: Props) => {
+  unstable_noStore();
   const { is_public } = badCode;
   const isFavorite = await actionCheckFavoriteCode(badCode?.id);
 
