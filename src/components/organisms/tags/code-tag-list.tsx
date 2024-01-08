@@ -3,7 +3,7 @@ import React from "react";
 
 import { Flex } from "../../atoms/containers/Flex";
 import { Tag } from "@/src/types";
-import { TagBadge } from "../../molecules/tag-badge";
+import { TagBadge } from "../../atoms/badges/tag-badge";
 
 interface Props extends BaseProps {
   tags: Tag[];

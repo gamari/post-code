@@ -23,7 +23,7 @@ const Page = async ({ params: { user_id } }: Props) => {
   console.log(user);
 
   return (
-    <Container>
+    <Container className="pt-10">
       <Flex gap={48}>
         <UserInfoCard user={user} className="w-[260px]" />
         <div className="flex-1">

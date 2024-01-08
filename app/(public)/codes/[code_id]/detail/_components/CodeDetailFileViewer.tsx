@@ -5,7 +5,6 @@ import React from "react";
 import { useCodeDetailContext } from "@/src/contexts/CodeDetailProvider";
 import { cn } from "@/src/libs/utils";
 import { FileViewer } from "@/src/components/organisms/files/FileViewer";
-import { CodeDetailFileDescription } from "./CodeDetailFileDescription";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 
 interface Props {
