@@ -21,7 +21,7 @@ const notojp = Noto_Sans_JP({
 const siteName = "PostCode";
 
 const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
+  ? `https://post-codes.net`
   : "http://localhost:3000";
 
 export const metadata = {
