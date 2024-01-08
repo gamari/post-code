@@ -18,14 +18,19 @@ const notojp = Noto_Sans_JP({
   display: "swap",
 });
 
+const siteName = "PostCode";
+
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "http://localhost:3000";
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "PostCode",
-  description: "コードをメインにできる記事投稿サイトです。",
+  title: {
+    default: siteName,
+    template: `%s | ${siteName}`,
+  },
+  description: "コード中心型の投稿サイトです。",
 };
 
 export default function RootLayout({
