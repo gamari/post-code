@@ -5,6 +5,7 @@ export async function middleware(request: NextRequest) {
   try {
     const { supabase, response } = getMiddleClient(request)
 
+    // TODO 特定パスを除外する処理を追加する
     // await supabase.auth.getSession()
 
     return response

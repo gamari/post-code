@@ -2,7 +2,6 @@ import { actionGetCodeById } from "@/src/actions/codes";
 import { CodeIcon } from "@/src/components/atoms/icons/code-icon";
 import { ImageResponse } from "next/og";
 
-// Route segment config
 export const runtime = "edge";
 
 export const alt = "PostCode";
@@ -13,7 +12,6 @@ export const size = {
 
 export const contentType = "image/png";
 
-// Image generation
 export default async function Image({
   params,
 }: {
