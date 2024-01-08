@@ -13,6 +13,7 @@ import { GoogleLoginButton } from "../GoogleLoginButton";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { Center } from "@/src/components/atoms/containers/Center";
 import { useLoading } from "@/src/hooks/useLoading";
+import { GithubLoginButton } from "../GithubLoginButton";
 
 interface Props {
   errorStatus: string;
@@ -77,10 +78,10 @@ export const LoginForm = ({ errorStatus }: Props) => {
             <LoginFormErrorMessage status={errorStatus} />
           </Flex>
         </form>
-        <div className="w-full mt-3 pt-2">
+        <Flex direction="column" gap={8} className="w-full mt-3 pt-2">
           <Heading type="h4">ソーシャルログイン</Heading>
-          <GoogleLoginButton />
-        </div>
+          <GithubLoginButton />
+        </Flex>
       </Flex>
     </div>
   );

@@ -11,6 +11,7 @@ import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 import { CodeEditorSelectedFileProvider } from "@/src/contexts/editors/CodeEditorSelectedFileProvider";
 import { CodeEditorFilesProvider } from "@/src/contexts/editors/CodeEditorFilesProvider";
+import { CodeEditorSaveShortcut } from "./save/CodeEditorSaveShortcut";
 
 interface Props {
   code: CodeDetail;
@@ -31,6 +32,7 @@ export const CodeEditor: FunctionComponent<Props> = ({ code }: Props) => {
             <CodeEditorContent className="w-[700px]" />
             <CodeEditorSidebar className="w-[250px]" />
           </Flex>
+          <CodeEditorSaveShortcut />
         </CodeEditorFilesProvider>
       </CodeEditorSelectedFileProvider>
     </CodeEditorProvider>

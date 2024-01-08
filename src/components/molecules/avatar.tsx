@@ -49,7 +49,7 @@ export const Avatar = ({
         className={cn(
           "text-gray-600",
           size == "sm" && "h-5 w-5",
-          size == "md" && "h-10 w-10",
+          size == "md" && "h-9 w-9",
           size == "lg" && "h-12 w-12",
           className
         )}

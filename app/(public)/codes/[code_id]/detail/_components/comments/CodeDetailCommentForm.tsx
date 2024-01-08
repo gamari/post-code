@@ -25,15 +25,17 @@ export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
 
   const handleCreateComment = async () => {
     try {
-      const retComment = await saveComment(codeId);
       let newComments: CommentDetail[] = [];
       if (isNotEmpty()) {
         const latestComment = getLatestComment();
+        console.log(latestComment);
         const retComments = await fetchCodeListAfterDate(
           latestComment?.created_at || ""
         );
         newComments = [...retComments];
       }
+
+      const retComment = await saveComment(codeId);
 
       addCommentList?.([...newComments, retComment]);
       setComment("");

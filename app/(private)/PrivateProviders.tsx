@@ -8,5 +8,5 @@ interface Props {
 }
 
 export const PrivateProviders = ({ children }: Props) => {
-  return <NotificationsProvider>{children}</NotificationsProvider>;
+  return <>{children}</>;
 };

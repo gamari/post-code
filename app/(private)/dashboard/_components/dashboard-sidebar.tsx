@@ -4,10 +4,9 @@ import { SideLink } from "./SideLink";
 import { Logo } from "@/src/components/molecules/logo";
 import { CommentIcon } from "@/src/components/atoms/icons/comment-icon";
 import { AccountIcon } from "@/src/components/atoms/icons/account-icon";
-import { BellIcon } from "@radix-ui/react-icons";
 import { SideNotifyLink } from "./SideNotifyLink";
 
-export const DashboardSidebar = () => {
+export const DashboardSidebar = async () => {
   return (
     <div className="w-[240px]">
       <aside className="sticky top-[100px] h-screen/50 flex flex-col justify-between rounded-lg  bg-white">

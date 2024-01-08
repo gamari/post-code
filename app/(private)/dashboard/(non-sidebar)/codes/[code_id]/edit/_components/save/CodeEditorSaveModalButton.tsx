@@ -5,24 +5,25 @@ import React from "react";
 import { length } from "@/src/libs/strings";
 import { useSaveCodeEditor } from "@/src/hooks/codes/editors/useSaveCodeEditor";
 import { useAlert } from "@/src/hooks/useAlert";
-import { SaveButton } from "../../../../../../../../src/components/molecules/buttons/save-button";
+import { SaveButton } from "../../../../../../../../../src/components/molecules/buttons/save-button";
 import { useModal } from "@/src/hooks/useModal";
 import { Modal } from "@/src/components/molecules/displays/Modal";
 import { CodeEditorSaveEditor } from "./CodeEditorSaveEditor";
 import { Button } from "@/src/components/atoms/buttons/button";
 import { useRouter } from "next/navigation";
 import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
+import { Flex } from "@/src/components/atoms/containers/Flex";
+import Link from "next/link";
+import { CODES_DETAIL_URL } from "@/src/libs/constants/urls";
 
 // TODO save buttonを抜き出す
 export const CodeEditorSaveModalButton = () => {
   const router = useRouter();
+  const { errorAlert } = useAlert();
 
   const { code } = useCodeEditor();
-
   const { isOpen, toggleModal } = useModal();
-
   const { loading, saveEditor } = useSaveCodeEditor();
-  const { errorAlert } = useAlert();
 
   const handleOnSave = async () => {
     try {
@@ -67,16 +68,18 @@ export const CodeEditorSaveModalButton = () => {
       <Modal isOpen={isOpen} onClose={toggleModal} className="w-[700px]">
         <CodeEditorSaveEditor />
 
-        <div className="flex flex-row items-center mt-3 gap-2">
-          <SaveButton
-            label="保存"
-            onClick={handleOnSave}
-            loading={loading}
-          />
+        <Flex justifyContent="between" gap={8} className="mt-3">
+          <Flex gap={8}>
+            <SaveButton label="保存" onClick={handleOnSave} loading={loading} />
+            <Button variant="outline" onClick={toggleModal}>
+              コードに戻る
+            </Button>
+          </Flex>
+
           <Button variant="outline" onClick={toggleModal}>
-            コードに戻る
+            <Link href={CODES_DETAIL_URL(code?.id)} target={"_blank"}>詳細画面へ</Link>
           </Button>
-        </div>
+        </Flex>
       </Modal>
     </>
   );

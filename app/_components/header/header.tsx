@@ -18,7 +18,7 @@ export default async function Header() {
         "border-b border-b-foreground/10"
       )}
     >
-      <div className="w-full max-w-6xl flex justify-between items-center p-3 text-sm px-10">
+      <div className="w-full max-w-7xl flex justify-between items-center p-3 text-sm px-10">
         <TextLinkLogo url="/" label={APP_TITLE} />
 
         <div className="flex items-center gap-4">

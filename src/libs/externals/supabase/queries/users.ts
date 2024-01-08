@@ -25,7 +25,7 @@ export const fetchAuthUser = async (client: SupabaseClient) => {
 
 export const fetchUserById = async (id: string, client: SupabaseClient) => {
     const { data: user, error } = await client
-        .from("users")
+        .from(PUBLIC_USER_TABLE)
         .select("*")
         .eq("id", id)
         .single();

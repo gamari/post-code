@@ -5,7 +5,6 @@ import React, { FunctionComponent } from "react";
 import { useLikeCode } from "@/src/hooks/favorites/useLikeCode";
 import { LikeButton } from "../../molecules/buttons/like-button";
 import { UnlikeButton } from "../../molecules/buttons/unlike-button";
-import { useFetchFavoriteCount } from "@/src/hooks/favorites/useFetchFavoriteCount";
 
 interface Props {
   codeId: number;

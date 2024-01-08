@@ -35,7 +35,7 @@ export const UserInfoCard = ({ user, className }: Props) => {
         </Description>
       )}
 
-      {user.x_url && (
+      {user?.x_url && (
         <div>
           <Link href={X_URL(user?.x_url)} target="_blank">
             <XIcon className="p-2 h-9 w-9 cursor-pointer rounded-full hover:bg-slate-100" />

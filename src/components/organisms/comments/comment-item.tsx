@@ -15,6 +15,7 @@ import {
 } from "../../ui/dropdown-menu";
 import { DeleteIcon } from "lucide-react";
 import { MarkdownPreviewer } from "../../molecules/displays/markdown-previewer";
+import Link from "next/link";
 
 interface Props {
   comment?: CommentDetail;
@@ -29,24 +30,27 @@ export const CommentItem = ({
   onDelete,
   isAuthor = false,
 }: Props) => {
-  const { user } = comment || {};
+  const { user, user_id } = comment || {};
+  console.log(comment);
 
   return (
     <div className={`px-8 py-6 ${className}`}>
       <div className="flex flex-row items-center justify-between">
-        <div className="flex flex-row items-center gap-2">
-          <Avatar iconType={user?.icon_type} />
+        <div className="flex flex-row items-center gap-3">
+          <Link href={`/accounts/${user_id}`}>
+            <Avatar iconType={user?.icon_type} />
+          </Link>
+
           <Username value={user?.username || ""} />
+          <DateString
+            value={comment?.created_at}
+            type="datetime"
+            className="text-sm text-gray-700"
+          />
         </div>
 
-        {isAuthor && (
-          <div className="flex flex-row gap-2 items-center">
-            <DateString
-              value={comment?.created_at}
-              type="datetime"
-              className="text-sm text-gray-700"
-            />
-
+        <div className="flex flex-row gap-2 items-center">
+          {isAuthor && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost">
@@ -67,8 +71,8 @@ export const CommentItem = ({
                 </DropdownMenuGroup>
               </DropdownMenuContent>
             </DropdownMenu>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       <div className="mt-3">

@@ -2,14 +2,11 @@
 
 import React from "react";
 
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { okaidia as style } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { CiFileOn } from "react-icons/ci";
 
 import { File } from "@/src/types";
 import { cn } from "@/src/libs/utils";
 import {
-  convertFilenameToExtension,
   convertFilenameToFiletype,
 } from "@/src/libs/editors";
 import { CodeViewer } from "../codes/CodeViewer";

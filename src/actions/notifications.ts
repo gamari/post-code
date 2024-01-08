@@ -1,5 +1,6 @@
+import { FaLess } from "react-icons/fa6";
 import { getServerClient } from "../libs/externals/supabase/admin-client";
-import { createEqCondition } from "../libs/externals/supabase/options";
+import { createEqCondition, createOrderCondition } from "../libs/externals/supabase/options";
 import { fetchNotificationList, fetchUpdateNotification } from "../libs/externals/supabase/queries/notifications";
 import { NotificationDetail } from "../types";
 import { actionGetAuthUser } from "./users";
@@ -11,6 +12,9 @@ export const actionGetOwnNotifications = async () => {
         eq: [
             createEqCondition("user_id", authUser?.id)
         ],
+        order: [
+            createOrderCondition("created_at", false)
+        ]
     });
 
     return notifications;

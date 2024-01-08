@@ -1,6 +1,6 @@
 import React from "react";
-import { Container } from "../../src/components/molecules/container";
 import { LinkText } from "@/src/components/molecules/displays/link-text";
+import { Container } from "@/src/components/atoms/containers/container";
 
 export const TopFooter = () => {
   return (
