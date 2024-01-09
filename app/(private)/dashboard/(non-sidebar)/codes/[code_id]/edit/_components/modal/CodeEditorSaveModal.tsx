@@ -14,14 +14,14 @@ import { useAlert } from "@/src/hooks/useAlert";
 import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
 import { useSaveCodeEditor } from "@/src/hooks/codes/editors/useSaveCodeEditor";
 import { Button } from "@/src/components/atoms/buttons/button";
-import { useCodeEditorSaveModalContext } from "@/src/contexts/CodeEditorSaveModalProvider";
+import { useCodeEditorModalContext } from "@/src/contexts/CodeEditorModalProvider";
 
 export const CodeEditorSaveModal = () => {
   const router = useRouter();
   const { errorAlert } = useAlert();
 
   const { code } = useCodeEditor();
-  const { isOpen, toggleModal } = useCodeEditorSaveModalContext();
+  const { isSaveOpen: isOpen, toggleSaveModal: toggleModal } = useCodeEditorModalContext();
   const { loading, saveEditor } = useSaveCodeEditor();
 
   const handleOnSave = async () => {

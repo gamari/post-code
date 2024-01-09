@@ -24,7 +24,7 @@ export const CodeEditorContentDescription = () => {
             <Textarea
               value={code?.description || ""}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="全体を通したコード解説（空欄可）"
+              placeholder="全体を通したコード解説（マークダウン形式）"
               rows={20}
             />
           )}
