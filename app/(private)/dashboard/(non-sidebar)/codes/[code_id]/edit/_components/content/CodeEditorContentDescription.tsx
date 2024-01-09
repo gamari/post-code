@@ -3,40 +3,37 @@
 import React from "react";
 
 import { Textarea } from "@/src/components/atoms/forms/textarea";
-import { Heading } from "@/src/components/atoms/texts/heading";
-import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
-import { Flex } from "@/src/components/atoms/containers/Flex";
-import { PreviewButton } from "@/src/components/molecules/preview-button";
 import { MarkdownPreviewer } from "@/src/components/molecules/displays/markdown-previewer";
+import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
+import { PreviewButton } from "@/src/components/molecules/preview-button";
 
 export const CodeEditorContentDescription = () => {
   const [isPreview, setIsPreview] = React.useState(false);
-  const { selectedFile, setDescription } = useCodeEditorSelectedFile();
 
-  if (!selectedFile) return;
+  const { code, setDescription } = useCodeEditor();
 
   return (
-    <div className="mt-6">
-      <Heading className="mb-3">コード説明(空欄可)</Heading>
-
-      {isPreview ? (
-        <div className="h-[250px] bg-white px-8 py-12 border overflow-y-scroll">
-          <MarkdownPreviewer content={selectedFile?.description || ""} />
+    <div>
+      <div className="mt-6">
+        <div className="">
+          {isPreview ? (
+            <div className="border p-2 h-[400px] overflow-scroll scroll-auto bg-white">
+              <MarkdownPreviewer content={code?.description || ""} />
+            </div>
+          ) : (
+            <Textarea
+              value={code?.description || ""}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="全体を通したコード解説（空欄可）"
+              rows={20}
+            />
+          )}
         </div>
-      ) : (
-        <Textarea
-          className="w-full"
-          value={selectedFile?.description || ""}
-          onChange={(e) => {
-            setDescription(e.target.value);
-          }}
-          rows={12}
-          placeholder="上記コードの説明を書いてください（マークダウン形式）"
-        />
-      )}
-      <Flex direction="row-reverse" className="mt-3">
-        <PreviewButton isPreview={isPreview} setIsPreview={setIsPreview} />
-      </Flex>
+
+        <div className="flex flex-row-reverse pt-2">
+          <PreviewButton isPreview={isPreview} setIsPreview={setIsPreview} />
+        </div>
+      </div>
     </div>
   );
 };

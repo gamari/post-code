@@ -6,7 +6,7 @@ import { cn } from "@/src/libs/utils";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { Switch } from "@/src/components/ui/switch";
 
-import { CodeEditorSaveEditorDescription } from "./CodeEditorSaveEditorDescription";
+import { CodeEditorContentDescription } from "../content/CodeEditorContentDescription";
 import { CodeEditorSaveEditorLanguages } from "./CodeEditorSaveEditorLanguages";
 import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
 import { Flex } from "@/src/components/atoms/containers/Flex";
@@ -21,7 +21,9 @@ export const CodeEditorSaveEditor = ({ className }: Props) => {
 
   return (
     <div className={cn("", className)}>
-      <CodeEditorSaveEditorDescription />
+      <div className="mb-2 text-gray-500">
+        オプションを設定して保存してください
+      </div>
       <CodeEditorSaveEditorLanguages />
       <CodeEditorSaveEditorSelectTags />
 
