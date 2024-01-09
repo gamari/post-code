@@ -34,7 +34,7 @@ const BottomToggleContainer = ({ children, className, label }: Props) => {
         variants={containerVariants}
         transition={{ duration: 0.5 }}
         className={cn(
-          "relative border border-gray-400 bg-white rounded-lg  shadow-lg",
+          "relative border-[3px] border-gray-400 bg-white rounded-lg  shadow-lg",
           className
         )}
       >
