@@ -14,7 +14,7 @@ export default async function Header() {
   return (
     <nav
       className={cn(
-        "z-[100] sticky top-0 w-full flex justify-center py-2 bg-white",
+        "z-[100] sticky top-0 w-full flex justify-center py-1 bg-white",
         "border-b border-b-foreground/10"
       )}
     >

@@ -98,11 +98,6 @@ export async function actionSignUp(formData: FormData) {
     const password = formData.get('password') as string
     const password2 = formData.get('password2') as string
 
-    // const existsEmail = await actionGetUserByEmail(email);
-    // if (existsEmail) {
-    //     return redirect('/register?error_status=1')
-    // }
-
     if (password !== password2) {
         return redirect('/register?error_status=2')
     }
@@ -124,6 +119,13 @@ export async function actionSignUp(formData: FormData) {
     })
 
     if (error) {
+        const { status, message } = error;
+        if (status == 422) {
+            return redirect('/register?error_status=3')
+        }
+        if (message?.includes("already registered")) {
+            return redirect('/register?error_status=1')
+        }
         return redirect('/register?error_status=9')
     }
 
