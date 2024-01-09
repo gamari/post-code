@@ -37,8 +37,8 @@ export const CodeDetailFileDescription = ({ className = "" }: Props) => {
         transition={{ duration: 0.5 }}
         className="relative border border-gray-400 bg-white rounded-lg  shadow-lg "
       >
-        <Badge className="bg-gray-600 absolute z-[104] -top-2 left-2">コード説明</Badge>
-        <div className="overflow-y-auto py-12 px-8 max-h-[45vh]">
+        <Badge className="bg-sky-600 absolute z-[104] -top-2 left-2">ファイル説明</Badge>
+        <div className="overflow-y-auto py-16 px-12 max-h-[45vh]">
           <MarkdownPreviewer content={selectedFile?.description || ""} />
         </div>
         <div
