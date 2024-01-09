@@ -31,7 +31,6 @@ export const CommentItem = ({
   isAuthor = false,
 }: Props) => {
   const { user, user_id } = comment || {};
-  console.log(comment);
 
   return (
     <div className={`px-8 py-6 ${className}`}>

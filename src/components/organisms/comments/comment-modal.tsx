@@ -12,7 +12,7 @@ interface Props {
 
 export const CommentModal = ({ code, isOpen, toggleModal }: Props) => {
   return (
-    <Modal isOpen={isOpen} onClose={toggleModal} className="w-[600px]">
+    <Modal isOpen={isOpen} onClose={toggleModal} className="w-[600px] z-[200]">
       <div className="pt-6 mb-4">
         <CodeCommentForm codeId={code.id} onSubmit={toggleModal} />
       </div>

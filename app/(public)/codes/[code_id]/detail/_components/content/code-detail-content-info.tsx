@@ -15,7 +15,7 @@ interface Props {
   code: CodeDetail;
 }
 
-export const CodeDetailInfo: FunctionComponent<Props> = async ({ code }) => {
+export const CodeDetailContentInfo: FunctionComponent<Props> = async ({ code }) => {
   return (
     <div className="w-full">
       <Flex

@@ -1,10 +1,16 @@
-import { cn } from "@/src/libs/utils";
-import { motion } from "framer-motion";
+"use client";
+
 import React, { useState } from "react";
+
+import { motion } from "framer-motion";
+
+import { cn } from "@/src/libs/utils";
+import { Badge } from "../../atoms/badges/badge";
 
 interface Props {
   children: React.ReactNode;
   className?: string;
+  label?: string;
 }
 
 const containerVariants = {
@@ -13,7 +19,7 @@ const containerVariants = {
   visible: { y: 0, transition: { duration: 0.5 } },
 };
 
-const BottomToggleContainer = ({ children, className }: Props) => {
+const BottomToggleContainer = ({ children, className, label }: Props) => {
   const [isShow, setIsShow] = useState(true);
 
   const toggleShow = () => {
@@ -21,7 +27,7 @@ const BottomToggleContainer = ({ children, className }: Props) => {
   };
 
   return (
-    <div className={cn("fixed z-[103]  bottom-6 w-full max-w-4xl px-2")}>
+    <div className={cn("fixed z-[98]  bottom-6 w-full max-w-4xl px-2")}>
       <motion.div
         initial="hidden"
         animate={isShow ? "visible" : "hidden"}
@@ -39,6 +45,11 @@ const BottomToggleContainer = ({ children, className }: Props) => {
         >
           {isShow ? "非表示" : "表示"}
         </div>
+        {label && (
+          <Badge className="bg-sky-500 text-white absolute left-2 top-0 -translate-y-[50%]">
+            {label}
+          </Badge>
+        )}
       </motion.div>
     </div>
   );
