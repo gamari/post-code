@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import { Modal } from "@/src/components/molecules/displays/Modal";
@@ -12,7 +14,7 @@ interface Props {
 
 export const CommentModal = ({ code, isOpen, toggleModal }: Props) => {
   return (
-    <Modal isOpen={isOpen} onClose={toggleModal} className="w-[600px] z-[200]">
+    <Modal isOpen={isOpen} onClose={toggleModal} className="w-[600px]">
       <div className="pt-6 mb-4">
         <CodeCommentForm codeId={code.id} onSubmit={toggleModal} />
       </div>

@@ -31,7 +31,7 @@ export const CodeDetailSidebarToolsCard = async ({
         {isLogin && (
           <>
             <FavoriteCodeButton codeId={badCode.id} isFavorite={isFavorite} />
-            <CodeDetailCommentModalButton code={badCode} />
+            <CodeDetailCommentModalButton />
           </>
         )}
         <CodeDetailShareButton code={badCode} />

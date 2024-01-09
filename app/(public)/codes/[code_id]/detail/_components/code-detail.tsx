@@ -12,6 +12,7 @@ import { NoContent } from "@/src/components/molecules/displays/no-content";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { CodeDetailFileDescription } from "./CodeDetailFileDescription";
 import { CodeDetailContent } from "./content/CodeDetailContent";
+import { CodeDetailCommentModal } from "./comments/CodeDetailCommentModal";
 
 interface Props {
   codeId: number;
@@ -36,6 +37,7 @@ export const CodeDetail = async ({ codeId }: Props) => {
         <Suspense fallback={<Skeleton className="w-[700px]" />}>
           <CodeDetailContent code={code} />
           <CodeDetailSidebar code={code} />
+          <CodeDetailCommentModal code={code} />
         </Suspense>
       </Flex>
     </Center>

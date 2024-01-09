@@ -27,7 +27,7 @@ const BottomToggleContainer = ({ children, className, label }: Props) => {
   };
 
   return (
-    <div className={cn("fixed z-[98]  bottom-6 w-full max-w-4xl px-2")}>
+    <div className={cn("fixed z-[130] bottom-6 w-full max-w-4xl px-2")}>
       <motion.div
         initial="hidden"
         animate={isShow ? "visible" : "hidden"}

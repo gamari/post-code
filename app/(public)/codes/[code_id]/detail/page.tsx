@@ -7,6 +7,7 @@ import { DetailCodeCommentListProvider } from "@/src/contexts/CodeCommentListPro
 import { CodeDetailProvider } from "@/src/contexts/CodeDetailProvider";
 import { CodeDetail } from "./_components/code-detail";
 import { actionGetCodeById } from "@/src/actions/codes";
+import { CodeDetailCommentModalProvider } from "@/src/contexts/CodeDetailCommentModalProvider";
 
 interface Props {
   params: {
@@ -46,7 +47,9 @@ const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
   return (
     <DetailCodeCommentListProvider comments={[]}>
       <CodeDetailProvider>
-        <CodeDetail codeId={code_id} />
+        <CodeDetailCommentModalProvider>
+          <CodeDetail codeId={code_id} />
+        </CodeDetailCommentModalProvider>
       </CodeDetailProvider>
     </DetailCodeCommentListProvider>
   );
