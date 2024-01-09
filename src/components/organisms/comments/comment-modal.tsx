@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import { Modal } from "@/src/components/molecules/displays/Modal";

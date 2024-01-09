@@ -7,7 +7,7 @@ import BottomToggleContainer from "@/src/components/molecules/animation/BottomTo
 
 export const CodeEditorContentBottom = () => {
   return (
-    <BottomToggleContainer className="flex flex-row gap-4 p-6">
+    <BottomToggleContainer className="flex flex-row gap-4 p-6 z-[130]">
       <Badge className="absolute -top-2 left-2 bg-sky-500">ファイル編集</Badge>
       <CodeEditorContentFile className="mt-12 h-[300px] flex-1" />
       <CodeEditorContentFileDescription className="flex-1" />

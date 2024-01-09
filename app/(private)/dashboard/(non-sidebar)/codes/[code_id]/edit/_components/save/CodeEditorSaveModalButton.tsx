@@ -62,7 +62,7 @@ export const CodeEditorSaveModalButton = () => {
 
   return (
     <>
-      <SaveButton label="詳細を書く" onClick={onClick} loading={loading} />
+      <SaveButton label="保存" onClick={onClick} loading={loading} />
 
       {/* TODO コンポーネント化する */}
       <Modal isOpen={isOpen} onClose={toggleModal} className="w-[700px]">

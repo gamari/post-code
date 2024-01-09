@@ -9,6 +9,10 @@ READMEにで見れるようにしています。
   - z-100
 - detail
   - sidebar
-    - z-102
+    - z-100
   - code description
-    - z-103
+    - z-110
+  - bottom
+    - z-130
+  - modal
+    - z-300

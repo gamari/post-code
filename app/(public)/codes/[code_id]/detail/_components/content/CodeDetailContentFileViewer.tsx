@@ -11,22 +11,10 @@ interface Props {
   className?: string;
 }
 
-export const CodeDetailFileViewer = ({ className }: Props) => {
+export const CodeDetailContentFileViewer = ({ className }: Props) => {
   const { selectedFile } = useCodeDetailContext();
 
-  if (!selectedFile)
-    return (
-      <div
-        className={cn(
-          "h-[450px] flex items-center justify-center bg-white rounded-md",
-          className
-        )}
-      >
-        <p className="text-gray-600 font-bold">
-          見たいファイルを選択してください
-        </p>
-      </div>
-    );
+  if (!selectedFile) return null;
 
   return (
     <Flex direction="column" alignItems="stretch" className={cn("", className)}>
