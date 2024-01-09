@@ -14,8 +14,8 @@ interface Props {
 
 const containerVariants = {
   // コンポーネントを下に隠す
-  hidden: { y: "100%", opacity: 1 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.5 } },
+  hidden: { y: "100%", transition: { duration: 0.5 }  },
+  visible: { y: 0, transition: { duration: 0.5 } },
 };
 
 export const CodeDetailFileDescription = ({ className = "" }: Props) => {
@@ -38,7 +38,7 @@ export const CodeDetailFileDescription = ({ className = "" }: Props) => {
         className="relative border border-gray-400 bg-white rounded-lg  shadow-lg "
       >
         <Badge className="bg-gray-600 absolute z-[104] -top-2 left-2">コード説明</Badge>
-        <div className="overflow-y-auto py-12 px-8 max-h-[30vh]">
+        <div className="overflow-y-auto py-12 px-8 max-h-[45vh]">
           <MarkdownPreviewer content={selectedFile?.description || ""} />
         </div>
         <div
