@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
 import { actionSignUp } from "@/src/actions/users";
@@ -14,13 +14,17 @@ import { GoogleSignupButton } from "../GoogleSignupButton";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { useLoading } from "@/src/hooks/useLoading";
 import { GithubSignupButton } from "../GithubSignupButton";
+import { CheckPassword } from "../CheckPassword";
+import { Input } from "@/src/components/atoms/forms/input";
 
 interface Props {
   errorStatus?: string;
 }
 
-// TODO 作成中を判定できるようにしたい
 export const RegisterForm = ({ errorStatus }: Props) => {
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [error, setError] = useState("");
   const { loading, startLoading, stopLoading } = useLoading();
 
   return (
@@ -45,6 +49,7 @@ export const RegisterForm = ({ errorStatus }: Props) => {
       >
         <Heading>ユーザー登録画面</Heading>
         <LabelInput
+          id="email"
           type="email"
           name="email"
           label="メールアドレス"
@@ -52,19 +57,53 @@ export const RegisterForm = ({ errorStatus }: Props) => {
           autocomplete="email"
         />
         <LabelInput
+          id="username"
           type="text"
           name="username"
           label="ユーザー名"
           placeholder="username"
           autocomplete="username"
         />
-        <LabelInput
-          type="password"
-          name="password"
-          label="パスワード"
-          placeholder="pasword"
-          autocomplete="password"
-        />
+        <div className="w-full">
+          <Heading type="h4" className="mb-1">
+            パスワード
+          </Heading>
+          <Input
+            id="password"
+            name="password"
+            value={password}
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder={"password"}
+            autoComplete={"password"}
+            className="shadow-none"
+          />
+        </div>
+
+        <div className="w-full">
+          <Heading type="h4" className="mb-1">
+            パスワード確認
+          </Heading>
+          <Input
+            id={"password2"}
+            name={"password2"}
+            value={passwordConfirm}
+            type={"password2"}
+            onChange={(e) => {
+              if (password !== e.target.value) {
+                setError("パスワードが一致しません");
+              } else {
+                setError("");
+              }
+              setPasswordConfirm(e.target.value);
+            }}
+            placeholder={"password2"}
+            autoComplete={"password2"}
+            className="shadow-none"
+          />
+
+          <div>{error && <p className="text-red-500">{error}</p>}</div>
+        </div>
 
         <div className="text-gray-600 text-sm py-2">
           <Link href="/terms" className="text-blue-500 hover:underline">
@@ -73,7 +112,11 @@ export const RegisterForm = ({ errorStatus }: Props) => {
           に同意の上、登録を行ってください。
         </div>
 
-        <Button type="submit" className="mt-3 w-full" disabled={loading}>
+        <Button
+          type="submit"
+          className="mt-3 w-full"
+          disabled={loading || password != passwordConfirm || !password}
+        >
           ユーザー登録
         </Button>
         <LinkButton url="/login" label="ログイン画面へ" />
