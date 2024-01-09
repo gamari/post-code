@@ -14,12 +14,12 @@ import { GoogleSignupButton } from "../GoogleSignupButton";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { useLoading } from "@/src/hooks/useLoading";
 import { GithubSignupButton } from "../GithubSignupButton";
+import { CheckPassword } from "../CheckPassword";
 
 interface Props {
   errorStatus?: string;
 }
 
-// TODO 作成中を判定できるようにしたい
 export const RegisterForm = ({ errorStatus }: Props) => {
   const { loading, startLoading, stopLoading } = useLoading();
 
@@ -45,6 +45,7 @@ export const RegisterForm = ({ errorStatus }: Props) => {
       >
         <Heading>ユーザー登録画面</Heading>
         <LabelInput
+          id="email"
           type="email"
           name="email"
           label="メールアドレス"
@@ -52,19 +53,14 @@ export const RegisterForm = ({ errorStatus }: Props) => {
           autocomplete="email"
         />
         <LabelInput
+          id="username"
           type="text"
           name="username"
           label="ユーザー名"
           placeholder="username"
           autocomplete="username"
         />
-        <LabelInput
-          type="password"
-          name="password"
-          label="パスワード"
-          placeholder="pasword"
-          autocomplete="password"
-        />
+        <CheckPassword />
 
         <div className="text-gray-600 text-sm py-2">
           <Link href="/terms" className="text-blue-500 hover:underline">

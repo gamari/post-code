@@ -1,7 +1,7 @@
 "use server";
 
 import { getServerClient } from "@/src/libs/externals/supabase/admin-client";
-import { fetchAuthUser, fetchUserById } from "@/src/libs/externals/supabase/queries/users";
+import { fetchAuthUser, fetchUserByEmail, fetchUserById, fetchUserByUsername } from "@/src/libs/externals/supabase/queries/users";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -29,6 +29,18 @@ export const actionGetAuthUser = async () => {
     }
 }
 
+export const actionGetUserByUsername = async (username: string) => {
+    const supabase = getServerClient();
+    const user = await fetchUserByUsername(username, supabase);
+    return user;
+}
+
+export const actionGetUserByEmail = async (email: string) => {
+    const supabase = getServerClient();
+    const user = await fetchUserByEmail(email, supabase);
+    return user;
+}
+
 export const actionGetMySelf = async () => {
     const supabase = getServerClient();
     const authUser = await fetchAuthUser(supabase);
@@ -42,7 +54,6 @@ export const actionGetMySelf = async () => {
 
 // Login関係
 export async function actionLoginWithGoogle() {
-    console.log("actionLoginWithGoogle");
     const supabase = getServerClient()
 
     const { error } = await supabase.auth.signInWithOAuth({
@@ -55,14 +66,9 @@ export async function actionLoginWithGoogle() {
         },
     })
 
-    console.log("actionLoginWithGoogle error", error);
-
-    if (error) {
-        return redirect('/login?error_status=9')
-    }
+    if (error) return redirect('/login?error_status=9')
 
     return redirect('/dashboard')
-
 }
 
 export async function actionLogin(formData: FormData) {
@@ -84,14 +90,29 @@ export async function actionLogin(formData: FormData) {
 }
 
 export async function actionSignUp(formData: FormData) {
-    const supabase = getServerClient()
+    const client = getServerClient()
 
     const origin = headers().get('origin')
     const username = formData.get('username') as string
     const email = formData.get('email') as string
     const password = formData.get('password') as string
+    const password2 = formData.get('password2') as string
 
-    const { error } = await supabase.auth.signUp({
+    // const existsEmail = await actionGetUserByEmail(email);
+    // if (existsEmail) {
+    //     return redirect('/register?error_status=1')
+    // }
+
+    if (password !== password2) {
+        return redirect('/register?error_status=2')
+    }
+
+    const existsUsername = await actionGetUserByUsername(username);
+    if (existsUsername) {
+        return redirect('/register?error_status=1')
+    }
+
+    const { error } = await client.auth.signUp({
         email,
         password,
         options: {

@@ -14,6 +14,22 @@ export const fetchUserByUsername = async (username: string, client: SupabaseClie
     return user;
 }
 
+export const fetchUserByEmail = async (email: string, client: SupabaseClient) => {
+    const { data: user, error } = await client
+        .from(PUBLIC_USER_TABLE)
+        .select("*")
+        .eq("email", email)
+        .maybeSingle();
+
+
+    if (error) {
+        console.error(error);
+        throw new Error("ユーザーの取得に失敗しました。");
+    }
+
+    return user;
+}
+
 export const fetchAuthUser = async (client: SupabaseClient) => {
     const { data: { user }, error } = await client.auth.getUser();
 
