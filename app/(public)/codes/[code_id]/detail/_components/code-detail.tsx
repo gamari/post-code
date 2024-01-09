@@ -31,12 +31,13 @@ export const CodeDetail = async ({ codeId }: Props) => {
 
   return (
     <Center>
-      <Flex gap={40} className="p-10">
+      <Flex gap={40} className="p-10 w-full" justifyContent="center">
         <Suspense fallback={<Skeleton className="w-[700px]" />}>
           <Flex
             direction="column"
+            alignItems="stretch"
             gap={24}
-            className="flex-1 w-[700px] pb-80 border-b"
+            className="flex-1 pb-80 max-w-4xl w-full border-b"
           >
             <CodeDetailInfo code={code} />
             <CodeDetailFileViewer className="mb-10 w-full" />
