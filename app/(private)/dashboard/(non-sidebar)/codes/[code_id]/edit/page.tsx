@@ -23,11 +23,7 @@ const CodeEditPage: NextPage<Props> = ({ params }) => {
   if (!code_id || !code)
     return <NoContent text="コードが見つかりませんでした" />;
 
-  return (
-    <div className="p-10">
-      <CodeEditor code={code} />
-    </div>
-  );
+  return <CodeEditor code={code} className="p-10 pb-32" />;
 };
 
 export default CodeEditPage;

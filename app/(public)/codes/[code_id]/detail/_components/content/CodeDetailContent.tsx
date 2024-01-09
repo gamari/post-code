@@ -15,7 +15,7 @@ export const CodeDetailContent = ({ code }: Props) => {
     <Flex
       direction="column"
       alignItems="stretch"
-      gap={24}
+      gap={64}
       className="flex-1 pb-80 max-w-4xl w-full border-b"
     >
       <CodeDetailContentInfo code={code} />

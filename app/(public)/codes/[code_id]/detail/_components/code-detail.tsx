@@ -33,7 +33,7 @@ export const CodeDetail = async ({ codeId }: Props) => {
         <Suspense fallback={<Skeleton className="w-[700px]" />}>
           <CodeDetailContent code={code} />
           <CodeDetailSidebar code={code} />
-          <CodeDetailCommentModal code={code} />
+          <CodeDetailCommentModal code={code}  />
         </Suspense>
       </Flex>
     </Center>

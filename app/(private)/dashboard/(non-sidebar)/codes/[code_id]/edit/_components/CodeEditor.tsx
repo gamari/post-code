@@ -17,9 +17,10 @@ import { CodeEditorSaveModalProvider } from "@/src/contexts/CodeEditorSaveModalP
 
 interface Props {
   code: CodeDetail;
+  className?: string;
 }
 
-export const CodeEditor: FunctionComponent<Props> = ({ code }: Props) => {
+export const CodeEditor: FunctionComponent<Props> = ({ code, className }: Props) => {
   const { authUser } = useSupabase();
 
   if (code?.user_id !== authUser?.id) {
@@ -31,7 +32,7 @@ export const CodeEditor: FunctionComponent<Props> = ({ code }: Props) => {
       <CodeEditorSelectedFileProvider>
         <CodeEditorFilesProvider code={code}>
           <CodeEditorSaveModalProvider>
-            <Flex gap={16} className="pb-32">
+            <Flex gap={16} className={className}>
               <CodeEditorContent className="w-[700px]" />
               <CodeEditorSidebar className="w-[250px]" />
               <CodeEditorSaveModal />
