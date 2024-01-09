@@ -23,7 +23,7 @@ export const CodeDetailCommentList = ({ className, code }: Props) => {
       <div className="flex flex-row gap-2 items-center p-6 border-b mb-3">
         <CommentIcon />
         <Heading type="h3" className="text-gray-700">
-          議論
+          コメント
         </Heading>
       </div>
 

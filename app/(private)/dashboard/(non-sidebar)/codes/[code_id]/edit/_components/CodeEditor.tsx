@@ -12,12 +12,15 @@ import { NoContent } from "@/src/components/molecules/displays/no-content";
 import { CodeEditorSelectedFileProvider } from "@/src/contexts/editors/CodeEditorSelectedFileProvider";
 import { CodeEditorFilesProvider } from "@/src/contexts/editors/CodeEditorFilesProvider";
 import { CodeEditorSaveShortcut } from "./save/CodeEditorSaveShortcut";
+import { CodeEditorSaveModal } from "./modal/CodeEditorSaveModal";
+import { CodeEditorSaveModalProvider } from "@/src/contexts/CodeEditorSaveModalProvider";
 
 interface Props {
   code: CodeDetail;
+  className?: string;
 }
 
-export const CodeEditor: FunctionComponent<Props> = ({ code }: Props) => {
+export const CodeEditor: FunctionComponent<Props> = ({ code, className }: Props) => {
   const { authUser } = useSupabase();
 
   if (code?.user_id !== authUser?.id) {
@@ -28,11 +31,14 @@ export const CodeEditor: FunctionComponent<Props> = ({ code }: Props) => {
     <CodeEditorProvider code={code}>
       <CodeEditorSelectedFileProvider>
         <CodeEditorFilesProvider code={code}>
-          <Flex gap={16} className="pb-32">
-            <CodeEditorContent className="w-[700px]" />
-            <CodeEditorSidebar className="w-[250px]" />
-          </Flex>
-          <CodeEditorSaveShortcut />
+          <CodeEditorSaveModalProvider>
+            <Flex gap={16} className={className}>
+              <CodeEditorContent className="w-[700px]" />
+              <CodeEditorSidebar className="w-[250px]" />
+              <CodeEditorSaveModal />
+            </Flex>
+            <CodeEditorSaveShortcut />
+          </CodeEditorSaveModalProvider>
         </CodeEditorFilesProvider>
       </CodeEditorSelectedFileProvider>
     </CodeEditorProvider>
