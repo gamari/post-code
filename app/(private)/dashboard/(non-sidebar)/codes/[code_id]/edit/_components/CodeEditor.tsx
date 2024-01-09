@@ -28,7 +28,7 @@ export const CodeEditor: FunctionComponent<Props> = ({ code }: Props) => {
     <CodeEditorProvider code={code}>
       <CodeEditorSelectedFileProvider>
         <CodeEditorFilesProvider code={code}>
-          <Flex gap={16}>
+          <Flex gap={16} className="pb-32">
             <CodeEditorContent className="w-[700px]" />
             <CodeEditorSidebar className="w-[250px]" />
           </Flex>

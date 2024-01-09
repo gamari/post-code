@@ -10,6 +10,8 @@ import { Analytics } from "@vercel/analytics/react";
 
 import { Noto_Sans_JP } from "next/font/google";
 import { NotificationsProvider } from "@/src/contexts/NotificationsProvider";
+import { Providers } from "./providers";
+import Script from "next/script";
 
 const notojp = Noto_Sans_JP({
   weight: ["400", "500"],
@@ -40,19 +42,15 @@ export default function RootLayout({
   return (
     <html lang="ja" className={notojp.className}>
       <body className="bg-background text-foreground w-screen overflow-x-hidden">
-        <SupabaseProvider>
-          <LanguageListProvider>
-            <NotificationsProvider>
-              <main className="flex flex-col min-h-screen relative bg-sky-100">
-                <Header />
-                <div className="flex-1 grid">{children}</div>
-                <Toaster />
-                <SpeedInsights />
-                <Analytics />
-              </main>
-            </NotificationsProvider>
-          </LanguageListProvider>
-        </SupabaseProvider>
+        <Providers>
+          <main className="flex flex-col min-h-screen relative bg-sky-100">
+            <Header />
+            <div className="flex-1 grid">{children}</div>
+            <Toaster />
+            <SpeedInsights />
+            <Analytics />
+          </main>
+        </Providers>
       </body>
     </html>
   );
