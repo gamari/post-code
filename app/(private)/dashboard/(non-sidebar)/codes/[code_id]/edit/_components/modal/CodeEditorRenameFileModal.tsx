@@ -5,21 +5,15 @@ import { Input } from "@/src/components/atoms/forms/input";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { Modal } from "@/src/components/molecules/displays/Modal";
 import { useAlert } from "@/src/hooks/useAlert";
-import { File } from "@/src/types";
 import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
 import { useCodeEditorFiles } from "@/src/hooks/codes/editors/useCodeEditorFiles";
+import { useCodeEditorModalContext } from "@/src/contexts/CodeEditorModalProvider";
 
-interface Props {
-  targetFile: File | null;
-  isOpen: boolean;
-  onClose: () => void;
-}
+interface Props {}
 
-export const CodeEditorRenameFileModal = ({
-  targetFile,
-  isOpen,
-  onClose,
-}: Props) => {
+export const CodeEditorRenameFileModal = ({}: Props) => {
+  const { targetFile, isRenameOpen, toggleRenameModal } =
+    useCodeEditorModalContext();
   const [editingName, setEditingName] = useState("");
 
   const { errorAlert } = useAlert();
@@ -48,11 +42,15 @@ export const CodeEditorRenameFileModal = ({
 
   const handleRename = () => {
     saveName();
-    onClose();
+    toggleRenameModal();
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className="w-[400px]">
+    <Modal
+      isOpen={isRenameOpen}
+      onClose={toggleRenameModal}
+      className="w-[400px]"
+    >
       <Heading className="mb-3">ファイル名の変更</Heading>
       <div>
         <Input

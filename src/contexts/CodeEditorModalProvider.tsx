@@ -1,3 +1,4 @@
+import { File } from "../types";
 import { createContext, useContext, useState } from "react";
 
 interface ContextProps {
@@ -9,6 +10,12 @@ interface ContextProps {
   isNewFileOpen: boolean;
   setIsNewFileOpen: (value: boolean) => void;
   toggleNewFileModal: () => void;
+
+  isRenameOpen: boolean;
+  setIsRenameOpen: (value: boolean) => void;
+  toggleRenameModal: () => void;
+  targetFile: File | null;
+  setTargetFile: (value: File | null) => void;
 }
 
 interface ProviderProps {
@@ -22,6 +29,11 @@ const CodeEditorModalContext = createContext<ContextProps>({
   isNewFileOpen: false,
   setIsNewFileOpen: () => {},
   toggleNewFileModal: () => {},
+  isRenameOpen: false,
+  setIsRenameOpen: () => {},
+  toggleRenameModal: () => {},
+  targetFile: null,
+  setTargetFile: () => {},
 });
 
 export const useCodeEditorModalContext = () =>
@@ -30,6 +42,8 @@ export const useCodeEditorModalContext = () =>
 export const CodeEditorModalProvider = ({ children }: ProviderProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isNewFileOpen, setIsNewFileOpen] = useState(false);
+  const [isRenameOpen, setIsRenameOpen] = useState(false);
+  const [targetFile, setTargetFile] = useState<File | null>(null);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -37,6 +51,10 @@ export const CodeEditorModalProvider = ({ children }: ProviderProps) => {
 
   const toggleNewFileModal = () => {
     setIsNewFileOpen(!isNewFileOpen);
+  };
+
+  const toggleRenameModal = () => {
+    setIsRenameOpen(!isRenameOpen);
   };
 
   return (
@@ -48,6 +66,11 @@ export const CodeEditorModalProvider = ({ children }: ProviderProps) => {
         isNewFileOpen,
         setIsNewFileOpen,
         toggleNewFileModal,
+        isRenameOpen,
+        setIsRenameOpen,
+        toggleRenameModal,
+        targetFile,
+        setTargetFile,
       }}
     >
       {children}

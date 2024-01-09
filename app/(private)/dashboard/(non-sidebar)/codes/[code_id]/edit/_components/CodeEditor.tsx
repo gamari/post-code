@@ -15,6 +15,7 @@ import { CodeEditorSaveShortcut } from "./save/CodeEditorSaveShortcut";
 import { CodeEditorSaveModal } from "./modal/CodeEditorSaveModal";
 import { CodeEditorModalProvider } from "@/src/contexts/CodeEditorModalProvider";
 import { CodeEditorNewFileModal } from "./modal/CodeEditorNewFileModal";
+import { CodeEditorRenameFileModal } from "./modal/CodeEditorRenameFileModal";
 
 interface Props {
   code: CodeDetail;
@@ -39,8 +40,11 @@ export const CodeEditor: FunctionComponent<Props> = ({
             <Flex gap={16} className={className}>
               <CodeEditorContent className="w-[700px]" />
               <CodeEditorSidebar className="w-[250px]" />
+
+              {/* Modal */}
               <CodeEditorSaveModal />
               <CodeEditorNewFileModal />
+              <CodeEditorRenameFileModal/>
             </Flex>
             <CodeEditorSaveShortcut />
           </CodeEditorModalProvider>
