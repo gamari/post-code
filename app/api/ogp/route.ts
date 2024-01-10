@@ -1,5 +1,6 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 import { JSDOM } from 'jsdom'
+import { NextRequest, NextResponse } from 'next/server'
 
 export type OgData = {
     url: string
@@ -10,17 +11,17 @@ export type OgData = {
     type?: string
 }
 
-export async function GET(request: Request, response: Response) {
+export async function GET(request: NextRequest, response: NextResponse) {
     const { searchParams } = new URL(request.url)
     const url = searchParams.get('url')
 
     if (!url) {
-        return Response.json({}, { status: 400 })
+        return NextResponse.json({}, { status: 400 })
     }
 
     const httpRes = await fetch(url)
     if (!httpRes.ok) {
-        return Response.json({}, { status: 404 })
+        return NextResponse.json({}, { status: 404 })
     }
 
     const resHtml = await httpRes.text()
@@ -53,5 +54,5 @@ export async function GET(request: Request, response: Response) {
         }
     }
 
-    return Response.json(og)
+    return NextResponse.json(og)
 }
