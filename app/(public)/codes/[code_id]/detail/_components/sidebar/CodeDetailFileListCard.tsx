@@ -11,6 +11,7 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 import { LinkButton } from "@/src/components/molecules/buttons/link-button";
 import { CODES_EDIT_URL } from "@/src/libs/constants/urls";
 import { EditIcon } from "lucide-react";
+import { useBottomToggleContainerContext } from "@/src/contexts/BottomToggleContainerProvider";
 
 interface Props {
   files: File[];
@@ -19,10 +20,12 @@ interface Props {
 }
 
 export const CodeDetailFileListCard = ({ files, isAuthor, codeId }: Props) => {
+  const { open } = useBottomToggleContainerContext();
   const { setSelectedFile, selectedFile } = useCodeDetailContext();
 
   const onSelectFile = (file: File) => {
     setSelectedFile && setSelectedFile(file);
+    open();
   };
 
   return (

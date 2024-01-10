@@ -16,6 +16,7 @@ import { CodeEditorSaveModal } from "./modal/CodeEditorSaveModal";
 import { CodeEditorModalProvider } from "@/src/contexts/CodeEditorModalProvider";
 import { CodeEditorNewFileModal } from "./modal/CodeEditorNewFileModal";
 import { CodeEditorRenameFileModal } from "./modal/CodeEditorRenameFileModal";
+import { BottomToggleContainerProvider } from "@/src/contexts/BottomToggleContainerProvider";
 
 interface Props {
   code: CodeDetail;
@@ -37,15 +38,17 @@ export const CodeEditor: FunctionComponent<Props> = ({
       <CodeEditorSelectedFileProvider>
         <CodeEditorFilesProvider code={code}>
           <CodeEditorModalProvider>
-            <Flex gap={16} className={className}>
-              <CodeEditorContent className="w-[700px]" />
-              <CodeEditorSidebar className="w-[250px]" />
+            <BottomToggleContainerProvider>
+              <Flex gap={16} className={className}>
+                <CodeEditorContent className="w-[700px]" />
+                <CodeEditorSidebar className="w-[250px]" />
 
-              {/* Modal */}
-              <CodeEditorSaveModal />
-              <CodeEditorNewFileModal />
-              <CodeEditorRenameFileModal/>
-            </Flex>
+                {/* Modal */}
+                <CodeEditorSaveModal />
+                <CodeEditorNewFileModal />
+                <CodeEditorRenameFileModal />
+              </Flex>
+            </BottomToggleContainerProvider>
             <CodeEditorSaveShortcut />
           </CodeEditorModalProvider>
         </CodeEditorFilesProvider>
