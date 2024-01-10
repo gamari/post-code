@@ -11,6 +11,8 @@ import {
 import { DashboardCodeListTab } from "@/app/(private)/dashboard/_components/dashboard-code-list-tab";
 import { DashboardFavoriteCodeListTab } from "@/app/(private)/dashboard/_components/dashboard-favorite-code-list-tab";
 
+export const revalidate = 0;
+
 const Page = async () => {
   unstable_noStore();
 

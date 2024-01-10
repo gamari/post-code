@@ -12,8 +12,6 @@ export const TopLatestCommentSection = async () => {
   unstable_noStore();
   const commentList = await actionGetLatestCommentList();
 
-  if (!commentList?.length) return <NoContent>コメントはまだありません</NoContent>
-
   return (
     <TopSection className="bg-sky-100">
       <div className="flex flex-row items-center gap-2 mb-6">
@@ -23,9 +21,15 @@ export const TopLatestCommentSection = async () => {
 
       {/* TODO コンポーネント化する */}
       <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-10">
-        {commentList.map((comment) => (
-          <CommentPanel key={comment.id} comment={comment} />
-        ))}
+        {!commentList?.length ? (
+          <NoContent>コメントはまだありません</NoContent>
+        ) : (
+          <>
+            {commentList.map((comment) => (
+              <CommentPanel key={comment.id} comment={comment} />
+            ))}
+          </>
+        )}
       </div>
     </TopSection>
   );
