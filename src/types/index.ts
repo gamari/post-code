@@ -35,9 +35,7 @@ export interface CodeDetail extends Code {
     tags?: Tag[];
 }
 
-export interface CodeAdvertisement extends CodeDetail {
-    isAd?: boolean;
-}
+
 
 // Comment
 export interface CommentDetail extends Comment {
@@ -50,3 +48,9 @@ export interface NotificationDetail extends Notification {
     comment: CommentDetail;
 }
 
+
+// Advertisement
+export interface Advertisement {
+    id: string;
+    isAd: boolean;
+}
