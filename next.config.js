@@ -5,6 +5,9 @@ const nextConfig = {
             {
                 hostname: 'localhost',
             },
+            {
+                hostname: 'post-codes.net'
+            }
         ],
     },
 }

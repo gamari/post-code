@@ -6,10 +6,13 @@ import { TopSection } from "./top-section";
 import { actionGetLatestCommentList } from "@/src/actions/comments";
 import { CommentPanel } from "@/src/components/organisms/comments/CommentPanel";
 import { CommentIcon } from "@/src/components/atoms/icons/comment-icon";
+import { NoContent } from "@/src/components/molecules/displays/no-content";
 
 export const TopLatestCommentSection = async () => {
   unstable_noStore();
   const commentList = await actionGetLatestCommentList();
+
+  if (!commentList?.length) return <NoContent>コメントはまだありません</NoContent>
 
   return (
     <TopSection className="bg-sky-100">
