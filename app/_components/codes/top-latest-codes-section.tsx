@@ -9,6 +9,9 @@ import { Typo } from "@/src/components/atoms/texts/typo";
 import { MoreButton } from "@/src/components/molecules/buttons/more-button";
 import { Center } from "@/src/components/atoms/containers/Center";
 
+export const revalidate = 0;
+
+
 export const TopLatestCodesSection = async () => {
   unstable_noStore();
 

@@ -7,6 +7,8 @@ import { DashboardCodeList } from "./DashboardCodeList";
 import { actionGetOwnCodeList } from "@/src/actions/codes";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 
+export const revalidate = 0;
+
 export const DashboardCodeListTab = async () => {
   unstable_noStore();
   const codes = await actionGetOwnCodeList();

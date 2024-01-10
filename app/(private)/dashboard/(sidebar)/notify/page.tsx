@@ -1,4 +1,5 @@
 import React from "react";
+import { unstable_noStore } from "next/cache";
 
 import {
   actionGetOwnNotifications,
@@ -11,6 +12,7 @@ import { NotifyDone } from "./NotifyDone";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 
 const Page = async () => {
+  unstable_noStore();
   const notifications = await actionGetOwnNotifications();
   await actionUpdateNotificationDone(notifications);
 
@@ -20,7 +22,7 @@ const Page = async () => {
 
       <Flex direction="column" gap={12} className="max-w-lg">
         {!notifications?.length && (
-          <NoContent>通知が存在しません</NoContent>
+          <NoContent className="w-full">通知が存在しません</NoContent>
         )}
         {notifications.map((notification) => (
           <NotificationCard notification={notification} />

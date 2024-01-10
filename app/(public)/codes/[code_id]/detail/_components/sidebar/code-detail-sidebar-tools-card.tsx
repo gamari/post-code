@@ -12,6 +12,8 @@ interface Props {
   isLogin: boolean;
 }
 
+export const revalidate = 0;
+
 export const CodeDetailSidebarToolsCard = async ({
   badCode,
   isLogin,
