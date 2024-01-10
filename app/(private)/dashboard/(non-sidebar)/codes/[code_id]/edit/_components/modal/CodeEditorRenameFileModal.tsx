@@ -31,6 +31,11 @@ export const CodeEditorRenameFileModal = ({}: Props) => {
         return;
       }
 
+      if (editingName.length > 52) {
+        errorAlert("ファイル名は52文字以下にしてください");
+        return;
+      }
+
       if (selectedFile?.id === targetFile.id) {
         updateFile({ ...selectedFile, name: editingName });
         setSelectedFile({ ...selectedFile, name: editingName });
@@ -63,6 +68,7 @@ export const CodeEditorRenameFileModal = ({}: Props) => {
               handleRename();
             }
           }}
+          maxLength={52}
         />
       </div>
       <Button onClick={handleRename} className="mt-2">

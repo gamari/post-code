@@ -31,7 +31,6 @@ import { cn } from "@/src/libs/utils";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 import { convertFilenameToFiletype } from "@/src/libs/editors";
 import { Typo } from "@/src/components/atoms/texts/typo";
-import { CodeEditorNewFileModalButton } from "../modal/CodeEditorNewFileModalButton";
 import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
 
 interface Props {
@@ -70,6 +69,7 @@ export const CodeEditorContentFile = ({ className }: Props) => {
         height="100%"
         width="100%"
         fontSize={14}
+
       />
     </div>
   );

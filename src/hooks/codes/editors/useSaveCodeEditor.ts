@@ -28,9 +28,17 @@ export const useSaveCodeEditor = () => {
         if (!client) throw new Error("通信に失敗しました。");
         if (!code?.id) throw new Error("対象のコードがありません。");
 
+        if ((code?.title?.length || 0) > 60) throw new Error("タイトルは60文字までです。");
+        if ((code?.description?.length || 0) > 15001) throw new Error("本文は15000文字までです。");
+
         if (selectedFile) {
             if (!selectedFile?.name) throw new Error("ファイル名がありません。");
             updateFile(selectedFile);
+        }
+
+        for (const file of files) {
+            if ((file?.content?.length || 0) > 10000) throw new Error(`${file.name}の文字数を10000文字までにしてください。`);
+            if ((file?.description?.length || 0) > 5000) throw new Error(`${file.name}の説明を5000文字までにしてください。`);
         }
 
         let newFiles = files;

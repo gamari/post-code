@@ -14,7 +14,7 @@ export const CodeDetailContentBottom = () => {
   return (
     <>
       <BottomToggleContainer
-        className="flex flex-row h-[40vh]  p-6"
+        className="flex flex-row h-[40vh] p-6 gap-4"
         label="説明"
       >
         <CodeDetailContentFileViewer className="flex-1 h-full overflow-auto" />
