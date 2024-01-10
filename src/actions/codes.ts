@@ -6,6 +6,7 @@ import { fetchAuthUser } from "@/src/libs/externals/supabase/queries/users";
 import { createEqCondition, createOrderCondition } from "../libs/externals/supabase/options";
 import { SEARCH_LIMIT } from "../libs/constants/limits";
 import { buildCodesByTitleOption, buildLatestCodesOption } from "../libs/externals/supabase/options/codes";
+import { CodeAdvertisement } from "../types";
 
 // One
 export const actionGetCodeById = async (id: number) => {
@@ -68,7 +69,18 @@ export const actionGetOwnCodeList = async () => {
 export const actionGetLatestBadCodeList = async () => {
     const client = getServerClient();
     const codes = await fetchCodeList(client, buildLatestCodesOption());
-    return codes;
+
+    // TODO 広告を作成する
+    const ads: any[] = [
+        {
+            isAd: true,
+        },
+        {
+            isAd: true,
+        }
+    ]
+
+    return [...codes, ...ads] as CodeAdvertisement[];
 }
 
 export const actionGetFavoriteCodeList = async () => {

@@ -35,6 +35,10 @@ export interface CodeDetail extends Code {
     tags?: Tag[];
 }
 
+export interface CodeAdvertisement extends CodeDetail {
+    isAd?: boolean;
+}
+
 // Comment
 export interface CommentDetail extends Comment {
     user: User;
