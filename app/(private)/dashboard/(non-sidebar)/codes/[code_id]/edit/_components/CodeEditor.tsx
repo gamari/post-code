@@ -13,14 +13,19 @@ import { CodeEditorSelectedFileProvider } from "@/src/contexts/editors/CodeEdito
 import { CodeEditorFilesProvider } from "@/src/contexts/editors/CodeEditorFilesProvider";
 import { CodeEditorSaveShortcut } from "./save/CodeEditorSaveShortcut";
 import { CodeEditorSaveModal } from "./modal/CodeEditorSaveModal";
-import { CodeEditorSaveModalProvider } from "@/src/contexts/CodeEditorSaveModalProvider";
+import { CodeEditorModalProvider } from "@/src/contexts/CodeEditorModalProvider";
+import { CodeEditorNewFileModal } from "./modal/CodeEditorNewFileModal";
+import { CodeEditorRenameFileModal } from "./modal/CodeEditorRenameFileModal";
 
 interface Props {
   code: CodeDetail;
   className?: string;
 }
 
-export const CodeEditor: FunctionComponent<Props> = ({ code, className }: Props) => {
+export const CodeEditor: FunctionComponent<Props> = ({
+  code,
+  className,
+}: Props) => {
   const { authUser } = useSupabase();
 
   if (code?.user_id !== authUser?.id) {
@@ -31,14 +36,18 @@ export const CodeEditor: FunctionComponent<Props> = ({ code, className }: Props)
     <CodeEditorProvider code={code}>
       <CodeEditorSelectedFileProvider>
         <CodeEditorFilesProvider code={code}>
-          <CodeEditorSaveModalProvider>
+          <CodeEditorModalProvider>
             <Flex gap={16} className={className}>
               <CodeEditorContent className="w-[700px]" />
               <CodeEditorSidebar className="w-[250px]" />
+
+              {/* Modal */}
               <CodeEditorSaveModal />
+              <CodeEditorNewFileModal />
+              <CodeEditorRenameFileModal/>
             </Flex>
             <CodeEditorSaveShortcut />
-          </CodeEditorSaveModalProvider>
+          </CodeEditorModalProvider>
         </CodeEditorFilesProvider>
       </CodeEditorSelectedFileProvider>
     </CodeEditorProvider>

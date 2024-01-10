@@ -16,7 +16,7 @@ interface Props {
 const containerVariants = {
   // コンポーネントを下に隠す
   hidden: { y: "100%", transition: { duration: 0.5 } },
-  visible: { y: 0, transition: { duration: 0.5 } },
+  visible: { y: 10, transition: { duration: 0.5 } },
 };
 
 const BottomToggleContainer = ({ children, className, label }: Props) => {
@@ -27,14 +27,16 @@ const BottomToggleContainer = ({ children, className, label }: Props) => {
   };
 
   return (
-    <div className={cn("fixed z-[130] bottom-6 w-full max-w-[1000px] px-2")}>
-      <motion.div
-        initial="hidden"
-        animate={isShow ? "visible" : "hidden"}
-        variants={containerVariants}
-        transition={{ duration: 0.5 }}
+    <motion.div
+      initial="hidden"
+      animate={isShow ? "visible" : "hidden"}
+      variants={containerVariants}
+      transition={{ duration: 0.5 }}
+      className={cn("fixed z-[130] bottom-6 max-w-[1000px] w-full")}
+    >
+      <div
         className={cn(
-          "relative border-[3px] border-gray-400 bg-white rounded-lg  shadow-lg",
+          "w-full px-2 relative border-[3px] border-gray-400 bg-white rounded-lg  shadow-lg",
           className
         )}
       >
@@ -50,8 +52,8 @@ const BottomToggleContainer = ({ children, className, label }: Props) => {
             {label}
           </Badge>
         )}
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   );
 };
 

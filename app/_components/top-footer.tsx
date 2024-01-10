@@ -18,7 +18,7 @@ export const TopFooter = () => {
               <LinkText url="/terms" label="利用規約" />
             </div>
             <div>
-              <LinkText url="" label="プライバシーポリシー" />
+              <LinkText url="/privacy" label="プライバシーポリシー" />
             </div>
           </div>
         </div>

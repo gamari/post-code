@@ -12,14 +12,13 @@ import {
 } from "@/src/components/ui/context-menu";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { sortAscByName } from "@/src/libs/sortes";
-import { useModal } from "@/src/hooks/useModal";
-import { CodeEditorRenameFileModal } from "../modal/CodeEditorRenameFileModal";
 import { limitString } from "@/src/libs/strings";
 import { FILE_TEXT_LIMIT } from "@/src/libs/constants/limits";
 import { useDeleteFileInSidebar } from "../../../../../../../../../src/hooks/codes/editors/sidebar/useDeleteFileInSidebar";
 import { useCodeEditorFiles } from "@/src/hooks/codes/editors/useCodeEditorFiles";
 import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
 import { useCodeEditorTargetRenameFile } from "@/src/hooks/codes/editors/useCodeEditorTargetRenameFile";
+import { useCodeEditorModalContext } from "@/src/contexts/CodeEditorModalProvider";
 
 interface Props {
   className?: string;
@@ -27,12 +26,11 @@ interface Props {
 
 // TODO リファクタリングする
 export const CodeEditorSidebarFileList = ({ className }: Props) => {
-  const { isOpen, toggleModal } = useModal();
+  const { isRenameOpen, toggleRenameModal, setTargetFile } =
+    useCodeEditorModalContext();
 
   const { files, updateFile } = useCodeEditorFiles();
   const { selectedFile, setSelectedFile } = useCodeEditorSelectedFile();
-  const { targetRenameFile, setTargetRenameFile } =
-    useCodeEditorTargetRenameFile();
 
   const { onDeleteFile } = useDeleteFileInSidebar();
 
@@ -43,14 +41,19 @@ export const CodeEditorSidebarFileList = ({ className }: Props) => {
   };
 
   const handleRename = (file: File) => {
-    setTargetRenameFile(file);
-    toggleModal();
+    setTargetFile(file);
+    toggleRenameModal();
   };
 
   if (!files?.length) return <NoFiles />;
 
   return (
-    <div className={cn("flex flex-col gap-1 max-h-[200px] scroll-auto overflow-scroll", className)}>
+    <div
+      className={cn(
+        "flex flex-col gap-1 max-h-[200px] scroll-auto overflow-scroll",
+        className
+      )}
+    >
       {files?.sort(sortAscByName).map((file) => (
         <ContextMenu key={file.id}>
           <ContextMenuTrigger>
@@ -87,12 +90,6 @@ export const CodeEditorSidebarFileList = ({ className }: Props) => {
           </ContextMenuContent>
         </ContextMenu>
       ))}
-
-      <CodeEditorRenameFileModal
-        targetFile={targetRenameFile}
-        isOpen={isOpen}
-        onClose={toggleModal}
-      />
     </div>
   );
 };

@@ -13,13 +13,13 @@ import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEdit
 import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
 import { useCodeEditorFiles } from "@/src/hooks/codes/editors/useCodeEditorFiles";
 import { NEW_FILE_LIMIT } from "@/src/libs/constants/limits";
+import { useCodeEditorModalContext } from "@/src/contexts/CodeEditorModalProvider";
 
-interface Props {
-  isOpen: boolean;
-  onClose: () => void;
-}
+interface Props {}
 
-export const CodeEditorNewFileModal = ({ isOpen, onClose }: Props) => {
+export const CodeEditorNewFileModal = ({}: Props) => {
+  const { isNewFileOpen, toggleNewFileModal } = useCodeEditorModalContext();
+
   const { loading, startLoading, stopLoading } = useLoading();
   const { errorAlert } = useAlert();
 
@@ -44,7 +44,7 @@ export const CodeEditorNewFileModal = ({ isOpen, onClose }: Props) => {
       setSelectedFile(retFile);
       addFile(retFile);
       setName("");
-      onClose();
+      toggleNewFileModal();
     } catch (e) {
       errorAlert("ファイルの作成に失敗しました", e);
     } finally {
@@ -53,7 +53,11 @@ export const CodeEditorNewFileModal = ({ isOpen, onClose }: Props) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className="w-[400px]">
+    <Modal
+      isOpen={isNewFileOpen}
+      onClose={toggleNewFileModal}
+      className="w-[400px]"
+    >
       <Heading className="mb-3">ファイル追加</Heading>
 
       <div>
