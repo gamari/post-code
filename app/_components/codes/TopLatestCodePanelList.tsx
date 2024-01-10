@@ -1,5 +1,4 @@
 import React from "react";
-import { unstable_noStore } from "next/cache";
 
 import { cn } from "@/src/libs/utils";
 import { CodePanelList } from "../../../src/components/organisms/codes/panel/code-panel-list";
@@ -9,8 +8,9 @@ interface Props {
   className?: string;
 }
 
+export const revalidate = 0;
+
 export const TopLatestCodePanelList = async ({ className }: Props) => {
-  unstable_noStore();
   const codes = await actionGetLatestBadCodeList();
 
   return <CodePanelList codes={codes} className={cn(className)} />;

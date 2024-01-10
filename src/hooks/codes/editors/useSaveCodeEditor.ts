@@ -6,8 +6,10 @@ import { useCodeEditor } from "./useCodeEditor";
 import { useCodeEditorSelectedFile } from "./useCodeEditorSelectedFile";
 import { useCodeEditorFiles } from "./useCodeEditorFiles";
 import { fetchAttachTagToCode, fetchRemoveTagFromCode, fetchTagListOfCode } from "@/src/libs/externals/supabase/queries/tags";
+import { useRouter } from "next/navigation";
 
 export const useSaveCodeEditor = () => {
+    const router = useRouter();
     const { loading, startLoading, stopLoading } = useLoading();
     const { client, getAuthUser } = useSupabase();
 
@@ -62,6 +64,8 @@ export const useSaveCodeEditor = () => {
 
             await fetchUpsertFiles(newFiles, client);
             const retData = await fetchUpdateCode(code, client);
+
+            router.refresh();
             return retData;
         } catch (e) {
             console.error(e);

@@ -1,5 +1,4 @@
 import React from "react";
-import { unstable_noStore } from "next/cache";
 
 import { NextPage } from "next";
 
@@ -42,8 +41,6 @@ export const generateMetadata = async ({
 };
 
 const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
-  unstable_noStore();
-
   return (
     <DetailCodeCommentListProvider comments={[]}>
       <CodeDetailProvider>

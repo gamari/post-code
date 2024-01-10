@@ -1,5 +1,4 @@
 import React from "react";
-import { unstable_noStore } from "next/cache";
 
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { TopSection } from "./top-section";
@@ -9,7 +8,6 @@ import { CommentIcon } from "@/src/components/atoms/icons/comment-icon";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 
 export const TopLatestCommentSection = async () => {
-  unstable_noStore();
   const commentList = await actionGetLatestCommentList();
 
   return (

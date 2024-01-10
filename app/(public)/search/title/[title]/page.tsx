@@ -1,13 +1,8 @@
 import React from "react";
-import { unstable_noStore } from "next/cache";
 
 import { SearchSection } from "../../search-section";
-import { CodePanelList } from "@/src/components/organisms/codes/panel/code-panel-list";
 import { Heading } from "@/src/components/atoms/texts/heading";
-import {
-  actionGetCodeListByFileCode,
-  actionGetCodeListByTitle,
-} from "@/src/actions/codes";
+import { actionGetCodeListByTitle } from "@/src/actions/codes";
 import { SearchTitleResultList } from "./SearchTitleResultList";
 
 interface Props {
@@ -17,7 +12,6 @@ interface Props {
 }
 
 const Page = async ({ params: { title } }: Props) => {
-  unstable_noStore();
   const decodedTitle = decodeURIComponent(title);
   const codeList = await actionGetCodeListByTitle(decodedTitle);
 
