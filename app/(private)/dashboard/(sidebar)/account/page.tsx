@@ -1,5 +1,4 @@
 import React from "react";
-import { unstable_noStore } from "next/cache";
 
 import { actionGetMySelf } from "@/src/actions/users";
 import { AccountForm } from "@/src/components/organisms/users/AccountForm";
@@ -9,7 +8,6 @@ import { Flex } from "@/src/components/atoms/containers/Flex";
 import Link from "next/link";
 
 const Page = async () => {
-  unstable_noStore();
   const user = await actionGetMySelf();
 
   return (

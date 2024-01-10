@@ -38,7 +38,7 @@ export const getServerClient = (cookie?: ReturnType<typeof cookies>) => {
             console.log(error)
           }
         },
-      },
+      }
     }
   )
 }
@@ -96,7 +96,7 @@ export const getMiddleClient = (request: NextRequest) => {
             ...options,
           })
         },
-      },
+      }
     }
   )
 
