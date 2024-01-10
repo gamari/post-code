@@ -22,7 +22,7 @@ export const CodeDetailContentInfo: FunctionComponent<Props> = async ({ code }) 
         direction="column"
         alignItems="stretch"
         gap={8}
-        className="p-8 bg-white rounded-md w-full"
+        className="p-8 bg-white rounded-md w-full min-h-[50vh]"
       >
         <div>
           <Flex alignItems="center" gap={8}>

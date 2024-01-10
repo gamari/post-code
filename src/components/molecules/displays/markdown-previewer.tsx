@@ -10,6 +10,7 @@ import rehypeSanitize from "rehype-sanitize";
 
 import "./markdown-previewer.css";
 import { TwitterTweetEmbed } from "react-twitter-embed";
+import { OgpCard } from "../../organisms/OgpCard";
 
 export const MarkdownPreviewer = ({ content }: { content: string }) => {
   const renderTweet = (uri: string) => {
@@ -19,6 +20,17 @@ export const MarkdownPreviewer = ({ content }: { content: string }) => {
     } else {
       return <div>読み込みに失敗しました</div>;
     }
+  };
+
+  const renderOGPCard = async (uri: string) => {
+    const ogpDatas: any[] = [];
+
+    return (
+      <div className="flex flex-col items-center justify-center">
+        <div className="text-center">OGPカード</div>
+        <img src={uri} className="w-full" />
+      </div>
+    );
   };
 
   return (
@@ -36,6 +48,14 @@ export const MarkdownPreviewer = ({ content }: { content: string }) => {
               }
               // Accountページをいれたい
             }
+
+            if (
+              (href && href?.includes("https://code-posts.net")) ||
+              href?.includes("http://localhost:3000")
+            ) {
+              return <OgpCard url={href} />;
+            }
+
             return <a href={href}>{children}</a>;
           },
         }}
