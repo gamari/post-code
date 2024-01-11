@@ -4,7 +4,6 @@ import { SearchSection } from "../../search-section";
 import { LanguageSearchResultCodeList } from "./LanguageSearchResultCodeList";
 import {
   actionGetCodeListByLanguage,
-  actionGetCodeListByTitle,
 } from "@/src/actions/codes";
 
 interface Props {
