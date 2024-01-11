@@ -4,6 +4,7 @@ import { TopFooter } from "@/app/_components/top-footer";
 import { Suspense } from "react";
 import { Skeleton } from "@/src/components/molecules/displays/skeleton";
 import { TopLatestCommentSection } from "./_components/top-latest-comment-section";
+import { TopLanguageSearchSection } from "./_components/TopLanguageSearchSection";
 
 
 export default async function Index() {
@@ -13,6 +14,7 @@ export default async function Index() {
         <TopLatestCodesSection />
         <TopAboutSection />
         <TopLatestCommentSection />
+        <TopLanguageSearchSection />
         <TopFooter />
       </Suspense>
     </div>

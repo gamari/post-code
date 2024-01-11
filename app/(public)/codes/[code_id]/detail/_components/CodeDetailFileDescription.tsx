@@ -14,7 +14,7 @@ export const CodeDetailFileDescription = ({ className = "" }: Props) => {
   const { selectedFile } = useCodeDetailContext();
 
   return (
-    <div className={cn("overflow-y-auto py-16 px-12 max-h-[45vh]", className)}>
+    <div className={cn("overflow-y-auto max-h-[45vh]", className)}>
       <MarkdownPreviewer content={selectedFile?.description || ""} />
     </div>
   );

@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 
 import { cn } from "@/src/libs/utils";
 import { Badge } from "../../atoms/badges/badge";
+import { useBottomToggleContainerContext } from "@/src/contexts/BottomToggleContainerProvider";
 
 interface Props {
   children: React.ReactNode;
@@ -20,16 +21,16 @@ const containerVariants = {
 };
 
 const BottomToggleContainer = ({ children, className, label }: Props) => {
-  const [isShow, setIsShow] = useState(true);
+  const { isOpen, toggleOpen } = useBottomToggleContainerContext();
 
   const toggleShow = () => {
-    setIsShow(!isShow);
+    toggleOpen();
   };
 
   return (
     <motion.div
       initial="hidden"
-      animate={isShow ? "visible" : "hidden"}
+      animate={isOpen ? "visible" : "hidden"}
       variants={containerVariants}
       transition={{ duration: 0.5 }}
       className={cn("fixed z-[130] bottom-6 max-w-[1000px] w-full")}
@@ -45,7 +46,7 @@ const BottomToggleContainer = ({ children, className, label }: Props) => {
           className="absolute top-0 -translate-y-[100%] right-0 mb-2 mr-2 bg-gray-500 text-white px-4 py-2 rounded-t-lg cursor-pointer"
           onClick={toggleShow}
         >
-          {isShow ? "非表示" : "表示"}
+          {isOpen ? "非表示" : "表示"}
         </div>
         {label && (
           <Badge className="bg-sky-500 text-white absolute left-2 top-0 -translate-y-[50%]">

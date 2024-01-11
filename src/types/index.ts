@@ -35,6 +35,8 @@ export interface CodeDetail extends Code {
     tags?: Tag[];
 }
 
+
+
 // Comment
 export interface CommentDetail extends Comment {
     user: User;
@@ -46,3 +48,9 @@ export interface NotificationDetail extends Notification {
     comment: CommentDetail;
 }
 
+
+// Advertisement
+export interface Advertisement {
+    id: string;
+    isAd: boolean;
+}

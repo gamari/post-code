@@ -1,5 +1,28 @@
+## code_viewsテーブル
 
-## Notifications
+ビュー数。
+
+CREATE TABLE code_views (
+    id SERIAL PRIMARY KEY,
+    code_id INTEGER REFERENCES codes(id),
+    view_count INTEGER DEFAULT 0,
+    last_viewed TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+## code_footprints
+
+CREATE TABLE code_footprints (
+    id SERIAL PRIMARY KEY,
+    ip_address VARCHAR(255),
+    code_id INTEGER REFERENCES codes(id),
+    visited_on DATE DEFAULT CURRENT_DATE
+);
+
+
+
+## Notificationテーブル
+
+通知。
 
 ```sql
 CREATE TABLE public.notifications (
@@ -14,7 +37,6 @@ CREATE TABLE public.notifications (
     CONSTRAINT notifications_favorite_id_fkey FOREIGN KEY (favorite_id) REFERENCES favorites (id) ON DELETE SET NULL
 );
 ```
-
 
 
 ## Userテーブル

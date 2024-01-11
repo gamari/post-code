@@ -1,6 +1,6 @@
 import React from "react";
 
-import { TopLatestCodePanelList } from "./TopLatestCodePanelList";
+import { TopLatestCodePanelList } from "./top-latest-code-panel-list";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { TopSection } from "../top-section";
 import { Logo } from "@/src/components/molecules/logo";

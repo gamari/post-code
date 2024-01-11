@@ -26,6 +26,7 @@ export const CodeEditorContentDescription = () => {
               onChange={(e) => setDescription(e.target.value)}
               placeholder="全体を通したコード解説（マークダウン形式）"
               rows={20}
+              maxLength={15000}
             />
           )}
         </div>

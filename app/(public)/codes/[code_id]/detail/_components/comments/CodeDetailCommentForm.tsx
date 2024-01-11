@@ -10,6 +10,7 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 import { useCommentList } from "@/src/hooks/comments/useCommentList";
 import { useFetchCommentList } from "@/src/hooks/comments/useFetchCommentList";
 import { CommentDetail } from "@/src/types";
+import { TextareaWithPreview } from "@/src/components/organisms/TextareaWithPreview";
 
 interface Props {
   codeId: number;
@@ -49,15 +50,17 @@ export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
   return (
     <div className="w-full">
       <Heading className="mb-3">コメント</Heading>
-      <Textarea
+
+      <TextareaWithPreview
         value={comment}
-        onChange={(e) => setComment(e.target.value)}
-        placeholder="コメントを入力"
-        rows={16}
+        setValue={setComment}
+        className="mb-3"
         onSubmit={handleCreateComment}
+        rows={16}
+        placeholder="コメントを入力"
       />
 
-      <div className="flex flex-row-reverse mt-3">
+      <div className="mt-3">
         <Button onClick={handleCreateComment}>コメントする</Button>
       </div>
     </div>

@@ -37,6 +37,7 @@ export const CodeEditorContentFileDescription = ({ className }: Props) => {
           }}
           rows={12}
           placeholder="上記コードの説明を書いてください（マークダウン形式）"
+          maxLength={5000}
         />
       )}
       <Flex direction="row-reverse" className="mt-3">
