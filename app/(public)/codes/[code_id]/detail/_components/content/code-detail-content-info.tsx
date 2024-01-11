@@ -29,7 +29,7 @@ export const CodeDetailContentInfo: FunctionComponent<Props> = async ({
         <CodeDetailContentInfoHeader code={code} />
 
         {code?.description && (
-          <div className="pt-6 pb-6 px-2">
+          <div className="pt-10 pb-6 px-2">
             <MarkdownPreviewer content={code?.description} />
           </div>
         )}

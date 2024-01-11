@@ -17,18 +17,15 @@ export const TopLatestCommentSection = async () => {
         <Heading type="h2">最新のコメント</Heading>
       </div>
 
-      {/* TODO コンポーネント化する */}
-      <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-10">
-        {!commentList?.length ? (
-          <NoContent>コメントはまだありません</NoContent>
-        ) : (
-          <>
-            {commentList.map((comment) => (
-              <CommentPanel key={comment.id} comment={comment} />
-            ))}
-          </>
-        )}
-      </div>
+      {!commentList?.length ? (
+        <NoContent>コメントはまだありません</NoContent>
+      ) : (
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-10">
+          {commentList.map((comment) => (
+            <CommentPanel key={comment.id} comment={comment} />
+          ))}
+        </div>
+      )}
     </TopSection>
   );
 };

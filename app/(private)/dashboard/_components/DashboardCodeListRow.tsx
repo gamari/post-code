@@ -15,6 +15,7 @@ import { CommentCount } from "../../../../src/components/organisms/comments/comm
 import { FavoriteCount } from "../../../../src/components/organisms/favorites/favorite-count";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { CodeIcon } from "@/src/components/atoms/icons/code-icon";
+import { CodeTagList } from "@/src/components/organisms/tags/code-tag-list";
 
 interface Props {
   code: CodeDetail;
@@ -29,15 +30,15 @@ export const DashboardCodeListRow = ({ code, onDelete, className }: Props) => {
     <Flex alignItems="center" className={cn("px-6 py-8", className)}>
       <Flex direction="column" className="flex-1" gap={8}>
         <Flex direction="column">
-          {code?.language && (
-            <Flex alignItems="center" gap={12} className="my-1">
+          <Flex alignItems="center" gap={12} className="my-1">
+            {code?.language && (
               <Flex alignItems="center" gap={8} className="text-xs">
                 <CodeIcon fileType={code?.language?.name} size="sm" />
                 {code?.language?.display}
               </Flex>
-              {/* TODO タグを追加する */}
-            </Flex>
-          )}
+            )}
+            <CodeTagList tags={code?.tags} />
+          </Flex>
           <div>
             <LinkText
               url={`/codes/${code.id}/detail`}

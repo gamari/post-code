@@ -6,11 +6,13 @@ import { Tag } from "@/src/types";
 import { TagBadge } from "../../atoms/badges/tag-badge";
 
 interface Props extends BaseProps {
-  tags: Tag[];
+  tags?: Tag[];
   className?: string;
 }
 
 export const CodeTagList = ({ tags, className }: Props) => {
+  if (!tags?.length) return null;
+
   return (
     <Flex className={className} gap={8}>
       {tags?.map((tag) => (
