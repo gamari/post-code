@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 import { MarkdownPreviewer } from "@/src/components/molecules/displays/markdown-previewer";
 import { useCodeDetailContext } from "@/app/(public)/codes/[code_id]/detail/_contexts/CodeDetailProvider";

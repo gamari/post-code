@@ -1,8 +1,9 @@
 "use client";
 
+import React from "react";
+
 import BottomToggleContainer from "@/src/components/molecules/animation/BottomToggleContainer";
 import { useCodeDetailContext } from "@/app/(public)/codes/[code_id]/detail/_contexts/CodeDetailProvider";
-import React from "react";
 import { CodeDetailFileDescription } from "../CodeDetailFileDescription";
 import { CodeDetailContentFileViewer } from "./CodeDetailContentFileViewer";
 
@@ -12,14 +13,12 @@ export const CodeDetailContentBottom = () => {
   if (!selectedFile) return null;
 
   return (
-    <>
-      <BottomToggleContainer
-        className="flex flex-row h-[40vh] p-6 gap-4"
-        label="説明"
-      >
-        <CodeDetailContentFileViewer className="flex-1 h-full overflow-auto" />
-        <CodeDetailFileDescription className="flex-1 h-full overflow-auto" />
-      </BottomToggleContainer>
-    </>
+    <BottomToggleContainer
+      className="flex flex-row h-[40vh] p-6 gap-4"
+      label="説明"
+    >
+      <CodeDetailContentFileViewer className="flex-1 h-full overflow-auto" />
+      <CodeDetailFileDescription className="flex-1 h-full overflow-auto" />
+    </BottomToggleContainer>
   );
 };

@@ -3,15 +3,13 @@
 import React from "react";
 
 import { File } from "@/src/types";
-import { useCodeDetailContext } from "@/app/(public)/codes/[code_id]/detail/_contexts/CodeDetailProvider";
-import { Typo } from "@/src/components/atoms/texts/typo";
-import { FileItemList } from "@/src/components/organisms/files/file-item-list";
-import { MdOutlineInsertDriveFile } from "react-icons/md";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { LinkButton } from "@/src/components/molecules/buttons/link-button";
 import { CODES_EDIT_URL } from "@/src/libs/constants/urls";
 import { EditIcon } from "lucide-react";
 import { useBottomContainer } from "@/src/hooks/useBottomContainer";
+import { useCodeDetail } from "../../_hooks/useCodeDetail";
+import { CodeDetailFileList } from "./CodeDetailFile-List";
 
 interface Props {
   files: File[];
@@ -21,10 +19,14 @@ interface Props {
 
 export const CodeDetailFileListCard = ({ files, isAuthor, codeId }: Props) => {
   const { openContainer } = useBottomContainer();
-  const { setSelectedFile, selectedFile } = useCodeDetailContext();
+  const { selectedFile, selectFile } = useCodeDetail();
 
   const onSelectFile = (file: File) => {
-    setSelectedFile && setSelectedFile(file);
+    if (selectedFile?.id === file.id) {
+      selectFile(undefined);
+      return;
+    }
+    selectFile(file);
     openContainer();
   };
 
@@ -33,21 +35,7 @@ export const CodeDetailFileListCard = ({ files, isAuthor, codeId }: Props) => {
       <div>
         <Heading className="border-b pb-1">ファイル一覧</Heading>
 
-        {!files?.length ? (
-          <div className="mt-2 flex flex-col gap-2">
-            <div className="flex flex-row items-center gap-2 rounded-md p-2 select-none text-sm">
-              <MdOutlineInsertDriveFile className="w-4 h-4" />
-              <Typo text="ファイルがありません" />
-            </div>
-          </div>
-        ) : (
-          <FileItemList
-            files={files}
-            selectedFile={selectedFile}
-            className="mt-3"
-            onClick={(file) => onSelectFile(file)}
-          />
-        )}
+        <CodeDetailFileList files={files} onSelectFile={onSelectFile} />
       </div>
 
       {isAuthor && (

@@ -4,8 +4,8 @@ import { File } from "@/src/types";
 import { createContext, useContext, useState } from "react";
 
 interface ContextProps {
-  selectedFile: File | null;
-  setSelectedFile?: (file: File) => void;
+  selectedFile?: File | null;
+  setSelectedFile: (file?: File | null) => void;
 }
 
 interface ProviderProps {
@@ -18,7 +18,9 @@ const CodeDetailContext = createContext<ContextProps>({
 });
 
 export const CodeDetailProvider = ({ children }: ProviderProps) => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null | undefined>(
+    null
+  );
 
   return (
     <CodeDetailContext.Provider value={{ selectedFile, setSelectedFile }}>
@@ -29,16 +31,4 @@ export const CodeDetailProvider = ({ children }: ProviderProps) => {
 
 export const useCodeDetailContext = () => {
   return useContext(CodeDetailContext);
-};
-
-export const useCodeDetailSelectedFileContext = () => {
-  const { selectedFile } = useCodeDetailContext();
-
-  return selectedFile;
-};
-
-export const useCodeDetailSetSelectedFileContext = () => {
-  const { setSelectedFile } = useCodeDetailContext();
-
-  return setSelectedFile;
 };
