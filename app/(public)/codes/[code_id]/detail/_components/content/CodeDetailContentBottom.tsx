@@ -3,12 +3,12 @@
 import React from "react";
 
 import BottomToggleContainer from "@/src/components/molecules/animation/BottomToggleContainer";
-import { useCodeDetailContext } from "@/app/(public)/codes/[code_id]/detail/_contexts/CodeDetailProvider";
 import { CodeDetailFileDescription } from "../CodeDetailFileDescription";
 import { CodeDetailContentFileViewer } from "./CodeDetailContentFileViewer";
+import { useCodeDetail } from "../../_hooks/useCodeDetail";
 
 export const CodeDetailContentBottom = () => {
-  const { selectedFile } = useCodeDetailContext();
+  const { selectedFile } = useCodeDetail();
 
   if (!selectedFile) return null;
 

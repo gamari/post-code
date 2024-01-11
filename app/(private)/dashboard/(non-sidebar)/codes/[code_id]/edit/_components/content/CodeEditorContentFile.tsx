@@ -31,7 +31,7 @@ import { cn } from "@/src/libs/utils";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 import { convertFilenameToFiletype } from "@/src/libs/editors";
 import { Typo } from "@/src/components/atoms/texts/typo";
-import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
+import { useCodeEditorSelectedFile } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditorSelectedFile";
 
 interface Props {
   className?: string;

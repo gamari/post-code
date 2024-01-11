@@ -1,7 +1,7 @@
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { fetchUpdateCode } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchUpsertFiles } from "@/src/libs/externals/supabase/queries/files";
-import { useLoading } from "../../useLoading";
+import { useLoading } from "../../../../../../../../src/hooks/useLoading";
 import { useCodeEditor } from "./useCodeEditor";
 import { useCodeEditorSelectedFile } from "./useCodeEditorSelectedFile";
 import { useCodeEditorFiles } from "./useCodeEditorFiles";

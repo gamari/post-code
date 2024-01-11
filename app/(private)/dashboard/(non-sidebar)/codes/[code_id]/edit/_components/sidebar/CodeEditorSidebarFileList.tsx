@@ -14,11 +14,12 @@ import { Typo } from "@/src/components/atoms/texts/typo";
 import { sortAscByName } from "@/src/libs/sortes";
 import { limitString } from "@/src/libs/strings";
 import { FILE_TEXT_LIMIT } from "@/src/libs/constants/limits";
-import { useDeleteFileInSidebar } from "../../../../../../../../../src/hooks/codes/editors/sidebar/useDeleteFileInSidebar";
-import { useCodeEditorFiles } from "@/src/hooks/codes/editors/useCodeEditorFiles";
-import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
-import { useCodeEditorModalContext } from "@/src/contexts/CodeEditorModalProvider";
+import { useDeleteFileInSidebar } from "../../_hooks/sidebar/useDeleteFileInSidebar";
+import { useCodeEditorFiles } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditorFiles";
+import { useCodeEditorSelectedFile } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditorSelectedFile";
+import { useCodeEditorModalContext } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_contexts/CodeEditorModalProvider";
 import { useBottomContainer } from "@/src/hooks/useBottomContainer";
+import { useCodeEditorRenameModal } from "../../_hooks/modal/useCodeEditorRenameModal";
 
 interface Props {
   className?: string;
@@ -26,9 +27,7 @@ interface Props {
 
 export const CodeEditorSidebarFileList = ({ className }: Props) => {
   const { openContainer } = useBottomContainer();
-
-  // TODO リファクタリングする
-  const { toggleRenameModal, setTargetFile } = useCodeEditorModalContext();
+  const { toggleRenameModal, setTargetFile } = useCodeEditorRenameModal();
 
   const { files, updateFile } = useCodeEditorFiles();
   const { selectedFile, setSelectedFile } = useCodeEditorSelectedFile();
@@ -36,7 +35,12 @@ export const CodeEditorSidebarFileList = ({ className }: Props) => {
   const { onDeleteFile } = useDeleteFileInSidebar();
 
   const handleClickFile = (file: File) => {
-    if (selectedFile?.id === file.id) return;
+    if (selectedFile?.id === file.id) {
+      updateFile(selectedFile);
+      setSelectedFile(undefined);
+      return;
+    }
+
     if (selectedFile) updateFile(selectedFile);
     setSelectedFile(file);
     openContainer();

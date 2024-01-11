@@ -4,7 +4,7 @@ import { CodeEditorContentFile } from "./CodeEditorContentFile";
 import { CodeEditorContentFileDescription } from "./CodeEditorContentFileDescription";
 import { Badge } from "@/src/components/atoms/badges/badge";
 import BottomToggleContainer from "@/src/components/molecules/animation/BottomToggleContainer";
-import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
+import { useCodeEditorSelectedFile } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditorSelectedFile";
 
 export const CodeEditorContentBottom = () => {
   const { selectedFile } = useCodeEditorSelectedFile();

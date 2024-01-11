@@ -3,14 +3,13 @@
 import React from "react";
 
 import { SaveButton } from "../../../../../../../../../src/components/molecules/buttons/save-button";
-import { useCodeEditorModalContext } from "@/src/contexts/CodeEditorModalProvider";
+import { useCodeEditorSaveModal } from "../../_hooks/modal/useCodeEditorSaveModal";
 
-// TODO save buttonを抜き出す
 export const CodeEditorSaveModalButton = () => {
-  const { setIsSaveOpen: setIsOpen } = useCodeEditorModalContext();
+  const { toggleSaveModal } = useCodeEditorSaveModal();
 
   const onClick = () => {
-    setIsOpen(true);
+    toggleSaveModal();
   };
 
   return <SaveButton label="保存" onClick={onClick} />;

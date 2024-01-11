@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Heading } from "@/src/components/atoms/texts/heading";
-import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
+import { useCodeEditor } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditor";
 import { SelectLanguageList } from "@/src/components/organisms/languages/SelectLanguageList";
 
 export const CodeEditorSaveEditorLanguages = () => {

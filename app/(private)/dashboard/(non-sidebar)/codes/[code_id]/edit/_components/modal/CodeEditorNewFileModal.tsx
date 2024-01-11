@@ -4,29 +4,28 @@ import React from "react";
 
 import { Input } from "@/src/components/atoms/forms/input";
 import { Modal } from "../../../../../../../../../src/components/molecules/displays/Modal";
-import { useFormFileOfEditor } from "@/src/hooks/codes/editors/useFormFileOfEditor";
+import { useFormFileOfEditor } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useFormFileOfEditor";
 import { useAlert } from "@/src/hooks/useAlert";
 import { useLoading } from "@/src/hooks/useLoading";
 import { CreateButton } from "@/src/components/molecules/buttons/create-button";
 import { Heading } from "@/src/components/atoms/texts/heading";
-import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
-import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
-import { useCodeEditorFiles } from "@/src/hooks/codes/editors/useCodeEditorFiles";
+import { useCodeEditorSelectedFile } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditorSelectedFile";
+import { useCodeEditor } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditor";
+import { useCodeEditorFiles } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditorFiles";
 import { NEW_FILE_LIMIT } from "@/src/libs/constants/limits";
-import { useCodeEditorModalContext } from "@/src/contexts/CodeEditorModalProvider";
+import { useCodeEditorNewFileModal } from "../../_hooks/modal/useCodeEditorNewFileModal";
 
 interface Props {}
 
 export const CodeEditorNewFileModal = ({}: Props) => {
-  const { isNewFileOpen, toggleNewFileModal } = useCodeEditorModalContext();
-
   const { loading, startLoading, stopLoading } = useLoading();
   const { errorAlert } = useAlert();
+
+  const { isNewFileOpen, toggleNewFileModal } = useCodeEditorNewFileModal();
 
   const { code } = useCodeEditor();
   const { selectedFile, setSelectedFile } = useCodeEditorSelectedFile();
   const { files, addFile, updateFile } = useCodeEditorFiles();
-
   const { name, setName, saveFile } = useFormFileOfEditor();
 
   const handleAddFile = async () => {

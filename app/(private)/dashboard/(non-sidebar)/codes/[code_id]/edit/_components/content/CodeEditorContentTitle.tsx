@@ -3,7 +3,7 @@
 import React, { memo } from "react";
 
 import { Input } from "@/src/components/atoms/forms/input";
-import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
+import { useCodeEditor } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditor";
 
 export const CodeEditorContentTitle = memo(() => {
   const { code, setTitle } = useCodeEditor();

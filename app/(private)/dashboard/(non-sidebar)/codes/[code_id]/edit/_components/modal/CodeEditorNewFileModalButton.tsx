@@ -1,11 +1,12 @@
 "use client";
 
 import React from "react";
+
 import { PlusIcon } from "../../../../../../../../../src/components/atoms/icons/PlusIcon";
-import { useCodeEditorModalContext } from "@/src/contexts/CodeEditorModalProvider";
+import { useCodeEditorNewFileModal } from "../../_hooks/modal/useCodeEditorNewFileModal";
 
 export const CodeEditorNewFileModalButton = () => {
-  const { toggleNewFileModal } = useCodeEditorModalContext();
+  const { toggleNewFileModal } = useCodeEditorNewFileModal();
 
   return (
     <PlusIcon

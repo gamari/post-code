@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import { UserInfoCard } from "../../../../../../../src/components/organisms/users/user-info-card";
 import { CodeDetailSidebarToolsCard } from "./code-detail-sidebar-tools-card";

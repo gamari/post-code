@@ -11,6 +11,7 @@ interface Props {
   onSubmit?: () => void;
   rows?: number;
   placeholder?: string;
+  maxLength?: number;
 }
 
 export const TextareaWithPreview = ({
@@ -20,6 +21,7 @@ export const TextareaWithPreview = ({
   onSubmit,
   rows = 4,
   placeholder,
+  maxLength,
 }: Props) => {
   const [isPreview, setIsPreview] = React.useState(false);
 
@@ -36,6 +38,7 @@ export const TextareaWithPreview = ({
           placeholder={placeholder}
           rows={rows}
           onSubmit={onSubmit}
+          maxLength={maxLength}
         />
       )}
 

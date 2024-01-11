@@ -11,17 +11,17 @@ import { CODES_DETAIL_URL } from "@/src/libs/constants/urls";
 import { CodeEditorSaveEditor } from "../save/CodeEditorSaveEditor";
 import { useRouter } from "next/navigation";
 import { useAlert } from "@/src/hooks/useAlert";
-import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
-import { useSaveCodeEditor } from "@/src/hooks/codes/editors/useSaveCodeEditor";
+import { useCodeEditor } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditor";
+import { useSaveCodeEditor } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useSaveCodeEditor";
 import { Button } from "@/src/components/atoms/buttons/button";
-import { useCodeEditorModalContext } from "@/src/contexts/CodeEditorModalProvider";
+import { useCodeEditorSaveModal } from "../../_hooks/modal/useCodeEditorSaveModal";
 
 export const CodeEditorSaveModal = () => {
   const router = useRouter();
   const { errorAlert } = useAlert();
 
   const { code } = useCodeEditor();
-  const { isSaveOpen: isOpen, toggleSaveModal: toggleModal } = useCodeEditorModalContext();
+  const { isSaveOpen, toggleSaveModal } = useCodeEditorSaveModal();
   const { loading, saveEditor } = useSaveCodeEditor();
 
   const handleOnSave = async () => {
@@ -34,7 +34,7 @@ export const CodeEditorSaveModal = () => {
       const retCode = await saveEditor();
 
       if (retCode?.id) {
-        toggleModal();
+        toggleSaveModal();
         router.refresh();
 
         // FIX 上手く効かないので仕方なくlocationを使う
@@ -46,18 +46,18 @@ export const CodeEditorSaveModal = () => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={toggleModal} className="w-[700px]">
+    <Modal isOpen={isSaveOpen} onClose={toggleSaveModal} className="w-[700px]">
       <CodeEditorSaveEditor />
 
       <Flex justifyContent="between" gap={8} className="mt-3">
         <Flex gap={8}>
           <SaveButton label="保存" onClick={handleOnSave} loading={loading} />
-          <Button variant="outline" onClick={toggleModal}>
+          <Button variant="outline" onClick={toggleSaveModal}>
             コードに戻る
           </Button>
         </Flex>
 
-        <Button variant="outline" onClick={toggleModal}>
+        <Button variant="outline" onClick={toggleSaveModal}>
           <Link href={CODES_DETAIL_URL(code?.id)} target={"_blank"}>
             詳細画面へ
           </Link>

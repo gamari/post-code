@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { File } from "../../types";
+import { File } from "../../../../../../../../src/types";
 
 interface ContextProps {
   selectedFile: File | undefined;
