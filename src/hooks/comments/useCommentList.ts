@@ -1,8 +1,8 @@
-import { useDetailCodeCommentListContext } from "@/src/contexts/CodeCommentListProvider"
+import { useCodeDetailCommentListContext } from "@/app/(public)/codes/[code_id]/detail/_contexts/CodeDetailCommentListProvider"
 import { CommentDetail } from "@/src/types";
 
 export const useCommentList = () => {
-    const { comments, setComments } = useDetailCodeCommentListContext();
+    const { comments, setComments } = useCodeDetailCommentListContext();
 
     const isEmpty = () => {
         return !comments?.length;

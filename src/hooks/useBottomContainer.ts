@@ -1,7 +1,7 @@
-import { useBottomToggleContainerContext } from "../contexts/BottomToggleContainerProvider";
+import { useBottomContainerContext } from "../contexts/BottomContainerProvider";
 
 export const useBottomContainer = () => {
-    const { isOpen, setIsOpen } = useBottomToggleContainerContext();
+    const { isOpen, setIsOpen } = useBottomContainerContext();
 
     const openContainer = () => {
         setIsOpen(true);

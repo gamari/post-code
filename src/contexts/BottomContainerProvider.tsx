@@ -13,21 +13,21 @@ interface ProviderProps {
   children: React.ReactNode;
 }
 
-const BottomToggleContainerContext = createContext<ContextProps>({
+const BottomContainerContext = createContext<ContextProps>({
   isOpen: false,
   setIsOpen: () => {},
 });
 
-export const BottomToggleContainerProvider = ({ children }: ProviderProps) => {
+export const BottomContainerProvider = ({ children }: ProviderProps) => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <BottomToggleContainerContext.Provider value={{ isOpen, setIsOpen }}>
+    <BottomContainerContext.Provider value={{ isOpen, setIsOpen }}>
       {children}
-    </BottomToggleContainerContext.Provider>
+    </BottomContainerContext.Provider>
   );
 };
 
-export const useBottomToggleContainerContext = () => {
-  return useContext(BottomToggleContainerContext);
+export const useBottomContainerContext = () => {
+  return useContext(BottomContainerContext);
 };

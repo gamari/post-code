@@ -4,10 +4,10 @@ import React from "react";
 
 import { Button } from "@/src/components/atoms/buttons/button";
 import { FaRegComment } from "react-icons/fa6";
-import { useCodeDetailCommentModalContext } from "@/src/contexts/CodeDetailCommentModalProvider";
+import { useCodeDetailCommentModal } from "../../_hooks/useCodeDetailCommentModal";
 
 export const CodeDetailCommentModalButton = () => {
-  const { toggleModal } = useCodeDetailCommentModalContext();
+  const { toggleModal } = useCodeDetailCommentModal();
 
   return (
     <Button variant="secondary" onClick={toggleModal}>

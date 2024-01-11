@@ -3,15 +3,11 @@ import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import Header from "@/app/_components/header/header";
-import { SupabaseProvider } from "@/src/contexts/SupabaseProvider";
 import { Toaster } from "@/src/components/ui/toaster";
-import { LanguageListProvider } from "@/src/contexts/LanguageListProvider";
 import { Analytics } from "@vercel/analytics/react";
 
 import { Noto_Sans_JP } from "next/font/google";
-import { NotificationsProvider } from "@/src/contexts/NotificationsProvider";
 import { Providers } from "./providers";
-import Script from "next/script";
 
 const notojp = Noto_Sans_JP({
   weight: ["400", "500"],

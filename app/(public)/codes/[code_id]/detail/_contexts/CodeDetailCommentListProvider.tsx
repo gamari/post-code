@@ -13,24 +13,24 @@ interface ProviderProps {
   comments: CommentDetail[];
 }
 
-export const CodeCommentListContext = createContext<ContextProps>({
+export const CodeDetailCommentListContext = createContext<ContextProps>({
   comments: [],
   setComments: () => {},
 });
 
-export const DetailCodeCommentListProvider = ({
+export const CodeDetailCommentListProvider = ({
   children,
   comments: initComments,
 }: ProviderProps) => {
   const [comments, setComments] = useState<CommentDetail[]>(initComments || []);
 
   return (
-    <CodeCommentListContext.Provider value={{ comments, setComments }}>
+    <CodeDetailCommentListContext.Provider value={{ comments, setComments }}>
       {children}
-    </CodeCommentListContext.Provider>
+    </CodeDetailCommentListContext.Provider>
   );
 };
 
-export const useDetailCodeCommentListContext = () => {
-  return useContext(CodeCommentListContext);
+export const useCodeDetailCommentListContext = () => {
+  return useContext(CodeDetailCommentListContext);
 };

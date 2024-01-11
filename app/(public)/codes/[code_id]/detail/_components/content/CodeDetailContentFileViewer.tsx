@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { useCodeDetailContext } from "@/src/contexts/CodeDetailProvider";
+import { useCodeDetailContext } from "@/app/(public)/codes/[code_id]/detail/_contexts/CodeDetailProvider";
 import { cn } from "@/src/libs/utils";
 import { FileViewer } from "@/src/components/organisms/files/FileViewer";
 import { Flex } from "@/src/components/atoms/containers/Flex";
