@@ -9,7 +9,7 @@ import { CODES_EDIT_URL } from "@/src/libs/constants/urls";
 import { EditIcon } from "lucide-react";
 import { useBottomContainer } from "@/src/hooks/useBottomContainer";
 import { useCodeDetail } from "../../_hooks/useCodeDetail";
-import { CodeDetailFileList } from "./CodeDetailFile-List";
+import { CodeDetailFileList } from "./CodeDetailFileList";
 
 interface Props {
   files: File[];
