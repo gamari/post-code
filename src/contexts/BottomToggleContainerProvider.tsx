@@ -2,10 +2,11 @@
 
 import { createContext, useContext, useState } from "react";
 
+// TODO isOpenとsetIsOpenだけにする
+
 interface ContextProps {
   isOpen: boolean;
-  toggleOpen: () => void;
-  open: () => void;
+  setIsOpen: (isOpen: boolean) => void;
 }
 
 interface ProviderProps {
@@ -14,23 +15,14 @@ interface ProviderProps {
 
 const BottomToggleContainerContext = createContext<ContextProps>({
   isOpen: false,
-  toggleOpen: () => {},
-  open: () => {},
+  setIsOpen: () => {},
 });
 
 export const BottomToggleContainerProvider = ({ children }: ProviderProps) => {
   const [isOpen, setIsOpen] = useState(true);
 
-  const toggleOpen = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const open = () => {
-    setIsOpen(true);
-  };
-
   return (
-    <BottomToggleContainerContext.Provider value={{ isOpen, toggleOpen, open }}>
+    <BottomToggleContainerContext.Provider value={{ isOpen, setIsOpen }}>
       {children}
     </BottomToggleContainerContext.Provider>
   );

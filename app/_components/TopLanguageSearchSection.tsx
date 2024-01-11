@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
 import { TopSection } from "./top-section";
@@ -13,6 +13,7 @@ import { Typo } from "@/src/components/atoms/texts/typo";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 
 export const TopLanguageSearchSection = () => {
+  const [isShow, setIsShow] = useState(false);
   const { languageList } = useLanguageList();
   return (
     <TopSection className="bg-sky-100">
@@ -21,17 +22,26 @@ export const TopLanguageSearchSection = () => {
         <Heading type="h2">言語検索</Heading>
       </div>
 
-      <div className="grid grid-cols-4 gap-4">
-        {languageList.map((language) => (
+      <div className="grid grid-cols-4 gap-4 gap-y-12">
+        {languageList.slice(0, 9).map((language) => (
           <div key={language.display}>
             <Link href={`/search/language/${language.name}`}>
-              <Flex alignItems="center" gap={8} className="bg-white p-6 rounded-md hover:bg-gray-100">
-                <FileIcon fileType={language?.name as FileType} className="h-8 w-8" />
+              <Flex
+                alignItems="center"
+                gap={8}
+                className="bg-white p-6 rounded-md hover:bg-gray-100"
+              >
+                <FileIcon
+                  fileType={language?.name as FileType}
+                  className="h-8 w-8"
+                />
                 <Typo text={language.display} size="lg" />
               </Flex>
             </Link>
           </div>
         ))}
+
+        {/* TODO もっと見る機能を実装する */}
       </div>
     </TopSection>
   );

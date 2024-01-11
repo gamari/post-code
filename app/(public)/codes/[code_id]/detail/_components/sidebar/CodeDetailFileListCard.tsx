@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 
 import { File } from "@/src/types";
 import { useCodeDetailContext } from "@/src/contexts/CodeDetailProvider";
@@ -11,7 +11,7 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 import { LinkButton } from "@/src/components/molecules/buttons/link-button";
 import { CODES_EDIT_URL } from "@/src/libs/constants/urls";
 import { EditIcon } from "lucide-react";
-import { useBottomToggleContainerContext } from "@/src/contexts/BottomToggleContainerProvider";
+import { useBottomContainer } from "@/src/hooks/useBottomContainer";
 
 interface Props {
   files: File[];
@@ -20,12 +20,12 @@ interface Props {
 }
 
 export const CodeDetailFileListCard = ({ files, isAuthor, codeId }: Props) => {
-  const { open } = useBottomToggleContainerContext();
+  const { openContainer } = useBottomContainer();
   const { setSelectedFile, selectedFile } = useCodeDetailContext();
 
   const onSelectFile = (file: File) => {
     setSelectedFile && setSelectedFile(file);
-    open();
+    openContainer();
   };
 
   return (

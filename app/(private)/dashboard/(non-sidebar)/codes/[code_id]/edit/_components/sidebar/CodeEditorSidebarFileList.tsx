@@ -17,19 +17,18 @@ import { FILE_TEXT_LIMIT } from "@/src/libs/constants/limits";
 import { useDeleteFileInSidebar } from "../../../../../../../../../src/hooks/codes/editors/sidebar/useDeleteFileInSidebar";
 import { useCodeEditorFiles } from "@/src/hooks/codes/editors/useCodeEditorFiles";
 import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
-import { useCodeEditorTargetRenameFile } from "@/src/hooks/codes/editors/useCodeEditorTargetRenameFile";
 import { useCodeEditorModalContext } from "@/src/contexts/CodeEditorModalProvider";
-import { useBottomToggleContainerContext } from "@/src/contexts/BottomToggleContainerProvider";
+import { useBottomContainer } from "@/src/hooks/useBottomContainer";
 
 interface Props {
   className?: string;
 }
 
-// TODO リファクタリングする
 export const CodeEditorSidebarFileList = ({ className }: Props) => {
-  const { open } = useBottomToggleContainerContext();
-  const { isRenameOpen, toggleRenameModal, setTargetFile } =
-    useCodeEditorModalContext();
+  const { openContainer } = useBottomContainer();
+
+  // TODO リファクタリングする
+  const { toggleRenameModal, setTargetFile } = useCodeEditorModalContext();
 
   const { files, updateFile } = useCodeEditorFiles();
   const { selectedFile, setSelectedFile } = useCodeEditorSelectedFile();
@@ -40,7 +39,7 @@ export const CodeEditorSidebarFileList = ({ className }: Props) => {
     if (selectedFile?.id === file.id) return;
     if (selectedFile) updateFile(selectedFile);
     setSelectedFile(file);
-    open();
+    openContainer();
   };
 
   const handleRename = (file: File) => {
