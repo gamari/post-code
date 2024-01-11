@@ -1,7 +1,7 @@
 "use server";
 
 import { getServerClient } from "@/src/libs/externals/supabase/admin-client";
-import { fetchCodeById, fetchCodeList, fetchCodeListByFileCode, fetchFavoriteCodeList, fetchRandomCodeList } from "@/src/libs/externals/supabase/queries/codes";
+import { fetchCodeById, fetchCodeList, fetchCodeListByFileCode, fetchCodeListByLanguage, fetchFavoriteCodeList, fetchRandomCodeList } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchAuthUser } from "@/src/libs/externals/supabase/queries/users";
 import { createEqCondition, createOrderCondition } from "../libs/externals/supabase/options";
 import { SEARCH_LIMIT } from "../libs/constants/limits";
@@ -31,23 +31,36 @@ export const actionGetCodeListByUser = async (userId: string) => {
     return codes;
 }
 
+/** タイトル検索 */
 export const actionGetCodeListByTitle = async (title: string) => {
     const client = getServerClient();
     const codes = await fetchCodeList(client, buildCodesByTitleOption(title, 1));
     return codes;
 }
 
+/** ファイル検索 */
 export const actionGetCodeListByFileCode = async (fileCode: string) => {
     const client = getServerClient();
     const codes = await fetchCodeListByFileCode(fileCode, client, 1, {
         eq: [
-            createEqCondition("is_public", true)
+            createEqCondition("codes.is_public", true)
         ],
         order: [
             createOrderCondition("updated_at", false)
         ],
         limit: SEARCH_LIMIT
     });
+    return codes;
+}
+
+/** 言語検索 */
+export const actionGetCodeListByLanguage = async (language: string) => {
+    const client = getServerClient();
+    const codes = await fetchCodeListByLanguage(language, client, {
+        limit: SEARCH_LIMIT
+    });
+    console.log(codes);
+    console.log(codes[0]?.favorites_count);
     return codes;
 }
 

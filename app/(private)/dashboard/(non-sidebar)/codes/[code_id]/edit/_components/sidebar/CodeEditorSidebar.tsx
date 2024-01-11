@@ -16,7 +16,7 @@ export const CodeEditorSidebar = ({
   return (
     <div className={cn("h-fit border p-5 rounded-md bg-white z-[110]", className)}>
       <CodeEditorSidebarHeader className="pb-2 border-b" />
-      <CodeEditorSidebarFileList className="mt-6 mb-4 overflow-auto max-h-[400px]" />
+      <CodeEditorSidebarFileList className="mt-6 mb-4 overflow-auto max-h-[350px]" />
       <CodeEditorSidebarTools />
     </div>
   );

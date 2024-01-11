@@ -44,7 +44,7 @@ export const fetchUserById = async (id: string, client: SupabaseClient) => {
         .from(PUBLIC_USER_TABLE)
         .select("*")
         .eq("id", id)
-        .single();
+        .maybeSingle();
 
     if (error) throw new Error("ユーザーの取得に失敗しました。");
 

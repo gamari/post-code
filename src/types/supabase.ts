@@ -1,4 +1,6 @@
-export type Json =
+Need to install the following packages:
+supabase@1.131.3
+Ok to proceed? (y) export type Json =
   | string
   | number
   | boolean
@@ -9,6 +11,35 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      code_footprints: {
+        Row: {
+          code_id: number | null
+          id: number
+          ip_address: string | null
+          visited_on: string | null
+        }
+        Insert: {
+          code_id?: number | null
+          id?: number
+          ip_address?: string | null
+          visited_on?: string | null
+        }
+        Update: {
+          code_id?: number | null
+          id?: number
+          ip_address?: string | null
+          visited_on?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "code_footprints_code_id_fkey"
+            columns: ["code_id"]
+            isOneToOne: false
+            referencedRelation: "codes"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       code_tags: {
         Row: {
           code_id: number
@@ -52,6 +83,35 @@ export interface Database {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      code_views: {
+        Row: {
+          code_id: number | null
+          id: number
+          last_viewed: string | null
+          view_count: number | null
+        }
+        Insert: {
+          code_id?: number | null
+          id?: number
+          last_viewed?: string | null
+          view_count?: number | null
+        }
+        Update: {
+          code_id?: number | null
+          id?: number
+          last_viewed?: string | null
+          view_count?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "code_views_code_id_fkey"
+            columns: ["code_id"]
+            isOneToOne: false
+            referencedRelation: "codes"
             referencedColumns: ["id"]
           }
         ]
