@@ -13,17 +13,13 @@ export const useFetchRandomCodeList = () => {
     }, [])
 
     const init = async () => {
-        console.log("init");
-        console.log(client);
         if (!client) return;
         try {
             const codes = await fetchRandomCodeList(client, {
                 limit: 2
             });
-            console.log(codes);
             setCodes(codes);
         } catch (e) {
-            console.log(e);
         } finally {
             setLoading(false);
         }

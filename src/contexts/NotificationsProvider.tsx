@@ -24,7 +24,6 @@ export const NotificationsProvider = ({ children }: ProviderProps) => {
 
   const checkNotifications = async () => {
     if (!client) return;
-    console.log("checkNotifications");
     const checked = await fetchCheckOwnNotification(client);
     setIsNotify(checked);
   };

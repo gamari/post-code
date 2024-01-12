@@ -59,8 +59,6 @@ export const actionGetCodeListByLanguage = async (language: string) => {
     const codes = await fetchCodeListByLanguage(language, client, {
         limit: SEARCH_LIMIT
     });
-    console.log(codes);
-    console.log(codes[0]?.favorites_count);
     return codes;
 }
 

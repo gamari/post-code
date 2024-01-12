@@ -13,6 +13,7 @@ interface Props {
   placeholder?: string;
   maxLength?: number;
   onPaste?: (e: React.ClipboardEvent) => void;
+  disabled?: boolean;
 }
 
 export const TextareaWithPreview = ({
@@ -23,7 +24,8 @@ export const TextareaWithPreview = ({
   rows = 4,
   placeholder,
   maxLength,
-  onPaste
+  onPaste,
+  disabled,
 }: Props) => {
   const [isPreview, setIsPreview] = React.useState(false);
 
@@ -42,6 +44,7 @@ export const TextareaWithPreview = ({
           onSubmit={onSubmit}
           maxLength={maxLength}
           onPaste={onPaste}
+          disabled={disabled}
         />
       )}
 

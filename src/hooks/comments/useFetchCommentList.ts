@@ -7,8 +7,6 @@ export const useFetchCommentList = () => {
     const fetchCodeListAfterDate = async (targetDate: string) => {
         if (!client) throw new Error("クライアントがありません。");
 
-        console.log("targetDate", targetDate);
-
         const newComments = await fetchCommentList(client, {
             gt: [
                 { field: "created_at", value: targetDate },

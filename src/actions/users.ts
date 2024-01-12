@@ -24,7 +24,6 @@ export const actionGetAuthUser = async () => {
 
         return authUser;
     } catch (error) {
-        console.log("actionGetAuthUser error");
         return null;
     }
 }

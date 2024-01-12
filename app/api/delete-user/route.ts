@@ -15,7 +15,6 @@ export async function POST(request: Request) {
     const { error: dbError } = await serverClient.from("users").delete().match({ id: authUser?.id });
 
     if (dbError) {
-        console.log(dbError);
         return NextResponse.json({ message: "error" }, { status: 500 })
     }
 
@@ -26,7 +25,6 @@ export async function POST(request: Request) {
     const { error } = await adminClient.auth.admin.deleteUser(authUser?.id);
 
     if (error) {
-        console.log(error);
         return NextResponse.json({ message: "error" }, { status: 500 })
     }
 

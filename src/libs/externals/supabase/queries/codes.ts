@@ -108,7 +108,6 @@ export const fetchRandomCodeList = async (client: SupabaseClient, options?: Quer
 
 /** 言語検索。 */
 export const fetchCodeListByLanguage = async (language: string, client: SupabaseClient, options?: QueryOptions) => {
-    console.log(language);
     let query = client
         .from(LANGUAGE_TABLE)
         .select(`
@@ -170,7 +169,6 @@ export const fetchCodeListBeforeDate = async (date: string, client: SupabaseClie
     query = applyOrderBy(query, options);
 
     const { data, error } = await query;
-    console.log(data);
 
     if (error) throw error;
 
