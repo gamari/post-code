@@ -24,7 +24,7 @@ export const TopLanguageSearchSection = () => {
       </div>
 
       <div className="grid grid-cols-4 gap-4 gap-y-12">
-        {languageList.slice(0, 9).map((language) => (
+        {languageList.slice(0, 8).map((language) => (
           <div key={language.display}>
             <Link href={`/search/language/${language.name}`}>
               <Flex
