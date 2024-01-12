@@ -1,4 +1,4 @@
-import { useCodeEditorContext } from "@/src/contexts/editors/CodeEditorProvider"
+import { useCodeEditorContext } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_contexts/CodeEditorProvider"
 import { Language, Tag } from "@/src/types";
 
 export const useCodeEditor = () => {

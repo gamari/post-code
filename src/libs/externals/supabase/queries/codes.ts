@@ -24,9 +24,9 @@ export const fetchCodeById = async (id: number, client: SupabaseClient) => {
 
     return {
         ...code,
-        user: code.public_users,
-        language: code.languages,
-        tags: code.tags,
+        user: code?.public_users,
+        language: code?.languages,
+        tags: code?.tags,
         favorites_count: code.favorites_count[0]?.count || 0,
         comments_count: code.comments_count[0]?.count || 0,
     };
@@ -44,7 +44,7 @@ export const fetchCodeList = async (client: SupabaseClient, options?: QueryOptio
             ${LANGUAGE_TABLE}!language_id(
                 *
             ),
-            ${CODE_TAGS_TABLE}:tags(*),
+            ${TAG_TABLE}: tags(*),
             favorites_count: favorites (count),
             comments_count: comments (count)
         `);
@@ -63,7 +63,7 @@ export const fetchCodeList = async (client: SupabaseClient, options?: QueryOptio
             favorites_count: code.favorites_count[0]?.count || 0,
             comments_count: code.comments_count[0]?.count || 0,
             language: code.languages,
-            tags: code.code_tags,
+            tags: code.tags,
         }
     }) as CodeDetail[];
 }

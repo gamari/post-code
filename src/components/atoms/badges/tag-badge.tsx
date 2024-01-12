@@ -12,7 +12,7 @@ export const TagBadge = ({ size = "md", tag }: Props) => {
     <span className={cn(
         "rounded-full bg-gray-200 text-gray-600",
         size == "sm" && "text-xs px-2 py-1",
-        size == "md" && "text-sm px-3 py-1",
+        size == "md" && "text-xs px-4 py-1",
         size == "lg" && "text-base px-3 py-1",
     )}>
       {tag?.name}

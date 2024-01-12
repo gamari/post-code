@@ -1,6 +1,6 @@
 import { Code, File } from "@/src/types";
 import { createContext, useContext, useEffect, useState } from "react";
-import { useSupabase } from "../SupabaseProvider";
+import { useSupabase } from "../../../../../../../../src/contexts/SupabaseProvider";
 import { fetchFilesByCodeId } from "@/src/libs/externals/supabase/queries/files";
 
 interface ContextProps {

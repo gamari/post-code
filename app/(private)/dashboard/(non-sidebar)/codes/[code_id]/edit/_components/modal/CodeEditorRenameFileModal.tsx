@@ -5,18 +5,18 @@ import { Input } from "@/src/components/atoms/forms/input";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { Modal } from "@/src/components/molecules/displays/Modal";
 import { useAlert } from "@/src/hooks/useAlert";
-import { useCodeEditorSelectedFile } from "@/src/hooks/codes/editors/useCodeEditorSelectedFile";
-import { useCodeEditorFiles } from "@/src/hooks/codes/editors/useCodeEditorFiles";
-import { useCodeEditorModalContext } from "@/src/contexts/CodeEditorModalProvider";
+import { useCodeEditorSelectedFile } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditorSelectedFile";
+import { useCodeEditorFiles } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditorFiles";
+import { useCodeEditorRenameModal } from "../../_hooks/modal/useCodeEditorRenameModal";
 
 interface Props {}
 
 export const CodeEditorRenameFileModal = ({}: Props) => {
-  const { targetFile, isRenameOpen, toggleRenameModal } =
-    useCodeEditorModalContext();
+  const { errorAlert } = useAlert();
   const [editingName, setEditingName] = useState("");
 
-  const { errorAlert } = useAlert();
+  const { targetFile, isRenameOpen, toggleRenameModal } =
+    useCodeEditorRenameModal();
   const { selectedFile, setSelectedFile } = useCodeEditorSelectedFile();
   const { updateFile } = useCodeEditorFiles();
 

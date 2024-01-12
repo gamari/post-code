@@ -1,5 +1,5 @@
 import { File } from "@/src/types";
-import { useCodeEditorFilesContext } from "@/src/contexts/editors/CodeEditorFilesProvider"
+import { useCodeEditorFilesContext } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_contexts/CodeEditorFilesProvider"
 
 export const useCodeEditorFiles = () => {
     const { files, setFiles } = useCodeEditorFilesContext();

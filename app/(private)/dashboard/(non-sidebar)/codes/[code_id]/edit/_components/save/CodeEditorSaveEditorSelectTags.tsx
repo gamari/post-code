@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Heading } from "@/src/components/atoms/texts/heading";
-import { useCodeEditor } from "@/src/hooks/codes/editors/useCodeEditor";
+import { useCodeEditor } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditor";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { Tag } from "@/src/types";
 import { fetchOrCreateTag } from "@/src/libs/externals/supabase/queries/tags";

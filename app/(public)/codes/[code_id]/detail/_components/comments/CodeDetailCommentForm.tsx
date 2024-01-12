@@ -3,7 +3,6 @@
 import React from "react";
 
 import { Button } from "@/src/components/atoms/buttons/button";
-import { Textarea } from "@/src/components/atoms/forms/textarea";
 import { useAlert } from "@/src/hooks/useAlert";
 import { useFormComment } from "@/src/hooks/comments/useFormComment";
 import { Heading } from "@/src/components/atoms/texts/heading";
@@ -11,13 +10,15 @@ import { useCommentList } from "@/src/hooks/comments/useCommentList";
 import { useFetchCommentList } from "@/src/hooks/comments/useFetchCommentList";
 import { CommentDetail } from "@/src/types";
 import { TextareaWithPreview } from "@/src/components/organisms/TextareaWithPreview";
+import { cn } from "@/src/libs/utils";
 
 interface Props {
   codeId: number;
   onSubmit: () => void;
+  className?: string;
 }
 
-export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
+export const CodeCommentForm = ({ codeId, onSubmit, className }: Props) => {
   const { errorAlert, infoAlert } = useAlert();
 
   const { comment, setComment, saveComment } = useFormComment();
@@ -48,7 +49,7 @@ export const CodeCommentForm = ({ codeId, onSubmit }: Props) => {
   };
 
   return (
-    <div className="w-full">
+    <div className={cn("w-full", className)}>
       <Heading className="mb-3">コメント</Heading>
 
       <TextareaWithPreview

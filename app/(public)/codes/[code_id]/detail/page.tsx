@@ -2,12 +2,12 @@ import React from "react";
 
 import { NextPage } from "next";
 
-import { DetailCodeCommentListProvider } from "@/src/contexts/CodeCommentListProvider";
-import { CodeDetailProvider } from "@/src/contexts/CodeDetailProvider";
+import { CodeDetailCommentListProvider } from "@/app/(public)/codes/[code_id]/detail/_contexts/CodeDetailCommentListProvider";
+import { CodeDetailProvider } from "@/app/(public)/codes/[code_id]/detail/_contexts/CodeDetailProvider";
 import { CodeDetail } from "./_components/code-detail";
 import { actionGetCodeById } from "@/src/actions/codes";
-import { CodeDetailCommentModalProvider } from "@/src/contexts/CodeDetailCommentModalProvider";
-import { BottomToggleContainerProvider } from "@/src/contexts/BottomToggleContainerProvider";
+import { CodeDetailCommentModalProvider } from "@/app/(public)/codes/[code_id]/detail/_contexts/CodeDetailCommentModalProvider";
+import { BottomContainerProvider } from "@/src/contexts/BottomContainerProvider";
 
 interface Props {
   params: {
@@ -43,15 +43,15 @@ export const generateMetadata = async ({
 
 const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
   return (
-    <DetailCodeCommentListProvider comments={[]}>
+    <CodeDetailCommentListProvider comments={[]}>
       <CodeDetailProvider>
         <CodeDetailCommentModalProvider>
-          <BottomToggleContainerProvider>
+          <BottomContainerProvider>
             <CodeDetail codeId={code_id} />
-          </BottomToggleContainerProvider>
+          </BottomContainerProvider>
         </CodeDetailCommentModalProvider>
       </CodeDetailProvider>
-    </DetailCodeCommentListProvider>
+    </CodeDetailCommentListProvider>
   );
 };
 

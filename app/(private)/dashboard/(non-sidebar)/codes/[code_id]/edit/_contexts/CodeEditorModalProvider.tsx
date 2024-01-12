@@ -1,4 +1,4 @@
-import { File } from "../types";
+import { File } from "../../../../../../../../src/types";
 import { createContext, useContext, useState } from "react";
 
 interface ContextProps {

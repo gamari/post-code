@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 
 interface ContextProps {
   isOpen: boolean;
-  toggleModal: () => void;
+  setIsOpen: (isOpen: boolean) => void;
 }
 
 interface ProviderProps {
@@ -13,7 +13,7 @@ interface ProviderProps {
 
 const CodeDetailCommentModalContext = createContext<ContextProps>({
   isOpen: false,
-  toggleModal: () => {},
+  setIsOpen: () => {},
 });
 
 export const useCodeDetailCommentModalContext = () =>
@@ -22,10 +22,8 @@ export const useCodeDetailCommentModalContext = () =>
 export const CodeDetailCommentModalProvider = ({ children }: ProviderProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleModal = () => setIsOpen(!isOpen);
-
   return (
-    <CodeDetailCommentModalContext.Provider value={{ isOpen, toggleModal }}>
+    <CodeDetailCommentModalContext.Provider value={{ isOpen, setIsOpen }}>
       {children}
     </CodeDetailCommentModalContext.Provider>
   );

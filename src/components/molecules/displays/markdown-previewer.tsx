@@ -22,17 +22,6 @@ export const MarkdownPreviewer = ({ content }: { content: string }) => {
     }
   };
 
-  const renderOGPCard = async (uri: string) => {
-    const ogpDatas: any[] = [];
-
-    return (
-      <div className="flex flex-col items-center justify-center">
-        <div className="text-center">OGPカード</div>
-        <img src={uri} className="w-full" />
-      </div>
-    );
-  };
-
   return (
     <div className="markdown-body w-full">
       <ReactMarkdown
@@ -50,7 +39,7 @@ export const MarkdownPreviewer = ({ content }: { content: string }) => {
             }
 
             if (
-              (href && href?.includes("https://code-posts.net")) ||
+              (href && href?.includes("https://post-codes.net")) ||
               href?.includes("http://localhost:3000")
             ) {
               return <OgpCard url={href} />;

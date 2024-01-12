@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 import { cn } from "@/src/libs/utils";
 import { Badge } from "../../atoms/badges/badge";
-import { useBottomToggleContainerContext } from "@/src/contexts/BottomToggleContainerProvider";
+import { useBottomContainer } from "@/src/hooks/useBottomContainer";
 
 interface Props {
   children: React.ReactNode;
@@ -21,10 +21,10 @@ const containerVariants = {
 };
 
 const BottomToggleContainer = ({ children, className, label }: Props) => {
-  const { isOpen, toggleOpen } = useBottomToggleContainerContext();
+  const { isOpen, toggleContainer } = useBottomContainer();
 
   const toggleShow = () => {
-    toggleOpen();
+    toggleContainer();
   };
 
   return (

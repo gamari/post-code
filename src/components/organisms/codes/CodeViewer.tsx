@@ -12,17 +12,17 @@ interface Props extends BaseProps {
   content?: string;
 }
 
-export const CodeViewer = ({
-    language,
-    className,
-    content
-}: Props) => {
+export const CodeViewer = ({ language, className, content }: Props) => {
   return (
     <SyntaxHighlighter
       language={language}
       style={style}
       className={cn("w-full", className)}
+      lineProps={{ style: { wordBreak: "break-all", whiteSpace: "pre-wrap" } }}
+      wrapLines={true}
       showLineNumbers
-    >{content || ""}</SyntaxHighlighter>
+    >
+      {content || ""}
+    </SyntaxHighlighter>
   );
 };

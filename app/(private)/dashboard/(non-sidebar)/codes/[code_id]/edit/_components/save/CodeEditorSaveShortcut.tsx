@@ -1,6 +1,6 @@
 "use client";
 
-import { useSaveCodeEditor } from "@/src/hooks/codes/editors/useSaveCodeEditor";
+import { useSaveCodeEditor } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useSaveCodeEditor";
 import { useAlert } from "@/src/hooks/useAlert";
 import { useEffect, useRef } from "react";
 

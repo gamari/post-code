@@ -17,7 +17,6 @@ import { Input } from "../../atoms/forms/input";
 import { SubmitHandler } from "react-hook-form";
 import { ErrorText } from "../../atoms/texts/error-text";
 import { Textarea } from "../../atoms/forms/textarea";
-import { Avatar } from "../../molecules/avatar";
 import SelectAvatarList from "@/app/(private)/dashboard/(sidebar)/account/SelectAvatarList";
 
 interface Props {
