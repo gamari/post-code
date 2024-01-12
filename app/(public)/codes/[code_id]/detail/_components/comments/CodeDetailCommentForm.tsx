@@ -30,7 +30,6 @@ export const CodeCommentForm = ({ codeId, onSubmit, className }: Props) => {
       let newComments: CommentDetail[] = [];
       if (isNotEmpty()) {
         const latestComment = getLatestComment();
-        console.log(latestComment);
         const retComments = await fetchCodeListAfterDate(
           latestComment?.created_at || ""
         );

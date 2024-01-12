@@ -13,7 +13,7 @@ interface Props {
 
 export const CodeEditorContentDescription = ({ className }: Props) => {
   const { errorAlert } = useAlert();
-  const { uploadImage } = useUploadImage();
+  const { uploadImage, loading, startLoading, stopLoading } = useUploadImage();
   const { code, setDescription } = useCodeEditor();
 
   const onPaste = async (e: React.ClipboardEvent) => {
@@ -24,12 +24,14 @@ export const CodeEditorContentDescription = ({ className }: Props) => {
 
         if (file) {
           try {
+            startLoading();
             const imageUrl = await uploadImage(file);
-            console.log(imageUrl);
             const markdownImage = `![uploaded image](${imageUrl})`;
             setDescription((code?.description || "") + markdownImage);
           } catch (e) {
             errorAlert("画像がアップロードできませんでした。", e);
+          } finally {
+            stopLoading();
           }
         }
       }
@@ -45,6 +47,7 @@ export const CodeEditorContentDescription = ({ className }: Props) => {
       maxLength={15000}
       className={className}
       onPaste={onPaste}
+      disabled={loading}
     />
   );
 };

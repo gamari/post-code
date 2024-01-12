@@ -21,7 +21,6 @@ export const DashboardCodeList = ({
   codes: initCodes,
   className,
 }: CodeTableProps) => {
-  console.log(initCodes);
   const { codes, deleteCode } = useCodeList(initCodes);
   const { client } = useSupabase();
 

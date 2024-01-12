@@ -1,8 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 import { useSupabase } from "../contexts/SupabaseProvider"
 import { fetchAuthUser } from "../libs/externals/supabase/queries/users";
+import { useLoading } from './useLoading';
 
 export const useUploadImage = () => {
+    const { loading, startLoading, stopLoading } = useLoading(false);
     const { client } = useSupabase();
 
     const uploadImage = async (file: File) => {
@@ -10,7 +12,8 @@ export const useUploadImage = () => {
         const authUser = await fetchAuthUser(client);
         const userId = authUser?.id;
         const randomId = uuidv4();
-        const { error } = await client.storage.from("images").upload(`${userId}/${randomId}-${file?.name}`, file);
+        const fileName = `${userId}/${randomId}-${file?.name}`;
+        const { error } = await client.storage.from("images").upload(fileName, file);
 
         if (error) throw error;
 
@@ -18,11 +21,14 @@ export const useUploadImage = () => {
             publicUrl
         } } = client.storage
             .from('images')
-            .getPublicUrl(`${userId}/${file.name}`);
+            .getPublicUrl(fileName);
         return publicUrl
     }
 
     return {
         uploadImage,
+        loading,
+        startLoading,
+        stopLoading,
     }
 }
