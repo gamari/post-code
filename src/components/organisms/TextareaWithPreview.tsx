@@ -12,6 +12,7 @@ interface Props {
   rows?: number;
   placeholder?: string;
   maxLength?: number;
+  onPaste?: (e: React.ClipboardEvent) => void;
 }
 
 export const TextareaWithPreview = ({
@@ -22,13 +23,14 @@ export const TextareaWithPreview = ({
   rows = 4,
   placeholder,
   maxLength,
+  onPaste
 }: Props) => {
   const [isPreview, setIsPreview] = React.useState(false);
 
   return (
     <div className={cn("", className)}>
       {isPreview ? (
-        <div className="border p-2 h-[400px] overflow-scroll scroll-auto bg-white">
+        <div className="border p-6 h-[400px] overflow-scroll scroll-auto bg-white">
           <MarkdownPreviewer content={value || ""} />
         </div>
       ) : (
@@ -39,6 +41,7 @@ export const TextareaWithPreview = ({
           rows={rows}
           onSubmit={onSubmit}
           maxLength={maxLength}
+          onPaste={onPaste}
         />
       )}
 
