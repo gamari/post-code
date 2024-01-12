@@ -24,12 +24,12 @@ export const CodeDetailContentInfo: FunctionComponent<Props> = async ({
         direction="column"
         alignItems="stretch"
         gap={8}
-        className="p-8 bg-white rounded-md w-full min-h-[30vh]"
+        className="p-10 bg-white rounded-md w-full min-h-[30vh]"
       >
         <CodeDetailContentInfoHeader code={code} />
 
         {code?.description && (
-          <div className="pt-10 pb-6 px-2">
+          <div className="pt-12 pb-6 px-2">
             <MarkdownPreviewer content={code?.description} />
           </div>
         )}

@@ -11,6 +11,7 @@ import { FileIcon } from "@/src/components/molecules/displays/file-icon";
 import { FileType } from "@/src/libs/editors";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { Flex } from "@/src/components/atoms/containers/Flex";
+import { Center } from "@/src/components/atoms/containers/Center";
 
 export const TopLanguageSearchSection = () => {
   const [isShow, setIsShow] = useState(false);
@@ -43,6 +44,11 @@ export const TopLanguageSearchSection = () => {
 
         {/* TODO もっと見る機能を実装する */}
       </div>
+      <Center className="mt-6">
+        <div className="inline-block px-10 py-3 text-lg font-semibold border-2 rounded-lg border-gray-500">
+          その他言語は現在準備中です
+        </div>
+      </Center>
     </TopSection>
   );
 };
