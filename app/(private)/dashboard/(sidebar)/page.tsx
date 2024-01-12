@@ -12,7 +12,7 @@ import { DashboardFavoriteCodeListTab } from "@/app/(private)/dashboard/_compone
 
 const Page = async () => {
   return (
-    <Tabs defaultValue="codes" className="p-10">
+    <Tabs defaultValue="codes" className="p-10 pb-32">
       <TabsList className="mb-6">
         <TabsTrigger value="codes">作成</TabsTrigger>
         <TabsTrigger value="favorites">お気に入り</TabsTrigger>

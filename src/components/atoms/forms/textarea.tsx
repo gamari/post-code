@@ -4,13 +4,14 @@ import { cn } from "@/src/libs/utils";
 
 export interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-    onSubmit?: () => void;
-  }
+  onSubmit?: () => void;
+  onPaste?: (e: React.ClipboardEvent) => void;
+}
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, onSubmit, ...props }, ref) => {
+  ({ className, onSubmit, onPaste, ...props }, ref) => {
     const handleKeyDown = (e: React.KeyboardEvent) => {
-      if (e.ctrlKey && e.key === 'Enter') {
+      if (e.ctrlKey && e.key === "Enter") {
         onSubmit?.();
       }
     };
@@ -23,6 +24,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         )}
         onKeyDown={handleKeyDown}
         ref={ref}
+        onPaste={onPaste}
         {...props}
       />
     );

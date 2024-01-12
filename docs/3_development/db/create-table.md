@@ -1,3 +1,7 @@
+## random_codesテーブル
+
+CREATE VIEW random_codes_view AS SELECT * FROM codes ORDER BY random();
+
 ## code_viewsテーブル
 
 ビュー数。
