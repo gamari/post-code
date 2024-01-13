@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ButtonProps } from "../../atoms/buttons/button";
+import { Button, ButtonProps } from "../../atoms/forms/button";
 import { Loader2 } from "lucide-react";
 import { PlusIcon } from "../../atoms/icons/PlusIcon";
 

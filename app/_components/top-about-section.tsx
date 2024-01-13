@@ -7,7 +7,7 @@ import { Description } from "@/src/components/atoms/texts/description";
 import { TopSection } from "./top-section";
 import { Center } from "@/src/components/atoms/containers/Center";
 import { APP_TITLE } from "@/src/libs/constants";
-import { Button } from "@/src/components/atoms/buttons/button";
+import { Button } from "@/src/components/atoms/forms/button";
 import Link from "next/link";
 
 export const TopAboutSection = () => {

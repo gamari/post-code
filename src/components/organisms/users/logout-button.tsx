@@ -2,7 +2,7 @@ import React from "react";
 import { getServerClient } from "@/src/libs/externals/supabase/server-client";
 import { redirect } from "next/navigation";
 import { FaDoorOpen } from "react-icons/fa6";
-import { Button } from "@/src/components/atoms/buttons/button";
+import { Button } from "@/src/components/atoms/forms/button";
 
 export const LogoutButton = () => {
   const signOut = async () => {
