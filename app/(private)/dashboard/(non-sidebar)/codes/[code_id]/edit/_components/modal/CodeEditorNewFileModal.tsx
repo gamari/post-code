@@ -14,10 +14,12 @@ import { useCodeEditor } from "@/app/(private)/dashboard/(non-sidebar)/codes/[co
 import { useCodeEditorFiles } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditorFiles";
 import { NEW_FILE_LIMIT } from "@/src/libs/constants/limits";
 import { useCodeEditorNewFileModal } from "../../_hooks/modal/useCodeEditorNewFileModal";
+import { useRouter } from "next/navigation";
 
 interface Props {}
 
 export const CodeEditorNewFileModal = ({}: Props) => {
+  const router = useRouter();
   const { loading, startLoading, stopLoading } = useLoading();
   const { errorAlert } = useAlert();
 
@@ -39,6 +41,7 @@ export const CodeEditorNewFileModal = ({}: Props) => {
       const retFile = await saveFile(code?.id);
 
       if (selectedFile) updateFile(selectedFile);
+      router.refresh();
 
       setSelectedFile(retFile);
       addFile(retFile);

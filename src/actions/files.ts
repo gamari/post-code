@@ -1,4 +1,4 @@
-import { getServerClient } from "@/src/libs/externals/supabase/admin-client";
+import { getServerClient } from "@/src/libs/externals/supabase/server-client";
 import { fetchFilesByCodeId } from "@/src/libs/externals/supabase/queries/files";
 
 export const actionGetFiles = async (codeId: number) => {

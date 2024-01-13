@@ -1,5 +1,6 @@
 import { File } from "@/src/types"
 import { SupabaseClient } from "@supabase/supabase-js"
+import { convertPostgretErrorToAppErrorMessage } from "../errors";
 
 
 export const fetchFilesByCodeId = async (codeId: number, client: SupabaseClient) => {
@@ -8,7 +9,7 @@ export const fetchFilesByCodeId = async (codeId: number, client: SupabaseClient)
         .select("*")
         .eq("code_id", codeId);
 
-    if (error) throw new Error("Fileの取得中にエラーが発生しました。");
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     return files as File[];
 }
@@ -19,7 +20,7 @@ export const fetchUpsertFiles = async (newFiles: File[], client: SupabaseClient)
         .from("files")
         .upsert(newFiles);
 
-    if (error) throw new Error("Fileの作成中にエラーが発生しました。");
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 };
 
 export const fetchCreateFile = async (file: File, client: SupabaseClient) => {
@@ -29,7 +30,7 @@ export const fetchCreateFile = async (file: File, client: SupabaseClient) => {
         .select("*")
         .maybeSingle();
 
-    if (error) throw new Error(error?.message || "Fileの作成中にエラーが発生しました。");
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     return data;
 };

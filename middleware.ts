@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server'
-import { getMiddleClient } from './src/libs/externals/supabase/admin-client'
+import { getMiddleClient } from './src/libs/externals/supabase/server-client'
 
 export async function middleware(request: NextRequest) {
   try {

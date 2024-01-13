@@ -12,15 +12,17 @@ interface Props {
 }
 
 export const CodeDetailFileList = ({ files, onSelectFile }: Props) => {
-  const { selectedFile, selectFile } = useCodeDetail();
+  const { selectedFile } = useCodeDetail();
 
   if (!files?.length) {
-    <div className="mt-2 flex flex-col gap-2">
-      <div className="flex flex-row items-center gap-2 rounded-md p-2 select-none text-sm">
-        <MdOutlineInsertDriveFile className="w-4 h-4" />
-        <Typo text="ファイルがありません" />
+    return (
+      <div className="mt-2 flex flex-col gap-2">
+        <div className="flex flex-row items-center gap-2 rounded-md p-2 select-none text-sm">
+          <MdOutlineInsertDriveFile className="w-4 h-4" />
+          <Typo text="ファイルがありません" />
+        </div>
       </div>
-    </div>;
+    );
   }
 
   return (

@@ -1,5 +1,6 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import { fetchAuthUser } from "./users";
+import { convertPostgretErrorToAppErrorMessage } from "../errors";
 
 export const fetchFavoriteCount = async (code_id: number, client: SupabaseClient) => {
     const { count, error } = await client
@@ -11,7 +12,7 @@ export const fetchFavoriteCount = async (code_id: number, client: SupabaseClient
         })
         .match({ code_id: code_id })
 
-    if (error) throw error;
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     return count || 0;
 }
@@ -28,7 +29,7 @@ export const fetchCreateFavoriteCode = async (code_id: number, client: SupabaseC
         .from("favorites")
         .insert({ code_id: code_id, user_id: user?.id });
 
-    if (error) throw error;
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     return data;
 }
@@ -45,7 +46,7 @@ export const fetchDeleteFavoriteCode = async (code_id: number, client: SupabaseC
         .eq("code_id", code_id)
         .eq("user_id", user?.id);
 
-    if (error) throw error;
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     return data;
 }
@@ -61,7 +62,7 @@ export const fetchIsFavoriteCode = async (code_id: number, client: SupabaseClien
         .eq("code_id", code_id)
         .eq("user_id", authUser?.id);
 
-    if (error) throw error;
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     if (data?.length) return true;
     return false;

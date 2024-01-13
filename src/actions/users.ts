@@ -1,6 +1,6 @@
 "use server";
 
-import { getServerClient } from "@/src/libs/externals/supabase/admin-client";
+import { getServerClient } from "@/src/libs/externals/supabase/server-client";
 import { fetchAuthUser, fetchUserByEmail, fetchUserById, fetchUserByUsername } from "@/src/libs/externals/supabase/queries/users";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";

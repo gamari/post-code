@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { getServerClient } from '@/src/libs/externals/supabase/admin-client'
+import { getServerClient } from '@/src/libs/externals/supabase/server-client'
 import { actionGetAuthUser } from '@/src/actions/users'
 
 

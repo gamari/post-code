@@ -7,3 +7,4 @@ export const CONTACT_TABLE = "contacts"
 export const TAG_TABLE = "tags"
 export const CODE_TAGS_TABLE = "code_tags"
 export const NOTIFICATION_TABLE = "notifications"
+export const UPLOAD_IMAGE_HISTORY = "upload_image_histories";

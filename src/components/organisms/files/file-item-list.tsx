@@ -4,7 +4,7 @@ import { File } from "@/src/types";
 import { FileItem } from "./FileItem";
 import { cn } from "@/src/libs/utils";
 import { SlideIn } from "../../molecules/animation/SlideIn";
-import { sortAscByName, sortDescByName } from "@/src/libs/sortes";
+import { sortAscByName } from "@/src/libs/sortes";
 
 interface Props {
   files: File[];
@@ -22,7 +22,12 @@ export const FileItemList = ({
   const sortedFiles = files.sort(sortAscByName);
 
   return (
-    <div className={cn("flex flex-col gap-1  max-h-[200px] overflow-y-auto overflow-x-hidden", className)}>
+    <div
+      className={cn(
+        "flex flex-col gap-1  max-h-[200px] overflow-y-auto overflow-x-hidden",
+        className
+      )}
+    >
       {sortedFiles.map((file, index) => (
         <SlideIn delay={index * 0.1} from="right" key={file.name}>
           <FileItem

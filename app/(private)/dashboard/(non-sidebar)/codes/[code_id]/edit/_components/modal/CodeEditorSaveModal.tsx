@@ -26,11 +26,6 @@ export const CodeEditorSaveModal = () => {
 
   const handleOnSave = async () => {
     try {
-      if (length(code?.description) > 2000) {
-        errorAlert("説明文は2000文字以内で入力してください");
-        return;
-      }
-
       const retCode = await saveEditor();
 
       if (retCode?.id) {

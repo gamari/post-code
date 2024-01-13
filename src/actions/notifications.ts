@@ -1,5 +1,5 @@
 import { FaLess } from "react-icons/fa6";
-import { getServerClient } from "../libs/externals/supabase/admin-client";
+import { getServerClient } from "../libs/externals/supabase/server-client";
 import { createEqCondition, createOrderCondition } from "../libs/externals/supabase/options";
 import { fetchNotificationList, fetchUpdateNotification } from "../libs/externals/supabase/queries/notifications";
 import { NotificationDetail } from "../types";
