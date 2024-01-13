@@ -1,6 +1,7 @@
 import { PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
 import { User } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
+import { convertPostgretErrorToAppErrorMessage } from "../errors";
 
 export const fetchUserByUsername = async (username: string, client: SupabaseClient) => {
     const { data: user, error } = await client
@@ -9,7 +10,7 @@ export const fetchUserByUsername = async (username: string, client: SupabaseClie
         .eq("username", username)
         .maybeSingle();
 
-    if (error) throw new Error("ユーザーの取得に失敗しました。");
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     return user;
 }
@@ -22,10 +23,7 @@ export const fetchUserByEmail = async (email: string, client: SupabaseClient) =>
         .maybeSingle();
 
 
-    if (error) {
-        console.error(error);
-        throw new Error("ユーザーの取得に失敗しました。");
-    }
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     return user;
 }
@@ -33,6 +31,7 @@ export const fetchUserByEmail = async (email: string, client: SupabaseClient) =>
 export const fetchAuthUser = async (client: SupabaseClient) => {
     const { data: { user }, error } = await client.auth.getUser();
 
+    // TODO 要件等
     if (error) return null;
 
     return user;
@@ -46,7 +45,7 @@ export const fetchUserById = async (id: string, client: SupabaseClient) => {
         .eq("id", id)
         .maybeSingle();
 
-    if (error) throw new Error("ユーザーの取得に失敗しました。");
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     return user;
 }
@@ -59,7 +58,7 @@ export const fetchUpdateUser = async (newUser: User, client: SupabaseClient) => 
         .eq("id", newUser.id)
         .single();
 
-    if (error) throw new Error("ユーザーの更新に失敗しました。");
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     return user;
 }

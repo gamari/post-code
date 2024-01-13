@@ -3,6 +3,7 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import { QueryOptions, applyQueryOptions } from "../options";
 import { UPLOAD_IMAGE_HISTORY } from "@/src/libs/constants/tables";
+import { convertPostgretErrorToAppErrorMessage } from "../errors";
 
 
 /** 当月のアップロード総量の取得。 */
@@ -16,7 +17,7 @@ export const fetchTotalUploadSizeInMonth = async (userId: string, client: Supaba
 
     const { data, error } = await query;
 
-    if (error) throw error;
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     let total_size = 0;
     for (const item of data) {
@@ -38,7 +39,7 @@ export const fetchCreateUploadImageHistory = async (userId: string, imageUrl: st
             }
         ])
 
-    if (error) throw error;
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     return data;
 }

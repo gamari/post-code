@@ -2,6 +2,7 @@ import { CODE_TABLE, CODE_TAGS_TABLE, FILE_TABLE, LANGUAGE_TABLE, PUBLIC_USER_TA
 import { CodeDetail, CodeFormType, SearchResultCode, User } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { QueryOptions, applyOrderBy, applyQueryOptions } from "../options";
+import { convertPostgretErrorToAppErrorMessage } from "../errors";
 
 
 /** 単発 */
@@ -20,7 +21,7 @@ export const fetchCodeById = async (id: number, client: SupabaseClient) => {
         .eq("id", id)
         .single();
 
-    if (error) return null;
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     return {
         ...code,
@@ -54,7 +55,7 @@ export const fetchCodeList = async (client: SupabaseClient, options?: QueryOptio
 
     const { data, error } = await query;
 
-    if (error) throw error;
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     return data.map((code) => {
         return {
@@ -90,7 +91,7 @@ export const fetchRandomCodeList = async (client: SupabaseClient, options?: Quer
 
     const { data, error } = await query;
 
-    if (error) throw error;
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     return data.map((code) => {
         return {
@@ -131,7 +132,7 @@ export const fetchCodeListByLanguage = async (language: string, client: Supabase
 
     const { data, error } = await query;
 
-    if (error) throw error;
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     if (!data?.length) return [];
 
@@ -170,7 +171,7 @@ export const fetchCodeListBeforeDate = async (date: string, client: SupabaseClie
 
     const { data, error } = await query;
 
-    if (error) throw error;
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     return data.map((code) => {
         return {
@@ -237,7 +238,7 @@ export const fetchFavoriteCodeList = async (client: SupabaseClient, options?: Qu
 
     const { data, error } = await query;
 
-    if (error) throw error;
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     // TODO fix Types
     return data.map((favorite) => {
@@ -264,7 +265,7 @@ export const fetchCodesBySelf = async (client: SupabaseClient) => {
         .eq("user_id", user?.id);
 
 
-    if (error) throw error;
+    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
     return codes;
 };
