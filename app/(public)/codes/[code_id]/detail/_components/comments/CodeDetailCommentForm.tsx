@@ -9,7 +9,7 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 import { useCommentList } from "@/src/hooks/comments/useCommentList";
 import { useFetchCommentList } from "@/src/hooks/comments/useFetchCommentList";
 import { CommentDetail } from "@/src/types";
-import { TextareaWithPreview } from "@/src/components/organisms/TextareaWithPreview";
+import { TextareaWithTools } from "@/src/components/organisms/TextareaWithTools";
 import { cn } from "@/src/libs/utils";
 
 interface Props {
@@ -51,7 +51,7 @@ export const CodeCommentForm = ({ codeId, onSubmit, className }: Props) => {
     <div className={cn("w-full", className)}>
       <Heading className="mb-3">コメント</Heading>
 
-      <TextareaWithPreview
+      <TextareaWithTools
         value={comment}
         setValue={setComment}
         className="mb-3"

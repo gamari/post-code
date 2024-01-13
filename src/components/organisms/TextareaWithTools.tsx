@@ -1,8 +1,11 @@
-import { cn } from "@/src/libs/utils";
 import React from "react";
+
+import { cn } from "@/src/libs/utils";
 import { MarkdownPreviewer } from "../molecules/displays/markdown-previewer";
 import { Textarea } from "../atoms/forms/textarea";
 import { PreviewButton } from "../molecules/preview-button";
+import { Flex } from "../atoms/containers/Flex";
+import { FileUploadButton } from "./FileUploadButton";
 
 interface Props {
   className?: string;
@@ -12,11 +15,11 @@ interface Props {
   rows?: number;
   placeholder?: string;
   maxLength?: number;
-  onPaste?: (e: React.ClipboardEvent) => void;
+  onPasteImage?: (file: File) => void;
   disabled?: boolean;
 }
 
-export const TextareaWithPreview = ({
+export const TextareaWithTools = ({
   value,
   setValue,
   className,
@@ -24,10 +27,25 @@ export const TextareaWithPreview = ({
   rows = 4,
   placeholder,
   maxLength,
-  onPaste,
+  onPasteImage,
   disabled,
 }: Props) => {
   const [isPreview, setIsPreview] = React.useState(false);
+
+  const handleOnSelectImage = (file: File) => {
+    onPasteImage && onPasteImage(file);
+  };
+
+  const handleOnPaste = (e: React.ClipboardEvent) => {
+    const items = e.clipboardData.items;
+    for (const item of items) {
+      if (item.type.startsWith("image/")) {
+        const file = item.getAsFile();
+        if (!file) return;
+        onPasteImage && onPasteImage(file);
+      }
+    }
+  };
 
   return (
     <div className={cn("", className)}>
@@ -43,14 +61,17 @@ export const TextareaWithPreview = ({
           rows={rows}
           onSubmit={onSubmit}
           maxLength={maxLength}
-          onPaste={onPaste}
+          onPaste={handleOnPaste}
           disabled={disabled}
         />
       )}
 
-      <div className="flex flex-row-reverse pt-2">
+      <Flex className="pt-2" alignItems="center" justifyContent="between">
+        <Flex className="px-4">
+          {!isPreview && <FileUploadButton onSelect={handleOnSelectImage} />}
+        </Flex>
         <PreviewButton isPreview={isPreview} setIsPreview={setIsPreview} />
-      </div>
+      </Flex>
     </div>
   );
 };
