@@ -1,6 +1,6 @@
 "use server";
 
-import { getServerClient } from "@/src/libs/externals/supabase/admin-client";
+import { getServerClient } from "@/src/libs/externals/supabase/server-client";
 import { fetchCodeById, fetchCodeList, fetchCodeListByFileCode, fetchCodeListByLanguage, fetchFavoriteCodeList, fetchRandomCodeList } from "@/src/libs/externals/supabase/queries/codes";
 import { fetchAuthUser } from "@/src/libs/externals/supabase/queries/users";
 import { createEqCondition, createOrderCondition } from "../libs/externals/supabase/options";

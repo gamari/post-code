@@ -1,3 +1,18 @@
+## upload_image_historyテーブル
+
+画像制限をかけるために、アップロードした画像の履歴を保存する。
+
+```sql
+CREATE TABLE upload_image_histories (
+    id SERIAL PRIMARY KEY,
+    user_id UUID NOT NULL REFERENCES users(id),
+    file_size INTEGER NOT NULL,
+    image_url text not null,
+    upload_timestamp TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+
 ## random_codesテーブル
 
 CREATE VIEW random_codes_view AS SELECT * FROM codes ORDER BY random();

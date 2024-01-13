@@ -1,4 +1,4 @@
-import { getServerClient } from "@/src/libs/externals/supabase/admin-client"
+import { getServerClient } from "@/src/libs/externals/supabase/server-client"
 import { fetchCommentList } from "@/src/libs/externals/supabase/queries/comments";
 import { fetchAuthUser } from "../libs/externals/supabase/queries/users";
 

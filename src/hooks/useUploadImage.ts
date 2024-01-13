@@ -1,6 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
 import { useSupabase } from "../contexts/SupabaseProvider"
-import { fetchAuthUser } from "../libs/externals/supabase/queries/users";
 import { useLoading } from './useLoading';
 
 export const useUploadImage = () => {
@@ -9,20 +7,19 @@ export const useUploadImage = () => {
 
     const uploadImage = async (file: File) => {
         if (!client) return;
-        const authUser = await fetchAuthUser(client);
-        const userId = authUser?.id;
-        const randomId = uuidv4();
-        const fileName = `${userId}/${randomId}-${file?.name}`;
-        const { error } = await client.storage.from("images").upload(fileName, file);
+        var data = new FormData()
+        data.append('file', file)
+        const res = await fetch("/api/image", {
+            method: "POST",
+            body: data,
+        });
+        if (!res.ok) {
+            throw new Error("画像アップロードに失敗しました。");
+        }
 
-        if (error) throw error;
-
-        const { data: {
-            publicUrl
-        } } = client.storage
-            .from('images')
-            .getPublicUrl(fileName);
-        return publicUrl
+        const json = await res.json();
+        const { url } = json;
+        return url
     }
 
     return {
