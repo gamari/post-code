@@ -14,6 +14,14 @@ export const useUploadImage = () => {
             body: data,
         });
         if (!res.ok) {
+            const json = await res.json();
+            console.log(json);
+            const { message } = json;
+
+            if (message) {
+                throw new Error(message);
+            }
+
             throw new Error("画像アップロードに失敗しました。");
         }
 
