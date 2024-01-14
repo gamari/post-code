@@ -39,8 +39,8 @@ export const MarkdownPreviewer = ({ content }: { content: string }) => {
             }
 
             if (
-              (href && href?.includes("https://post-codes.net")) ||
-              href?.includes("http://localhost:3000")
+              (href && href?.includes("https://post-codes.net/codes")) ||
+              href?.includes("http://localhost:3000/codes")
             ) {
               return <OgpCard url={href} />;
             }

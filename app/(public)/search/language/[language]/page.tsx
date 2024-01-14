@@ -16,7 +16,7 @@ interface Props {
 const Page = async ({ params: { language } }: Props) => {
   const codeList = await actionGetCodeListByLanguage(language);
   return (
-    <SearchSection className="max-w-4xl">
+    <SearchSection className="max-w-7xl">
       <Heading className="mb-6">言語検索: {language}</Heading>
 
       <LanguageSearchResultCodeList codes={codeList} />

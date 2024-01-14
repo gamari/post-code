@@ -1,7 +1,7 @@
-import { CODE_TABLE, CODE_TAGS_TABLE, FILE_TABLE, LANGUAGE_TABLE, PUBLIC_USER_TABLE, RANDOM_CODE_VIEW, TAG_TABLE } from "@/src/libs/constants/tables";
+import { CODE_TABLE, FILE_TABLE, LANGUAGE_TABLE, PUBLIC_USER_TABLE, RANDOM_CODE_VIEW, TAG_TABLE } from "@/src/libs/constants/tables";
 import { CodeDetail, CodeFormType, SearchResultCode, User } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { QueryOptions, applyOrderBy, applyQueryOptions } from "../options";
+import { QueryOptions, applyQueryOptions } from "../options";
 import { convertPostgretErrorToAppErrorMessage } from "../errors";
 
 
@@ -51,7 +51,6 @@ export const fetchCodeList = async (client: SupabaseClient, options?: QueryOptio
         `);
 
     query = applyQueryOptions(query, options);
-    query = applyOrderBy(query, options);
 
     const { data, error } = await query;
 
@@ -87,7 +86,6 @@ export const fetchRandomCodeList = async (client: SupabaseClient, options?: Quer
         `)
 
     query = applyQueryOptions(query, options);
-    query = applyOrderBy(query, options);
 
     const { data, error } = await query;
 
@@ -128,7 +126,6 @@ export const fetchCodeListByLanguage = async (language: string, client: Supabase
         .eq("name", language);
 
     query = applyQueryOptions(query, options);
-    query = applyOrderBy(query, options);
 
     const { data, error } = await query;
 
@@ -150,39 +147,6 @@ export const fetchCodeListByLanguage = async (language: string, client: Supabase
 }
 
 
-export const fetchCodeListBeforeDate = async (date: string, client: SupabaseClient, options?: QueryOptions) => {
-    let query = client
-        .from(CODE_TABLE)
-        .select(`
-            *,
-            ${PUBLIC_USER_TABLE}!user_id (
-                *
-            ),
-            ${LANGUAGE_TABLE}!language_id(
-                *
-            ),
-            favorites_count: favorites (count),
-            comments_count: comments (count)
-        `)
-        .lt("created_at", date);
-
-    query = applyQueryOptions(query, options);
-    query = applyOrderBy(query, options);
-
-    const { data, error } = await query;
-
-    if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
-
-    return data.map((code) => {
-        return {
-            ...code,
-            user: code.public_users,
-            favorites_count: code.favorites_count[0]?.count || 0,
-            comments_count: code.comments_count[0]?.count || 0,
-            language: code.languages,
-        }
-    }) as CodeDetail[];
-}
 
 export const fetchCodeListByFileCode = async (fileCode: string, client: SupabaseClient, page = 1, options?: QueryOptions) => {
     const pageLimit = 1;
@@ -200,7 +164,6 @@ export const fetchCodeListByFileCode = async (fileCode: string, client: Supabase
         .range(start, end)
 
     query = applyQueryOptions(query, options);
-    query = applyOrderBy(query, options);
 
     const { data, error } = await query;
 

@@ -11,7 +11,7 @@ interface Props {
 
 const Page = ({ params: { code } }: Props) => {
   return (
-    <SearchSection className="max-w-4xl">
+    <SearchSection className="max-w-7xl">
       <SearchCodeResult code={code} />
     </SearchSection>
   );
