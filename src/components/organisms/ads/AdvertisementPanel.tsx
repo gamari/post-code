@@ -8,6 +8,7 @@ import { AdBook } from "@/src/types";
 import { fetchRandomAdBook } from "@/src/libs/externals/supabase/queries/ad_books";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import Link from "next/link";
+import { fetchCreateAdView } from "@/src/libs/externals/supabase/queries/ad_views";
 
 interface Props {
   className?: string;
@@ -22,6 +23,8 @@ export const AdvertisementPanel = ({ className }: Props) => {
       if (!client) return;
       const book = await fetchRandomAdBook(client);
       setData(book);
+      // TODO 要検証
+      // await fetchCreateAdView(book?.id, client);
     };
     init();
   }, []);

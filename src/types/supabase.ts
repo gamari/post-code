@@ -39,6 +39,32 @@ export interface Database {
         }
         Relationships: []
       }
+      ad_views: {
+        Row: {
+          ad_book_id: number | null
+          created_at: string
+          id: number
+        }
+        Insert: {
+          ad_book_id?: number | null
+          created_at?: string
+          id?: number
+        }
+        Update: {
+          ad_book_id?: number | null
+          created_at?: string
+          id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ad_views_ad_book_id_fkey"
+            columns: ["ad_book_id"]
+            isOneToOne: false
+            referencedRelation: "ad_books"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       code_footprints: {
         Row: {
           code_id: number | null
