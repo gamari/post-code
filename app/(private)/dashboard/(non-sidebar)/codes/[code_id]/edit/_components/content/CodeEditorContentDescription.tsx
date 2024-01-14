@@ -28,7 +28,7 @@ export const CodeEditorContentDescription = ({ className }: Props) => {
         startLoading();
         const imageUrl = await uploadImage(file);
         const markdownImage = `![uploaded image](${imageUrl})`;
-        setDescription((code?.description || "") + markdownImage);
+        return markdownImage
       } catch (e) {
         errorAlert("画像がアップロードできませんでした。", e);
       } finally {

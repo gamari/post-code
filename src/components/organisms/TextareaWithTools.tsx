@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { cn } from "@/src/libs/utils";
 import { MarkdownPreviewer } from "../molecules/displays/markdown-previewer";
@@ -15,7 +15,7 @@ interface Props {
   rows?: number;
   placeholder?: string;
   maxLength?: number;
-  onPasteImage?: (file: File) => void;
+  onPasteImage?: (file: File) => Promise<string | undefined>;
   disabled?: boolean;
 }
 
@@ -30,19 +30,27 @@ export const TextareaWithTools = ({
   onPasteImage,
   disabled,
 }: Props) => {
-  const [isPreview, setIsPreview] = React.useState(false);
+  const [isPreview, setIsPreview] = useState(false);
 
   const handleOnSelectImage = (file: File) => {
     onPasteImage && onPasteImage(file);
   };
 
-  const handleOnPaste = (e: React.ClipboardEvent) => {
+  const handleOnPaste = async (e: React.ClipboardEvent) => {
     const items = e.clipboardData.items;
     for (const item of items) {
       if (item.type.startsWith("image/")) {
+        e.preventDefault();
         const file = item.getAsFile();
         if (!file) return;
-        onPasteImage && onPasteImage(file);
+        if (onPasteImage) {
+          const url = await onPasteImage(file);
+          const textarea = e.target as HTMLTextAreaElement;
+          const cursorPosition = textarea.selectionStart;
+          const textBeforeCursorPosition = value.substring(0, cursorPosition);
+          const textAfterCursorPosition = value.substring(cursorPosition);
+          setValue(textBeforeCursorPosition + url + textAfterCursorPosition);
+        }
       }
     }
   };
