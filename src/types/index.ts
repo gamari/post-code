@@ -12,6 +12,7 @@ export type Language = Database["public"]["Tables"]["languages"]["Row"];
 export type Contact = Database["public"]["Tables"]["contacts"]["Row"];
 export type Tag = Database["public"]["Tables"]["tags"]["Row"];
 export type Notification = Database["public"]["Tables"]["notifications"]["Row"];
+export type AdBook = Database["public"]["Tables"]["ad_books"]["Row"];
 
 // Code
 export interface CodeFormType {

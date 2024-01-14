@@ -1,4 +1,18 @@
-## upload_image_historyテーブル
+## 広告作成
+
+```sql
+CREATE TABLE ad_books (
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT,
+    amazon_link TEXT NOT NULL,
+    image_url TEXT,
+    views bigint null default '0'::bigint,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+## upload_image_history テーブル
 
 画像制限をかけるために、アップロードした画像の履歴を保存する。
 
@@ -12,34 +26,31 @@ CREATE TABLE upload_image_histories (
 );
 ```
 
+## random_codes テーブル
 
-## random_codesテーブル
+CREATE VIEW random_codes_view AS SELECT \* FROM codes ORDER BY random();
 
-CREATE VIEW random_codes_view AS SELECT * FROM codes ORDER BY random();
-
-## code_viewsテーブル
+## code_views テーブル
 
 ビュー数。
 
 CREATE TABLE code_views (
-    id SERIAL PRIMARY KEY,
-    code_id INTEGER REFERENCES codes(id),
-    view_count INTEGER DEFAULT 0,
-    last_viewed TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+id SERIAL PRIMARY KEY,
+code_id INTEGER REFERENCES codes(id),
+view_count INTEGER DEFAULT 0,
+last_viewed TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 ## code_footprints
 
 CREATE TABLE code_footprints (
-    id SERIAL PRIMARY KEY,
-    ip_address VARCHAR(255),
-    code_id INTEGER REFERENCES codes(id),
-    visited_on DATE DEFAULT CURRENT_DATE
+id SERIAL PRIMARY KEY,
+ip_address VARCHAR(255),
+code_id INTEGER REFERENCES codes(id),
+visited_on DATE DEFAULT CURRENT_DATE
 );
 
-
-
-## Notificationテーブル
+## Notification テーブル
 
 通知。
 
@@ -57,8 +68,7 @@ CREATE TABLE public.notifications (
 );
 ```
 
-
-## Userテーブル
+## User テーブル
 
 ```sql
 create table users (
@@ -73,13 +83,12 @@ create policy "自身のみ閲覧可能" on users
   for select using (auth.uid() = id);
 create policy "自身のみ更新可能" on users
   for update using (auth.uid() = id);
-``` 
+```
 
-- usersテーブルの作成
-- row level securityの有効化
+- users テーブルの作成
+- row level security の有効化
 
-
-## tagsテーブルの作成
+## tags テーブルの作成
 
 ```sql
 create table public.tags (
@@ -94,4 +103,5 @@ create table public.code_tags (
   primary key (code_id, tag_id)
 );
 ```
-- [ ] Triggerで5個までにする
+
+- [ ] Trigger で 5 個までにする
