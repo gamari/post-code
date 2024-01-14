@@ -6,5 +6,11 @@ export const convertPostgretErrorToAppErrorMessage = (error: PostgrestError, def
     console.log(error);
     console.log(code);
 
+    if (code == "PGRST116") throw new Error("対象のデータがありませんでした。")
+
     throw new Error(defaultMessage || "DBエラーが発生しました。")
+}
+
+export const throwPostgresError = (error: PostgrestError, defaultMessage?: string) => {
+    throw new Error(convertPostgretErrorToAppErrorMessage(error, defaultMessage));
 }

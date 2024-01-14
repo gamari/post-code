@@ -27,8 +27,11 @@ export async function GET(request: NextRequest, response: NextResponse) {
     const resHtml = await httpRes.text()
     const jsdom = new JSDOM(resHtml)
 
-    const og: OgData = { url }
     const metaTags = jsdom.window.document.getElementsByTagName('meta') as any;
+    console.log(metaTags)
+    console.log(metaTags)
+
+    const og: OgData = { url }
 
     for (const metaTag of metaTags) {
         const property = metaTag.getAttribute('property')
@@ -52,6 +55,11 @@ export async function GET(request: NextRequest, response: NextResponse) {
             default:
             // nop
         }
+    }
+
+    if (Object.keys(og).length === 1) {
+        // TODO 取得できてない
+        return NextResponse.json({}, { status: 404 })
     }
 
     return NextResponse.json(og)
