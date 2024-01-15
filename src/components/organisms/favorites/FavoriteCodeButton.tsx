@@ -3,8 +3,8 @@
 import React, { FunctionComponent } from "react";
 
 import { useLikeCode } from "@/src/hooks/favorites/useLikeCode";
-import { LikeButton } from "../../molecules/buttons/like-button";
-import { UnlikeButton } from "../../molecules/buttons/unlike-button";
+import { LikeButton } from "../../molecules/forms/buttons/like-button";
+import { UnlikeButton } from "../../molecules/forms/buttons/unlike-button";
 import { useRouter } from "next/navigation";
 
 interface Props {

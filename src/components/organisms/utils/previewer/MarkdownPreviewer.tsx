@@ -10,7 +10,7 @@ import rehypeSanitize from "rehype-sanitize";
 
 import "./markdown-previewer.css";
 import { TwitterTweetEmbed } from "react-twitter-embed";
-import { OgpCard } from "../../organisms/OgpCard";
+import { OgpCard } from "../../OgpCard";
 
 export const MarkdownPreviewer = ({ content }: { content: string }) => {
   const renderTweet = (uri: string) => {

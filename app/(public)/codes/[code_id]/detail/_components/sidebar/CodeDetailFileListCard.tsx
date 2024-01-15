@@ -4,7 +4,7 @@ import React from "react";
 
 import { File } from "@/src/types";
 import { Heading } from "@/src/components/atoms/texts/heading";
-import { LinkButton } from "@/src/components/molecules/buttons/link-button";
+import { LinkButton } from "@/src/components/molecules/forms/buttons/link-button";
 import { CODES_EDIT_URL } from "@/src/libs/constants/urls";
 import { EditIcon } from "lucide-react";
 import { useBottomContainer } from "@/src/hooks/useBottomContainer";

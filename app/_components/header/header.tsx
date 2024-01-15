@@ -1,12 +1,12 @@
 import { cn } from "@/src/libs/utils";
 import { TextLinkLogo } from "@/src/components/molecules/text-link-logo";
 import { APP_TITLE } from "@/src/libs/constants";
-import { LoginButton } from "@/src/components/molecules/buttons/login-button";
-import { DashboardButton } from "@/src/components/molecules/buttons/dashboard-button";
+import { LoginButton } from "@/src/components/molecules/forms/buttons/login-button";
+import { DashboardButton } from "@/src/components/molecules/forms/buttons/dashboard-button";
 import { actionGetAuthUser } from "@/src/actions/users";
 import { HeaderSearch } from "./HeaderSearch";
 import { Flex } from "@/src/components/atoms/containers/Flex";
-import { RegisterButton } from "@/src/components/molecules/buttons/register-button";
+import { RegisterButton } from "@/src/components/molecules/forms/buttons/register-button";
 
 export default async function Header() {
   const authUser = await actionGetAuthUser();

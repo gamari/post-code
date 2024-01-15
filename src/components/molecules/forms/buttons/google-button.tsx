@@ -1,5 +1,5 @@
 import { cn } from "@/src/libs/utils";
-import { GoogleIcon } from "../../atoms/icons/google-icon";
+import { GoogleIcon } from "../../../atoms/icons/google-icon";
 
 interface Props {
   className?: string;

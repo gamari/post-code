@@ -3,7 +3,7 @@
 import React from "react";
 
 import { cn } from "@/src/libs/utils";
-import { MarkdownPreviewer } from "@/src/components/molecules/displays/markdown-previewer";
+import { MarkdownPreviewer } from "@/src/components/organisms/utils/previewer/MarkdownPreviewer";
 import { useCodeDetail } from "../_hooks/useCodeDetail";
 
 interface Props {

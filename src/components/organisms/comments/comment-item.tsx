@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "../../ui/dropdown-menu";
 import { DeleteIcon } from "lucide-react";
-import { MarkdownPreviewer } from "../../molecules/displays/markdown-previewer";
+import { MarkdownPreviewer } from "../utils/previewer/MarkdownPreviewer";
 import Link from "next/link";
 
 interface Props {

@@ -7,7 +7,7 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 import { useCodeEditorSelectedFile } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditorSelectedFile";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { PreviewButton } from "@/src/components/molecules/preview-button";
-import { MarkdownPreviewer } from "@/src/components/molecules/displays/markdown-previewer";
+import { MarkdownPreviewer } from "@/src/components/organisms/utils/previewer/MarkdownPreviewer";
 import { cn } from "@/src/libs/utils";
 
 interface Props {

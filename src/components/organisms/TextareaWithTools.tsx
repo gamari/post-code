@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { cn } from "@/src/libs/utils";
-import { MarkdownPreviewer } from "../molecules/displays/markdown-previewer";
+import { MarkdownPreviewer } from "./utils/previewer/MarkdownPreviewer";
 import { Textarea } from "../atoms/forms/textarea";
 import { PreviewButton } from "../molecules/preview-button";
 import { Flex } from "../atoms/containers/Flex";

@@ -1,5 +1,5 @@
 import { TopFooter } from "@/app/_components/top-footer";
-import { MarkdownPreviewer } from "@/src/components/molecules/displays/markdown-previewer";
+import { MarkdownPreviewer } from "@/src/components/organisms/utils/previewer/MarkdownPreviewer";
 import React from "react";
 
 // 参考

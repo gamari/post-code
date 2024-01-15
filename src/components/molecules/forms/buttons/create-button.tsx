@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, ButtonProps } from "../../atoms/forms/button";
+import { Button, ButtonProps } from "../../../atoms/forms/button";
 import { Loader2 } from "lucide-react";
-import { PlusIcon } from "../../atoms/icons/PlusIcon";
+import { PlusIcon } from "../../../atoms/icons/PlusIcon";
 
 interface Props extends ButtonProps {
   label: string;

@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Input } from "@/src/components/atoms/forms/input";
 import { Modal } from "../../molecules/displays/Modal";
 import { useModal } from "@/src/hooks/useModal";
-import { CreateButton } from "../../molecules/buttons/create-button";
+import { CreateButton } from "../../molecules/forms/buttons/create-button";
 import { Heading } from "../../atoms/texts/heading";
 import { useFormCode } from "@/src/hooks/codes/useFormCode";
 import { ErrorText } from "../../atoms/texts/error-text";

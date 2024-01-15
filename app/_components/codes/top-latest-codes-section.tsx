@@ -5,7 +5,7 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 import { TopSection } from "../top-section";
 import { Logo } from "@/src/components/molecules/logo";
 import { Typo } from "@/src/components/atoms/texts/typo";
-import { MoreButton } from "@/src/components/molecules/buttons/more-button";
+import { MoreButton } from "@/src/components/molecules/forms/buttons/more-button";
 import { Center } from "@/src/components/atoms/containers/Center";
 
 export const TopLatestCodesSection = async () => {
