@@ -1,27 +1,18 @@
 "use client";
 
+import "highlight.js/styles/github.css";
+import "./markdown-previewer.css";
+
 import React from "react";
 
 import ReactMarkdown from "react-markdown";
-import "highlight.js/styles/github.css";
 import remarkGfm from "remark-gfm";
-
 import rehypeSanitize from "rehype-sanitize";
 
-import "./markdown-previewer.css";
-import { TwitterTweetEmbed } from "react-twitter-embed";
-import { OgpCard } from "../../OgpCard";
+import { MarkdownPreviewerATag } from "./MarkdownPreviewerATag";
+import { MarkdownPreviewerQuateFile } from "./MarkdownPreviewerQuateFile";
 
 export const MarkdownPreviewer = ({ content }: { content: string }) => {
-  const renderTweet = (uri: string) => {
-    const tweetId = uri.split("/").pop();
-    if (tweetId) {
-      return <TwitterTweetEmbed tweetId={tweetId} />;
-    } else {
-      return <div>読み込みに失敗しました</div>;
-    }
-  };
-
   return (
     <div className="markdown-body w-full">
       <ReactMarkdown
@@ -31,21 +22,21 @@ export const MarkdownPreviewer = ({ content }: { content: string }) => {
         className="markdown-body"
         components={{
           a: ({ href, children }) => {
-            if (href?.includes("https://twitter.com")) {
-              if (href?.includes("/status/")) {
-                return renderTweet(href);
-              }
-              // Accountページをいれたい
+            return (
+              <MarkdownPreviewerATag href={href}>
+                {children}
+              </MarkdownPreviewerATag>
+            );
+          },
+          p: ({ node, children, ...props }) => {
+            if (typeof children == "string" && children?.includes("!file[")) {
+              const filename = children
+                .replace("!file[", "")
+                .replace("]", "")
+                .trim();
+              return <MarkdownPreviewerQuateFile filename={filename} />;
             }
-
-            if (
-              (href && href?.includes("https://post-codes.net/codes")) ||
-              href?.includes("http://localhost:3000/codes")
-            ) {
-              return <OgpCard url={href} />;
-            }
-
-            return <a href={href}>{children}</a>;
+            return <p>{children}</p>;
           },
         }}
       />

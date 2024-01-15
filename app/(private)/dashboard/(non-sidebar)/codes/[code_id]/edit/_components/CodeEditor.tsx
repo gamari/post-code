@@ -10,13 +10,13 @@ import { CodeEditorContent } from "./content/CodeEditorContent";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 import { CodeEditorSelectedFileProvider } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_contexts/CodeEditorSelectedFileProvider";
-import { CodeEditorFilesProvider } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_contexts/CodeEditorFilesProvider";
 import { CodeEditorSaveShortcut } from "./save/CodeEditorSaveShortcut";
 import { CodeEditorSaveModal } from "./modal/CodeEditorSaveModal";
 import { CodeEditorModalProvider } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_contexts/CodeEditorModalProvider";
 import { CodeEditorNewFileModal } from "./modal/CodeEditorNewFileModal";
 import { CodeEditorRenameFileModal } from "./modal/CodeEditorRenameFileModal";
 import { BottomContainerProvider } from "@/src/contexts/BottomContainerProvider";
+import { FilesProvider } from "@/src/contexts/FilesProvider";
 
 interface Props {
   code: CodeDetail;
@@ -36,7 +36,7 @@ export const CodeEditor: FunctionComponent<Props> = ({
   return (
     <CodeEditorProvider code={code}>
       <CodeEditorSelectedFileProvider>
-        <CodeEditorFilesProvider code={code}>
+        <FilesProvider codeId={code?.id}>
           <CodeEditorModalProvider>
             <BottomContainerProvider>
               <Flex gap={16} className={className}>
@@ -51,7 +51,7 @@ export const CodeEditor: FunctionComponent<Props> = ({
             </BottomContainerProvider>
             <CodeEditorSaveShortcut />
           </CodeEditorModalProvider>
-        </CodeEditorFilesProvider>
+        </FilesProvider>
       </CodeEditorSelectedFileProvider>
     </CodeEditorProvider>
   );
