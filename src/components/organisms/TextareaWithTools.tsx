@@ -6,6 +6,8 @@ import { Textarea } from "../atoms/forms/textarea";
 import { PreviewButton } from "../molecules/preview-button";
 import { Flex } from "../atoms/containers/Flex";
 import { FileUploadButton } from "./FileUploadButton";
+import { Toggle } from "../ui/toggle";
+import { FaCheck } from "react-icons/fa6";
 
 interface Props {
   className?: string;
@@ -17,6 +19,7 @@ interface Props {
   maxLength?: number;
   onPasteImage?: (file: File) => Promise<string | undefined>;
   disabled?: boolean;
+  onTogglePreview?: () => void;
 }
 
 export const TextareaWithTools = ({
@@ -29,6 +32,7 @@ export const TextareaWithTools = ({
   maxLength,
   onPasteImage,
   disabled,
+  onTogglePreview,
 }: Props) => {
   const [isPreview, setIsPreview] = useState(false);
 
@@ -55,6 +59,11 @@ export const TextareaWithTools = ({
     }
   };
 
+  const handleTogglePreview = () => {
+    setIsPreview(!isPreview);
+    onTogglePreview && onTogglePreview();
+  };
+
   return (
     <div className={cn("", className)}>
       {isPreview ? (
@@ -78,7 +87,14 @@ export const TextareaWithTools = ({
         <Flex className="px-4">
           {!isPreview && <FileUploadButton onSelect={handleOnSelectImage} />}
         </Flex>
-        <PreviewButton isPreview={isPreview} setIsPreview={setIsPreview} />
+        <Toggle
+          aria-label="Toggle italic"
+          onClick={() => handleTogglePreview()}
+          pressed={isPreview}
+        >
+          <FaCheck className="mr-1" />
+          <span>プレビュー</span>
+        </Toggle>
       </Flex>
     </div>
   );

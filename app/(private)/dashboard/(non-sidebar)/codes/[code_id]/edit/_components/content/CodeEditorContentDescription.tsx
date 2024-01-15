@@ -6,6 +6,8 @@ import { useCodeEditor } from "@/app/(private)/dashboard/(non-sidebar)/codes/[co
 import { TextareaWithTools } from "@/src/components/organisms/TextareaWithTools";
 import { useUploadImage } from "@/src/hooks/useUploadImage";
 import { useAlert } from "@/src/hooks/useAlert";
+import { useCodeEditorFiles } from "../../_hooks/useCodeEditorFiles";
+import { useCodeEditorSelectedFile } from "../../_hooks/useCodeEditorSelectedFile";
 
 interface Props {
   className?: string;
@@ -15,6 +17,8 @@ export const CodeEditorContentDescription = ({ className }: Props) => {
   const { errorAlert } = useAlert();
   const { uploadImage, loading, startLoading, stopLoading } = useUploadImage();
   const { code, setDescription } = useCodeEditor();
+  const { selectedFile } = useCodeEditorSelectedFile();
+  const { updateFile } = useCodeEditorFiles();
 
   const onPasteImage = async (file: File) => {
     if (file) {
@@ -28,12 +32,18 @@ export const CodeEditorContentDescription = ({ className }: Props) => {
         startLoading();
         const imageUrl = await uploadImage(file);
         const markdownImage = `![image](${imageUrl})`;
-        return markdownImage
+        return markdownImage;
       } catch (e) {
         errorAlert("画像がアップロードできませんでした。", e);
       } finally {
         stopLoading();
       }
+    }
+  };
+
+  const onTogglePreview = () => {
+    if (selectedFile) {
+      updateFile(selectedFile);
     }
   };
 
@@ -47,6 +57,7 @@ export const CodeEditorContentDescription = ({ className }: Props) => {
       className={className}
       onPasteImage={onPasteImage}
       disabled={loading}
+      onTogglePreview={onTogglePreview}
     />
   );
 };
