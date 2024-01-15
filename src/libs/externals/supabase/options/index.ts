@@ -45,22 +45,16 @@ export const applyQueryOptions = (query: PostgrestFilterBuilder<any, any, any[],
         query = query.range(options.range.start, options.range.end);
     }
 
-    query = query.limit(options?.limit || 8);
-
-    return query;
-}
-
-// TODO 上に統合させる
-export const applyOrderBy = (query: PostgrestFilterBuilder<any, any, any[], unknown, unknown>, options?: QueryOptions) => {
     if (options?.order) {
         options.order.forEach(condition => {
             query = query.order(condition.field, { ascending: condition.ascending ?? true });
         });
     }
 
+    query = query.limit(options?.limit || 8);
+
     return query;
 }
-
 
 export const createEqConditions = (conditions: Array<{ field: string, value: any }>) => {
     return conditions.map(condition => ({ field: condition.field, value: condition.value }));

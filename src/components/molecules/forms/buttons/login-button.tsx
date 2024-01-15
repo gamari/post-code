@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../../atoms/buttons/button";
+import { Button } from "../../../atoms/forms/button";
 import Link from "next/link";
 
 export const LoginButton = () => {

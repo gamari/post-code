@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import Link from "next/link";
 
-import { Button } from "../../atoms/buttons/button";
+import { Button } from "../../../atoms/forms/button";
 import { cn } from "@/src/libs/utils";
 
 interface Props {

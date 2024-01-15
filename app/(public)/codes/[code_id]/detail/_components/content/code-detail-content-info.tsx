@@ -4,7 +4,7 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 import { Badge } from "@/src/components/atoms/badges/badge";
 import { CodeIcon } from "@/src/components/atoms/icons/code-icon";
 import { CodeDetail } from "@/src/types";
-import { MarkdownPreviewer } from "@/src/components/molecules/displays/markdown-previewer";
+import { MarkdownPreviewer } from "@/src/components/organisms/utils/previewer/MarkdownPreviewer";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { CodeTagList } from "@/src/components/organisms/tags/code-tag-list";
 import { DateInfo } from "@/src/components/organisms/date-info";

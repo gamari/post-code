@@ -1,6 +1,6 @@
 import React from "react";
 import { Center } from "@/src/components/atoms/containers/Center";
-import { BackButton } from "@/src/components/molecules/buttons/back-button";
+import { BackButton } from "@/src/components/molecules/forms/buttons/back-button";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (

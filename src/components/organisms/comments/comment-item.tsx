@@ -5,7 +5,7 @@ import { HDotIcon } from "../../atoms/icons/h-dot-icon";
 import { Avatar } from "../../molecules/avatar";
 import { Username } from "../../atoms/texts/username";
 import { DateString } from "../../atoms/texts/date-string";
-import { Button } from "../../atoms/buttons/button";
+import { Button } from "../../atoms/forms/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "../../ui/dropdown-menu";
 import { DeleteIcon } from "lucide-react";
-import { MarkdownPreviewer } from "../../molecules/displays/markdown-previewer";
+import { MarkdownPreviewer } from "../utils/previewer/MarkdownPreviewer";
 import Link from "next/link";
 
 interface Props {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Button } from "@/src/components/atoms/buttons/button";
+import { Button } from "@/src/components/atoms/forms/button";
 import { Input } from "@/src/components/atoms/forms/input";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { Modal } from "@/src/components/molecules/displays/Modal";

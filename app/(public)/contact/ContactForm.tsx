@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "@/src/components/atoms/forms/textarea";
 import { ErrorText } from "@/src/components/atoms/texts/error-text";
 import { Input } from "@/src/components/atoms/forms/input";
-import { Button } from "@/src/components/atoms/buttons/button";
+import { Button } from "@/src/components/atoms/forms/button";
 import { fetchCreateContact } from "@/src/libs/externals/supabase/queries/contacts";
 import { LinkText } from "@/src/components/molecules/displays/link-text";
 

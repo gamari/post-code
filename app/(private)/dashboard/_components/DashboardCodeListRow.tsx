@@ -3,8 +3,8 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-import { DeleteButton } from "@/src/components/molecules/buttons/delete-button";
-import { EditButton } from "@/src/components/molecules/buttons/edit-button";
+import { DeleteButton } from "@/src/components/molecules/forms/buttons/delete-button";
+import { EditButton } from "@/src/components/molecules/forms/buttons/edit-button";
 import { LinkText } from "@/src/components/molecules/displays/link-text";
 import { ToggleBudge } from "@/src/components/molecules/displays/toggle-budge";
 import { CodeDetail } from "@/src/types";

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
 
-import { Button } from "@/src/components/atoms/buttons/button";
+import { Button } from "@/src/components/atoms/forms/button";
 import {
   Dialog,
   DialogClose,

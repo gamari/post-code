@@ -1,6 +1,6 @@
 import { BaseProps } from "@/src/types/components";
 import React from "react";
-import { Typo } from "../../atoms/texts/typo";
+import { Typo } from "../../../atoms/texts/typo";
 import { cn } from "@/src/libs/utils";
 import Link from "next/link";
 

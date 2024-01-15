@@ -20,6 +20,14 @@ export const useCodeEditor = () => {
         });
     }
 
+    function addDescription(description: string) {
+        if (!code) return;
+        setCode({
+            ...code,
+            description: code.description + description
+        });
+    }
+
     function setIsPublic(isPublic: boolean) {
         if (!code) return;
         setCode({
@@ -61,6 +69,7 @@ export const useCodeEditor = () => {
         setLanguage,
         setTitle,
         addTag,
-        removeTag
+        removeTag,
+        addDescription
     }
 }

@@ -8,6 +8,7 @@ import { CodeDetail } from "./_components/code-detail";
 import { actionGetCodeById } from "@/src/actions/codes";
 import { CodeDetailCommentModalProvider } from "@/app/(public)/codes/[code_id]/detail/_contexts/CodeDetailCommentModalProvider";
 import { BottomContainerProvider } from "@/src/contexts/BottomContainerProvider";
+import { FilesProvider } from "@/src/contexts/FilesProvider";
 
 interface Props {
   params: {
@@ -46,9 +47,11 @@ const CodeDetailPage: NextPage<Props> = async ({ params: { code_id } }) => {
     <CodeDetailCommentListProvider comments={[]}>
       <CodeDetailProvider>
         <CodeDetailCommentModalProvider>
-          <BottomContainerProvider>
-            <CodeDetail codeId={code_id} />
-          </BottomContainerProvider>
+          <FilesProvider codeId={code_id}>
+            <BottomContainerProvider>
+              <CodeDetail codeId={code_id} />
+            </BottomContainerProvider>
+          </FilesProvider>
         </CodeDetailCommentModalProvider>
       </CodeDetailProvider>
     </CodeDetailCommentListProvider>

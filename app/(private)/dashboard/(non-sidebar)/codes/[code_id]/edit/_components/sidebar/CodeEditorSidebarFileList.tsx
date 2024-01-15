@@ -20,6 +20,7 @@ import { useCodeEditorSelectedFile } from "@/app/(private)/dashboard/(non-sideba
 import { useCodeEditorModalContext } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_contexts/CodeEditorModalProvider";
 import { useBottomContainer } from "@/src/hooks/useBottomContainer";
 import { useCodeEditorRenameModal } from "../../_hooks/modal/useCodeEditorRenameModal";
+import { useCodeEditor } from "../../_hooks/useCodeEditor";
 
 interface Props {
   className?: string;
@@ -29,6 +30,7 @@ export const CodeEditorSidebarFileList = ({ className }: Props) => {
   const { openContainer } = useBottomContainer();
   const { toggleRenameModal, setTargetFile } = useCodeEditorRenameModal();
 
+  const { addDescription } = useCodeEditor();
   const { files, updateFile } = useCodeEditorFiles();
   const { selectedFile, setSelectedFile } = useCodeEditorSelectedFile();
 
@@ -49,6 +51,13 @@ export const CodeEditorSidebarFileList = ({ className }: Props) => {
   const handleRename = (file: File) => {
     setTargetFile(file);
     toggleRenameModal();
+  };
+
+  const handleQuote = (file: File) => {
+    const text = `
+
+!file[${file.name}]`;
+    addDescription(text);
   };
 
   if (!files?.length) return <NoFiles />;
@@ -77,6 +86,14 @@ export const CodeEditorSidebarFileList = ({ className }: Props) => {
           <ContextMenuContent>
             <ContextMenuItem
               onClick={() => {
+                handleQuote(file);
+              }}
+              className="cursor-pointer hover:bg-gray-100"
+            >
+              引用
+            </ContextMenuItem>
+            <ContextMenuItem
+              onClick={() => {
                 handleRename(file);
               }}
               className="cursor-pointer hover:bg-gray-100"
@@ -89,7 +106,7 @@ export const CodeEditorSidebarFileList = ({ className }: Props) => {
                 e.stopPropagation();
                 onDeleteFile?.(file);
               }}
-              className="mt-3 cursor-pointer"
+              className="mt-2 cursor-pointer border-t"
             >
               <Typo className="text-red-500" text="削除" />
             </ContextMenuItem>

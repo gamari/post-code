@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { Button } from "@/src/components/atoms/buttons/button";
+import { Button } from "@/src/components/atoms/forms/button";
 import { useAlert } from "@/src/hooks/useAlert";
 import { useFormComment } from "@/src/hooks/comments/useFormComment";
 import { Heading } from "@/src/components/atoms/texts/heading";

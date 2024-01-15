@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { GoogleButton } from "@/src/components/molecules/buttons/google-button";
+import { GoogleButton } from "@/src/components/molecules/forms/buttons/google-button";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 
 export const GoogleSignupButton = () => {

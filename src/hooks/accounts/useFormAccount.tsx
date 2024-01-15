@@ -53,10 +53,12 @@ export const useFormAccount = (initUser: User) => {
   useEffect(() => {
     for (const key in initUser) {
       if (key in initUser) {
-        setValue(
-          key as keyof AccountFormValues,
-          initUser[key as keyof User] || ""
-        );
+        const value = initUser[key as keyof User];
+        if (typeof value === "boolean") {
+          setValue(key as keyof AccountFormValues, value ? "true" : "false");
+        } else {
+          setValue(key as keyof AccountFormValues, value || "");
+        }
       }
     }
   }, [initUser, setValue]);
@@ -65,7 +67,7 @@ export const useFormAccount = (initUser: User) => {
     if (!client) return;
 
     const user = await fetchUserByUsername(data.username, client);
-    
+
     if (user && user.id !== data.id) {
       throw new Error("既に存在するユーザー名です");
     }

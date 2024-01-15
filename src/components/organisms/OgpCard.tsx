@@ -1,7 +1,10 @@
-import { useLoading } from "@/src/hooks/useLoading";
+"use client";
+
 import React, { useEffect, useState } from "react";
-import { Flex } from "../atoms/containers/Flex";
 import Image from "next/image";
+
+import { useLoading } from "@/src/hooks/useLoading";
+import { Flex } from "../atoms/containers/Flex";
 import { Skeleton } from "../molecules/displays/skeleton";
 import { CodeIcon } from "../atoms/icons/code-icon";
 import Link from "next/link";
@@ -22,14 +25,29 @@ export const OgpCard = ({ url }: Props) => {
   const [data, setData] = useState<OgpData>();
 
   useEffect(() => {
+    if (data) return;
     startLoading();
-    fetch(`/api/ogp?url=${encodeURIComponent(url)}`)
-      .then((payload) => payload.json())
+    fetch(`/api/ogp?url=${encodeURIComponent(url)}`, {
+      cache: "force-cache",
+      next: {
+        revalidate: 3600,
+      },
+    })
+      .then((payload) => {
+        if (payload.ok) {
+          return payload.json();
+        } else {
+          throw new Error("OGP情報取得に失敗しました。");
+        }
+      })
       .then((data) => {
         setData(data);
       })
       .finally(() => {
         stopLoading();
+      })
+      .catch((e) => {
+        setData(undefined);
       });
   }, [url]);
 
@@ -43,23 +61,31 @@ export const OgpCard = ({ url }: Props) => {
   return (
     <Link href={data?.url || ""} className="w-full">
       <Flex className="relative border rounded-md" gap={12}>
-        <div>
-          {data?.image && (
-            <Image
-              alt="no-image"
-              src={data?.image || ""}
-              width={200}
-              height={200}
-              // className="object-contain"
-              className="object-cover"
-            />
-          )}
-        </div>
-        <Flex gap={8} direction="column" className="p-4">
-          <div className="text-lg text-gray-600 font-bold">{data?.title}</div>
-          <div className="text-sm text-gray-500">{data?.description}</div>
-        </Flex>
-
+        {data ? (
+          <>
+            <div>
+              {data?.image && (
+                <Image
+                  alt="no-image"
+                  src={data?.image || ""}
+                  width={200}
+                  height={200}
+                  className="object-cover"
+                />
+              )}
+            </div>
+            <Flex gap={8} direction="column" className="p-4">
+              <div className="text-lg text-gray-600 font-bold">
+                {data?.title}
+              </div>
+              <div className="text-sm text-gray-500">{data?.description}</div>
+            </Flex>
+          </>
+        ) : (
+          <div className="p-4">
+            このリンクの非公開または存在しないため表示できません
+          </div>
+        )}
         <Flex
           direction="row"
           gap={4}

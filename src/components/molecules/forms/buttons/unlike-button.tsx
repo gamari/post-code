@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../../atoms/buttons/button";
+import { Button } from "../../../atoms/forms/button";
 import { MdOutlineStar } from "react-icons/md";
 import { cn } from "@/src/libs/utils";
 

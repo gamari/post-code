@@ -3,7 +3,7 @@
 import React from "react";
 
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
-import { GoogleButton } from "@/src/components/molecules/buttons/google-button";
+import { GoogleButton } from "@/src/components/molecules/forms/buttons/google-button";
 
 export const GoogleLoginButton = () => {
   const { client } = useSupabase();

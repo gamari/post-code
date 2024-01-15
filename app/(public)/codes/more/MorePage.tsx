@@ -8,6 +8,7 @@ import { Heading } from "@/src/components/atoms/texts/heading";
 import { DownIcon } from "@/src/components/atoms/icons/down-icon";
 import { Center } from "@/src/components/atoms/containers/Center";
 import { LoadingContainer } from "@/src/components/molecules/loding-container";
+import { CodePanelListWithAds } from "@/src/components/organisms/codes/panel/CodePanelListWithAds";
 
 export const MorePage = () => {
   const { codeList, fetchMoreCodeList, loading, isDone } =
@@ -19,6 +20,7 @@ export const MorePage = () => {
         最新コード一覧
       </Heading>
 
+      {/* <CodePanelListWithAds codes={codeList} /> */}
       <CodePanelList codes={codeList} />
 
       {!isDone && (

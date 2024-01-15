@@ -3,8 +3,8 @@
 import React from "react";
 import Link from "next/link";
 
-import { LeftIcon } from "../../atoms/icons/left-icon";
-import { Typo } from "../../atoms/texts/typo";
+import { LeftIcon } from "../../../atoms/icons/left-icon";
+import { Typo } from "../../../atoms/texts/typo";
 import { useRouter } from "next/navigation";
 
 interface Props {

@@ -1,5 +1,5 @@
 import React from "react";
-import { GithubIcon } from "../../atoms/icons/github-icon";
+import { GithubIcon } from "../../../atoms/icons/github-icon";
 import { cn } from "@/src/libs/utils";
 
 interface Props {

@@ -5,7 +5,7 @@ import React from "react";
 import { User } from "@/src/types";
 import { Card, CardHeader } from "@/src/components/molecules/displays/card";
 import { Typo } from "@/src/components/atoms/texts/typo";
-import { Button } from "@/src/components/atoms/buttons/button";
+import { Button } from "@/src/components/atoms/forms/button";
 import { cn } from "@/src/libs/utils";
 import {
   AccountFormValues,

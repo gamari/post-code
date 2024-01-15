@@ -8,7 +8,7 @@ import { useModal } from "@/src/hooks/useModal";
 import { Toggle } from "@/src/components/ui/toggle";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { Input } from "@/src/components/atoms/forms/input";
-import { Button } from "@/src/components/atoms/buttons/button";
+import { Button } from "@/src/components/atoms/forms/button";
 import { useRouter } from "next/navigation";
 
 export const HeaderSearch = () => {

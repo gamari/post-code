@@ -2,7 +2,7 @@ import { Notification } from "@/src/types";
 import { NOTIFICATION_TABLE } from "@/src/libs/constants/tables";
 import { NotificationDetail } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { QueryOptions, applyOrderBy, applyQueryOptions } from "../options";
+import { QueryOptions, applyQueryOptions } from "../options";
 import { fetchAuthUser } from "./users";
 import { convertPostgretErrorToAppErrorMessage } from "../errors";
 
@@ -20,7 +20,6 @@ export const fetchNotificationList = async (client: SupabaseClient, options?: Qu
         `);
 
     query = applyQueryOptions(query, options);
-    query = applyOrderBy(query, options);
 
     const { data, error } = await query;
 

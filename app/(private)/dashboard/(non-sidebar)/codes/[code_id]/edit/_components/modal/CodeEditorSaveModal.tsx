@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import { length } from "@/src/libs/strings";
 import { Flex } from "@/src/components/atoms/containers/Flex";
-import { SaveButton } from "@/src/components/molecules/buttons/save-button";
+import { SaveButton } from "@/src/components/molecules/forms/buttons/save-button";
 import { Modal } from "@/src/components/molecules/displays/Modal";
 import { CODES_DETAIL_URL } from "@/src/libs/constants/urls";
 import { CodeEditorSaveEditor } from "../save/CodeEditorSaveEditor";
@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import { useAlert } from "@/src/hooks/useAlert";
 import { useCodeEditor } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditor";
 import { useSaveCodeEditor } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useSaveCodeEditor";
-import { Button } from "@/src/components/atoms/buttons/button";
+import { Button } from "@/src/components/atoms/forms/button";
 import { useCodeEditorSaveModal } from "../../_hooks/modal/useCodeEditorSaveModal";
 
 export const CodeEditorSaveModal = () => {

@@ -1,5 +1,5 @@
 import { TopFooter } from "@/app/_components/top-footer";
-import { MarkdownPreviewer } from "@/src/components/molecules/displays/markdown-previewer";
+import { MarkdownPreviewer } from "@/src/components/organisms/utils/previewer/MarkdownPreviewer";
 import { APP_TITLE } from "@/src/libs/constants";
 import React from "react";
 

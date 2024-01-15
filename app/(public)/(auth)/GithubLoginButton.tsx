@@ -1,4 +1,4 @@
-import { GithubButton } from "@/src/components/molecules/buttons/github-button";
+import { GithubButton } from "@/src/components/molecules/forms/buttons/github-button";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import React from "react";
 

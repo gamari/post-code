@@ -38,7 +38,6 @@ export async function POST(request: NextRequest, response: NextResponse) {
         }
 
         const {
-            fileName,
             url
         } = await fetchUploadImageToStorage(file, userId, adminClient);
 

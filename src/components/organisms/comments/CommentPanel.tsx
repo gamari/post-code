@@ -4,14 +4,14 @@ import React from "react";
 
 import { CommentDetail } from "@/src/types";
 import { BaseProps } from "@/src/types/components";
-import { LinkCard } from "../../molecules/cards/LinkCard";
+import { LinkCard } from "../../molecules/displays/LinkCard";
 import { CODES_DETAIL_URL } from "@/src/libs/constants/urls";
 import { Typo } from "../../atoms/texts/typo";
 import { Avatar } from "../../molecules/avatar";
 import { Heading } from "../../atoms/texts/heading";
 import { DateIcon } from "../../atoms/icons/date-icon";
 import { CodeIcon } from "../../atoms/icons/code-icon";
-import { MarkdownPreviewer } from "../../molecules/displays/markdown-previewer";
+import { MarkdownPreviewer } from "../utils/previewer/MarkdownPreviewer";
 import { TimeAgo } from "../../molecules/time-ago";
 import { Flex } from "../../atoms/containers/Flex";
 import { useLanguageList } from "@/src/hooks/languages/useLanguageList";

@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 
 import { actionLogin } from "@/src/actions/users";
-import { Button } from "@/src/components/atoms/buttons/button";
-import { LinkButton } from "@/src/components/molecules/buttons/link-button";
-import { BackButton } from "@/src/components/molecules/buttons/back-button";
+import { Button } from "@/src/components/atoms/forms/button";
+import { LinkButton } from "@/src/components/molecules/forms/buttons/link-button";
+import { BackButton } from "@/src/components/molecules/forms/buttons/back-button";
 import { LabelInput } from "@/src/components/molecules/forms/LabelInput";
 import { LoginFormErrorMessage } from "./login-form-error-message";
 import { Heading } from "@/src/components/atoms/texts/heading";

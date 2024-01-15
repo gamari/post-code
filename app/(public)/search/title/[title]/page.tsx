@@ -16,7 +16,7 @@ const Page = async ({ params: { title } }: Props) => {
   const codeList = await actionGetCodeListByTitle(decodedTitle);
 
   return (
-    <SearchSection className="max-w-4xl">
+    <SearchSection className="max-w-7xl">
       <Heading className="mb-6">タイトル検索: {decodedTitle}</Heading>
 
       {codeList.length === 0 && (

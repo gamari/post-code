@@ -1,5 +1,5 @@
-export const SEARCH_LIMIT = 6;
-export const TOP_LIMIT = 6;
+export const SEARCH_LIMIT = 8;
+export const TOP_LIMIT = 8;
 
 // ファイル
 export const FILE_TEXT_LIMIT = 14;

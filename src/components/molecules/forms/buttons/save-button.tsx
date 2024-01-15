@@ -1,6 +1,6 @@
 import React from "react";
 import { Loader2, SaveIcon } from "lucide-react";
-import { Button } from "../../atoms/buttons/button";
+import { Button } from "../../../atoms/forms/button";
 
 interface Props {
   label: string;
