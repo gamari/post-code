@@ -67,7 +67,7 @@ export const TextareaWithTools = ({
   return (
     <div className={cn("", className)}>
       {isPreview ? (
-        <div className="border p-6 h-[400px] overflow-scroll scroll-auto bg-white">
+        <div className="border p-6 h-[600px] overflow-scroll scroll-auto bg-white">
           <MarkdownPreviewer content={value || ""} />
         </div>
       ) : (

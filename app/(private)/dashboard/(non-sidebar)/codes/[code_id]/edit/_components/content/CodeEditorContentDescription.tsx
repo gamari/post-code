@@ -51,7 +51,7 @@ export const CodeEditorContentDescription = ({ className }: Props) => {
       value={code?.description || ""}
       setValue={setDescription}
       placeholder="全体を通したコード解説（マークダウン形式）"
-      rows={20}
+      rows={28}
       maxLength={15000}
       className={className}
       onPasteImage={onPasteImage}
