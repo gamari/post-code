@@ -13,7 +13,7 @@ export const MarkdownPreviewerQuateFile = ({ filename }: Props) => {
   if (!file)
     return (
       <div className="text-sky-700 p-4 rounded-md border my-4">
-        <div>[{filename}]が存在しません。</div>
+        <div>[{filename}]を引用</div>
       </div>
     );
 
