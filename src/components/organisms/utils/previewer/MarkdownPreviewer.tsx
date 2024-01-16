@@ -11,13 +11,14 @@ import rehypeSanitize from "rehype-sanitize";
 
 import { MarkdownPreviewerATag } from "./MarkdownPreviewerATag";
 import { MarkdownPreviewerQuateFile } from "./MarkdownPreviewerQuateFile";
+import remarkBreaks from "remark-breaks"
 
 export const MarkdownPreviewer = ({ content }: { content: string }) => {
   return (
     <div className="markdown-body w-full">
       <ReactMarkdown
         children={content}
-        remarkPlugins={[remarkGfm]}
+        remarkPlugins={[remarkGfm, remarkBreaks]}
         rehypePlugins={[rehypeSanitize]}
         className="markdown-body"
         components={{

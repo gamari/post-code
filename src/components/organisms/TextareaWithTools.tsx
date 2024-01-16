@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { cn } from "@/src/libs/utils";
 import { MarkdownPreviewer } from "./utils/previewer/MarkdownPreviewer";

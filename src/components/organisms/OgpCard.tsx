@@ -83,7 +83,7 @@ export const OgpCard = ({ url }: Props) => {
           </>
         ) : (
           <div className="p-4">
-            このリンクの非公開または存在しないため表示できません
+            このリンクは非公開または存在しないため表示できません
           </div>
         )}
         <Flex
