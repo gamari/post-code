@@ -20,7 +20,11 @@ export const DashboardSidebar = async () => {
 
           <Flex alignItems="center" gap={4} className="p-2 text-gray-700">
             <div>
-              <Avatar iconType={user?.icon_type} size="sm" />
+              <Avatar
+                iconType={user?.icon_type}
+                avatarUrl={user?.avatar_url}
+                size="sm"
+              />
             </div>
             <div>{user?.username}</div>
           </Flex>

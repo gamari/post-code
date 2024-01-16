@@ -19,7 +19,7 @@ export const UserInfoCard = ({ user, className }: Props) => {
     <div className={cn("rounded-md bg-white px-5 py-6 whitespace-pre-wrap", className)}>
       <div className="flex flex-row gap-2 items-center">
         <Link href={`/accounts/${user?.id}`}>
-          <Avatar size="md" iconType={user?.icon_type} />
+          <Avatar size="md" iconType={user?.icon_type} avatarUrl={user?.avatar_url} />
         </Link>
         <Typo
           text={user?.username}

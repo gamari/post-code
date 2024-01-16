@@ -49,7 +49,9 @@ export const fetchCreateComment = async (codeId: number, comment: string, client
     .select(`
           *,
           ${PUBLIC_USER_TABLE}!user_id(
-            username
+            username,
+            icon_type,
+            avatar_url
           )
         `)
     .maybeSingle();

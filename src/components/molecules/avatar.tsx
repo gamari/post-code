@@ -13,6 +13,7 @@ interface Props extends IconProps {
   src?: string | null;
   className?: string;
   iconType?: string | "panda" | "rabbit" | "cat" | "walf" | null | "";
+  avatarUrl?: string | null;
 }
 
 export const Avatar = ({
@@ -20,8 +21,28 @@ export const Avatar = ({
   size = "md",
   className = "",
   iconType,
+  avatarUrl,
 }: Props) => {
   // TODO リファクタリングする
+
+  if (avatarUrl) {
+    return (
+      <Image
+        src={avatarUrl}
+        width={40}
+        height={40}
+        alt="avatar"
+        className={cn(
+          "rounded-full",
+          size == "sm" && "h-5 w-5",
+          size == "md" && "h-9 w-9",
+          size == "lg" && "h-12 w-12",
+          className
+        )}
+      />
+    );
+  }
+
   if (iconType) {
     let width = 40;
     let height = 40;

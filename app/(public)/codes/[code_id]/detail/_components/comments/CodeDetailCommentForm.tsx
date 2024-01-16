@@ -37,6 +37,7 @@ export const CodeCommentForm = ({ codeId, onSubmit, className }: Props) => {
       }
 
       const retComment = await saveComment(codeId);
+      console.log(retComment);
 
       addCommentList?.([...newComments, retComment]);
       setComment("");
@@ -58,6 +59,7 @@ export const CodeCommentForm = ({ codeId, onSubmit, className }: Props) => {
         onSubmit={handleCreateComment}
         rows={16}
         placeholder="コメントを入力"
+        height={400}
       />
 
       <div className="mt-3">

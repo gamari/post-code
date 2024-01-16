@@ -20,6 +20,7 @@ interface Props {
   onPasteImage?: (file: File) => Promise<string | undefined>;
   disabled?: boolean;
   onTogglePreview?: () => void;
+  height?: number;
 }
 
 export const TextareaWithTools = ({
@@ -33,6 +34,7 @@ export const TextareaWithTools = ({
   onPasteImage,
   disabled,
   onTogglePreview,
+  height = 600,
 }: Props) => {
   const [isPreview, setIsPreview] = useState(false);
 
@@ -67,7 +69,12 @@ export const TextareaWithTools = ({
   return (
     <div className={cn("", className)}>
       {isPreview ? (
-        <div className="border p-6 h-[600px] overflow-scroll scroll-auto bg-white">
+        <div
+          className="border p-6 overflow-scroll scroll-auto bg-white"
+          style={{
+            height: height,
+          }}
+        >
           <MarkdownPreviewer content={value || ""} />
         </div>
       ) : (

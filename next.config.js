@@ -7,6 +7,12 @@ const nextConfig = {
             },
             {
                 hostname: 'post-codes.net'
+            },
+            {
+                hostname: "uaxktbjxsslbhswjgqog.supabase.co"
+            },
+            {
+                hostname: "glvuhnzragiilxzudydl.supabase.co"
             }
         ],
     },
