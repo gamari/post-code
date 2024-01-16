@@ -10,7 +10,12 @@ export const MarkdownPreviewerQuateFile = ({ filename }: Props) => {
   const { getFileByFilename } = useFiles();
   const file = getFileByFilename(filename);
 
-  if (!file) return <div className="text-sky-700 p-4 rounded-md border">対象のファイルが存在しません。</div>;
+  if (!file)
+    return (
+      <div className="text-sky-700 p-4 rounded-md border my-4">
+        <div>[{filename}]を引用</div>
+      </div>
+    );
 
   return <FileViewer file={file} />;
 };

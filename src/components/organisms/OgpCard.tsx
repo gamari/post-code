@@ -8,9 +8,11 @@ import { Flex } from "../atoms/containers/Flex";
 import { Skeleton } from "../molecules/displays/skeleton";
 import { CodeIcon } from "../atoms/icons/code-icon";
 import Link from "next/link";
+import { cn } from "@/src/libs/utils";
 
 interface Props {
   url: string;
+  className?: string;
 }
 
 interface OgpData {
@@ -20,7 +22,7 @@ interface OgpData {
   image: string;
 }
 
-export const OgpCard = ({ url }: Props) => {
+export const OgpCard = ({ url, className }: Props) => {
   const { loading, startLoading, stopLoading } = useLoading();
   const [data, setData] = useState<OgpData>();
 
@@ -53,13 +55,13 @@ export const OgpCard = ({ url }: Props) => {
 
   if (loading)
     return (
-      <div className="border rounded-md">
+      <div className={cn("border rounded-md", className)}>
         <Skeleton rows={2} />
       </div>
     );
 
   return (
-    <Link href={data?.url || ""} className="w-full">
+    <Link href={data?.url || ""} className={cn("w-full", className)}>
       <Flex className="relative border rounded-md" gap={12}>
         {data ? (
           <>
@@ -83,7 +85,7 @@ export const OgpCard = ({ url }: Props) => {
           </>
         ) : (
           <div className="p-4">
-            このリンクの非公開または存在しないため表示できません
+            このリンクは非公開または存在しないため表示できません
           </div>
         )}
         <Flex

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 import { User } from "@/src/types";
 import { Card, CardHeader } from "@/src/components/molecules/displays/card";
@@ -18,6 +19,8 @@ import { SubmitHandler } from "react-hook-form";
 import { ErrorText } from "../../atoms/texts/error-text";
 import { Textarea } from "../../atoms/forms/textarea";
 import SelectAvatarList from "@/app/(private)/dashboard/(sidebar)/account/SelectAvatarList";
+import { Flex } from "../../atoms/containers/Flex";
+import { CloseIcon } from "../../atoms/icons/close-icon";
 
 interface Props {
   user: User;
@@ -27,8 +30,17 @@ interface Props {
 // TODO fix types
 export const AccountForm = ({ user: initUser, className = "" }: Props) => {
   const { infoAlert, errorAlert } = useAlert();
-  const { register, handleSubmit, errors, saveUser, iconType, selectIcon } =
-    useFormAccount(initUser);
+  const {
+    register,
+    handleSubmit,
+    errors,
+    saveUser,
+    iconType,
+    selectIcon,
+    avatarIcon,
+    setAvatarIcon,
+    removeAvatarUrl
+  } = useFormAccount(initUser);
 
   const handleUpdate: SubmitHandler<AccountFormValues> = async (data) => {
     try {
@@ -37,6 +49,19 @@ export const AccountForm = ({ user: initUser, className = "" }: Props) => {
     } catch (e) {
       errorAlert("更新できませんでした", e);
     }
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files ? event.target.files[0] : null;
+    setAvatarIcon(file);
+  };
+
+  const handleFileRemove = () => {
+    setAvatarIcon(null);
+  };
+
+  const handleRemoveAvatarIcon = () => {
+    removeAvatarUrl();
   };
 
   return (
@@ -82,7 +107,53 @@ export const AccountForm = ({ user: initUser, className = "" }: Props) => {
           <div>
             <Heading type="h4">アイコン</Heading>
 
-            <SelectAvatarList iconType={iconType} selectIcon={selectIcon} />
+            <div className="mt-2">
+              {initUser?.avatar_url ? (
+                <Flex gap={8} direction="row" alignItems="center">
+                  <Image
+                    src={initUser?.avatar_url}
+                    width={40}
+                    height={40}
+                    alt="avatar"
+                  />
+                  <CloseIcon
+                    onClick={handleRemoveAvatarIcon}
+                    className="cursor-pointer"
+                  />
+                </Flex>
+              ) : (
+                <>
+                  {" "}
+                  {avatarIcon ? (
+                    <Flex gap={8} direction="row" alignItems="center">
+                      <Image
+                        src={URL.createObjectURL(avatarIcon)}
+                        width={40}
+                        height={40}
+                        alt="avatar"
+                      />
+                      <CloseIcon
+                        onClick={handleFileRemove}
+                        className="cursor-pointer"
+                      />
+                    </Flex>
+                  ) : (
+                    <div>
+                      <SelectAvatarList
+                        iconType={iconType}
+                        selectIcon={selectIcon}
+                      />
+
+                      <input
+                        type="file"
+                        onChange={handleFileChange}
+                        className="mt-2"
+                      />
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
           </div>
 
           <Button type="submit" className="mt-3">

@@ -15,7 +15,6 @@ export const useUploadImage = () => {
         });
         if (!res.ok) {
             const json = await res.json();
-            console.log(json);
             const { message } = json;
 
             if (message) {

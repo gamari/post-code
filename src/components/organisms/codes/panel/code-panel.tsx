@@ -42,7 +42,7 @@ const CodePanelFooter = ({ code }: { code: CodeDetail }) => {
     <div className="flex flex-row justify-between w-full items-center text-gray-600">
       <div className="flex flex-row gap-2">
         <div className="flex flex-row items-center gap-2">
-          <Avatar size="sm" iconType={code?.user?.icon_type} />
+          <Avatar size="sm" iconType={code?.user?.icon_type} avatarUrl={code?.user?.avatar_url} />
           <Typo
             text={code?.user?.username}
             size="md"

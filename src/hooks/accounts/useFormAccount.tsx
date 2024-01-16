@@ -11,6 +11,7 @@ import {
   fetchUserByUsername,
 } from "@/src/libs/externals/supabase/queries/users";
 import { User } from "@/src/types";
+import { useUploadImage } from "../useUploadImage";
 
 const userSchema = z.object({
   id: z.string().optional(),
@@ -27,15 +28,19 @@ export interface AccountFormValues {
   username: string;
   description?: string;
   x_url?: string;
+  avatar_url?: string | null;
 }
 
 export const useFormAccount = (initUser: User) => {
   const router = useRouter();
   const { client } = useSupabase();
+  const { uploadImage } = useUploadImage();
 
   const [iconType, setIconType] = useState<string | null>(
     initUser?.icon_type || null
   );
+  const [avatarIcon, setAvatarIcon] = useState<File | null>();
+
   const selectIcon = (type: string | null) => {
     setIconType(type);
   };
@@ -72,11 +77,33 @@ export const useFormAccount = (initUser: User) => {
       throw new Error("既に存在するユーザー名です");
     }
 
-    const updatedData = { ...data, icon_type: iconType } as any;
+    let url: string | undefined;
+    if (avatarIcon) {
+      url = await uploadImage(avatarIcon);
+    }
+
+    const updatedData = {
+      ...data,
+      icon_type: iconType,
+      avatar_url: url,
+    } as any;
 
     await fetchUpdateUser(updatedData, client);
     router.refresh();
   };
+
+  const removeAvatarUrl = async () => {
+    if (!client) return;
+
+    const updatedData = {
+      ...initUser,
+      avatar_url: null,
+    } as any;
+
+    await fetchUpdateUser(updatedData, client);
+    setValue("avatar_url", null);
+    router.refresh();
+  }
 
   return {
     register,
@@ -85,5 +112,8 @@ export const useFormAccount = (initUser: User) => {
     saveUser,
     iconType,
     selectIcon,
+    avatarIcon,
+    setAvatarIcon,
+    removeAvatarUrl
   };
 };

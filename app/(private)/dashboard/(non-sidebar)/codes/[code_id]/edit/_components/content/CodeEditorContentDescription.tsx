@@ -15,7 +15,7 @@ interface Props {
 
 export const CodeEditorContentDescription = ({ className }: Props) => {
   const { errorAlert } = useAlert();
-  const { uploadImage, loading, startLoading, stopLoading } = useUploadImage();
+  const { uploadImage, loading } = useUploadImage();
   const { code, setDescription } = useCodeEditor();
   const { selectedFile } = useCodeEditorSelectedFile();
   const { updateFile } = useCodeEditorFiles();
@@ -29,14 +29,13 @@ export const CodeEditorContentDescription = ({ className }: Props) => {
           return;
         }
 
-        startLoading();
         const imageUrl = await uploadImage(file);
         const markdownImage = `![image](${imageUrl})`;
         return markdownImage;
       } catch (e) {
         errorAlert("画像がアップロードできませんでした。", e);
       } finally {
-        stopLoading();
+        // 
       }
     }
   };
@@ -52,7 +51,7 @@ export const CodeEditorContentDescription = ({ className }: Props) => {
       value={code?.description || ""}
       setValue={setDescription}
       placeholder="全体を通したコード解説（マークダウン形式）"
-      rows={20}
+      rows={28}
       maxLength={15000}
       className={className}
       onPasteImage={onPasteImage}

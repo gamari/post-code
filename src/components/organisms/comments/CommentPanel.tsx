@@ -48,7 +48,7 @@ export const CommentPanel = ({ comment }: Props) => {
         className=" text-gray-600 mt-4 px-2"
       >
         <Flex alignItems="center" gap={4}>
-          <Avatar size="sm" iconType={comment?.user?.icon_type} />
+          <Avatar size="sm" iconType={comment?.user?.icon_type} avatarUrl={comment?.user?.avatar_url} />
           <Typo text={comment?.user?.username} size="md" />
         </Flex>
         <Flex gap={4}>
