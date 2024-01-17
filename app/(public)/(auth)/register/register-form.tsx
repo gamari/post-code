@@ -25,10 +25,6 @@ export const RegisterForm = ({ errorStatus }: Props) => {
   const [error, setError] = useState("");
   const { loading, startLoading, stopLoading } = useLoading();
 
-  useEffect(() => {
-    console.log(process.env.NEXT_PUBLIC_BASE_URL);
-  }, [])
-
   return (
     <Flex
       direction="column"
