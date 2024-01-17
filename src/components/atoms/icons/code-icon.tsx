@@ -6,11 +6,11 @@ import { Logo } from "../../molecules/logo";
 import { SiGoland, SiJavascript, SiTypescript } from "react-icons/si";
 import { cn } from "@/src/libs/utils";
 import { TbFileTypeSql } from "react-icons/tb";
-import { getIconSizeClassName } from "@/src/libs/components";
+import { IconSize, getIconSizeClassName } from "@/src/libs/components";
 
 interface Props {
   fileType?: FileType | null | string;
-  size?: "sm" | "md" | "lg" | "xl";
+  size?: IconSize;
 }
 
 export const CodeIcon = ({ fileType, size = "md" }: Props) => {

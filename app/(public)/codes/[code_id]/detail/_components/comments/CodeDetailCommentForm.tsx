@@ -58,9 +58,10 @@ export const CodeCommentForm = ({ codeId, onSubmit, className }: Props) => {
         className="mb-3"
         onSubmit={handleCreateComment}
         rows={16}
-        placeholder="コメントを入力"
+        placeholder="コメントを入力(...5000)"
         height={400}
         hiddenTools={true}
+        maxLength={5000}
       />
 
       <div className="mt-3">

@@ -32,7 +32,7 @@ export const CodeDetailShareButton = ({ code }: Props) => {
   }, []);
 
   const createShareUrl = () => {
-    const text = code.title + " ";
+    const text = code.title + " " + "#PostCode ";
     const url = baseUrl + pathname;
     const xUrl =
       "https://twitter.com/intent/tweet?text=" +
