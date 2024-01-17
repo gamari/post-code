@@ -10,8 +10,10 @@ interface Props {
 }
 
 const Page = ({ params: { code } }: Props) => {
+  // decode
+  code = decodeURIComponent(code);
   return (
-    <SearchSection className="max-w-7xl">
+    <SearchSection className="max-w-7xl px-6">
       <SearchCodeResult code={code} />
     </SearchSection>
   );

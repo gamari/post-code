@@ -153,7 +153,6 @@ export const fetchCodeListByFileCode = async (fileCode: string, client: Supabase
     const pageLimit = SEARCH_LIMIT;
     const start = (page - 1) * pageLimit;
     const end = page * pageLimit;
-    console.log("start", start, "end", end);
     let query = client
         .from(FILE_TABLE)
         .select(`

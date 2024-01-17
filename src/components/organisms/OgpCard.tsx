@@ -61,7 +61,7 @@ export const OgpCard = ({ url, className }: Props) => {
     );
 
   return (
-    <Link href={data?.url || ""} className={cn("w-full", className)}>
+    <Link href={data?.url || url || ""} className={cn("w-full", className)}>
       <Flex className="relative border rounded-md" gap={12}>
         {data ? (
           <>
@@ -85,7 +85,8 @@ export const OgpCard = ({ url, className }: Props) => {
           </>
         ) : (
           <div className="p-4">
-            このリンクは非公開または存在しないため表示できません
+            <div>このリンクは非公開または存在しないため表示できません</div>
+            <div className="text-sm">({url})</div>
           </div>
         )}
         <Flex
