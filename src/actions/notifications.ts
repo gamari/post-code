@@ -1,4 +1,3 @@
-import { FaLess } from "react-icons/fa6";
 import { getServerClient } from "../libs/externals/supabase/server-client";
 import { createEqCondition, createOrderCondition } from "../libs/externals/supabase/options";
 import { fetchNotificationList, fetchUpdateNotification } from "../libs/externals/supabase/queries/notifications";
@@ -26,7 +25,9 @@ export const actionUpdateNotificationDone = async (notifications: NotificationDe
         return {
             ...notification,
             is_checked: true,
-            comment: undefined
+            comment_id: notification.comment?.id,
+            comment: undefined,
+            comments: undefined
         }
     });
 

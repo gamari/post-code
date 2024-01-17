@@ -22,7 +22,7 @@ export const NotificationCard = ({ notification }: Props) => {
           <div>
             {comment?.user?.username}さんが【
             <Link href={`/codes/${comment?.code?.id}/detail`}>
-              {comment?.code.title}
+              {comment?.code?.title}
             </Link>】にコメントをしました。
           </div>
 

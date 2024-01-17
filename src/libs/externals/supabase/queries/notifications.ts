@@ -1,5 +1,5 @@
 import { Notification } from "@/src/types";
-import { NOTIFICATION_TABLE } from "@/src/libs/constants/tables";
+import { CODE_TABLE, COMMENT_TABLE, NOTIFICATION_TABLE, PUBLIC_USER_TABLE } from "@/src/libs/constants/tables";
 import { NotificationDetail } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { QueryOptions, applyQueryOptions } from "../options";
@@ -12,10 +12,10 @@ export const fetchNotificationList = async (client: SupabaseClient, options?: Qu
         .from(NOTIFICATION_TABLE)
         .select(`
             *,
-            comment:comment_id(
+            ${COMMENT_TABLE}!comment_id(
                 *,
-                user:user_id(*),
-                code:code_id(*)
+                ${CODE_TABLE}!code_id(*),
+                ${PUBLIC_USER_TABLE}!user_id(*)
             )
         `);
 
@@ -25,7 +25,16 @@ export const fetchNotificationList = async (client: SupabaseClient, options?: Qu
 
     if (error) throw new Error(convertPostgretErrorToAppErrorMessage(error));
 
-    return data as NotificationDetail[];
+    return data.map((notify) => {
+        return {
+            ...notify,
+            comment: {
+                ...notify?.comments,
+                user: notify?.comments?.public_users,
+                code: notify?.comments?.codes
+            }
+        }
+    }) as NotificationDetail[];
 }
 
 // Check
