@@ -15,7 +15,10 @@ export const RegisterFormErrorMessage = ({ status }: Props) => {
     return <ErrorMessage message={"確認用パスワードが間違っています"} />;
 
   if (status == "3")
-    return <ErrorMessage message={"パスワードは6文字以上にしてください。"} />;
+    return <ErrorMessage message={"パスワードは6文字以上にしてください"} />;
+  
+  if (status == "4")
+    return <ErrorMessage message={"登録情報は空にできません"} />;
 
   if (status == "9")
     return <ErrorMessage message={"ユーザー登録に失敗しました"} />;

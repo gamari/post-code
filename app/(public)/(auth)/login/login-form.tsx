@@ -14,6 +14,7 @@ import { Flex } from "@/src/components/atoms/containers/Flex";
 import { Center } from "@/src/components/atoms/containers/Center";
 import { useLoading } from "@/src/hooks/useLoading";
 import { GithubLoginButton } from "../GithubLoginButton";
+import { Input } from "@/src/components/atoms/forms/input";
 
 interface Props {
   errorStatus: string;
@@ -47,24 +48,33 @@ export const LoginForm = ({ errorStatus }: Props) => {
             <Heading>ログイン画面</Heading>
           </Center>
 
-          <Flex direction="column" className="mt-4" gap={8}>
-            <LabelInput
-              type="email"
-              id="email"
-              name="email"
-              label="メールアドレス"
-              placeholder="taro@example.com"
-              autocomplete="email"
+          <div className="w-full">
+            <Heading type="h4" className="mb-1">
+              メールアドレス
+            </Heading>
+            <Input
+              type={"email"}
+              id={"email"}
+              name={"email"}
+              placeholder={"postcode@example.com"}
+              autoComplete={"email"}
+              className="shadow-none"
             />
-            <LabelInput
-              type="password"
+          </div>
+
+          <div className="w-full">
+            <Heading type="h4" className="mb-1">
+              パスワード
+            </Heading>
+            <Input
               id="password"
               name="password"
-              label="パスワード"
-              placeholder="pasword"
-              autocomplete="password"
+              type="password"
+              placeholder={"password"}
+              autoComplete={"password"}
+              className="shadow-none"
             />
-          </Flex>
+          </div>
 
           <Flex direction="column" gap={12} className="mt-3">
             <Button type="submit" className="w-full mt-4" disabled={loading}>

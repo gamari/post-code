@@ -46,22 +46,34 @@ export const RegisterForm = ({ errorStatus }: Props) => {
         }}
       >
         <Heading>ユーザー登録画面</Heading>
-        <LabelInput
-          id="email"
-          type="email"
-          name="email"
-          label="メールアドレス"
-          placeholder="taro@example.com"
-          autocomplete="email"
-        />
-        <LabelInput
-          id="username"
-          type="text"
-          name="username"
-          label="ユーザー名"
-          placeholder="username"
-          autocomplete="username"
-        />
+        <div className="w-full">
+          <Heading type="h4" className="mb-1">
+            メールアドレス
+          </Heading>
+          <Input
+            type={"email"}
+            id={"email"}
+            name={"email"}
+            placeholder={"postcode@example.com"}
+            autoComplete={"off"}
+            className="shadow-none"
+          />
+        </div>
+
+        <div className="w-full">
+          <Heading type="h4" className="mb-1">
+            ユーザー名
+          </Heading>
+          <Input
+            type={"text"}
+            id={"username"}
+            name={"username"}
+            placeholder={"ユーザー名"}
+            autoComplete={"off"}
+            className="shadow-none"
+          />
+        </div>
+
         <div className="w-full">
           <Heading type="h4" className="mb-1">
             パスワード
@@ -73,7 +85,7 @@ export const RegisterForm = ({ errorStatus }: Props) => {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
             placeholder={"password"}
-            autoComplete={"password"}
+            autoComplete={"off"}
             className="shadow-none"
           />
         </div>
@@ -96,7 +108,7 @@ export const RegisterForm = ({ errorStatus }: Props) => {
               setPasswordConfirm(e.target.value);
             }}
             placeholder={"password2"}
-            autoComplete={"password2"}
+            autoComplete={"off"}
             className="shadow-none"
           />
 
