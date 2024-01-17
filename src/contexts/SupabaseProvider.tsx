@@ -38,6 +38,7 @@ export const SupabaseProvider = ({
 
   useEffect(() => {
     async function init() {
+      if (authUser) return;
       getAuthUser();
     }
     init();
@@ -55,7 +56,7 @@ export const SupabaseProvider = ({
       setAuthUser(user);
       return user;
     } catch (e) {
-      console.error(e);
+      // console.error(e);
       return null;
     } finally {
       stopLoading();

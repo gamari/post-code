@@ -29,8 +29,15 @@ export const useUploadImage = () => {
         return url
     }
 
+    const validateImage = (file: File) => {
+        if (file.size > 1024 * 1024 * 2) {
+            throw new Error("画像サイズは2MB以下にしてください。");
+        }
+    }
+
     return {
         uploadImage,
+        validateImage,
         loading,
         startLoading,
         stopLoading,

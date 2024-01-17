@@ -46,7 +46,7 @@ export const TopLanguageSearchSection = () => {
       </div>
       <Center className="mt-6">
         <div className="inline-block px-10 py-3 text-lg font-semibold border-2 rounded-lg border-gray-500">
-          その他言語は現在準備中です
+          その他の言語は準備中です
         </div>
       </Center>
     </TopSection>
