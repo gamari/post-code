@@ -11,9 +11,6 @@ import { convertFilenameToFiletype } from "@/src/libs/editors";
 import { SearchResultCode } from "@/src/types";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { useSearchCodeList } from "@/src/hooks/codes/search/useSearchCodeList";
-import { Center } from "@/src/components/atoms/containers/Center";
-import { DownIcon } from "@/src/components/atoms/icons/down-icon";
-import { Loader } from "@/src/components/molecules/displays/Loader";
 import { MoreSearchButton } from "../../more-search-button";
 
 interface Props {

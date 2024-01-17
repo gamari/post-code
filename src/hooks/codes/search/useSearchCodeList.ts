@@ -1,5 +1,5 @@
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
-import { createOrderCondition } from "@/src/libs/externals/supabase/options";
+import { createEqCondition, createOrderCondition } from "@/src/libs/externals/supabase/options";
 import { fetchCodeListByFileCode } from "@/src/libs/externals/supabase/queries/codes";
 import { SearchResultCode } from "@/src/types";
 import { useState } from "react";
@@ -18,6 +18,9 @@ export const useSearchCodeList = (initCodes: SearchResultCode[]) => {
         try {
             startLoading();
             const retCodes = await fetchCodeListByFileCode(code, client, page + 1, {
+                eq: [
+                    createEqCondition("codes.is_public", true)
+                ],
                 order: [
                     createOrderCondition("updated_at", false)
                 ],
