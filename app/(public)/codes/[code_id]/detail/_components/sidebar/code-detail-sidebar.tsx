@@ -15,11 +15,9 @@ interface Props {
 
 export const revalidate = 0;
 
-export const CodeDetailSidebar = async ({ code }: Props) => {
+export const CodeDetailSidebar = ({ code }: Props) => {
   const { authUser } = useSupabase();
   const { files } = useFilesContext();
-  // const authUser = await actionGetAuthUser();
-  // const files = await actionGetFiles(code.id);
 
   return (
     <div className="sticky top-8 h-fit flex flex-col gap-6 w-[250px] z-[110]">

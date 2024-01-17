@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
@@ -9,6 +9,10 @@ export const useLikeCode = (initIsFavorite: boolean) => {
     const { client } = useSupabase();
 
     const [isFavorite, setIsFavorite] = useState(initIsFavorite);
+
+    useEffect(() => {
+        setIsFavorite(initIsFavorite);
+    }, [initIsFavorite])
 
     const likeCode = async (codeId: number) => {
         if (!client) return;

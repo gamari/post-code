@@ -66,8 +66,12 @@ export const SelectLanguageList = ({ selected, onSelect }: Props) => {
   };
 
   const onBlug = () => {
-    setLanguage("");
-    setSuggestedLanguages([]);
+    // TODO 直さないとダメ
+    // TODO onClickと連動するためにつけている
+    setTimeout(() => {
+      setLanguage("");
+      setSuggestedLanguages([]);
+    }, 200);
   };
 
   return (

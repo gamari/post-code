@@ -52,6 +52,26 @@ export const actionGetMySelf = async () => {
 }
 
 // Login関係
+export async function actionLogin(formData: FormData) {
+    const supabase = getServerClient()
+
+    const email = formData.get('email') as string
+    const password = formData.get('password') as string
+    console.log({ email, password })
+
+    const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+    })
+
+    if (error) {
+        console.log(error)
+        return redirect('/login?error_status=9')
+    }
+
+    return redirect('/dashboard')
+}
+
 export async function actionLoginWithGoogle() {
     const supabase = getServerClient()
 
@@ -70,24 +90,8 @@ export async function actionLoginWithGoogle() {
     return redirect('/dashboard')
 }
 
-export async function actionLogin(formData: FormData) {
-    const supabase = getServerClient()
 
-    const email = formData.get('email') as string
-    const password = formData.get('password') as string
-
-    const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-    })
-
-    if (error) {
-        return redirect('/login?error_status=9')
-    }
-
-    return redirect('/dashboard')
-}
-
+// Reigster
 export async function actionSignUp(formData: FormData) {
     const client = getServerClient()
 
@@ -96,9 +100,18 @@ export async function actionSignUp(formData: FormData) {
     const email = formData.get('email') as string
     const password = formData.get('password') as string
     const password2 = formData.get('password2') as string
+    console.log({ username, email, password, password2 })
 
     if (password !== password2) {
         return redirect('/register?error_status=2')
+    }
+
+    if (password.length < 6) {
+        return redirect('/register?error_status=3')
+    }
+
+    if (!username || !email || !password) {
+        return redirect('/register?error_status=4')
     }
 
     const existsUsername = await actionGetUserByUsername(username);
@@ -119,8 +132,9 @@ export async function actionSignUp(formData: FormData) {
 
     if (error) {
         const { status, message } = error;
+        console.log({ status, message })
         if (status == 422) {
-            return redirect('/register?error_status=3')
+            return redirect('/register?error_status=9')
         }
         if (message?.includes("already registered")) {
             return redirect('/register?error_status=1')

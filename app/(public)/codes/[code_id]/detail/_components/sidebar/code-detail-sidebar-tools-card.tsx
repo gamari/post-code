@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import { Code } from "@/src/types";
@@ -5,20 +7,18 @@ import { CodeDetailShareButton } from "./CodeDetailShareButton";
 import { actionCheckFavoriteCode } from "@/src/actions/favorites";
 import { FavoriteCodeButton } from "@/src/components/organisms/favorites/FavoriteCodeButton";
 import { CodeDetailCommentModalButton } from "../comments/CodeDetailCommentModalButton";
+import { useCheckFavorite } from "@/src/hooks/favorites/useCheckFavorite";
 
 interface Props {
   badCode: Code;
   isLogin: boolean;
 }
 
-export const revalidate = 0
+export const revalidate = 0;
 
-export const CodeDetailSidebarToolsCard = async ({
-  badCode,
-  isLogin,
-}: Props) => {
+export const CodeDetailSidebarToolsCard = ({ badCode, isLogin }: Props) => {
   const { is_public } = badCode;
-  const isFavorite = await actionCheckFavoriteCode(badCode?.id);
+  const { isFavorite } = useCheckFavorite(badCode?.id);
 
   if (!is_public)
     return (

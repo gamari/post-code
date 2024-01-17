@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 
-import { length } from "@/src/libs/strings";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { SaveButton } from "@/src/components/molecules/forms/buttons/save-button";
 import { Modal } from "@/src/components/molecules/displays/Modal";
