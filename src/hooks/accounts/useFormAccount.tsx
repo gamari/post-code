@@ -34,7 +34,7 @@ export interface AccountFormValues {
 export const useFormAccount = (initUser: User) => {
   const router = useRouter();
   const { client } = useSupabase();
-  const { uploadImage } = useUploadImage();
+  const { uploadImage, validateImage } = useUploadImage();
 
   const [iconType, setIconType] = useState<string | null>(
     initUser?.icon_type || null
@@ -79,6 +79,7 @@ export const useFormAccount = (initUser: User) => {
 
     let url: string | undefined;
     if (avatarIcon) {
+      validateImage(avatarIcon);
       url = await uploadImage(avatarIcon);
     }
 
@@ -103,7 +104,7 @@ export const useFormAccount = (initUser: User) => {
     await fetchUpdateUser(updatedData, client);
     setValue("avatar_url", null);
     router.refresh();
-  }
+  };
 
   return {
     register,
@@ -114,6 +115,6 @@ export const useFormAccount = (initUser: User) => {
     selectIcon,
     avatarIcon,
     setAvatarIcon,
-    removeAvatarUrl
+    removeAvatarUrl,
   };
 };
