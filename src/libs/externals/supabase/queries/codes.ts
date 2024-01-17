@@ -3,6 +3,7 @@ import { CodeDetail, CodeFormType, SearchResultCode, User } from "@/src/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { QueryOptions, applyQueryOptions } from "../options";
 import { convertPostgretErrorToAppErrorMessage } from "../errors";
+import { SEARCH_LIMIT } from "@/src/libs/constants/limits";
 
 
 /** 単発 */
@@ -149,14 +150,15 @@ export const fetchCodeListByLanguage = async (language: string, client: Supabase
 
 
 export const fetchCodeListByFileCode = async (fileCode: string, client: SupabaseClient, page = 1, options?: QueryOptions) => {
-    const pageLimit = 1;
+    const pageLimit = SEARCH_LIMIT;
     const start = (page - 1) * pageLimit;
     const end = page * pageLimit;
+    console.log("start", start, "end", end);
     let query = client
         .from(FILE_TABLE)
         .select(`
             *,
-            codes (
+            codes!inner (
                 *
             )
         `)
