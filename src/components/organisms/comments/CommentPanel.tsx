@@ -45,13 +45,13 @@ export const CommentPanel = ({ comment }: Props) => {
       <Flex
         gap={4}
         justifyContent="between"
-        className=" text-gray-600 mt-4 px-2"
+        className="text-gray-600 mt-4 px-2"
       >
         <Flex alignItems="center" gap={4}>
           <Avatar size="sm" iconType={comment?.user?.icon_type} avatarUrl={comment?.user?.avatar_url} />
           <Typo text={comment?.user?.username} size="md" />
         </Flex>
-        <Flex gap={4}>
+        <Flex gap={4} alignItems="center">
           <DateIcon size="sm" />
           <TimeAgo date={comment.created_at || ""} />
         </Flex>

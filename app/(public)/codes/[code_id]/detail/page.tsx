@@ -29,15 +29,15 @@ export const generateMetadata = async ({
 
   return {
     title: `${code.title}`,
-    description: code.description,
+    description: `[${code.title}]の本文を見る`,
     openGraph: {
       title: code.title,
-      description: code.description,
+      description: `[${code.title}]の本文を見る`,
     },
     twitter: {
       title: code.title,
       card: "summary_large_image",
-      description: code.description,
+      description: `[${code.title}]の本文を見る`,
     },
   };
 };

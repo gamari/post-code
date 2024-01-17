@@ -14,7 +14,8 @@ export const fetchCommentList = async (client: SupabaseClient, options?: QueryOp
           ),
           ${PUBLIC_USER_TABLE}!user_id(
             username,
-            icon_type
+            icon_type,
+            avatar_url
           )
     `);
 

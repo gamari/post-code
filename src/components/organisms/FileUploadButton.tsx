@@ -15,6 +15,8 @@ export const FileUploadButton = ({ onSelect }: Props) => {
 
     if (file) {
       onSelect(file);
+      // 次の選択のためにリセットしている
+      fileInputRef.current.value = "";
     }
   };
 

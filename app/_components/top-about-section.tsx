@@ -12,7 +12,7 @@ import Link from "next/link";
 
 export const TopAboutSection = () => {
   return (
-    <TopSection className="bg-white">
+    <TopSection className="bg-white py-12">
       <div className="flex flex-row">
         <Center className="flex-1">
           <Image alt="image" src={HeroImage} width={300} height={280} />

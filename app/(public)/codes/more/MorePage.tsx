@@ -15,7 +15,7 @@ export const MorePage = () => {
     useFetchLatestCodeList();
 
   return (
-    <div className="max-w-5xl w-full mx-auto px-10 lg:px-0 py-24 lg:py-16">
+    <div className="max-w-7xl w-full mx-auto px-10 lg:px-0 py-24 lg:py-16">
       <Heading type="h2" className="mb-6">
         最新コード一覧
       </Heading>
