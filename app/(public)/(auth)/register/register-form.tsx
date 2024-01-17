@@ -122,7 +122,7 @@ export const RegisterForm = ({ errorStatus }: Props) => {
         {errorStatus && <RegisterFormErrorMessage status={errorStatus} />}
 
         <Flex direction="column" gap={8} className="w-full mt-3 pt-2">
-          <Heading type="h4">ソーシャルログイン</Heading>
+          <Heading type="h4">ソーシャルアカウントで登録</Heading>
           <GithubSignupButton />
         </Flex>
       </form>

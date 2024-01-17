@@ -72,11 +72,12 @@ export const AccountForm = ({ user: initUser, className = "" }: Props) => {
           className="flex flex-col gap-8 mb-6"
         >
           <div>
-            <Heading type="h4">ユーザー名</Heading>
+            <Heading type="h4" className="mb-2">ユーザー名</Heading>
             <Input
               {...register("username")}
-              placeholder="ユーザー名を入力"
+              placeholder="ユーザー名(...20)"
               className="w-[180px]"
+              maxLength={20}
             />
             <ErrorText
               text={errors.username?.message}
@@ -84,11 +85,12 @@ export const AccountForm = ({ user: initUser, className = "" }: Props) => {
             />
           </div>
           <div>
-            <Heading type="h4">自己紹介</Heading>
+            <Heading type="h4"  className="mb-2">自己紹介</Heading>
             <Textarea
               {...register("description")}
               rows={4}
-              placeholder="自己紹介を入力"
+              placeholder="自己紹介(...200)"
+              maxLength={200}
             />
             <ErrorText text={errors?.description?.message} />
           </div>

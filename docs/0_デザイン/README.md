@@ -6,7 +6,7 @@ READMEにで見れるようにしています。
 ## z-index
 
 - header
-  - z-100
+  - z-200
 - detail
   - sidebar
     - z-100
