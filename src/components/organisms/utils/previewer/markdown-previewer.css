@@ -270,6 +270,8 @@
 
 .markdown-body img {
   border-style: none;
+  margin-top: 24px;
+  margin-bottom: 24px;
   max-width: 100%;
   box-sizing: content-box;
   background-color: var(--color-canvas-default);
