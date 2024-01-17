@@ -6,8 +6,6 @@ import { UserInfoCard } from "../../../../../../../src/components/organisms/user
 import { CodeDetailSidebarToolsCard } from "./code-detail-sidebar-tools-card";
 import { CodeDetailFileListCard } from "./CodeDetailFileListCard";
 import { CodeDetail } from "@/src/types";
-import { actionGetAuthUser } from "@/src/actions/users";
-import { actionGetFiles } from "@/src/actions/files";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { useFilesContext } from "@/src/contexts/FilesProvider";
 
