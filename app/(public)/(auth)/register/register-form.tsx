@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { actionSignUp } from "@/src/actions/users";
@@ -24,6 +24,10 @@ export const RegisterForm = ({ errorStatus }: Props) => {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [error, setError] = useState("");
   const { loading, startLoading, stopLoading } = useLoading();
+
+  useEffect(() => {
+    console.log(process.env.NEXT_PUBLIC_BASE_URL);
+  }, [])
 
   return (
     <Flex
