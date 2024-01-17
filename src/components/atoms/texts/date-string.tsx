@@ -1,5 +1,11 @@
-import dayjs from "dayjs";
 import React from "react";
+
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
 
 interface Props {
   value?: string | null;
@@ -13,9 +19,9 @@ export const DateString = ({ value, type = "date", className }: Props) => {
   if (type == "datetime")
     return (
       <span className={className}>
-        {dayjs(value, "Asia/Tokyo").format("YYYY/MM/DD HH:mm")}
+        {dayjs(value).tz("Asia/Tokyo").format("YYYY/MM/DD HH:mm")}
       </span>
     );
 
-  return <span className={className}>{dayjs(value, "Asia/Tokyo").format("YYYY/MM/DD")}</span>;
+  return <span className={className}>{dayjs(value).tz("Asia/Tokyo").format("YYYY/MM/DD")}</span>;
 };
