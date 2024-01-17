@@ -37,7 +37,7 @@ export const CommentItem = ({
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-row items-center gap-3">
           <Link href={`/accounts/${user_id}`}>
-            <Avatar iconType={user?.icon_type} />
+            <Avatar iconType={user?.icon_type} avatarUrl={user?.avatar_url} />
           </Link>
 
           <Username value={user?.username || ""} />

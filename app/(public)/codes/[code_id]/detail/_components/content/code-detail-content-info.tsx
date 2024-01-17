@@ -24,7 +24,7 @@ export const CodeDetailContentInfo: FunctionComponent<Props> = async ({
         direction="column"
         alignItems="stretch"
         gap={8}
-        className="p-10 bg-white rounded-md w-full min-h-[30vh]"
+        className="p-10 bg-white rounded-md w-full"
       >
         <CodeDetailContentInfoHeader code={code} />
 

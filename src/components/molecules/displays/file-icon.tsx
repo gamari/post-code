@@ -18,14 +18,17 @@ import { FaJava } from "react-icons/fa";
 import { SiGoland } from "react-icons/si";
 import { TbBrandCpp, TbFileTypeSql } from "react-icons/tb";
 import { GoRuby } from "react-icons/go";
+import { cn } from "@/src/libs/utils";
+import { IconSize, getIconSizeClassName } from "@/src/libs/components";
 
 interface Props {
   fileType: FileType;
   className?: string;
+  size?: IconSize;
 }
 
-export const FileIcon = ({ fileType, className }: Props) => {
-  const addClassName = `h-5 w-5 ${className}`;
+export const FileIcon = ({ fileType, className, size = "md" }: Props) => {
+  const addClassName = cn(getIconSizeClassName(size), className);
   if (fileType === "python") {
     return <DiPython className={addClassName} />;
   } else if (fileType === "javascript" || fileType === "jsx") {

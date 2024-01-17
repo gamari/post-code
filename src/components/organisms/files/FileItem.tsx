@@ -23,7 +23,7 @@ export const FileItem = ({ file, className, onClick }: Props) => {
       )}
       onClick={() => onClick && onClick(file)}
     >
-      <FileIcon fileType={convertFilenameToFiletype(file?.name)} />
+      <FileIcon fileType={convertFilenameToFiletype(file?.name)} size="sm" />
       <Typo text={file.name} className="flex-1 whitespace-break-spaces break-words overflow-hidden" />
     </div>
   );

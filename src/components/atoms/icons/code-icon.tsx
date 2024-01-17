@@ -6,6 +6,7 @@ import { Logo } from "../../molecules/logo";
 import { SiGoland, SiJavascript, SiTypescript } from "react-icons/si";
 import { cn } from "@/src/libs/utils";
 import { TbFileTypeSql } from "react-icons/tb";
+import { getIconSizeClassName } from "@/src/libs/components";
 
 interface Props {
   fileType?: FileType | null | string;
@@ -13,13 +14,8 @@ interface Props {
 }
 
 export const CodeIcon = ({ fileType, size = "md" }: Props) => {
-  const className = cn(
-    size === "sm" && "h-5 w-5",
-    size === "md" && "h-8 w-8",
-    size == "lg" && "h-10 w-10",
-    size === "xl" && "h-12 w-12"
-  );
-  
+  const className = cn(getIconSizeClassName(size));
+
   if (!fileType) return <Logo className={className} />;
 
   if (fileType === "python") {

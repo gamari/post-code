@@ -10,11 +10,9 @@ import { LinkButton } from "@/src/components/molecules/forms/buttons/link-button
 import { LabelInput } from "@/src/components/molecules/forms/LabelInput";
 import { RegisterFormErrorMessage } from "./register-form-error-message";
 import { Heading } from "@/src/components/atoms/texts/heading";
-import { GoogleSignupButton } from "../GoogleSignupButton";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { useLoading } from "@/src/hooks/useLoading";
 import { GithubSignupButton } from "../GithubSignupButton";
-import { CheckPassword } from "../CheckPassword";
 import { Input } from "@/src/components/atoms/forms/input";
 
 interface Props {
@@ -33,7 +31,7 @@ export const RegisterForm = ({ errorStatus }: Props) => {
       justifyContent="center"
       alignItems="center"
       gap={12}
-      className="relative w-full h-full"
+      className="relative w-full h-full my-4"
     >
       <BackButton url="/" className="absolute left-8 top-8 " label="ホームへ" />
 

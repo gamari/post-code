@@ -1,9 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 import { cn } from "@/src/libs/utils";
 import { MarkdownPreviewer } from "./utils/previewer/MarkdownPreviewer";
 import { Textarea } from "../atoms/forms/textarea";
-import { PreviewButton } from "../molecules/preview-button";
 import { Flex } from "../atoms/containers/Flex";
 import { FileUploadButton } from "./FileUploadButton";
 import { Toggle } from "../ui/toggle";
@@ -21,6 +20,7 @@ interface Props {
   disabled?: boolean;
   onTogglePreview?: () => void;
   height?: number;
+  hiddenTools?: boolean;
 }
 
 export const TextareaWithTools = ({
@@ -35,11 +35,15 @@ export const TextareaWithTools = ({
   disabled,
   onTogglePreview,
   height = 600,
+  hiddenTools = false,
 }: Props) => {
   const [isPreview, setIsPreview] = useState(false);
 
-  const handleOnSelectImage = (file: File) => {
-    onPasteImage && onPasteImage(file);
+  const handleOnSelectImage = async (file: File) => {
+    if (onPasteImage) {
+      const url = await onPasteImage(file);
+      setValue(value + url);
+    }
   };
 
   const handleOnPaste = async (e: React.ClipboardEvent) => {
@@ -92,7 +96,13 @@ export const TextareaWithTools = ({
 
       <Flex className="pt-2" alignItems="center" justifyContent="between">
         <Flex className="px-4">
-          {!isPreview && <FileUploadButton onSelect={handleOnSelectImage} />}
+          {!hiddenTools && (
+            <>
+              {!isPreview && (
+                <FileUploadButton onSelect={handleOnSelectImage} />
+              )}
+            </>
+          )}
         </Flex>
         <Toggle
           aria-label="Toggle italic"
