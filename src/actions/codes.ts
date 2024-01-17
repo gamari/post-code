@@ -78,7 +78,7 @@ export const actionGetOwnCodeList = async () => {
 }
 
 /** 最新のコード一覧を取得。 */
-export const actionGetLatestBadCodeList = async () => {
+export const actionGetLatestCodeList = async () => {
     const client = getServerClient();
     const codes = await fetchCodeList(client, buildLatestCodesOption());
 
