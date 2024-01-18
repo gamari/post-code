@@ -17,6 +17,7 @@ import { CodeEditorNewFileModal } from "./modal/CodeEditorNewFileModal";
 import { CodeEditorRenameFileModal } from "./modal/CodeEditorRenameFileModal";
 import { BottomContainerProvider } from "@/src/contexts/BottomContainerProvider";
 import { FilesProvider } from "@/src/contexts/FilesProvider";
+import { CodeEditorAiModal } from "./modal/CodeEditorAiModal";
 
 interface Props {
   code: CodeDetail;
@@ -44,6 +45,7 @@ export const CodeEditor: FunctionComponent<Props> = ({
                 <CodeEditorSidebar className="w-[250px]" />
 
                 {/* Modal */}
+                <CodeEditorAiModal />
                 <CodeEditorSaveModal />
                 <CodeEditorNewFileModal />
                 <CodeEditorRenameFileModal />

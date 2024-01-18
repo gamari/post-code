@@ -7,20 +7,22 @@ import { Flex } from "../atoms/containers/Flex";
 import { FileUploadButton } from "./FileUploadButton";
 import { Toggle } from "../ui/toggle";
 import { FaCheck } from "react-icons/fa6";
+import { useAi } from "@/src/hooks/ai/useAi";
+import { useCodeEditorModalContext } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_contexts/CodeEditorModalProvider";
 
 interface Props {
   className?: string;
   value: string;
-  setValue: (value: string) => void;
-  onSubmit?: () => void;
   rows?: number;
   placeholder?: string;
   maxLength?: number;
-  onPasteImage?: (file: File) => Promise<string | undefined>;
   disabled?: boolean;
-  onTogglePreview?: () => void;
   height?: number;
   hiddenTools?: boolean;
+  setValue: (value: string) => void;
+  onPasteImage?: (file: File) => Promise<string | undefined>;
+  onSubmit?: () => void;
+  onTogglePreview?: () => void;
 }
 
 export const TextareaWithTools = ({
@@ -38,6 +40,9 @@ export const TextareaWithTools = ({
   hiddenTools = false,
 }: Props) => {
   const [isPreview, setIsPreview] = useState(false);
+  const { aiKey } = useAi();
+  // hooksへ
+  const { toggleAiModal } = useCodeEditorModalContext();
 
   const handleOnSelectImage = async (file: File) => {
     if (onPasteImage) {
@@ -99,7 +104,19 @@ export const TextareaWithTools = ({
           {!hiddenTools && (
             <>
               {!isPreview && (
-                <FileUploadButton onSelect={handleOnSelectImage} />
+                <Flex alignItems="center" gap={4}>
+                  <FileUploadButton onSelect={handleOnSelectImage} />
+                  {aiKey && (
+                    <div
+                      className="cursor-pointer text-xl items-center justify-center hover:bg-gray-100 p-1 rounded-full"
+                      onClick={() => {
+                        toggleAiModal && toggleAiModal();
+                      }}
+                    >
+                      AI
+                    </div>
+                  )}
+                </Flex>
               )}
             </>
           )}

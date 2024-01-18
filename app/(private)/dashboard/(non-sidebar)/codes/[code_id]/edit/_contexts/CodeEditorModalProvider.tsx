@@ -11,11 +11,17 @@ interface ContextProps {
   setIsNewFileOpen: (value: boolean) => void;
   toggleNewFileModal: () => void;
 
+  // Rename
   isRenameOpen: boolean;
   setIsRenameOpen: (value: boolean) => void;
   toggleRenameModal: () => void;
   targetFile: File | null;
   setTargetFile: (value: File | null) => void;
+
+  // AIモーダル
+  isAiOpen: boolean;
+  setIsAiOpen: (value: boolean) => void;
+  toggleAiModal: () => void;
 }
 
 interface ProviderProps {
@@ -34,6 +40,9 @@ const CodeEditorModalContext = createContext<ContextProps>({
   toggleRenameModal: () => {},
   targetFile: null,
   setTargetFile: () => {},
+  isAiOpen: false,
+  setIsAiOpen: () => {},
+  toggleAiModal: () => {},
 });
 
 export const useCodeEditorModalContext = () =>
@@ -44,6 +53,7 @@ export const CodeEditorModalProvider = ({ children }: ProviderProps) => {
   const [isNewFileOpen, setIsNewFileOpen] = useState(false);
   const [isRenameOpen, setIsRenameOpen] = useState(false);
   const [targetFile, setTargetFile] = useState<File | null>(null);
+  const [isAiOpen, setIsAiOpen] = useState(false);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -56,6 +66,10 @@ export const CodeEditorModalProvider = ({ children }: ProviderProps) => {
   const toggleRenameModal = () => {
     setIsRenameOpen(!isRenameOpen);
   };
+
+  const toggleAiModal = () => {
+    setIsAiOpen(!isAiOpen);
+  }
 
   return (
     <CodeEditorModalContext.Provider
@@ -71,6 +85,9 @@ export const CodeEditorModalProvider = ({ children }: ProviderProps) => {
         toggleRenameModal,
         targetFile,
         setTargetFile,
+        isAiOpen,
+        setIsAiOpen,
+        toggleAiModal
       }}
     >
       {children}

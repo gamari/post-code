@@ -21,6 +21,8 @@ import { Textarea } from "../../atoms/forms/textarea";
 import SelectAvatarList from "@/app/(private)/dashboard/(sidebar)/account/SelectAvatarList";
 import { Flex } from "../../atoms/containers/Flex";
 import { CloseIcon } from "../../atoms/icons/close-icon";
+import { Description } from "../../atoms/texts/description";
+import { useAi } from "@/src/hooks/ai/useAi";
 
 interface Props {
   user: User;
@@ -29,6 +31,7 @@ interface Props {
 
 // TODO fix types
 export const AccountForm = ({ user: initUser, className = "" }: Props) => {
+  const { saveAiKey, aiKey, setAiKey } = useAi();
   const { infoAlert, errorAlert } = useAlert();
   const {
     register,
@@ -39,12 +42,13 @@ export const AccountForm = ({ user: initUser, className = "" }: Props) => {
     selectIcon,
     avatarIcon,
     setAvatarIcon,
-    removeAvatarUrl
+    removeAvatarUrl,
   } = useFormAccount(initUser);
 
   const handleUpdate: SubmitHandler<AccountFormValues> = async (data) => {
     try {
       await saveUser(data);
+      saveAiKey(aiKey);
       infoAlert("更新しました");
     } catch (e) {
       errorAlert("更新できませんでした", e);
@@ -72,7 +76,9 @@ export const AccountForm = ({ user: initUser, className = "" }: Props) => {
           className="flex flex-col gap-8 mb-6"
         >
           <div>
-            <Heading type="h4" className="mb-2">ユーザー名</Heading>
+            <Heading type="h4" className="mb-2">
+              ユーザー名
+            </Heading>
             <Input
               {...register("username")}
               placeholder="ユーザー名(...20)"
@@ -85,7 +91,9 @@ export const AccountForm = ({ user: initUser, className = "" }: Props) => {
             />
           </div>
           <div>
-            <Heading type="h4"  className="mb-2">自己紹介</Heading>
+            <Heading type="h4" className="mb-2">
+              自己紹介
+            </Heading>
             <Textarea
               {...register("description")}
               rows={4}
@@ -156,6 +164,19 @@ export const AccountForm = ({ user: initUser, className = "" }: Props) => {
                 </>
               )}
             </div>
+          </div>
+
+          <div>
+            <Heading type="h4">OpenAIキー</Heading>
+            <Description className="my-2">
+              キーを入力するとAI機能が利用できるようになります。
+            </Description>
+
+            <Input
+              value={aiKey}
+              onChange={(e) => setAiKey(e.target.value)}
+              placeholder="OpenAIキー..."
+            />
           </div>
 
           <Button type="submit" className="mt-3">
