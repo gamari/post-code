@@ -7,6 +7,7 @@ import { actionGetAuthUser } from "@/src/actions/users";
 import { HeaderSearch } from "./HeaderSearch";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { RegisterButton } from "@/src/components/molecules/forms/buttons/register-button";
+import { ActiveLink } from "@/src/components/molecules/ActiveLink";
 
 export default async function Header() {
   const authUser = await actionGetAuthUser();
@@ -14,24 +15,31 @@ export default async function Header() {
   return (
     <nav
       className={cn(
-        "z-[200] w-full flex justify-center py-1 bg-white",
+        "z-[200] w-full flex justify-center bg-white",
         "border-b border-b-foreground/10"
       )}
     >
-      <div className="w-full max-w-7xl flex justify-between items-center p-3 text-sm px-10">
-        <TextLinkLogo url="/" label={APP_TITLE} />
+      <div className="w-full max-w-7xl flex flex-col">
+        <div className="flex justify-between items-center p-3 text-sm px-4">
+          <TextLinkLogo url="/" label={APP_TITLE} />
 
-        <div className="flex items-center gap-4">
-          <HeaderSearch />
+          <div className="flex items-center gap-4">
+            <HeaderSearch />
 
-          {authUser ? (
-            <DashboardButton />
-          ) : (
-            <Flex alignItems="center" gap={8}>
-              <LoginButton />
-              <RegisterButton />
-            </Flex>
-          )}
+            {authUser ? (
+              <DashboardButton />
+            ) : (
+              <Flex alignItems="center" gap={8}>
+                <LoginButton />
+                <RegisterButton />
+              </Flex>
+            )}
+          </div>
+        </div>
+
+        <div className="px-4 flex flex-row gap-4">
+          <ActiveLink url="/" label="Home" />
+          <ActiveLink url="/qa" label="質問" />
         </div>
       </div>
     </nav>
