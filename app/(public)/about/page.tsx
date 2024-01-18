@@ -10,7 +10,7 @@ import { TopFooter } from "@/app/_components/top-footer";
 const Page = () => {
   return (
     <div className="pt-20">
-      <Section className="max-w-7xl mx-auto bg-white rounded-lg p-12 py-24  mb-32">
+      <Section className="bg-white rounded-lg p-12 py-24  mb-32">
         <Flex
           direction="column"
           alignItems="stretch"
