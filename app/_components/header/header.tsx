@@ -15,7 +15,7 @@ export default async function Header() {
   return (
     <nav
       className={cn(
-        "z-[200] w-full flex justify-center bg-white",
+        "z-[200] w-full flex justify-center bg-white pt-2 pb-1",
         "border-b border-b-foreground/10"
       )}
     >
@@ -38,8 +38,11 @@ export default async function Header() {
         </div>
 
         <div className="px-4 flex flex-row gap-4">
-          <ActiveLink url="/" label="Home" />
+          <ActiveLink url="/" label="ホーム" />
+          <ActiveLink url="/tools" label="ツール" />
+          {/* <ActiveLink url="/services" label="サービス" /> */}
           <ActiveLink url="/qa" label="質問" />
+          <ActiveLink url="/beginner" label="ビギナー" />
         </div>
       </div>
     </nav>

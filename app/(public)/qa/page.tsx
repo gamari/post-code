@@ -5,12 +5,13 @@ import { Section } from "@/src/components/atoms/containers/section";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { Button } from "@/src/components/atoms/forms/button";
 
+const initPage = "";
+
 const Page = () => {
   return (
     <Flex direction="column" gap={64}>
       <Section className="mt-6">
-        <Heading>質問</Heading>
-        <Heading type="h4">初めに読む記事</Heading>
+        <Heading>はじめに</Heading>
       </Section>
 
       <Section>

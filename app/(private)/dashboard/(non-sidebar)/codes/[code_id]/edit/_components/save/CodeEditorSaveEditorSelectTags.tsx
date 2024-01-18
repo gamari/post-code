@@ -6,6 +6,7 @@ import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { Tag } from "@/src/types";
 import { fetchOrCreateTag } from "@/src/libs/externals/supabase/queries/tags";
 import { useAlert } from "@/src/hooks/useAlert";
+import Link from "next/link";
 
 export const CodeEditorSaveEditorSelectTags = () => {
   const { errorAlert } = useAlert();
@@ -26,7 +27,8 @@ export const CodeEditorSaveEditorSelectTags = () => {
       try {
         const newTag = input.trim();
         if (!newTag) throw new Error("タグを入力してください");
-        if (newTag.length > 20) throw new Error("タグは20文字以内で入力してください");
+        if (newTag.length > 20)
+          throw new Error("タグは20文字以内で入力してください");
         const tag = await fetchOrCreateTag(newTag, client);
         if (tag && !code?.tags?.some((tag) => tag.name === newTag)) {
           addTag(tag);
@@ -44,7 +46,7 @@ export const CodeEditorSaveEditorSelectTags = () => {
         <Heading type="h4">タグ(3つまで)</Heading>
       </div>
 
-      <div className="p-2 flex items-center flex-wrap border rounded-md w-[400px] bg-white">
+      <div className="p-2 my-2 flex items-center flex-wrap border rounded-md w-[400px] bg-white">
         <div className="flex flex-row gap-2">
           {code?.tags?.map((tag) => (
             <div
@@ -67,6 +69,11 @@ export const CodeEditorSaveEditorSelectTags = () => {
           disabled={(code?.tags?.length || 0) >= 3}
           maxLength={20}
         />
+      </div>
+      <div className="text-xs text-gray-600 px-1">
+        <span>タグは色々な機能で利用されています。特殊タグに関しては</span>
+        <Link href="https://post-codes.net/codes/37/detail" className=" text-sky-600" target="_blank">こちら</Link>
+        <span>を参照してください。</span>
       </div>
     </div>
   );

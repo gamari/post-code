@@ -21,7 +21,7 @@ export const CodeDetail = async ({ codeId }: Props) => {
   if (!code)
     return (
       <div className="max-w-5xl mx-auto py-20">
-        <NoContent text="コードが見つかりませんでした" />
+        <NoContent text="記事が見つかりませんでした" />
       </div>
     );
 
