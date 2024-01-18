@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 import { Input } from "@/src/components/atoms/forms/input";
 import { Modal } from "../../molecules/displays/Modal";
@@ -36,7 +36,7 @@ export const NewCodeModalButton = () => {
             <ErrorText text={errors.title?.message} />
           </div>
 
-          <CreateButton type="submit" label="コードの追加" loading={loading} />
+          <CreateButton type="submit" label="記事の追加" loading={loading} />
         </form>
       </Modal>
     </>
