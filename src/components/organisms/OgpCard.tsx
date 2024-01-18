@@ -31,7 +31,6 @@ export const OgpCard = ({ url, className }: Props) => {
     startLoading();
     // TODO キャッシュ戦略をどうするか考える
     fetch(`/api/ogp?url=${encodeURIComponent(url)}`, {
-      cache: "force-cache",
       next: {
         revalidate: 10 * 60,
       },
