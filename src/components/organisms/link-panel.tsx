@@ -18,7 +18,7 @@ export const LinkPanel = ({ url, title, className }: Props) => {
       <Flex
         alignItems="center"
         gap={20}
-        className={cn("px-6 py-8 rounded-lg bg-white ", className)}
+        className={cn("px-6 py-8 rounded-lg bg-white hover:opacity-80", className)}
       >
         <CodeIcon size="lg" />
 

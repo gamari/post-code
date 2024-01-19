@@ -15,7 +15,7 @@ const Page = () => {
       <Section className="mb-12">
         <Heading>「ビギナー」ページ</Heading>
         <Description>
-          「初心者専用」のページです。以下のタグを含む記事が表示されます。
+          経験が浅い方向けのページです。以下のタグが付いた記事をまとめています。
         </Description>
         <Flex alignItems="center" gap={8}>
           <TagBadge
@@ -40,7 +40,7 @@ const Page = () => {
       </Section>
 
       <Section className="mb-12">
-        <Heading>「初心者」向け記事一覧</Heading>
+        <Heading className="mb-6">「初心者」向け記事一覧</Heading>
         <LatestBeginnerCodeList />
       </Section>
     </Container>

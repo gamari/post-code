@@ -8,6 +8,7 @@ export const usePaginate = () => {
 
     return {
         page,
-        setPage,
+        nextPage,
+        prevPage
     }
 }
