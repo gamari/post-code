@@ -75,10 +75,9 @@
 }
 
 /* 下はよく分からない */
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   .markdown-body,
   [data-theme="dark"] {
-    /*dark*/
     color-scheme: dark;
     --color-prettylights-syntax-comment: #8b949e;
     --color-prettylights-syntax-constant: #79c0ff;
@@ -135,7 +134,6 @@
 @media (prefers-color-scheme: light) {
   .markdown-body,
   [data-theme="light"] {
-    /*light*/
     color-scheme: light;
     --color-prettylights-syntax-comment: #57606a;
     --color-prettylights-syntax-constant: #0550ae;
@@ -187,7 +185,7 @@
     --color-done-fg: #8250df;
     --color-done-emphasis: #8250df;
   }
-}
+} */
 
 .markdown-body {
   -ms-text-size-adjust: 100%;

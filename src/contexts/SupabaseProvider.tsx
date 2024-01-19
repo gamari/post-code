@@ -56,7 +56,6 @@ export const SupabaseProvider = ({
       setAuthUser(user);
       return user;
     } catch (e) {
-      // console.error(e);
       return null;
     } finally {
       stopLoading();

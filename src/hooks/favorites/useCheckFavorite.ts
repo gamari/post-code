@@ -10,7 +10,6 @@ export const useCheckFavorite = (code_id: number) => {
         const check = async () => {
             if (!client) return;
             const retFavorite = await fetchIsFavoriteCode(code_id, client);
-            console.log(retFavorite);
             setIsFavorite(retFavorite);
         }
         check();
