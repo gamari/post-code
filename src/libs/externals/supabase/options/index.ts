@@ -3,6 +3,7 @@ import { PostgrestFilterBuilder } from '@supabase/postgrest-js';
 export interface QueryOptions {
     eq?: Array<{ field: string, value: any }>;
     neq?: Array<{ field: string, value: any }>;
+    in?: Array<{ field: string, value: any[] }>;
     // TODO operatorは予測変換に出したいので直す
     filter?: Array<{ field: string, operator: string, value: any }>;
     lt?: Array<{ field: string, value: any }>;
@@ -23,6 +24,12 @@ export const applyQueryOptions = (query: PostgrestFilterBuilder<any, any, any[],
     if (options?.neq) {
         options.neq.forEach(condition => {
             query = query.neq(condition.field, condition.value);
+        });
+    }
+
+    if (options?.in) {
+        options.in.forEach(condition => {
+            query = query.in(condition.field, condition.value);
         });
     }
 

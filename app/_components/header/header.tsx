@@ -40,7 +40,8 @@ export default async function Header() {
         <div className="px-4 flex flex-row gap-4">
           <ActiveLink url="/" label="ホーム" />
           <ActiveLink url="/beginner" label="ビギナー" />
-          {/* <ActiveLink url="/tools" label="ツール" /> */}
+          <ActiveLink url="/tools" label="ツール" />
+          <ActiveLink url="/ai" label="AI" />
           {/* <ActiveLink url="/services" label="サービス" /> */}
           {/* <ActiveLink url="/qa" label="質問" /> */}
         </div>

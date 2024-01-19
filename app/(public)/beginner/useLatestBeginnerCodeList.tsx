@@ -2,6 +2,7 @@ import { useSupabase } from "@/src/contexts/SupabaseProvider";
 import { useLoading } from "@/src/hooks/useLoading";
 import { usePaginate } from "@/src/hooks/usePaginate";
 import { createEqCondition } from "@/src/libs/externals/supabase/options";
+import { buildBeginnerCodeListOption } from "@/src/libs/externals/supabase/options/codes";
 import { fetchCodeList } from "@/src/libs/externals/supabase/queries/codes";
 import { CodeDetail } from "@/src/types";
 import { useEffect, useState } from "react";
@@ -17,34 +18,10 @@ export const useLatestBeginnerCodeList = () => {
 
   const fetcher = async (page: number) => {
     if (!client) return;
-    const limit = 10;
-    const start = (page - 1) * limit;
-    const end = start + limit;
-    const codeList = await fetchCodeList(client, {
-      limit,
-      range: {
-        start,
-        end,
-      },
-      eq: [
-        createEqCondition("is_public", true),
-        // createEqCondition("tags.name", "tag"),
-      ],
-      filter: [
-        {
-          field: "tags",
-          operator: "not.is",
-          value: null,
-        },
-        // TODO いったん「初心者」タグのみで絞る
-        // TODO 今後は「beginner」タグを付与する
-        {
-          field: "tags.name",
-          operator: "eq",
-          value: "初心者",
-        },
-      ],
-    });
+    const codeList = await fetchCodeList(
+      client,
+      buildBeginnerCodeListOption(page)
+    );
     return codeList;
   };
 
