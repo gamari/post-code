@@ -1,29 +1,31 @@
+import React from "react";
+
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { Section } from "@/src/components/atoms/containers/section";
 import { Description } from "@/src/components/atoms/texts/description";
 import { Heading } from "@/src/components/atoms/texts/heading";
-import React from "react";
-import { LatestToolsCodePanelList } from "./LatestToolsCodePanelList";
+import { LatestToolsSection } from "./LatestToolsSection";
+import { Button } from "@/src/components/atoms/forms/button";
+import { Container } from "@/src/components/atoms/containers/container";
 
 const Page = () => {
   return (
-    <Flex direction="column" gap={64}>
+    <Container className="flex flex-col gap-10">
       <Section>
-        <Heading>ツール記事</Heading>
+        <Flex justifyContent="between">
+          <Heading>ツール記事</Heading>
+          <div>
+            {/* TODO ログイン判定をする */}
+            <Button>ツール記事を作成</Button>
+          </div>
+        </Flex>
         <Description className="p-2">
-          ツールに関する記事をまとめたページです。
-        </Description>
-
-        <LatestToolsCodePanelList />
-      </Section>
-
-      <Section>
-        <Heading>AIツール</Heading>
-        <Description className="p-2">
-          タグに「ツール」「AI」がついたものを表示しています。
+          ツールに関する記事をまとめたページです。以下のタグがついたものをまとめています。
         </Description>
       </Section>
-    </Flex>
+
+      <LatestToolsSection />
+    </Container>
   );
 };
 

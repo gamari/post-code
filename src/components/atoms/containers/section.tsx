@@ -8,7 +8,7 @@ interface Props {
 
 export const Section = ({ children, className }: Props) => {
   return (
-    <section className={cn("max-w-7xl mx-auto w-full", className)}>
+    <section className={cn("max-w-7xl mx-auto w-full px-6 xl:px-0", className)}>
       {children}
     </section>
   );

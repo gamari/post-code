@@ -6,7 +6,6 @@ import { cn } from "@/src/libs/utils";
 import { Typo } from "@/src/components/atoms/texts/typo";
 import { Switch } from "@/src/components/ui/switch";
 
-import { CodeEditorContentDescription } from "../content/CodeEditorContentDescription";
 import { CodeEditorSaveEditorLanguages } from "./CodeEditorSaveEditorLanguages";
 import { useCodeEditor } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditor";
 import { Flex } from "@/src/components/atoms/containers/Flex";

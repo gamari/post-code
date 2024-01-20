@@ -5,5 +5,11 @@ import React from "react";
 interface Props extends ContainerProps {}
 
 export const Container = ({ children, className }: Props) => {
-  return <div className={cn("max-w-7xl mx-auto px-10 lg:px-6", className)}>{children}</div>;
+  return (
+    <div
+      className={cn("max-w-7xl w-full mx-auto px-10 lg:px-0 py-16 min-h-screen", className)}
+    >
+      {children}
+    </div>
+  );
 };

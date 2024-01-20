@@ -57,7 +57,6 @@ export async function actionLogin(formData: FormData) {
 
     const email = formData.get('email') as string
     const password = formData.get('password') as string
-    console.log({ email, password })
 
     const { error } = await supabase.auth.signInWithPassword({
         email,
@@ -65,7 +64,6 @@ export async function actionLogin(formData: FormData) {
     })
 
     if (error) {
-        console.log(error)
         return redirect('/login?error_status=9')
     }
 
@@ -100,8 +98,6 @@ export async function actionSignUp(formData: FormData) {
     const email = formData.get('email') as string
     const password = formData.get('password') as string
     const password2 = formData.get('password2') as string
-    console.log({ username, email, password, password2 })
-
     if (password !== password2) {
         return redirect('/register?error_status=2')
     }
@@ -132,7 +128,6 @@ export async function actionSignUp(formData: FormData) {
 
     if (error) {
         const { status, message } = error;
-        console.log({ status, message })
         if (status == 422) {
             return redirect('/register?error_status=9')
         }

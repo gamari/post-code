@@ -3,6 +3,7 @@ import { useState } from "react";
 import { CodeDetail } from "@/src/types";
 import { useRouter } from "next/navigation";
 
+// TODO 消したい
 export const useCodeList = (initBadCodes: CodeDetail[]) => {
     const router = useRouter();
     const [codes, setCodes] = useState<CodeDetail[]>(initBadCodes);

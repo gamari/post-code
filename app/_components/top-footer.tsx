@@ -1,11 +1,10 @@
 import React from "react";
 import { LinkText } from "@/src/components/molecules/displays/link-text";
-import { Container } from "@/src/components/atoms/containers/container";
 
 export const TopFooter = () => {
   return (
     <footer className="border-t py-12 w-full bg-white">
-      <Container className="px-6">
+      <div className="px-6 max-w-7xl mx-auto">
         <div className="flex flex-row items-center justify-between">
           <div>
             <p>© 2024 BadCode</p>
@@ -22,7 +21,7 @@ export const TopFooter = () => {
             </div>
           </div>
         </div>
-      </Container>
+      </div>
     </footer>
   );
 };

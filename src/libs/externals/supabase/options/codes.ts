@@ -14,6 +14,7 @@ export const buildLatestCodesOption = () => {
     }
 }
 
+/** 以前のものを取得。 */
 export const buildCodesBeforeDate = (target: string) => {
     return {
         lt: [
@@ -54,3 +55,86 @@ export const buildCodesByTitleOption = (title: string, page = 1) => {
         limit: SEARCH_LIMIT
     };
 };
+
+/** 初心者用コード。 */
+export const buildBeginnerCodeListOption = (page = 1) => {
+    const start = (page - 1) * SEARCH_LIMIT;
+    const end = page * SEARCH_LIMIT;
+    return {
+        limit: SEARCH_LIMIT,
+        range: {
+            start,
+            end,
+        },
+        eq: [
+            createEqCondition("is_public", true),
+        ],
+        filter: [
+            {
+                field: "tags",
+                operator: "not.is",
+                value: null,
+            },
+            {
+                field: "tags.name",
+                operator: "eq",
+                value: "初心者",
+            },
+        ],
+    }
+}
+
+/** AI最新記事。 */
+export const buildLatestAiCodeListOption = (page = 1) => {
+    const start = (page - 1) * 1;
+    const end = page * 1;
+
+    return {
+        limit: 1,
+        range: {
+            start,
+            end
+        },
+        eq: [
+            createEqCondition("is_public", true),
+            createEqCondition("tags.name", "AI"),
+        ],
+        filter: [
+            {
+                field: "tags",
+                operator: "not.is",
+                value: null,
+            }
+        ],
+        order: [
+            createOrderCondition("published_date", false)
+        ]
+
+    }
+}
+
+/** TODO AIツールに関する記事。 */
+export const buildAiToolCodeListOption = (page = 1) => {
+    const start = (page - 1) * SEARCH_LIMIT;
+    return {
+        range: {
+            start,
+            end: page * SEARCH_LIMIT
+        },
+        eq: [
+            createEqCondition("is_public", true),
+            createEqCondition("tags.name", "AI"),
+        ],
+        filter: [
+            {
+                field: "tags",
+                operator: "not.is",
+                value: null,
+            }
+        ],
+        order: [
+            createOrderCondition("published_date", false)
+        ],
+        limit: TOP_LIMIT
+    }
+}

@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { useCodeEditor } from "@/app/(private)/dashboard/(non-sidebar)/codes/[code_id]/edit/_hooks/useCodeEditor";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
-import { Tag } from "@/src/types";
 import { fetchOrCreateTag } from "@/src/libs/externals/supabase/queries/tags";
 import { useAlert } from "@/src/hooks/useAlert";
 import Link from "next/link";
@@ -27,8 +26,8 @@ export const CodeEditorSaveEditorSelectTags = () => {
       try {
         const newTag = input.trim();
         if (!newTag) throw new Error("タグを入力してください");
-        if (newTag.length > 20)
-          throw new Error("タグは20文字以内で入力してください");
+        if (newTag.length > 16)
+          throw new Error("タグは16文字以内で入力してください");
         const tag = await fetchOrCreateTag(newTag, client);
         if (tag && !code?.tags?.some((tag) => tag.name === newTag)) {
           addTag(tag);
@@ -43,7 +42,7 @@ export const CodeEditorSaveEditorSelectTags = () => {
   return (
     <div>
       <div className="mt-6">
-        <Heading type="h4">タグ(3つまで)</Heading>
+        <Heading type="h4">タグ(5つまで)</Heading>
       </div>
 
       <div className="p-2 my-2 flex items-center flex-wrap border rounded-md w-[400px] bg-white">
@@ -66,7 +65,7 @@ export const CodeEditorSaveEditorSelectTags = () => {
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           className="w-full outline-none"
-          disabled={(code?.tags?.length || 0) >= 3}
+          disabled={(code?.tags?.length || 0) >= 5}
           maxLength={20}
         />
       </div>

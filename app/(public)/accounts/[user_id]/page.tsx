@@ -1,6 +1,5 @@
 import React from "react";
 
-import { Container } from "@/src/components/atoms/containers/container";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { Toggle } from "@/src/components/ui/toggle";
@@ -20,7 +19,7 @@ const Page = async ({ params: { user_id } }: Props) => {
   const codes = await actionGetCodeListByUser(user_id);
 
   return (
-    <Container className="pt-10">
+    <div className="px-6 max-w-7xl mx-auto">
       <Flex gap={48}>
         <UserInfoCard user={user} className="w-[260px]" />
         <div className="flex-1">
@@ -34,7 +33,7 @@ const Page = async ({ params: { user_id } }: Props) => {
           <CodePanelList codes={codes} className="mb-32" />
         </div>
       </Flex>
-    </Container>
+    </div>
   );
 };
 
