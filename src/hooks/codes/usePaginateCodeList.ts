@@ -2,11 +2,13 @@ import { CodeDetail } from "@/src/types";
 import { usePaginate } from "../usePaginate";
 import { useEffect, useState } from "react";
 import { useSupabase } from "@/src/contexts/SupabaseProvider";
+import { useLoading } from "../useLoading";
 
 type FetcherProps = (page: number) => Promise<CodeDetail[] | undefined>;
 
 export const usePaginateCodeList = (fetcher: FetcherProps) => {
     const { client } = useSupabase();
+    const { loading, startLoading, stopLoading } = useLoading(true);
 
     const { page, nextPage, prevPage } = usePaginate();
     const [isDone, setIsDone] = useState(false);
@@ -18,6 +20,7 @@ export const usePaginateCodeList = (fetcher: FetcherProps) => {
             if (!client) return;
 
             try {
+                startLoading();
                 const codeList = await fetcher(page);
 
                 if (codeList?.length) {
@@ -27,6 +30,8 @@ export const usePaginateCodeList = (fetcher: FetcherProps) => {
                 }
             } catch (e) {
                 console.error(e);
+            } finally {
+                stopLoading();
             }
         }
         update();
@@ -37,6 +42,7 @@ export const usePaginateCodeList = (fetcher: FetcherProps) => {
         codeList,
         nextPage,
         prevPage,
-        isDone
+        isDone,
+        loading
     }
 }
