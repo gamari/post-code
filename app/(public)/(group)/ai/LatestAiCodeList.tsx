@@ -4,9 +4,9 @@ import React from "react";
 import { useLatestAiCodeList } from "./useLatestAiCodeList";
 import { CodePanelList } from "@/src/components/organisms/codes/panel/code-panel-list";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
-import { DownIcon } from "@/src/components/atoms/icons/down-icon";
 import { Loader } from "@/src/components/molecules/displays/Loader";
 import { Center } from "@/src/components/atoms/containers/Center";
+import { MoreIcon } from "@/src/components/molecules/more-icon";
 
 export const LatestAiCodeList = () => {
   const { codeList, nextPage, loading, isDone } = useLatestAiCodeList();
@@ -17,11 +17,11 @@ export const LatestAiCodeList = () => {
   return (
     <div>
       <CodePanelList codes={codeList} />
-      <Center>
+      <Center className="mt-12">
         {loading ? (
           <Loader />
         ) : (
-          <>{!isDone && <DownIcon className="mt-12" onClick={nextPage} />}</>
+          <>{!isDone && <MoreIcon onClick={nextPage} />}</>
         )}
       </Center>
     </div>

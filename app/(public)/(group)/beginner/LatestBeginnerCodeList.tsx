@@ -8,6 +8,7 @@ import { CodePanelList } from "@/src/components/organisms/codes/panel/code-panel
 import { Center } from "@/src/components/atoms/containers/Center";
 import { DownIcon } from "@/src/components/atoms/icons/down-icon";
 import { Loader } from "@/src/components/molecules/displays/Loader";
+import { MoreIcon } from "@/src/components/molecules/more-icon";
 
 export const LatestBeginnerCodeList = () => {
   const { codeList, loading, nextPage, isDone } = useLatestBeginnerCodeList();
@@ -22,7 +23,7 @@ export const LatestBeginnerCodeList = () => {
         {loading ? (
           <Loader />
         ) : (
-          <>{!isDone && <DownIcon className="" onClick={nextPage} />}</>
+          <>{!isDone && <MoreIcon onClick={nextPage} />}</>
         )}
       </Center>
     </div>
