@@ -8,41 +8,14 @@ import { Description } from "@/src/components/atoms/texts/description";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { LinkPanel } from "@/src/components/organisms/link-panel";
 import { LatestBeginnerCodeList } from "./LatestBeginnerCodeList";
+import { LatestBeginnerSection } from "./LatestBeginnerSection";
+import { BeginnerTopSection } from "./BeginnerTopSection";
 
 const Page = () => {
   return (
     <Container>
-      <Section className="mb-12">
-        <Heading>「ビギナー」ページ</Heading>
-        <Description>
-          経験が浅い方向けのページです。以下のタグが付いた記事をまとめています。
-        </Description>
-        <Flex alignItems="center" gap={8}>
-          <TagBadge
-            tag={
-              {
-                name: "初心者",
-              } as any
-            }
-          />
-        </Flex>
-      </Section>
-
-      <Section className="mb-12">
-        <Heading>はじめに</Heading>
-        <Description>
-          はじめてアウトプットをする際にオススメの記事です。
-        </Description>
-
-        <Flex>
-          <LinkPanel title="はじめてのアウトプット" url="https://post-codes.net/codes/38/detail" />
-        </Flex>
-      </Section>
-
-      <Section className="mb-12">
-        <Heading className="mb-6">「初心者」向け記事一覧</Heading>
-        <LatestBeginnerCodeList />
-      </Section>
+      <BeginnerTopSection />
+      <LatestBeginnerSection />
     </Container>
   );
 };

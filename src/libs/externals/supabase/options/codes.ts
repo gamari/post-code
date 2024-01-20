@@ -58,17 +58,16 @@ export const buildCodesByTitleOption = (title: string, page = 1) => {
 
 /** 初心者用コード。 */
 export const buildBeginnerCodeListOption = (page = 1) => {
-    const start = (page - 1) * SEARCH_LIMIT;
-    const end = page * SEARCH_LIMIT;
+    const start = (page - 1) * 1;
+    const end = page * 1;
     return {
-        TOP_LIMIT,
+        limit: 1,
         range: {
             start,
             end,
         },
         eq: [
             createEqCondition("is_public", true),
-            // createEqCondition("tags.name", "tag"),
         ],
         filter: [
             {
@@ -76,8 +75,6 @@ export const buildBeginnerCodeListOption = (page = 1) => {
                 operator: "not.is",
                 value: null,
             },
-            // TODO いったん「初心者」タグのみで絞る
-            // TODO 今後は「beginner」タグを付与する
             {
                 field: "tags.name",
                 operator: "eq",
