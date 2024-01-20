@@ -3,7 +3,6 @@
 import React from "react";
 
 import { useLatestBeginnerCodeList } from "./useLatestBeginnerCodeList";
-import { Skeleton } from "@/src/components/molecules/displays/skeleton";
 import { NoContent } from "@/src/components/molecules/displays/no-content";
 import { CodePanelList } from "@/src/components/organisms/codes/panel/code-panel-list";
 import { Center } from "@/src/components/atoms/containers/Center";
@@ -13,8 +12,8 @@ import { Loader } from "@/src/components/molecules/displays/Loader";
 export const LatestBeginnerCodeList = () => {
   const { codeList, loading, nextPage, isDone } = useLatestBeginnerCodeList();
 
-  if (loading) return <Skeleton rows={3} />;
-  if (!codeList?.length) return <NoContent>記事が存在しません</NoContent>;
+  if (!loading && !codeList?.length)
+    return <NoContent>記事が存在しません</NoContent>;
 
   return (
     <div>
