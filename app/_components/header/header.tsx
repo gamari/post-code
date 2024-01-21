@@ -42,7 +42,8 @@ export default async function Header() {
           <ActiveLink url="/beginner" label="ビギナー" />
           {/* <ActiveLink url="/tools" label="ツール" /> */}
           <ActiveLink url="/ai" label="AI" />
-          <ActiveLink url="/qa" label="質問" />
+          <ActiveLink url="/problems" label="問題" />
+          <ActiveLink url="/qa" label="Q&A" />
           {/* <ActiveLink url="/errors" label="エラー" /> */}
           {/* <ActiveLink url="/services" label="サービス" /> */}
           {/* <ActiveLink url="/qa" label="質問" /> */}

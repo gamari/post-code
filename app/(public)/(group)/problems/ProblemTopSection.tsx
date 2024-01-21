@@ -1,27 +1,25 @@
-import React from "react";
-
+import { TagBadge } from "@/src/components/atoms/badges/tag-badge";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { Section } from "@/src/components/atoms/containers/section";
-import { Button } from "@/src/components/atoms/forms/button";
 import { Description } from "@/src/components/atoms/texts/description";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { Card } from "@/src/components/molecules/displays/card";
-import { TagBadge } from "@/src/components/atoms/badges/tag-badge";
+import React from "react";
 
-export const QaTopSection = () => {
+export const ProblemTopSection = () => {
   return (
     <Section>
       <Flex justifyContent="between">
-        <Heading>「Q&A」ページ</Heading>
+        <Heading>「問題」ページ</Heading>
         {/* <Button>質問する</Button> */}
       </Flex>
       <Card className="p-4 mt-2">
         <Description>
-          質問をまとめたページになります。以下のタグのいずれかがついたものをまとめています。
+          問題をまとめたページになります。以下のタグをつけたものをまとめています。
         </Description>
-        <Flex className="mt-2">
-          <TagBadge tag={{ name: "質問" } as any} />
-          <TagBadge tag={{ name: "QA" } as any} />
+        <Flex className="mt-2" gap={8}>
+          <TagBadge tag={{ name: "問題" } as any} />
+          <TagBadge tag={{ name: "クイズ" } as any} />
         </Flex>
       </Card>
     </Section>

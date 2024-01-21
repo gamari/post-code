@@ -11,7 +11,6 @@ export async function GET(request: NextRequest, response: NextResponse) {
             createEqCondition("is_public", true)
         ],
     });
-    console.log(code)
 
     return NextResponse.json(code)
 }

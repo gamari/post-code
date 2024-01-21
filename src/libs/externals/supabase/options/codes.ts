@@ -158,6 +158,39 @@ export const buildLatestQaCodeListOption = (page = 1) => {
     }
 }
 
+/** 最新問題一覧。 */
+export const buildProblemCodeListOption = (page = 1) => {
+    const start = (page - 1) * SEARCH_LIMIT;
+    const end = page * SEARCH_LIMIT;
+
+    return {
+        limit: SEARCH_LIMIT,
+        range: {
+            start,
+            end
+        },
+        eq: [
+            createEqCondition("is_public", true),
+        ],
+        filter: [
+            {
+                field: "tags",
+                operator: "not.is",
+                value: null,
+            }
+        ],
+        in: [
+            {
+                field: "tags.name",
+                value: ["問題"]
+            }
+        ],
+        order: [
+            createOrderCondition("published_date", false)
+        ]
+    }
+}
+
 /** TODO AIツールに関する記事。 */
 export const buildAiToolCodeListOption = (page = 1) => {
     const start = (page - 1) * SEARCH_LIMIT;

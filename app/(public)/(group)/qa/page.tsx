@@ -8,7 +8,7 @@ const initPage = "";
 
 const Page = () => {
   return (
-    <Container>
+    <Container className="flex flex-col gap-10">
       <QaTopSection />
       <LatestQaListSection />
     </Container>
