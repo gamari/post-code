@@ -39,6 +39,7 @@ export const buildCodesByTitleOption = (title: string, page = 1) => {
     const start = (page - 1) * SEARCH_LIMIT;
     const end = page * SEARCH_LIMIT;
     return {
+        limit: SEARCH_LIMIT,
         like: [
             createEqCondition("title", title)
         ],
@@ -52,7 +53,6 @@ export const buildCodesByTitleOption = (title: string, page = 1) => {
             start,
             end
         },
-        limit: SEARCH_LIMIT
     };
 };
 
@@ -75,29 +75,33 @@ export const buildBeginnerCodeListOption = (page = 1) => {
                 operator: "not.is",
                 value: null,
             },
+        ],
+        in: [
             {
                 field: "tags.name",
-                operator: "eq",
-                value: "初心者",
-            },
+                value: ["初心者"]
+            }
         ],
+        order: [
+            createOrderCondition("published_date", false)
+        ]
+
     }
 }
 
 /** AI最新記事。 */
 export const buildLatestAiCodeListOption = (page = 1) => {
-    const start = (page - 1) * 1;
-    const end = page * 1;
+    const start = (page - 1) * SEARCH_LIMIT;
+    const end = page * SEARCH_LIMIT;
 
     return {
-        limit: 1,
+        limit: SEARCH_LIMIT,
         range: {
             start,
             end
         },
         eq: [
             createEqCondition("is_public", true),
-            createEqCondition("tags.name", "AI"),
         ],
         filter: [
             {
@@ -106,10 +110,84 @@ export const buildLatestAiCodeListOption = (page = 1) => {
                 value: null,
             }
         ],
+        in: [
+            {
+                field: "tags.name",
+                value: ["AI"]
+            }
+        ],
         order: [
             createOrderCondition("published_date", false)
         ]
 
+    }
+}
+
+/** 最新QA */
+export const buildLatestQaCodeListOption = (page = 1) => {
+    const start = (page - 1) * SEARCH_LIMIT;
+    const end = page * SEARCH_LIMIT;
+
+    return {
+        limit: SEARCH_LIMIT,
+        range: {
+            start,
+            end
+        },
+        eq: [
+            createEqCondition("is_public", true),
+        ],
+        filter: [
+            {
+                field: "tags",
+                operator: "not.is",
+                value: null,
+            },
+
+        ],
+        in: [
+            {
+                field: "tags.name",
+                value: ["QA", "質問"]
+            }
+        ],
+        order: [
+            createOrderCondition("published_date", false)
+        ]
+
+    }
+}
+
+/** 最新問題一覧。 */
+export const buildProblemCodeListOption = (page = 1) => {
+    const start = (page - 1) * SEARCH_LIMIT;
+    const end = page * SEARCH_LIMIT;
+
+    return {
+        limit: SEARCH_LIMIT,
+        range: {
+            start,
+            end
+        },
+        eq: [
+            createEqCondition("is_public", true),
+        ],
+        filter: [
+            {
+                field: "tags",
+                operator: "not.is",
+                value: null,
+            }
+        ],
+        in: [
+            {
+                field: "tags.name",
+                value: ["問題"]
+            }
+        ],
+        order: [
+            createOrderCondition("published_date", false)
+        ]
     }
 }
 
@@ -123,13 +201,18 @@ export const buildAiToolCodeListOption = (page = 1) => {
         },
         eq: [
             createEqCondition("is_public", true),
-            createEqCondition("tags.name", "AI"),
         ],
         filter: [
             {
                 field: "tags",
                 operator: "not.is",
                 value: null,
+            }
+        ],
+        in: [
+            {
+                field: "tags.name",
+                value: ["AI"]
             }
         ],
         order: [

@@ -3,7 +3,6 @@ import React from "react";
 import { TagBadge } from "@/src/components/atoms/badges/tag-badge";
 import { Flex } from "@/src/components/atoms/containers/Flex";
 import { Section } from "@/src/components/atoms/containers/section";
-import { Button } from "@/src/components/atoms/forms/button";
 import { Description } from "@/src/components/atoms/texts/description";
 import { Heading } from "@/src/components/atoms/texts/heading";
 import { Card } from "@/src/components/molecules/displays/card";
