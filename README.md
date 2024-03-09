@@ -1,12 +1,17 @@
-# 概要
+# アプリ概要
 
-悪いコード収集のアプリ。
+記事を投稿するアプリです。
 
-[GitHub](https://github.com/gamari/bad-codes-nextjs)
-[Vercel-App](https://bad-codes-nextjs.vercel.app/)
-[Vercel-Dashboard](https://vercel.com/gamari/bad-codes-nextjs)
+[URL](https://post-codes.net/)
 
-## Sites
+## 技術
 
-- [shadcn/ui](https://ui.shadcn.com/docs/components/button)
-- [supabase](https://supabase.com/dashboard/projects)
+- フロントエンド
+  - React
+  - Next.js
+- バックエンド
+  - Supabase
+
+## 記事
+
+[Qiita 競技プログラミングの情報シェアに最適なサイトを作ったかもしれない](https://qiita.com/Gamari0009/items/878c5041356d72df8751)
