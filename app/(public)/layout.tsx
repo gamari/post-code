@@ -8,7 +8,7 @@ interface Props {
 const MainLayout = ({ children }: Props) => {
   return (
     <div className="bg-sky-100">
-      {children}
+      <div className="min-h-screen">{children}</div>
       <TopFooter />
     </div>
   );
